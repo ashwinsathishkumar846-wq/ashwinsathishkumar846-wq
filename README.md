@@ -1,16 +1,63 @@
-## Hi there 👋
+# Hi 👋, I'm Ashwin
 
-<!--
-**ashwinsathishkumar846-wq/ashwinsathishkumar846-wq** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+### 🚀 Computer Science Engineering Student | Java Developer | AI & ML Enthusiast
 
-Here are some ideas to get you started:
+I'm a third-year Computer Science Engineering student passionate about solving real-world problems through software development, Artificial Intelligence, and Data Analytics. I enjoy building practical projects, improving my DSA skills, and continuously learning new technologies.
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+---
+
+## 👨‍💻 About Me
+
+- 🎓 B.E. Computer Science Engineering
+- 💻 Solving Data Structures & Algorithms using Java
+- 🤖 Interested in Artificial Intelligence, Machine Learning, and Data Analytics
+- 🌱 Currently learning System Design and Advanced DSA
+- 🚀 Building real-world software projects
+
+---
+
+## 🛠️ Tech Stack
+
+### Languages
+- Java
+- Python
+- C
+- SQL
+
+### Technologies & Tools
+- Git & GitHub
+- VS Code
+- Firebase
+- TensorFlow
+- Scikit-learn
+- Pandas
+- NumPy
+
+---
+
+## 📂 Featured Projects
+
+### 📌 LeetCode Java Solutions
+- 44+ LeetCode problems solved
+- Organized topic-wise
+- Clean and optimized Java solutions
+
+🔗 Repository:
+https://github.com/ashwinsathishkumar846-wq/LeetCode-Solution
+
+---
+
+## 🎯 Current Goals
+
+- Solve 300+ LeetCode problems
+- Master DSA for placements
+- Build production-ready AI projects
+- Contribute to open source
+
+---
+
+## 📫 Connect with Me
+
+- GitHub: https://github.com/ashwinsathishkumar846-wq
+
+Thanks for visiting my profile! ⭐
