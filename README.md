@@ -1,63 +1,83 @@
-# Hi 👋, I'm Ashwin
+# 👋 Hi, I'm Ashwin S
 
-### 🚀 Computer Science Engineering Student | Java Developer | AI & ML Enthusiast
-
-I'm a third-year Computer Science Engineering student passionate about solving real-world problems through software development, Artificial Intelligence, and Data Analytics. I enjoy building practical projects, improving my DSA skills, and continuously learning new technologies.
+🚀 Third-Year Computer Science Engineering Student  
+🎯 AI/ML | Software Engineering | Data Analytics  
 
 ---
 
-## 👨‍💻 About Me
+## 🧠 About Me
 
-- 🎓 B.E. Computer Science Engineering
-- 💻 Solving Data Structures & Algorithms using Java
-- 🤖 Interested in Artificial Intelligence, Machine Learning, and Data Analytics
-- 🌱 Currently learning System Design and Advanced DSA
-- 🚀 Building real-world software projects
+I’m a passionate developer with hands-on experience in **Machine Learning, NLP, and Data Analytics**.  
+
+🏆 Two-time Hackathon Winner  
+⚡ Strong in building real-world, scalable systems  
+🎯 Looking for AI/ML or Software Engineering internships  
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Languages
-- Java
-- Python
-- C
-- SQL
+**Languages**  
+Java | Python | C | SQL  
 
-### Technologies & Tools
-- Git & GitHub
-- VS Code
-- Firebase
-- TensorFlow
-- Scikit-learn
-- Pandas
-- NumPy
+**ML & Data**  
+TensorFlow | Scikit-learn | CatBoost  
+Pandas | NumPy | Matplotlib  
+
+**Backend & Tools**  
+FastAPI | SQLAlchemy | Git | Linux | Jupyter  
+
+**Databases**  
+MySQL | PostgreSQL  
 
 ---
 
-## 📂 Featured Projects
+## 🚀 Projects
 
-### 📌 LeetCode Java Solutions
-- 44+ LeetCode problems solved
-- Organized topic-wise
-- Clean and optimized Java solutions
-
-🔗 Repository:
-https://github.com/ashwinsathishkumar846-wq/LeetCode-Solution
+### 🔹 Workforce Contribution Monitor
+- Built a **full-stack system** (React + FastAPI) to measure real employee impact  
+- Designed a custom **scoring algorithm** to reduce bias in productivity tracking  
+- Created interactive dashboards for performance insights  
 
 ---
 
-## 🎯 Current Goals
-
-- Solve 300+ LeetCode problems
-- Master DSA for placements
-- Build production-ready AI projects
-- Contribute to open source
+### 🔹 Satellite-Based Water Quality Prediction
+- Developed a **CatBoost ML model** using satellite & geospatial data  
+- Automated pipeline for ingestion, preprocessing & visualization  
+- Enabled scalable environmental monitoring without manual sampling  
 
 ---
 
-## 📫 Connect with Me
+### 🔹 AI Customer Feedback Intelligence System
+- Built an **NLP-based system** using Transformers for sentiment analysis  
+- Designed a **churn prediction + retention pipeline**  
+- Integrated multi-agent decision system for business actions  
 
-- GitHub: https://github.com/ashwinsathishkumar846-wq
+---
 
-Thanks for visiting my profile! ⭐
+## 🏆 Achievements
+
+🥇 First Prize — HackTIDE Hackathon (2026)  
+🥇 First Prize — IDEATHON Hackathon (2026)  
+🥈 Runner-Up — CRYPTERA 2025  
+
+---
+
+## 📜 Certifications
+
+✔ ServiceNow AI Essentials  
+✔ Agentic AI (ServiceNow)  
+✔ Celonis Foundations  
+✔ IBM LinuxONE  
+
+---
+
+## 🌐 Connect With Me
+
+🔗 LinkedIn: https://linkedin.com/in/ashwin-s--  
+💻 GitHub: https://github.com/ashwinsathishkumar846-wq  
+🧠 LeetCode: https://leetcode.com/u/ashwin1122  
+
+---
+
+⭐ *“I build systems that solve real-world problems.”*
