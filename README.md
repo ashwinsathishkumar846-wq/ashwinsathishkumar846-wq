@@ -1,3 +1,9 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="dark_mode.svg" />
+  <source media="(prefers-color-scheme: light)" srcset="light_mode.svg" />
+  <img alt="ashwinsathishkumar846-wq's GitHub profile" src="dark_mode.svg" />
+</picture>
+
 # 👋 Hi, I'm Ashwin S
 
 🚀 Third-Year Computer Science Engineering Student  
