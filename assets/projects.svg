@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="510" viewBox="0 0 900 510" role="img" aria-label="Project constellation: six projects, three hosted on GitHub and three built off GitHub.">
+<defs><radialGradient id="neb" cx="50%" cy="45%" r="55%">
+  <stop offset="0%" stop-color="#312e81" stop-opacity=".28"/><stop offset="100%" stop-color="#05070e" stop-opacity="0"/></radialGradient></defs>
+<rect width="900" height="510" rx="14" fill="#05070e"/>
+<ellipse cx="450" cy="240" rx="430" ry="230" fill="url(#neb)"/>
+<circle cx="339" cy="137" r="0.9" fill="#93a1bd" opacity="0.38"/><circle cx="82" cy="480" r="1.2" fill="#93a1bd" opacity="0.18"/><circle cx="604" cy="89" r="1.2" fill="#93a1bd" opacity="0.23"/><circle cx="96" cy="282" r="0.9" fill="#93a1bd" opacity="0.17"/><circle cx="100" cy="342" r="0.9" fill="#93a1bd" opacity="0.17"/><circle cx="587" cy="123" r="0.7" fill="#93a1bd" opacity="0.37"/><circle cx="604" cy="91" r="1.2" fill="#93a1bd" opacity="0.35"/><circle cx="58" cy="173" r="0.7" fill="#93a1bd" opacity="0.34"/><circle cx="144" cy="208" r="0.9" fill="#93a1bd" opacity="0.20"/><circle cx="128" cy="352" r="0.9" fill="#93a1bd" opacity="0.35"/><circle cx="706" cy="152" r="0.7" fill="#93a1bd" opacity="0.35"/><circle cx="662" cy="156" r="0.9" fill="#93a1bd" opacity="0.18"/><circle cx="737" cy="92" r="1.2" fill="#93a1bd" opacity="0.17"/><circle cx="218" cy="314" r="1.2" fill="#93a1bd" opacity="0.34"/><circle cx="803" cy="220" r="0.9" fill="#93a1bd" opacity="0.35"/><circle cx="472" cy="245" r="0.9" fill="#93a1bd" opacity="0.24"/><circle cx="192" cy="417" r="0.7" fill="#93a1bd" opacity="0.18"/><circle cx="315" cy="328" r="0.9" fill="#93a1bd" opacity="0.46"/><circle cx="754" cy="289" r="0.9" fill="#93a1bd" opacity="0.36"/><circle cx="82" cy="120" r="1.2" fill="#93a1bd" opacity="0.30"/><circle cx="783" cy="235" r="0.7" fill="#93a1bd" opacity="0.48"/><circle cx="439" cy="80" r="1.2" fill="#93a1bd" opacity="0.18"/><circle cx="579" cy="353" r="0.9" fill="#93a1bd" opacity="0.27"/><circle cx="366" cy="364" r="0.9" fill="#93a1bd" opacity="0.35"/><circle cx="475" cy="95" r="0.7" fill="#93a1bd" opacity="0.48"/><circle cx="493" cy="416" r="1.2" fill="#93a1bd" opacity="0.17"/><circle cx="756" cy="419" r="0.9" fill="#93a1bd" opacity="0.38"/><circle cx="705" cy="480" r="0.9" fill="#93a1bd" opacity="0.25"/><circle cx="403" cy="402" r="0.9" fill="#93a1bd" opacity="0.16"/><circle cx="480" cy="241" r="0.7" fill="#93a1bd" opacity="0.36"/><circle cx="513" cy="90" r="0.7" fill="#93a1bd" opacity="0.42"/><circle cx="140" cy="438" r="0.7" fill="#93a1bd" opacity="0.29"/><circle cx="516" cy="101" r="0.7" fill="#93a1bd" opacity="0.31"/><circle cx="570" cy="202" r="0.7" fill="#93a1bd" opacity="0.44"/><circle cx="892" cy="341" r="0.9" fill="#93a1bd" opacity="0.40"/><circle cx="375" cy="409" r="0.9" fill="#93a1bd" opacity="0.49"/><circle cx="162" cy="102" r="0.7" fill="#93a1bd" opacity="0.20"/><circle cx="682" cy="179" r="0.7" fill="#93a1bd" opacity="0.32"/><circle cx="611" cy="153" r="0.9" fill="#93a1bd" opacity="0.25"/><circle cx="157" cy="274" r="1.2" fill="#93a1bd" opacity="0.28"/><circle cx="587" cy="223" r="0.7" fill="#93a1bd" opacity="0.39"/><circle cx="535" cy="376" r="1.2" fill="#93a1bd" opacity="0.39"/><circle cx="63" cy="293" r="1.2" fill="#93a1bd" opacity="0.43"/><circle cx="409" cy="263" r="0.9" fill="#93a1bd" opacity="0.29"/><circle cx="501" cy="384" r="0.9" fill="#93a1bd" opacity="0.17"/><circle cx="76" cy="166" r="0.9" fill="#93a1bd" opacity="0.21"/><circle cx="356" cy="367" r="0.7" fill="#93a1bd" opacity="0.19"/><circle cx="588" cy="137" r="1.2" fill="#93a1bd" opacity="0.19"/><circle cx="380" cy="374" r="0.7" fill="#93a1bd" opacity="0.17"/><circle cx="220" cy="374" r="0.9" fill="#93a1bd" opacity="0.20"/><circle cx="266" cy="237" r="1.2" fill="#93a1bd" opacity="0.28"/><circle cx="133" cy="119" r="0.9" fill="#93a1bd" opacity="0.50"/><circle cx="485" cy="305" r="0.9" fill="#93a1bd" opacity="0.26"/><circle cx="155" cy="112" r="1.2" fill="#93a1bd" opacity="0.27"/><circle cx="279" cy="305" r="1.2" fill="#93a1bd" opacity="0.21"/><circle cx="31" cy="165" r="1.2" fill="#93a1bd" opacity="0.28"/><circle cx="714" cy="338" r="0.7" fill="#93a1bd" opacity="0.42"/><circle cx="313" cy="389" r="0.7" fill="#93a1bd" opacity="0.39"/><circle cx="275" cy="325" r="0.9" fill="#93a1bd" opacity="0.47"/><circle cx="372" cy="455" r="0.7" fill="#93a1bd" opacity="0.34"/><circle cx="805" cy="317" r="0.9" fill="#93a1bd" opacity="0.37"/><circle cx="635" cy="475" r="0.7" fill="#93a1bd" opacity="0.43"/><circle cx="845" cy="265" r="1.2" fill="#93a1bd" opacity="0.43"/><circle cx="212" cy="325" r="0.9" fill="#93a1bd" opacity="0.27"/><circle cx="37" cy="74" r="0.9" fill="#93a1bd" opacity="0.32"/><circle cx="206" cy="414" r="1.2" fill="#93a1bd" opacity="0.48"/><circle cx="465" cy="473" r="1.2" fill="#93a1bd" opacity="0.50"/><circle cx="381" cy="101" r="0.7" fill="#93a1bd" opacity="0.19"/><circle cx="489" cy="160" r="0.9" fill="#93a1bd" opacity="0.22"/><circle cx="647" cy="372" r="0.7" fill="#93a1bd" opacity="0.32"/><circle cx="676" cy="236" r="1.2" fill="#93a1bd" opacity="0.18"/><circle cx="684" cy="121" r="0.9" fill="#93a1bd" opacity="0.42"/><circle cx="776" cy="162" r="0.9" fill="#93a1bd" opacity="0.46"/><circle cx="452" cy="464" r="1.2" fill="#93a1bd" opacity="0.27"/><circle cx="828" cy="429" r="0.9" fill="#93a1bd" opacity="0.31"/><circle cx="769" cy="103" r="1.2" fill="#93a1bd" opacity="0.21"/><circle cx="138" cy="74" r="0.7" fill="#93a1bd" opacity="0.36"/><circle cx="484" cy="472" r="1.2" fill="#93a1bd" opacity="0.20"/><circle cx="854" cy="365" r="0.9" fill="#93a1bd" opacity="0.38"/><circle cx="366" cy="139" r="1.2" fill="#93a1bd" opacity="0.34"/><circle cx="29" cy="67" r="1.2" fill="#93a1bd" opacity="0.38"/><circle cx="547" cy="443" r="0.7" fill="#93a1bd" opacity="0.30"/><circle cx="207" cy="168" r="0.7" fill="#93a1bd" opacity="0.24"/><circle cx="307" cy="316" r="0.7" fill="#93a1bd" opacity="0.42"/><circle cx="341" cy="192" r="1.2" fill="#93a1bd" opacity="0.30"/><circle cx="142" cy="91" r="1.2" fill="#93a1bd" opacity="0.27"/><circle cx="477" cy="399" r="1.2" fill="#93a1bd" opacity="0.44"/><circle cx="537" cy="275" r="1.2" fill="#93a1bd" opacity="0.20"/><circle cx="163" cy="328" r="1.2" fill="#93a1bd" opacity="0.16"/><circle cx="458" cy="457" r="0.7" fill="#93a1bd" opacity="0.36"/>
+<text x="26" y="34" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="10" letter-spacing="2.6" fill="#3f4c68">// PROJECT CONSTELLATION</text>
+<text x="874" y="34" text-anchor="end" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="10" letter-spacing="2" fill="#3f4c68">06 SYSTEMS</text>
+<line x1="26" y1="46" x2="874" y2="46" stroke="#141d31"/>
+<line x1="163.0" y1="83" x2="450.0" y2="83" stroke="#22d3ee" stroke-opacity=".22" stroke-width="1"/>
+<line x1="450.0" y1="83" x2="737.0" y2="83" stroke="#2dd4bf" stroke-opacity=".22" stroke-width="1"/>
+<line x1="163.0" y1="83" x2="163.0" y2="287" stroke="#22d3ee" stroke-opacity=".22" stroke-width="1"/>
+<line x1="450.0" y1="83" x2="450.0" y2="287" stroke="#2dd4bf" stroke-opacity=".22" stroke-width="1"/>
+<line x1="737.0" y1="83" x2="737.0" y2="287" stroke="#6366f1" stroke-opacity=".22" stroke-width="1"/>
+<line x1="163.0" y1="287" x2="450.0" y2="287" stroke="#8b5cf6" stroke-opacity=".22" stroke-width="1"/>
+<line x1="450.0" y1="287" x2="737.0" y2="287" stroke="#8b5cf6" stroke-opacity=".22" stroke-width="1"/>
+<g>
+  <rect x="26" y="96" width="274" height="158" rx="13" fill="#080d1a" stroke="#22d3ee" stroke-opacity=".40"/>
+  <rect x="26" y="96" width="274" height="2" rx="1" fill="#22d3ee" opacity=".85"/>
+  <text x="41" y="123" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#3f4c68">01</text>
+  <g><rect x="242.2" y="111" width="42.8" height="17" rx="8.5" fill="#22d3ee" fill-opacity=".13" stroke="#22d3ee" stroke-opacity=".5"/>
+     <text x="263.6" y="123" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" letter-spacing="1" fill="#22d3ee">LIVE</text></g>
+  <text x="41" y="151" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" letter-spacing="1.1" fill="#e8eef9">DJI DRONIC WORLD</text>
+  <text x="41" y="174" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">Drone service-centre platform:</text>
+  <text x="41" y="188" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">catalog, bookings, admin dashboard</text>
+  <line x1="41" y1="202" x2="285" y2="202" stroke="#1b2740"/>
+  <text x="41" y="219" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#22d3ee">React · Express · SQLite · JWT</text>
+  <text x="41" y="238" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" fill="#4d5b78">github.com/…/dji-dronic-world</text>
+  <circle cx="163.0" cy="83" r="4.5" fill="#22d3ee"/>
+  <circle cx="163.0" cy="83" r="8" fill="none" stroke="#22d3ee" stroke-opacity=".4">
+    <animate attributeName="r" values="6;13;6" dur="3.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="3.0s" repeatCount="indefinite"/>
+  </circle>
+</g>
+<g>
+  <rect x="313" y="96" width="274" height="158" rx="13" fill="#080d1a" stroke="#2dd4bf" stroke-opacity=".40"/>
+  <rect x="313" y="96" width="274" height="2" rx="1" fill="#2dd4bf" opacity=".85"/>
+  <text x="328" y="123" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#3f4c68">02</text>
+  <g><rect x="516.8" y="111" width="55.2" height="17" rx="8.5" fill="#2dd4bf" fill-opacity=".13" stroke="#2dd4bf" stroke-opacity=".5"/>
+     <text x="544.4" y="123" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" letter-spacing="1" fill="#2dd4bf">ACTIVE</text></g>
+  <text x="328" y="151" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" letter-spacing="1.1" fill="#e8eef9">LEETCODE SOLUTIONS</text>
+  <text x="328" y="174" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">42 accepted Java solutions,</text>
+  <text x="328" y="188" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">organised by topic · 44 solved</text>
+  <line x1="328" y1="202" x2="572" y2="202" stroke="#1b2740"/>
+  <text x="328" y="219" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#2dd4bf">Java · Python · JavaScript</text>
+  <text x="328" y="238" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" fill="#4d5b78">github.com/…/LeetCode-Solution</text>
+  <circle cx="450.0" cy="83" r="4.5" fill="#2dd4bf"/>
+  <circle cx="450.0" cy="83" r="8" fill="none" stroke="#2dd4bf" stroke-opacity=".4">
+    <animate attributeName="r" values="6;13;6" dur="3.5s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="3.5s" repeatCount="indefinite"/>
+  </circle>
+</g>
+<g>
+  <rect x="600" y="96" width="274" height="158" rx="13" fill="#080d1a" stroke="#6366f1" stroke-opacity=".40"/>
+  <rect x="600" y="96" width="274" height="2" rx="1" fill="#6366f1" opacity=".85"/>
+  <text x="615" y="123" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#3f4c68">03</text>
+  <g><rect x="810.0" y="111" width="49.0" height="17" rx="8.5" fill="#6366f1" fill-opacity=".13" stroke="#6366f1" stroke-opacity=".5"/>
+     <text x="834.5" y="123" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" letter-spacing="1" fill="#6366f1">PAGES</text></g>
+  <text x="615" y="151" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" letter-spacing="1.1" fill="#e8eef9">BENTO GRID</text>
+  <text x="615" y="174" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">Frontend Mentor challenge build</text>
+  <text x="615" y="188" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">using CSS Grid placement</text>
+  <line x1="615" y1="202" x2="859" y2="202" stroke="#1b2740"/>
+  <text x="615" y="219" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#6366f1">HTML · CSS</text>
+  <text x="615" y="238" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" fill="#4d5b78">github.com/…/webassignment</text>
+  <circle cx="737.0" cy="83" r="4.5" fill="#6366f1"/>
+  <circle cx="737.0" cy="83" r="8" fill="none" stroke="#6366f1" stroke-opacity=".4">
+    <animate attributeName="r" values="6;13;6" dur="4.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="4.0s" repeatCount="indefinite"/>
+  </circle>
+</g>
+<g>
+  <rect x="26" y="300" width="274" height="158" rx="13" fill="#080d1a" stroke="#8b5cf6" stroke-opacity=".40" stroke-dasharray="5 4"/>
+  <rect x="26" y="300" width="274" height="2" rx="1" fill="#8b5cf6" opacity=".45"/>
+  <text x="41" y="327" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#3f4c68">04</text>
+  <g><rect x="205.0" y="315" width="80.0" height="17" rx="8.5" fill="#8b5cf6" fill-opacity=".13" stroke="#8b5cf6" stroke-opacity=".5"/>
+     <text x="245.0" y="327" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" letter-spacing="1" fill="#8b5cf6">OFF-GITHUB</text></g>
+  <text x="41" y="355" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" letter-spacing="1.1" fill="#e8eef9">WORKFORCE MONITOR</text>
+  <text x="41" y="378" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">Measures real employee impact via</text>
+  <text x="41" y="392" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">a bias-reducing scoring algorithm</text>
+  <line x1="41" y1="406" x2="285" y2="406" stroke="#1b2740"/>
+  <text x="41" y="423" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#8b5cf6">React · FastAPI</text>
+  <text x="41" y="442" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" fill="#4d5b78">not published</text>
+  <circle cx="163.0" cy="287" r="4.5" fill="#8b5cf6"/>
+  <circle cx="163.0" cy="287" r="8" fill="none" stroke="#8b5cf6" stroke-opacity=".4">
+    <animate attributeName="r" values="6;13;6" dur="4.5s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="4.5s" repeatCount="indefinite"/>
+  </circle>
+</g>
+<g>
+  <rect x="313" y="300" width="274" height="158" rx="13" fill="#080d1a" stroke="#8b5cf6" stroke-opacity=".40" stroke-dasharray="5 4"/>
+  <rect x="313" y="300" width="274" height="2" rx="1" fill="#8b5cf6" opacity=".45"/>
+  <text x="328" y="327" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#3f4c68">05</text>
+  <g><rect x="492.0" y="315" width="80.0" height="17" rx="8.5" fill="#8b5cf6" fill-opacity=".13" stroke="#8b5cf6" stroke-opacity=".5"/>
+     <text x="532.0" y="327" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" letter-spacing="1" fill="#8b5cf6">OFF-GITHUB</text></g>
+  <text x="328" y="355" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" letter-spacing="1.1" fill="#e8eef9">WATER QUALITY AI</text>
+  <text x="328" y="378" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">Predicts water quality from</text>
+  <text x="328" y="392" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">satellite + geospatial data</text>
+  <line x1="328" y1="406" x2="572" y2="406" stroke="#1b2740"/>
+  <text x="328" y="423" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#8b5cf6">CatBoost · Python</text>
+  <text x="328" y="442" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" fill="#4d5b78">not published</text>
+  <circle cx="450.0" cy="287" r="4.5" fill="#8b5cf6"/>
+  <circle cx="450.0" cy="287" r="8" fill="none" stroke="#8b5cf6" stroke-opacity=".4">
+    <animate attributeName="r" values="6;13;6" dur="5.0s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="5.0s" repeatCount="indefinite"/>
+  </circle>
+</g>
+<g>
+  <rect x="600" y="300" width="274" height="158" rx="13" fill="#080d1a" stroke="#8b5cf6" stroke-opacity=".40" stroke-dasharray="5 4"/>
+  <rect x="600" y="300" width="274" height="2" rx="1" fill="#8b5cf6" opacity=".45"/>
+  <text x="615" y="327" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#3f4c68">06</text>
+  <g><rect x="779.0" y="315" width="80.0" height="17" rx="8.5" fill="#8b5cf6" fill-opacity=".13" stroke="#8b5cf6" stroke-opacity=".5"/>
+     <text x="819.0" y="327" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" letter-spacing="1" fill="#8b5cf6">OFF-GITHUB</text></g>
+  <text x="615" y="355" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="13.5" font-weight="700" letter-spacing="1.1" fill="#e8eef9">FEEDBACK INTELLIGENCE</text>
+  <text x="615" y="378" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">Transformer sentiment analysis with</text>
+  <text x="615" y="392" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.8" fill="#93a1bd">a churn-prediction pipeline</text>
+  <line x1="615" y1="406" x2="859" y2="406" stroke="#1b2740"/>
+  <text x="615" y="423" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#8b5cf6">Transformers · NLP</text>
+  <text x="615" y="442" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="7.8" fill="#4d5b78">not published</text>
+  <circle cx="737.0" cy="287" r="4.5" fill="#8b5cf6"/>
+  <circle cx="737.0" cy="287" r="8" fill="none" stroke="#8b5cf6" stroke-opacity=".4">
+    <animate attributeName="r" values="6;13;6" dur="5.5s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="5.5s" repeatCount="indefinite"/>
+  </circle>
+</g>
+<g>
+  <rect x="316" y="482" width="10" height="10" rx="2" fill="none" stroke="#22d3ee" stroke-opacity=".7"/>
+  <text x="333" y="491" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#8091ae">on GitHub — links below</text>
+  <rect x="516" y="482" width="10" height="10" rx="2" fill="none" stroke="#8b5cf6" stroke-opacity=".7" stroke-dasharray="3 2"/>
+  <text x="533" y="491" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#8091ae">built off GitHub</text>
+</g>
+</svg>

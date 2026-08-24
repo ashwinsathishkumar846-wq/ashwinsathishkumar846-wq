@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="470" viewBox="0 0 900 470" role="img" aria-label="Command centre: Ashwin at the centre of five technical domains — AI and agentic AI, cybersecurity, software, data and ML, cloud and systems.">
+<defs>
+  <pattern id="grid2" width="36" height="36" patternUnits="userSpaceOnUse">
+    <path d="M36 0H0V36" fill="none" stroke="#101728" stroke-width="1"/>
+  </pattern>
+  <radialGradient id="core" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#22d3ee" stop-opacity=".34"/>
+    <stop offset="60%" stop-color="#6366f1" stop-opacity=".12"/>
+    <stop offset="100%" stop-color="#05070e" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="glass" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#1a2542"/><stop offset="100%" stop-color="#080d1a"/>
+  </linearGradient>
+  <linearGradient id="rim" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#22d3ee"/><stop offset="100%" stop-color="#8b5cf6"/>
+  </linearGradient>
+  <filter id="bloom" x="-70%" y="-70%" width="240%" height="240%"><feGaussianBlur stdDeviation="10"/></filter>
+</defs>
+
+<rect width="900" height="470" rx="14" fill="#05070e"/>
+<rect width="900" height="470" rx="14" fill="url(#grid2)"/>
+
+<g opacity=".5" stroke="#16203a" fill="none">
+  <path d="M0 470 L450 232 L900 470"/>
+  <path d="M120 470 L450 232 L780 470"/>
+</g>
+
+<ellipse cx="450" cy="232" rx="300" ry="180" fill="url(#core)"/>
+
+<g fill="none" opacity=".6">
+  <ellipse cx="450" cy="232" rx="238" ry="96" stroke="#1e2a45" stroke-dasharray="4 8"/>
+  <ellipse cx="450" cy="232" rx="310" ry="140" stroke="#17223a" stroke-dasharray="2 10"/>
+  <ellipse cx="450" cy="232" rx="170" ry="170" stroke="#1a2540" stroke-dasharray="3 9">
+    <animateTransform attributeName="transform" type="rotate" from="0 450 232" to="360 450 232" dur="46s" repeatCount="indefinite"/>
+  </ellipse>
+</g>
+
+<text x="26" y="30" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="10" letter-spacing="2.6" fill="#3f4c68">// COMMAND CENTER</text>
+<text x="874" y="30" text-anchor="end" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="10" letter-spacing="2" fill="#3f4c68">NODE MAP</text>
+
+<path id="p0" d="M450 232 Q420 147 450 62" fill="none" stroke="#8b5cf6" stroke-opacity=".30" stroke-width="1.3"/>
+<path id="p1" d="M450 232 Q324 207 138 182" fill="none" stroke="#f59e0b" stroke-opacity=".30" stroke-width="1.3"/>
+<path id="p2" d="M450 232 Q576 207 762 182" fill="none" stroke="#22d3ee" stroke-opacity=".30" stroke-width="1.3"/>
+<path id="p3" d="M450 232 Q371 316 232 400" fill="none" stroke="#2dd4bf" stroke-opacity=".30" stroke-width="1.3"/>
+<path id="p4" d="M450 232 Q529 316 668 400" fill="none" stroke="#6366f1" stroke-opacity=".30" stroke-width="1.3"/>
+<g>
+  <rect x="361.0" y="30.0" width="178" height="64" rx="12" fill="#0a1020" stroke="#8b5cf6" stroke-opacity=".42"/>
+  <rect x="361.0" y="30.0" width="3.5" height="64" rx="1.7" fill="#8b5cf6" opacity=".85"/>
+  <circle cx="523.0" cy="45.0" r="3.2" fill="#8b5cf6"><animate attributeName="opacity" values="1;.2;1" dur="2.2s" repeatCount="indefinite"/></circle>
+  <text x="377.0" y="52.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.5" fill="#8b5cf6">AI / AGENTIC AI</text>
+  <text x="377.0" y="69.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">ML · NLP · LLM systems</text>
+  <text x="377.0" y="82.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#5d6b87">applied research</text>
+</g>
+<g>
+  <rect x="49.0" y="150.0" width="178" height="64" rx="12" fill="#0a1020" stroke="#f59e0b" stroke-opacity=".42"/>
+  <rect x="49.0" y="150.0" width="3.5" height="64" rx="1.7" fill="#f59e0b" opacity=".85"/>
+  <circle cx="211.0" cy="165.0" r="3.2" fill="#f59e0b"><animate attributeName="opacity" values="1;.2;1" dur="2.6s" repeatCount="indefinite"/></circle>
+  <text x="65.0" y="172.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.5" fill="#f59e0b">CYBERSECURITY</text>
+  <text x="65.0" y="189.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">JWT · bcrypt · Helmet</text>
+  <text x="65.0" y="202.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#5d6b87">rate limiting · CORS</text>
+</g>
+<g>
+  <rect x="673.0" y="150.0" width="178" height="64" rx="12" fill="#0a1020" stroke="#22d3ee" stroke-opacity=".42"/>
+  <rect x="673.0" y="150.0" width="3.5" height="64" rx="1.7" fill="#22d3ee" opacity=".85"/>
+  <circle cx="835.0" cy="165.0" r="3.2" fill="#22d3ee"><animate attributeName="opacity" values="1;.2;1" dur="3.0s" repeatCount="indefinite"/></circle>
+  <text x="689.0" y="172.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.5" fill="#22d3ee">SOFTWARE</text>
+  <text x="689.0" y="189.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">React · Express · REST</text>
+  <text x="689.0" y="202.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#5d6b87">Java · full stack</text>
+</g>
+<g>
+  <rect x="143.0" y="368.0" width="178" height="64" rx="12" fill="#0a1020" stroke="#2dd4bf" stroke-opacity=".42"/>
+  <rect x="143.0" y="368.0" width="3.5" height="64" rx="1.7" fill="#2dd4bf" opacity=".85"/>
+  <circle cx="305.0" cy="383.0" r="3.2" fill="#2dd4bf"><animate attributeName="opacity" values="1;.2;1" dur="3.4s" repeatCount="indefinite"/></circle>
+  <text x="159.0" y="390.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.5" fill="#2dd4bf">DATA / ML</text>
+  <text x="159.0" y="407.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">Python · SQL</text>
+  <text x="159.0" y="420.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#5d6b87">analytics · modelling</text>
+</g>
+<g>
+  <rect x="579.0" y="368.0" width="178" height="64" rx="12" fill="#0a1020" stroke="#6366f1" stroke-opacity=".42"/>
+  <rect x="579.0" y="368.0" width="3.5" height="64" rx="1.7" fill="#6366f1" opacity=".85"/>
+  <circle cx="741.0" cy="383.0" r="3.2" fill="#6366f1"><animate attributeName="opacity" values="1;.2;1" dur="3.8s" repeatCount="indefinite"/></circle>
+  <text x="595.0" y="390.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.5" fill="#6366f1">CLOUD / SYSTEMS</text>
+  <text x="595.0" y="407.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">Docker · Vercel</text>
+  <text x="595.0" y="420.0" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#5d6b87">Linux · Git</text>
+</g>
+<circle r="3" fill="#8b5cf6"><animateMotion dur="3.4s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#p0"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="3.4s" repeatCount="indefinite"/></circle>
+<circle r="3" fill="#f59e0b"><animateMotion dur="4.0s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#p1"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="4.0s" repeatCount="indefinite"/></circle>
+<circle r="3" fill="#22d3ee"><animateMotion dur="4.6s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#p2"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="4.6s" repeatCount="indefinite"/></circle>
+<circle r="3" fill="#2dd4bf"><animateMotion dur="5.2s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#p3"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="5.2s" repeatCount="indefinite"/></circle>
+<circle r="3" fill="#6366f1"><animateMotion dur="5.8s" repeatCount="indefinite" keyPoints="1;0" keyTimes="0;1" calcMode="linear"><mpath href="#p4"/></animateMotion><animate attributeName="opacity" values="0;1;1;0" dur="5.8s" repeatCount="indefinite"/></circle>
+
+<g>
+  <rect x="345" y="184" width="210" height="96" rx="16" fill="#0b1224" filter="url(#bloom)" opacity=".95"/>
+  <rect x="345" y="184" width="210" height="96" rx="16" fill="url(#glass)"/>
+  <rect x="345" y="184" width="210" height="96" rx="16" fill="none" stroke="url(#rim)" stroke-opacity=".75" stroke-width="1.3"/>
+  <rect x="380" y="183.2" width="140" height="1.8" fill="url(#rim)"/>
+  <text x="450" y="216" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="9" letter-spacing="2.6" fill="#5d6b87">CORE</text>
+  <text x="450" y="244" text-anchor="middle" font-family="'Segoe UI',system-ui,-apple-system,Helvetica,Arial,sans-serif" font-size="24" font-weight="700" letter-spacing="4" fill="#e8eef9">ASHWIN</text>
+  <text x="450" y="264" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" letter-spacing="1.7" fill="#22d3ee">ENGINEERING ALL FIVE</text>
+</g>
+</svg>

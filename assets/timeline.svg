@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="240" viewBox="0 0 900 240" role="img" aria-label="Development journey across four phases from foundations to agentic AI.">
+<defs><pattern id="gg" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#101728" stroke-width="1"/></pattern></defs>
+<rect width="900" height="240" rx="14" fill="#05070e"/><rect width="900" height="240" rx="14" fill="url(#gg)"/>
+<text x="26" y="34" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="10" letter-spacing="2.6" fill="#3f4c68">// DEVELOPMENT JOURNEY</text><text x="874" y="34" text-anchor="end" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="10" letter-spacing="2" fill="#3f4c68">TRAJECTORY</text><line x1="26" y1="46" x2="874" y2="46" stroke="#141d31"/>
+<line x1="90" y1="150" x2="838" y2="150" stroke="#1b2740" stroke-width="2"/><g>
+  <circle cx="128" cy="150" r="12" fill="#05070e" stroke="#6366f1" stroke-opacity=".5"/>
+  <circle cx="128" cy="150" r="5.5" fill="#6366f1"/>
+  <circle cx="128" cy="150" r="12" fill="none" stroke="#6366f1" stroke-opacity=".45">
+    <animate attributeName="r" values="10;20;10" dur="3.2s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="3.2s" repeatCount="indefinite"/></circle>
+  <text x="128" y="118" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.8" fill="#6366f1">FOUNDATIONS</text>
+  <text x="128" y="134" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#5d6b87">pre-2026</text>
+  <text x="128" y="184" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">CS engineering · Java, Python</text>
+  <text x="128" y="200" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#6b7a99">CRYPTERA 2025 — Runner-Up</text>
+</g><g>
+  <circle cx="352" cy="150" r="12" fill="#05070e" stroke="#22d3ee" stroke-opacity=".5"/>
+  <circle cx="352" cy="150" r="5.5" fill="#22d3ee"/>
+  <circle cx="352" cy="150" r="12" fill="none" stroke="#22d3ee" stroke-opacity=".45">
+    <animate attributeName="r" values="10;20;10" dur="3.7s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="3.7s" repeatCount="indefinite"/></circle>
+  <text x="352" y="118" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.8" fill="#22d3ee">FULL STACK</text>
+  <text x="352" y="134" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#5d6b87">Mar–May 2026</text>
+  <text x="352" y="184" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">GitHub presence · first systems</text>
+  <text x="352" y="200" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#6b7a99">dji-dronic-world shipped to Vercel</text>
+</g><g>
+  <circle cx="576" cy="150" r="12" fill="#05070e" stroke="#2dd4bf" stroke-opacity=".5"/>
+  <circle cx="576" cy="150" r="5.5" fill="#2dd4bf"/>
+  <circle cx="576" cy="150" r="12" fill="none" stroke="#2dd4bf" stroke-opacity=".45">
+    <animate attributeName="r" values="10;20;10" dur="4.2s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="4.2s" repeatCount="indefinite"/></circle>
+  <text x="576" y="118" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.8" fill="#2dd4bf">DEPTH</text>
+  <text x="576" y="134" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#5d6b87">Jul–Aug 2026</text>
+  <text x="576" y="184" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">Frontend craft · CSS Grid</text>
+  <text x="576" y="200" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#6b7a99">42 Java solutions · 44 solved</text>
+</g><g>
+  <circle cx="800" cy="150" r="12" fill="#05070e" stroke="#8b5cf6" stroke-opacity=".5"/>
+  <circle cx="800" cy="150" r="5.5" fill="#8b5cf6"/>
+  <circle cx="800" cy="150" r="12" fill="none" stroke="#8b5cf6" stroke-opacity=".45">
+    <animate attributeName="r" values="10;20;10" dur="4.7s" repeatCount="indefinite"/>
+    <animate attributeName="stroke-opacity" values=".5;0;.5" dur="4.7s" repeatCount="indefinite"/></circle>
+  <text x="800" y="118" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="11" font-weight="700" letter-spacing="1.8" fill="#8b5cf6">NOW</text>
+  <text x="800" y="134" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.4" fill="#5d6b87">Aug 2026</text>
+  <text x="800" y="184" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#93a1bd">Agentic AI · production ML</text>
+  <text x="800" y="200" text-anchor="middle" font-family="'JetBrains Mono','Consolas','SF Mono',Menlo,monospace" font-size="8.6" fill="#6b7a99">HackTIDE + IDEATHON — 1st Prize</text>
+</g>
+</svg>
