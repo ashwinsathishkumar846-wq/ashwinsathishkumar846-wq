@@ -1,20 +1,26 @@
 #!/usr/bin/env python3
-"""Generate the data-driven profile assets from the GitHub REST API.
+"""Generate the live, data-driven panels of the profile.
 
 Pipeline:  fetch -> validate -> render -> write
 
-Every figure rendered by this script is read from the GitHub REST API or parsed
-out of a repository's own README. Nothing is estimated or hard-coded. The
-contribution calendar is deliberately NOT used: it is only available by scraping
-an undocumented HTML endpoint, so this builds its activity view from commit data
-instead, which the REST API serves reliably.
+  assets/github-command-center.svg   (+ assets/m/...)   GITHUB // SYSTEM STATUS
+  assets/shipped-repos.svg           (+ assets/m/...)   code that is public on GitHub
 
-If GitHub is unavailable or returns something implausible, the script exits
-non-zero and leaves the existing assets untouched rather than writing a
-half-empty dashboard over good ones.
+Every number is read at run time; nothing is estimated or hard-coded:
+  - profile, repositories, languages, authored commits   GitHub REST API
+  - contribution calendar                                 GitHub GraphQL API (needs a token;
+                                                           the Actions GITHUB_TOKEN works). Without a
+                                                           token - e.g. a local run - it falls back to
+                                                           the public calendar page and says so.
+  - LeetCode solved count                                 LeetCode's public GraphQL endpoint, falling
+                                                           back to the count stated in the
+                                                           LeetCode-Solution README
+A figure that cannot be read is shown as a dash, never guessed. If the core
+GitHub data is missing or implausible the script exits non-zero and leaves the
+existing panels untouched rather than writing an empty dashboard over good ones.
 
 Run:  python scripts/generate_profile.py
-Env:  GITHUB_TOKEN (optional) - raises the rate limit; no private data is read.
+Env:  GITHUB_TOKEN (optional locally, provided in Actions)
 """
 
 import datetime as dt
@@ -27,361 +33,398 @@ import urllib.error
 import urllib.request
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from theme import (PANEL, PANEL_2, HAIR, STROKE, TEXT, MUTED, DIM, FAINT,
-                   CYAN, VIOLET, INDIGO, TEAL, AMBER, MONO, SANS,
-                   esc, head, panel, label, pulse, svg, write)
+from theme import (PANEL, PANEL_2, LINE, LINE_2, TEXT, MUTED, DIM, FAINT, RED, CYAN, BLUE,  # noqa: E402
+                   VIOLET, TEAL, GOLD, SANS, MONO, WIDE, NARROW,
+                   t, lines, chip, chips, panel, node, header, svg, write, wrap, text_w, esc)
 
 USER = "ashwinsathishkumar846-wq"
 OUT = "assets"
 API = "https://api.github.com"
+UA = {"User-Agent": "ashwin-profile-generator"}
 
-# Editorial one-liners. GitHub descriptions are empty on these repos, so the
-# summaries live here - reviewed by a human, not invented per run. A repo that
-# gains a real GitHub description will use that instead (see summarise()).
+# Editorial one-liners, reviewed by hand against each repository's own README.
+# A repo that gains a real GitHub description uses that instead (see summary()).
 BLURBS = {
-    "dji-dronic-world": ("Drone service-centre platform: parts catalog with search and",
-                         "filtering, booking flow, delivery tracking, JWT admin dashboard"),
-    "LeetCode-Solution": ("Accepted Java solutions organised by topic, exported",
-                          "directly from the LeetCode account"),
-    "webassignment": ("Frontend Mentor bento-grid challenge, built with",
-                      "CSS Grid placement and responsive breakpoints"),
+    "dji-dronic-world": "Full-stack drone service-centre platform: parts catalog, booking flow, delivery "
+                        "tracking and a JWT admin dashboard, on a hardened Express API.",
+    "dsa-placement-tracker": "12-week, 141-problem DSA preparation tracker with progress, streaks, filters "
+                             "and a daily target. No backend: state lives in localStorage.",
+    "ashwin-portfolio": "Cinematic personal portfolio: a Three.js scene, GSAP scroll choreography and "
+                        "a Next.js app router build.",
+    "LeetCode-Solution": "Accepted LeetCode solutions in Java, organised by topic and synced from the "
+                         "account with LeetHub.",
+    "webassignment": "Frontend Mentor bento-grid challenge, built with CSS Grid placement and "
+                     "responsive breakpoints.",
 }
 STACKS = {
     "dji-dronic-world": ["React", "Vite", "Tailwind", "Express", "SQLite", "JWT", "Docker"],
-    "LeetCode-Solution": ["Java", "Python", "JavaScript"],
-    "webassignment": ["HTML", "CSS"],
+    "dsa-placement-tracker": ["React", "TypeScript", "Vite", "Tailwind"],
+    "ashwin-portfolio": ["Next.js", "TypeScript", "Three.js", "GSAP", "Tailwind"],
+    "LeetCode-Solution": ["Java", "LeetHub"],
+    "webassignment": ["HTML", "CSS Grid"],
 }
-LANG_COLOR = {"JavaScript": "#f0db4f", "Java": "#f89820", "Python": "#4b8bbe",
-              "CSS": "#663399", "HTML": "#e34c26", "Dockerfile": "#2496ed",
-              "Procfile": "#6b7a99", "Shell": "#89e051", "TypeScript": "#3178c6"}
+ORDER = ["dji-dronic-world", "dsa-placement-tracker", "ashwin-portfolio", "LeetCode-Solution", "webassignment"]
+LANG_COLOR = {"JavaScript": "#f1e05a", "TypeScript": "#3178c6", "Java": "#b07219", "Python": "#3572A5",
+              "CSS": "#663399", "HTML": "#e34c26", "Dockerfile": "#384d54", "Procfile": "#6b7a99",
+              "Shell": "#89e051"}
 
 
 # ------------------------------------------------------------------- fetch
-def api(path, raw=False, retries=3):
-    url = path if path.startswith("http") else API + path
-    hdrs = {"User-Agent": "ashwin-profile-generator",
-            "Accept": "application/vnd.github+json"}
-    tok = os.environ.get("GITHUB_TOKEN")
-    if tok:
-        hdrs["Authorization"] = "Bearer " + tok
+def request(url, data=None, headers=None, retries=3):
+    """Returns (body, response headers). Raises on 404 immediately, retries the rest."""
+    hdrs = dict(UA)
+    hdrs.update(headers or {})
     last = None
     for attempt in range(retries):
         try:
-            req = urllib.request.Request(url, headers=hdrs)
+            req = urllib.request.Request(url, data=data, headers=hdrs)
             with urllib.request.urlopen(req, timeout=45) as r:
-                body = r.read().decode("utf-8", "replace")
-            return body if raw else json.loads(body)
+                return r.read().decode("utf-8", "replace"), r.headers
         except urllib.error.HTTPError as e:
-            if e.code == 404:
+            if e.code in (401, 403, 404):
                 raise
             last = e
-        except Exception as e:                                    # noqa: BLE001
+        except Exception as e:                                        # noqa: BLE001
             last = e
         if attempt < retries - 1:
             time.sleep(2 * (attempt + 1))
-    raise RuntimeError("GitHub request failed after %d attempts: %s (%s)" % (retries, url, last))
+    raise RuntimeError("request failed after %d attempts: %s (%s)" % (retries, url, last))
+
+
+def gh(path, raw=False):
+    hdrs = {"Accept": "application/vnd.github+json"}
+    tok = os.environ.get("GITHUB_TOKEN")
+    if tok:
+        hdrs["Authorization"] = "Bearer " + tok
+    body, h = request(path if path.startswith("http") else API + path, headers=hdrs)
+    return (body, h) if raw else json.loads(body)
+
+
+def human_commits(repo):
+    """Commits on the default branch, excluding bots (the profile repo's own
+    refresh commits, Actions, Dependabot). Counted by listing rather than by
+    ?author=, because commits made from an email not linked to the account have
+    no GitHub author and would silently be dropped."""
+    n, page = 0, 1
+    while True:
+        try:
+            batch = gh("/repos/%s/%s/commits?per_page=100&page=%d" % (USER, repo, page))
+        except urllib.error.HTTPError:
+            return n                                   # empty repository
+        for c in batch:
+            login = ((c.get("author") or {}).get("login") or "")
+            name = c["commit"]["author"]["name"] or ""
+            if not (login.endswith("[bot]") or name.endswith("[bot]")):
+                n += 1
+        if len(batch) < 100:
+            return n
+        page += 1
+
+
+def calendar():
+    """Contribution calendar for the last year: (total, [(date, count), ...], source)."""
+    tok = os.environ.get("GITHUB_TOKEN")
+    if tok:
+        q = ("query($login:String!){user(login:$login){contributionsCollection{contributionCalendar{"
+             "totalContributions weeks{contributionDays{date contributionCount}}}}}}")
+        body, _ = request(API + "/graphql", json.dumps({"query": q, "variables": {"login": USER}}).encode(),
+                          {"Authorization": "Bearer " + tok, "Content-Type": "application/json"})
+        cal = json.loads(body)["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+        days = [(d["date"], d["contributionCount"]) for w in cal["weeks"] for d in w["contributionDays"]]
+        return cal["totalContributions"], days, "GRAPHQL"
+    # Local fallback: the public calendar page. Undocumented markup, so every
+    # parse is cross-checked against the page's own headline total.
+    html, _ = request("https://github.com/users/%s/contributions" % USER)
+    ids = dict(re.findall(r'data-date="(\d{4}-\d\d-\d\d)" id="(contribution-day-component-\d+-\d+)"', html))
+    ids = {v: k for k, v in ids.items()}
+    days = {}
+    for comp, txt in re.findall(r'<tool-tip[^>]*for="(contribution-day-component-\d+-\d+)"[^>]*>([^<]+)<', html):
+        m = re.match(r"(\d+) contribution", txt)
+        if comp in ids:
+            days[ids[comp]] = int(m.group(1)) if m else 0
+    head = re.search(r"([\d,]+)\s+contributions?\s+in the last year", html)
+    total = int(head.group(1).replace(",", "")) if head else None
+    if total is None or total != sum(days.values()):
+        raise ValueError("public calendar parse did not reconcile with its headline total")
+    return total, sorted(days.items()), "PUBLIC CALENDAR"
+
+
+def leetcode(md_fallback):
+    try:
+        q = '{ matchedUser(username: "ashwin1122") { submitStatsGlobal { acSubmissionNum { difficulty count } } } }'
+        body, _ = request("https://leetcode.com/graphql", json.dumps({"query": q}).encode(),
+                          {"Content-Type": "application/json", "Referer": "https://leetcode.com"}, retries=2)
+        stats = json.loads(body)["data"]["matchedUser"]["submitStatsGlobal"]["acSubmissionNum"]
+        by = {s["difficulty"]: s["count"] for s in stats}
+        return {"solved": by["All"], "easy": by["Easy"], "medium": by["Medium"], "hard": by["Hard"],
+                "source": "LEETCODE"}
+    except Exception as e:                                            # noqa: BLE001
+        print("  ! LeetCode API unavailable (%s) - using the repository README" % e)
+    m = re.search(r"Total LeetCode problems solved[^|]*\|\s*(\d+)", md_fallback or "")
+    return {"solved": int(m.group(1)) if m else None, "source": "REPO README"}
 
 
 def fetch():
-    """Pull everything the renderers need, in one place."""
-    user = api("/users/%s" % USER)
-    repos = [r for r in api("/users/%s/repos?per_page=100&sort=pushed" % USER) if not r["fork"]]
-
-    langs, commits = {}, []
+    user = gh("/users/%s" % USER)
+    repos = [r for r in gh("/users/%s/repos?per_page=100&sort=pushed" % USER) if not r["fork"]]
+    langs, commits = {}, {}
     for r in repos:
-        if r["size"] == 0:                       # empty repo: no languages, no commits
+        if r["size"] == 0:
             continue
-        for k, v in api(r["languages_url"]).items():
+        for k, v in gh(r["languages_url"]).items():
             langs[k] = langs.get(k, 0) + v
-        try:
-            for c in api("/repos/%s/%s/commits?per_page=100" % (USER, r["name"])):
-                commits.append((r["name"], c["commit"]["author"]["date"][:10]))
-        except urllib.error.HTTPError:
-            pass                                  # unborn default branch - skip quietly
+        commits[r["name"]] = human_commits(r["name"])
 
-    # LeetCode counts are stated in that repo's own README; parse rather than assume.
-    solved = files = None
+    md = files = None
     try:
-        md = api("https://raw.githubusercontent.com/%s/LeetCode-Solution/main/README.md" % USER, raw=True)
-        m = re.search(r"\*\*(\d+)\s+Java solutions\*\*", md)
+        md, _ = gh("https://raw.githubusercontent.com/%s/LeetCode-Solution/main/README.md" % USER, raw=True)
+        m = re.search(r"Java solutions in this repo\*\*\s*\|\s*\*\*(\d+)", md)
         files = int(m.group(1)) if m else None
-        m = re.search(r"out of \*\*(\d+)\s+problems solved\*\*", md)
-        solved = int(m.group(1)) if m else None
-    except Exception as e:                                        # noqa: BLE001
-        print("  ! LeetCode README unreadable (%s) - counts omitted" % e)
+    except Exception as e:                                            # noqa: BLE001
+        print("  ! LeetCode-Solution README unreadable (%s)" % e)
+
+    try:
+        total, days, cal_src = calendar()
+    except Exception as e:                                            # noqa: BLE001
+        print("  ! contribution calendar unavailable (%s) - omitted" % e)
+        total, days, cal_src = None, [], None
 
     return {"user": user, "repos": repos, "langs": langs, "commits": commits,
-            "leetcode": {"files": files, "solved": solved},
-            "generated": dt.date.today()}
+            "cal": {"total": total, "days": days, "source": cal_src},
+            "lc": dict(leetcode(md), files=files), "today": dt.datetime.now(dt.timezone.utc).date()}
 
 
 # ---------------------------------------------------------------- validate
 def validate(d):
-    """Refuse to render from a response that is missing or obviously wrong."""
-    u, repos = d["user"], d["repos"]
-    problems = []
-    if not u.get("login"):
-        problems.append("user payload has no login")
-    if u.get("public_repos") is None:
-        problems.append("public_repos missing")
-    if not repos:
-        problems.append("no repositories returned")
+    u, problems = d["user"], []
+    if u.get("login") != USER:
+        problems.append("unexpected login")
+    if not d["repos"]:
+        problems.append("no repositories")
     if not d["langs"]:
-        problems.append("no languages resolved across repos")
-    if not d["commits"]:
-        problems.append("no commits resolved across repos")
-    created = u.get("created_at")
-    if not created:
-        problems.append("created_at missing")
-    elif dt.datetime.strptime(created, "%Y-%m-%dT%H:%M:%SZ").date() > dt.date.today():
-        problems.append("created_at is in the future")
+        problems.append("no languages")
+    if not sum(d["commits"].values()):
+        problems.append("no commits")
+    if d["cal"]["total"] is not None and d["cal"]["total"] < 0:
+        problems.append("negative contribution total")
     if problems:
         raise ValueError("validation failed: " + "; ".join(problems))
-    print("  validated: %d repos, %d languages, %d commits"
-          % (len(repos), len(d["langs"]), len(d["commits"])))
+    print("  validated: %d repos, %d languages, %d commits (bots excluded), calendar=%s, leetcode=%s"
+          % (len(d["repos"]), len(d["langs"]), sum(d["commits"].values()), d["cal"]["source"],
+             d["lc"]["source"]))
 
 
-def summarise(repo):
-    """Prefer a real GitHub description; fall back to the reviewed blurb."""
-    desc = (repo.get("description") or "").strip()
-    if desc:
-        words, lines, cur = desc.split(), [], ""
-        for w in words:
-            if len(cur) + len(w) + 1 > 62:
-                lines.append(cur)
-                cur = w
-            else:
-                cur = (cur + " " + w).strip()
-        lines.append(cur)
-        return (lines + ["", ""])[:2]
-    return BLURBS.get(repo["name"], ("", ""))
+def fmt(v):
+    return "—" if v is None else "{:,}".format(v)
 
 
-# ------------------------------------------------------- constellation.svg
-def render_constellation(d):
-    by_name = {r["name"]: r for r in d["repos"]}
-    live = [r for r in d["repos"] if r["size"] > 0 and r["name"] != USER]
-    empty = [r for r in d["repos"] if r["size"] == 0]
-    lc = d["leetcode"]
-
-    primary = by_name.get("dji-dronic-world")
-    others = [r for r in live if r is not primary]
-    # Substance first, byte-size second: a solutions repo outranks a CSS exercise.
-    rank = {"LeetCode-Solution": 0, "webassignment": 1}
-    others.sort(key=lambda r: (rank.get(r["name"], 9), -r["size"]))
-
-    parts = []
-
-    # ---- primary node
-    if primary:
-        px, py, pw, ph = 210, 70, 480, 162
-        parts.append('<ellipse cx="450" cy="150" rx="330" ry="130" fill="url(#pri)"/>')
-        parts.append('<rect x="%d" y="%d" width="%d" height="%d" rx="15" fill="%s" filter="url(#bloom)" '
-                     'opacity=".85"/>' % (px, py, pw, ph, PANEL))
-        parts.append('<rect x="%d" y="%d" width="%d" height="%d" rx="15" fill="%s" stroke="url(#rim)" '
-                     'stroke-opacity=".75" stroke-width="1.3"/>' % (px, py, pw, ph, PANEL_2))
-        parts.append('<rect x="%d" y="%.1f" width="150" height="2" fill="url(#rim)"/>' % (px + 40, py - 1))
-        parts.append(label(px + 24, py + 26, "PRIMARY", 8, FAINT, MONO, None, None, "2.2"))
-        badge = "LIVE" if primary.get("homepage") else "ACTIVE"
-        bw = len(badge) * 6.4 + 20
-        parts.append('<rect x="%.1f" y="%d" width="%.1f" height="19" rx="9.5" fill="%s" fill-opacity=".14" '
-                     'stroke="%s" stroke-opacity=".55"/>' % (px + pw - 24 - bw, py + 14, bw, TEAL, TEAL))
-        parts.append(label(px + pw - 24 - bw / 2, py + 27, badge, 7.8, TEAL, MONO, "middle", None, "1.2"))
-        parts.append(label(px + 24, py + 58, primary["name"], 20, TEXT, SANS, None, "700", "1"))
-        l1, l2 = summarise(primary)
-        parts.append(label(px + 24, py + 82, l1, 9, MUTED))
-        parts.append(label(px + 24, py + 96, l2, 9, MUTED))
-        cx = px + 24
-        for t in STACKS.get(primary["name"], []):
-            bw2 = len(t) * 6.1 + 20
-            parts.append('<rect x="%.1f" y="%d" width="%.1f" height="20" rx="10" fill="%s" fill-opacity=".10" '
-                         'stroke="%s" stroke-opacity=".4"/>' % (cx, py + 110, bw2, CYAN, CYAN))
-            parts.append(label(cx + bw2 / 2, py + 124, t, 8.2, "#cfe0f5", MONO, "middle"))
-            cx += bw2 + 6
-        parts.append(label(px + 24, py + 150, "github.com/%s/%s" % (USER, primary["name"]), 8, FAINT))
-        if primary.get("homepage"):
-            parts.append(label(px + pw - 24, py + 150, primary["homepage"].replace("https://", "") + "  ↗",
-                               8, TEAL, MONO, "end"))
-        parts.append(pulse(450, py - 2, 4.5, CYAN, 3.4))
-
-    # ---- secondary nodes
-    SY, SW, SH = 262, 414, 132
-    for i, r in enumerate(others[:2]):
-        x = 26 + i * (SW + 20)
-        col = TEAL if i == 0 else INDIGO
-        parts.append('<path d="M450 %d C450 %d %.1f %d %.1f %d" fill="none" stroke="%s" stroke-opacity=".28" '
-                     'stroke-width="1.2"/>' % (232, 250, x + SW / 2, 244, x + SW / 2, SY, col))
-        parts.append(panel(x, SY, SW, SH, col, PANEL, 13))
-        parts.append(label(x + 20, SY + 26, "0%d" % (i + 2), 8, FAINT))
-        pushed = r["pushed_at"][:7]
-        parts.append(label(x + SW - 20, SY + 26, pushed, 8, FAINT, MONO, "end"))
-        parts.append(label(x + 20, SY + 52, r["name"], 14.5, TEXT, SANS, None, "700", "0.8"))
-        l1, l2 = summarise(r)
-        parts.append(label(x + 20, SY + 73, l1, 8.6, MUTED))
-        parts.append(label(x + 20, SY + 86, l2, 8.6, MUTED))
-        if r["name"] == "LeetCode-Solution" and lc["files"] and lc["solved"]:
-            parts.append(label(x + 20, SY + 105, "%d solution files  /  %d problems solved"
-                               % (lc["files"], lc["solved"]), 8.4, col))
-        elif r["name"] == "webassignment" and r.get("has_pages"):
-            parts.append(label(x + 20, SY + 105, "published via GitHub Pages", 8.4, col))
-        else:
-            parts.append(label(x + 20, SY + 105, " / ".join(STACKS.get(r["name"], [])), 8.4, col))
-        parts.append(label(x + 20, SY + 121, "github.com/%s/%s" % (USER, r["name"]), 7.8, FAINT))
-        parts.append(pulse(x + SW / 2, SY - 2, 3.6, col, 3.0 + i * .6))
-
-    # ---- experiments strip (empty repos, deliberately quiet)
-    EY = SY + SH + 26
-    if empty:
-        parts.append('<line x1="26" y1="%d" x2="874" y2="%d" stroke="%s"/>' % (EY, EY, HAIR))
-        parts.append(label(26, EY + 22, "EXPERIMENTS", 8.4, FAINT, MONO, None, None, "2"))
-        cx = 150
-        for r in empty:
-            bw = len(r["name"]) * 6.2 + 26
-            parts.append('<rect x="%.1f" y="%d" width="%.1f" height="20" rx="10" fill="none" stroke="%s" '
-                         'stroke-opacity=".35" stroke-dasharray="3 3"/>' % (cx, EY + 8, bw, STROKE))
-            parts.append(label(cx + bw / 2, EY + 22, r["name"], 8, "#66748f", MONO, "middle"))
-            cx += bw + 8
-        parts.append(label(874, EY + 22, "initialised, no content yet", 7.8, FAINT, MONO, "end"))
-
-    h = EY + 48
-    extra = ('<radialGradient id="pri" cx="50%" cy="50%" r="50%">'
-             '<stop offset="0%" stop-color="#1d4ed8" stop-opacity=".26"/>'
-             '<stop offset="100%" stop-color="#060910" stop-opacity="0"/></radialGradient>')
-    body = head("PROJECT CONSTELLATION", "%d REPOSITORIES ON GITHUB" % len(d["repos"])) + "".join(parts)
-    write(os.path.join(OUT, "constellation.svg"),
-          svg("constellation", h, body,
-              "Project constellation of the verified GitHub repositories, with dji-dronic-world as the "
-              "primary project.", extra_defs=(extra,)))
+def status_of(d):
+    # The profile repo is pushed by its own bot every day, so it cannot count as activity.
+    last = max((r for r in d["repos"] if r["name"] != USER), key=lambda r: r["pushed_at"])
+    pushed = dt.date.fromisoformat(last["pushed_at"][:10])
+    age = (d["today"] - pushed).days
+    return ("ACTIVE" if age <= 14 else "IDLE"), pushed, last["name"]
 
 
-# ------------------------------------------------------------ build-log.svg
-def render_build_log(d):
-    u = d["user"]
-    created = dt.datetime.strptime(u["created_at"], "%Y-%m-%dT%H:%M:%SZ").date()
-    today = d["generated"]
-    # Whole months elapsed, plus the leftover days - rounded to the nearest month
-    # for the headline so "4 months 29 days" does not read as 4.
-    whole = (today.year - created.year) * 12 + (today.month - created.month)
-    if today.day < created.day:
-        whole -= 1
-    whole = max(whole, 0)
-    anchor = created
-    for _ in range(whole):                       # walk forward `whole` months
-        y, m = anchor.year + (anchor.month == 12), anchor.month % 12 + 1
-        day = min(anchor.day, [31, 29 if y % 4 == 0 and (y % 100 or y % 400 == 0) else 28,
-                               31, 30, 31, 30, 31, 31, 30, 31, 30, 31][m - 1])
-        anchor = dt.date(y, m, day)
-    extra_days = (today - anchor).days
-    months = whole + (1 if extra_days >= 15 else 0)
+# ------------------------------------------------------ command center.svg
+def weekly(days, n=26):
+    """Sum the calendar into the last n calendar weeks (Sunday-start, like GitHub)."""
+    weeks = {}
+    for ds, c in days:
+        d = dt.date.fromisoformat(ds)
+        start = d - dt.timedelta(days=(d.weekday() + 1) % 7)
+        weeks[start] = weeks.get(start, 0) + c
+    keys = sorted(weeks)[-n:]
+    return [(k, weeks[k]) for k in keys]
 
-    days = sorted({c[1] for c in d["commits"]})
-    stars = sum(r["stargazers_count"] for r in d["repos"])
 
-    stats = [("REPOSITORIES", u["public_repos"]),
-             ("COMMITS", len(d["commits"])),
-             ("ACTIVE DAYS", len(days)),
-             ("LANGUAGES", len(d["langs"])),
-             ("FOLLOWERS", u["followers"]),
-             ("STARS", stars)]
+def tile(x, y, w, h, label, value, colour, note=""):
+    o = panel(x, y, w, h, None)
+    o += '<rect x="%.1f" y="%.1f" width="3" height="%.1f" fill="%s" opacity=".8"/>' % (x, y + 14, h - 28, colour)
+    o += t(x + 16, y + 24, label, 9.5, DIM, MONO, None, "600", 1.4)
+    o += t(x + 16, y + h - 18, value, 26, TEXT if value != "—" else DIM, SANS, None, "700")
+    if note:
+        o += t(x + w - 12, y + h - 18, note, 9.5, colour, MONO, "end", None, .6)
+    return o
 
-    parts = []
 
-    # ---- the framing, given the most visual weight
-    parts.append(panel(26, 62, 300, 202, CYAN, PANEL, 13))
-    parts.append(label(46, 88, "ACCOUNT AGE", 8.6, FAINT, MONO, None, None, "2.2"))
-    parts.append('<text x="46" y="152" font-family="%s" font-size="58" font-weight="700" fill="url(#ink)">'
-                 '%02d</text>' % (SANS, months))
-    parts.append(label(150, 152, "MONTHS", 15, DIM, MONO, None, "700", "2"))
-    parts.append('<line x1="46" y1="172" x2="306" y2="172" stroke="%s"/>' % HAIR)
-    parts.append(label(46, 192, "opened         %s  (%dm %dd)"
-                       % (created.strftime("%d %b %Y"), whole, extra_days), 8.2, MUTED))
-    parts.append(label(46, 208, "first commit   %s" % (days[0] if days else "-"), 8.2, MUTED))
-    parts.append(label(46, 224, "latest commit  %s" % (days[-1] if days else "-"), 8.2, MUTED))
-    parts.append('<rect x="46" y="236" width="150" height="20" rx="10" fill="%s" fill-opacity=".14" '
-                 'stroke="%s" stroke-opacity=".55"/>' % (TEAL, TEAL))
-    parts.append('<circle cx="60" cy="246" r="3.5" fill="%s">'
-                 '<animate attributeName="opacity" values="1;.25;1" dur="2.6s" repeatCount="indefinite"/>'
-                 '</circle>' % TEAL)
-    parts.append(label(72, 250, "EARLY STAGE / BUILDING", 7.6, TEAL, MONO, None, None, "1.1"))
+def signal(x, y, w, h, wk, colour):
+    """Weekly contribution bars from the real calendar."""
+    o = ""
+    if not wk:
+        return t(x, y + h / 2, "calendar unavailable on this run", 10, DIM, MONO)
+    peak = max(c for _, c in wk) or 1
+    bw = w / float(len(wk))
+    o += '<path d="M%.1f %.1fH%.1f" stroke="%s"/>' % (x, y + h, x + w, LINE_2)
+    for i, (k, c) in enumerate(wk):
+        bh = 2 if c == 0 else max(4, (h - 14) * c / peak)
+        o += ('<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" rx="1.5" fill="%s" opacity="%s"/>'
+              % (x + i * bw + 1.5, y + h - bh, bw - 3, bh, colour if c else LINE_2, ".9" if c else "1"))
+        if c == peak and c:
+            o += t(x + i * bw + bw / 2, y + h - bh - 6, str(c), 9.5, colour, MONO, "middle", "700")
+    o += t(x, y + h + 16, wk[0][0].strftime("%d %b").upper(), 9.5, DIM, MONO)
+    o += t(x + w, y + h + 16, "THIS WEEK", 9.5, DIM, MONO, "end")
+    return o
 
-    # ---- the numbers, deliberately smaller than the framing
-    for i, (name, val) in enumerate(stats):
-        x = 346 + (i % 3) * 178
-        y = 62 + (i // 3) * 96
-        parts.append('<rect x="%d" y="%d" width="164" height="82" rx="11" fill="%s" stroke="%s" '
-                     'stroke-opacity=".38"/>' % (x, y, PANEL, STROKE))
-        parts.append(label(x + 16, y + 26, name, 7.8, FAINT, MONO, None, None, "1.6"))
-        parts.append('<text x="%d" y="%d" font-family="%s" font-size="27" font-weight="700" fill="%s">%02d</text>'
-                     % (x + 16, y + 62, SANS, TEXT if val else DIM, val))
 
-    # ---- commit timeline, from real commit dates
-    TY = 292
-    parts.append('<line x1="26" y1="%d" x2="874" y2="%d" stroke="%s"/>' % (TY - 22, TY - 22, HAIR))
-    parts.append(label(26, TY - 4, "BUILD LOG", 8.6, FAINT, MONO, None, None, "2.2"))
-    parts.append(label(874, TY - 4, "EVERY COMMIT DAY IN THIS ACCOUNT", 7.8, FAINT, MONO, "end"))
-    if days:
-        first = dt.date.fromisoformat(days[0])
-        span = max((today - first).days, 1)
-        AXIS = TY + 46
-        parts.append('<line x1="60" y1="%d" x2="840" y2="%d" stroke="%s" stroke-width="1.4"/>' % (AXIS, AXIS, STROKE))
-        counts = {}
-        for _, day in d["commits"]:
-            counts[day] = counts.get(day, 0) + 1
-        for day, n in sorted(counts.items()):
-            dx = 60 + 780.0 * (dt.date.fromisoformat(day) - first).days / span
-            hgt = 8 + min(n, 8) * 4.0
-            parts.append('<rect x="%.1f" y="%.1f" width="7" height="%.1f" rx="3.5" fill="%s" opacity=".9"/>'
-                         % (dx - 3.5, AXIS - hgt, hgt, CYAN))
-            parts.append(label(dx, AXIS - hgt - 6, str(n), 7.4, CYAN, MONO, "middle"))
-        parts.append(label(60, AXIS + 18, first.strftime("%d %b %Y").upper(), 7.6, DIM))
-        parts.append(label(840, AXIS + 18, today.strftime("%d %b %Y").upper(), 7.6, DIM, MONO, "end"))
-
-    # ---- language split
-    LY = TY + 96
-    total = sum(d["langs"].values()) or 1
-    ordered = sorted(d["langs"].items(), key=lambda kv: -kv[1])
-    parts.append(label(26, LY, "LANGUAGE DISTRIBUTION", 8.6, FAINT, MONO, None, None, "2"))
-    parts.append(label(874, LY, "BY BYTES IN PUBLIC REPOSITORIES", 7.8, FAINT, MONO, "end"))
-    cx = 26.0
-    bars = []
+def lang_bar(x, y, w, langs, cols):
+    total = float(sum(langs.values())) or 1
+    ordered = sorted(langs.items(), key=lambda kv: -kv[1])
+    o = '<clipPath id="lb"><rect x="%.1f" y="%.1f" width="%.1f" height="10" rx="5"/></clipPath><g clip-path="url(#lb)">' % (x, y, w)
+    cx = x
     for name, b in ordered:
-        bw = 848.0 * b / total
-        bars.append('<rect x="%.1f" y="%d" width="%.1f" height="13" fill="%s"/>'
-                    % (cx, LY + 12, max(bw, 1.2), LANG_COLOR.get(name, "#6b7a99")))
+        bw = w * b / total
+        o += '<rect x="%.1f" y="%.1f" width="%.1f" height="10" fill="%s"/>' % (cx, y, max(bw, 1.5), LANG_COLOR.get(name, "#6b7a99"))
         cx += bw
-    parts.append('<clipPath id="bc"><rect x="26" y="%d" width="848" height="13" rx="6.5"/></clipPath>' % (LY + 12))
-    parts.append('<g clip-path="url(#bc)">%s</g>' % "".join(bars))
+    o += "</g>"
+    cw = w / cols
     for i, (name, b) in enumerate(ordered):
-        lx = 26 + (i % 4) * 214
-        ly = LY + 50 + (i // 4) * 20
-        parts.append('<rect x="%d" y="%d" width="9" height="9" rx="2.5" fill="%s"/>'
-                     % (lx, ly - 8, LANG_COLOR.get(name, "#6b7a99")))
-        parts.append(label(lx + 15, ly, name, 8.6, "#c8d6ee"))
-        parts.append(label(lx + 148, ly, "%.1f%%" % (100.0 * b / total), 8.6, DIM))
+        lx, ly = x + (i % cols) * cw, y + 34 + (i // cols) * 20
+        o += '<rect x="%.1f" y="%.1f" width="9" height="9" rx="2.5" fill="%s"/>' % (lx, ly - 8.5, LANG_COLOR.get(name, "#6b7a99"))
+        o += t(lx + 15, ly, name, 10.5, "#d7dbe3", MONO)
+        o += t(lx + cw - 18, ly, "%.1f%%" % (100 * b / total), 10.5, DIM, MONO, "end")
+    rows = (len(ordered) + cols - 1) // cols
+    return o, y + 34 + (rows - 1) * 20
 
-    h = LY + 50 + ((len(ordered) - 1) // 4) * 20 + 42
-    parts.append(label(26, h - 16, "GENERATED FROM THE GITHUB REST API ON %s / NO THIRD-PARTY SERVICE"
-                       % today.strftime("%d %b %Y").upper(), 7.8, FAINT, MONO, None, None, "1.2"))
-    body = head("BUILD LOG", "YOUNG ACCOUNT, ACTIVE BUILDER") + "".join(parts)
-    write(os.path.join(OUT, "build-log.svg"),
-          svg("build-log", h, body,
-              "Build log: account age %d months, %d repositories, %d commits across %d active days."
-              % (months, u["public_repos"], len(d["commits"]), len(days))))
+
+def render_command_center(d, W):
+    u, cal, lc = d["user"], d["cal"], d["lc"]
+    state, pushed, last_repo = status_of(d)
+    active_days = sum(1 for _, c in cal["days"] if c) if cal["days"] else None
+    commits = sum(d["commits"].values())
+    wk = weekly(cal["days"])
+    created = dt.date.fromisoformat(u["created_at"][:10])
+    stc = TEAL if state == "ACTIVE" else GOLD
+    tiles = [("REPOSITORIES", fmt(u["public_repos"]), BLUE, "public"),
+             ("ACTIVE DAYS", fmt(active_days), CYAN, "12 mo"),
+             ("COMMITS", fmt(commits), VIOLET, "no bots"),
+             ("LEETCODE SOLVED", fmt(lc["solved"]), GOLD, "live" if lc["source"] == "LEETCODE" else "repo"),
+             ("LANGUAGES", fmt(len(d["langs"])), TEAL, "by bytes"),
+             ("FOLLOWERS", fmt(u["followers"]), RED, "")]
+    b = []
+    wide = W == WIDE
+    x0 = 28 if wide else 20
+    b.append(header(W, "08", "GITHUB · SYSTEM STATUS", "LIVE · REBUILT DAILY FROM THE API" if wide else "", x=x0))
+
+    def hero_panel(x, y, w, h):
+        o = panel(x, y, w, h, CYAN, glow=True)
+        o += '<circle cx="%.1f" cy="%.1f" r="5" fill="%s" class="blink"/>' % (x + 22, y + 26, stc)
+        o += t(x + 36, y + 30, "STATUS: " + state, 11, stc, MONO, None, "700", 2)
+        o += t(x + 20, y + 62, "CONTRIBUTIONS · LAST 12 MONTHS", 9.5, DIM, MONO, None, "600", 1.4)
+        o += ('<text x="%.1f" y="%.1f" font-family="%s" font-size="54" font-weight="800" fill="url(#ink)">%s</text>'
+              % (x + 18, y + 118, SANS, esc(fmt(cal["total"]))))
+        o += '<path d="M%.1f %.1fH%.1f" stroke="%s"/>' % (x + 20, y + 136, x + w - 20, LINE)
+        o += t(x + 20, y + 156, "last push   %s · %s" % (pushed.strftime("%d %b %Y"), last_repo), 10, MUTED, MONO)
+        o += t(x + 20, y + 174, "online since  %s" % created.strftime("%b %Y"), 10, MUTED, MONO)
+        return o
+
+    if wide:
+        b.append(hero_panel(28, 76, 300, 192))
+        tw, th = 172, 88
+        for i, (lab, val, col, note) in enumerate(tiles):
+            b.append(tile(344 + (i % 3) * (tw + 8), 76 + (i // 3) * (th + 16), tw, th, lab, val, col, note))
+        y = 300
+        b.append(t(28, y, "WEEKLY SIGNAL", 10, TEXT, MONO, None, "700", 2))
+        b.append(t(W - 28, y, "CONTRIBUTIONS PER WEEK · LAST 26 WEEKS", 9.5, DIM, MONO, "end", None, 1.2))
+        b.append(signal(28, y + 14, W - 56, 64, wk, CYAN))
+        y += 124
+        b.append(t(28, y, "LANGUAGE DISTRIBUTION", 10, TEXT, MONO, None, "700", 2))
+        b.append(t(W - 28, y, "BY BYTES IN PUBLIC REPOSITORIES", 9.5, DIM, MONO, "end", None, 1.2))
+        s, bottom = lang_bar(28, y + 14, W - 56, d["langs"], 4)
+        b.append(s)
+        H = int(bottom + 52)
+    else:
+        b.append(hero_panel(20, 70, W - 40, 192))
+        tw, th = (W - 48) / 2, 84
+        for i, (lab, val, col, note) in enumerate(tiles):
+            b.append(tile(20 + (i % 2) * (tw + 8), 278 + (i // 2) * (th + 10), tw, th, lab, val, col, note))
+        y = 278 + 3 * (th + 10) + 26
+        b.append(t(20, y, "WEEKLY SIGNAL · 26 WEEKS", 10, TEXT, MONO, None, "700", 1.6))
+        b.append(signal(20, y + 14, W - 40, 60, wk, CYAN))
+        y += 116
+        b.append(t(20, y, "LANGUAGES · BY BYTES", 10, TEXT, MONO, None, "700", 1.6))
+        s, bottom = lang_bar(20, y + 14, W - 40, d["langs"], 2)
+        b.append(s)
+        H = int(bottom + 52)
+    src = "GITHUB REST + %s · LEETCODE %s" % (cal["source"] or "NO CALENDAR", "API" if lc["source"] == "LEETCODE" else "REPO")
+    b.append(t(x0, H - 20, "GENERATED %s · %s" % (d["today"].strftime("%d %b %Y").upper(), src if wide else "SEE WORKFLOW"),
+               9, FAINT, MONO, None, None, 1.1))
+    ink = ('<linearGradient id="ink" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#ffffff"/>'
+           '<stop offset="1" stop-color="%s"/></linearGradient>' % CYAN)
+    return svg(W, H, "".join(b),
+               "GitHub system status, generated %s. Status %s, last push %s. %s contributions in the last 12 "
+               "months across %s active days. %s public repositories, %s commits excluding bots, %s languages, %s "
+               "followers, %s LeetCode problems solved."
+               % (d["today"].isoformat(), state, pushed.isoformat(), fmt(cal["total"]), fmt(active_days),
+                  fmt(u["public_repos"]), fmt(commits), fmt(len(d["langs"])), fmt(u["followers"]),
+                  fmt(lc["solved"])), ink)
+
+
+# --------------------------------------------------------- shipped-repos.svg
+def summary(r):
+    return (r.get("description") or "").strip() or BLURBS.get(r["name"], "")
+
+
+def repo_card(x, y, w, h, r, d, wrap_at):
+    live = r.get("homepage") or ("https://%s.github.io/%s/" % (USER, r["name"]) if r.get("has_pages") else "")
+    col = {0: CYAN, 1: TEAL, 2: VIOLET, 3: GOLD}.get(ORDER.index(r["name"]) if r["name"] in ORDER else 9, BLUE)
+    o = panel(x, y, w, h, col)
+    o += t(x + 18, y + 34, r["name"], 16, TEXT, SANS, None, "700", .3)
+    if live:
+        o += chip(x + w - 14, y + 18, "● LIVE", TEAL, 9.5, True, 20, anchor="end")[0]
+        o += t(x + 18, y + 54, live.replace("https://", "").rstrip("/") + " ↗", 10, col, MONO)
+    else:
+        o += t(x + 18, y + 54, "github.com/%s/%s" % (USER, r["name"]), 10, DIM, MONO)
+    o += lines(x + 18, y + 80, wrap(summary(r), wrap_at)[:3], 11.5, MUTED, SANS, 17)
+    s, _ = chips(x + 18, y + h - 84, STACKS.get(r["name"], [r.get("language") or "code"]), w - 36, col, 9.5, row_h=26)
+    o += s
+    n = d["commits"].get(r["name"])
+    foot = "updated %s · %s commit%s" % (r["pushed_at"][:10], fmt(n), "" if n == 1 else "s")
+    if r["name"] == "LeetCode-Solution":
+        lc = d["lc"]
+        foot = "%s Java solutions · %s solved on LeetCode" % (fmt(lc.get("files")), fmt(lc.get("solved")))
+    o += t(x + 18, y + h - 16, foot, 10, GOLD if r["name"] == "LeetCode-Solution" else DIM, MONO)
+    return o
+
+
+def render_shipped(d, W):
+    by = {r["name"]: r for r in d["repos"] if r["size"] > 0 and r["name"] != USER}
+    names = [n for n in ORDER if n in by] + sorted(n for n in by if n not in ORDER)
+    rs = [by[n] for n in names]
+    b = []
+    if W == WIDE:
+        b.append(header(W, "05", "SHIPPED ON GITHUB", "%d PUBLIC REPOSITORIES WITH CODE" % len(rs)))
+        cw, ch = 414, 214
+        y = 76
+        for i, r in enumerate(rs):
+            full = i == len(rs) - 1 and len(rs) % 2 == 1
+            x = 28 + (i % 2) * (cw + 16)
+            b.append(repo_card(x, y + (i // 2) * (ch + 16), W - 56 if full else cw, 168 if full else ch, r, d,
+                               110 if full else 58))
+        H = y + ((len(rs) + 1) // 2) * (ch + 16) + 10 - (ch - 168 if len(rs) % 2 else 0)
+    else:
+        b.append(header(W, "05", "SHIPPED ON GITHUB", "", x=20))
+        ch = 220
+        for i, r in enumerate(rs):
+            b.append(repo_card(20, 72 + i * (ch + 14), W - 40, ch, r, d, 56))
+        H = 72 + len(rs) * (ch + 14) + 10
+    return svg(W, H, "".join(b),
+               "Shipped on GitHub: " + "; ".join("%s: %s" % (r["name"], summary(r)) for r in rs))
 
 
 def main():
-    os.makedirs(OUT, exist_ok=True)
     try:
-        print("fetching GitHub data...")
+        print("fetching...")
         data = fetch()
         validate(data)
-    except Exception as e:                                        # noqa: BLE001
+    except Exception as e:                                            # noqa: BLE001
         print("ERROR: %s" % e, file=sys.stderr)
-        print("existing assets left untouched.", file=sys.stderr)
+        print("existing panels left untouched.", file=sys.stderr)
         return 1
-    print("rendering:")
-    render_constellation(data)
-    render_build_log(data)
+    print("rendering live panels:")
+    for name, fn in (("github-command-center", render_command_center), ("shipped-repos", render_shipped)):
+        write(os.path.join(OUT, name + ".svg"), fn(data, WIDE))
+        write(os.path.join(OUT, "m", name + ".svg"), fn(data, NARROW))
     return 0
 
 

@@ -1,0 +1,61 @@
+name: Contribution snake
+
+# Draws the contribution snake from the real GitHub contribution calendar
+# (Platane/snk reads it through the GraphQL API with the workflow token), wraps
+# it in the command-centre HUD frame, and publishes the result to the `output`
+# branch, which the README embeds. Nothing is committed to main.
+
+on:
+  schedule:
+    # Every 12 hours, off the hour where GitHub's scheduler is less congested.
+    - cron: "23 */12 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/snake.yml
+      - scripts/compose_activity.py
+      - scripts/theme.py
+
+permissions:
+  contents: write
+
+concurrency:
+  group: snake
+  cancel-in-progress: true
+
+env:
+  # Contribution levels, 0 -> most. Keep in sync with the legend drawn by compose_activity.py.
+  DOTS: "#161b22,#0b3a4a,#0e6a82,#22a6c4,#67e8f9"
+
+jobs:
+  snake:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Generate snake from the contribution calendar
+        uses: Platane/snk/svg-only@v3
+        with:
+          github_user_name: ${{ github.repository_owner }}
+          outputs: |
+            dist/github-contribution-grid-snake.svg
+            dist/github-contribution-grid-snake-dark.svg?palette=github-dark&color_snake=#e0473f&color_dots=${{ env.DOTS }}
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Frame the snake in the HUD panel
+        run: python scripts/compose_activity.py dist/github-contribution-grid-snake-dark.svg dist/activity-matrix.svg "$DOTS"
+
+      - name: Publish to the output branch
+        uses: crazy-max/ghaction-github-pages@v5
+        with:
+          target_branch: output
+          build_dir: dist
+          commit_message: "chore: regenerate contribution snake"
+          jekyll: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
