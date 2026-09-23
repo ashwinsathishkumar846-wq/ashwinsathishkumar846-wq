@@ -26,7 +26,7 @@ from theme import (BG, PANEL, PANEL_2, LINE, LINE_2, TEXT, MUTED, DIM, FAINT, RE
                    stars, wordmark, wordmark_width, svg, write, wrap, text_w, ellipse_pt, esc)
 
 OUT = "assets"
-AVATAR = "https://avatars.githubusercontent.com/u/271384237?v=4&s=240"
+AVATAR = "https://avatars.githubusercontent.com/u/271384237?v=4&s=460"
 
 
 def emit(name, builder):
@@ -70,188 +70,122 @@ def _avatar():
 AVATAR_B64 = None
 
 
-def orbit_system(cx, cy, k):
-    """Identity core: the GitHub avatar inside a glass core, three tilted orbits
-    (back halves drawn behind the core, front halves in front) and six domain
-    nodes. Returns (back, core, front)."""
-    back, front, core = [], [], []
+def hero_defs(px, py, pw, ph):
+    return (
+        # Cutout: alpha from inverse brightness, so the photo's white studio
+        # background drops out and only the portrait remains. Pixels are not
+        # recoloured - the person is shown exactly as photographed.
+        '<filter id="cut" x="0" y="0" width="100%%" height="100%%" color-interpolation-filters="sRGB">'
+        '<feColorMatrix in="SourceGraphic" type="matrix" result="a" '
+        'values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -6 -6 -6 0 15.6"/>'
+        '<feMorphology in="a" operator="erode" radius="1" result="e"/>'
+        '<feGaussianBlur in="e" stdDeviation=".6" result="s"/>'
+        '<feComposite in="SourceGraphic" in2="s" operator="in"/></filter>'
+        '<radialGradient id="fadeb" cx=".5" cy=".36" r=".62">'
+        '<stop offset=".62" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>'
+        '<mask id="pm"><rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="url(#fadeb)"/></mask>'
+        '<radialGradient id="halo" cx="50%%" cy="50%%" r="50%%">'
+        '<stop offset="0" stop-color="%s" stop-opacity=".32"/><stop offset=".5" stop-color="%s" stop-opacity=".10"/>'
+        '<stop offset="1" stop-color="%s" stop-opacity="0"/></radialGradient>'
+        '<radialGradient id="halo2" cx="50%%" cy="50%%" r="50%%">'
+        '<stop offset="0" stop-color="%s" stop-opacity=".22"/><stop offset="1" stop-color="%s" stop-opacity="0"/>'
+        '</radialGradient>'
+        '<linearGradient id="namefill" x1="0" y1="0" x2="0" y2="1">'
+        '<stop offset="0" stop-color="#ffffff"/><stop offset="1" stop-color="#c9ccd3"/></linearGradient>'
+        '<linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">'
+        '<stop offset="0" stop-color="%s" stop-opacity="0"/><stop offset="1" stop-color="%s"/></linearGradient>'
+        % (px, py, pw, ph, RED, RED, RED, CYAN, CYAN, BG, BG))
 
-    # projector base + light beam: the core hovers over a lit platform
-    by = cy + 128 * k
-    back.append('<path d="M%.1f %.1f L%.1f %.1f L%.1f %.1f L%.1f %.1f Z" fill="url(#beam)"/>'
-                % (cx - 58 * k, cy, cx + 58 * k, cy, cx + 128 * k, by, cx - 128 * k, by))
-    for rx, ry, op in ((150, 30, .22), (112, 22, .32), (74, 14, .45)):
-        back.append('<ellipse cx="%.1f" cy="%.1f" rx="%.1f" ry="%.1f" fill="none" stroke="%s" '
-                    'stroke-opacity="%s"/>' % (cx, by, rx * k, ry * k, CYAN, op))
-    back.append('<ellipse cx="%.1f" cy="%.1f" rx="%.1f" ry="%.1f" fill="none" stroke="%s" '
-                'stroke-opacity=".6" class="orbit"/>' % (cx, by, 112 * k, 22 * k, CYAN))
 
-    orbits = [(178, 50, -10, CYAN), (150, 40, 58, VIOLET), (150, 40, -58, BLUE)]
-    for rx, ry, rot, col in orbits:
-        rx, ry = rx * k, ry * k
-        g = '<g transform="translate(%.1f %.1f) rotate(%d)">' % (cx, cy, rot)
-        back.append(g + '<path d="M%.1f 0A%.1f %.1f 0 0 1 %.1f 0" fill="none" stroke="%s" '
-                    'stroke-opacity=".22"/></g>' % (-rx, rx, ry, rx, col))
-        front.append(g + '<path d="M%.1f 0A%.1f %.1f 0 0 1 %.1f 0" fill="none" stroke="%s" '
-                     'stroke-opacity=".7" stroke-width="1.3"/>'
-                     '<path d="M%.1f 0A%.1f %.1f 0 0 1 %.1f 0" fill="none" stroke="%s" '
-                     'stroke-opacity=".9" stroke-width="1.3" class="orbit"/></g>'
-                     % (rx, rx, ry, -rx, col, rx, rx, ry, -rx, col))
-    # one packet circling the widest orbit
-    rx, ry = 178 * k, 50 * k
-    back.append('<g transform="translate(%.1f %.1f) rotate(-10)">%s</g>'
-                % (cx, cy, packet("M%.1f 0A%.1f %.1f 0 1 1 %.1f 0A%.1f %.1f 0 1 1 %.1f 0"
-                                  % (-rx, rx, ry, rx, rx, ry, -rx), CYAN, 9, 2.6)))
-
-    # domain nodes on the orbits: (orbit index, angle, label)
-    nodes = [(0, 196, "SOFTWARE"), (0, 338, "DATA"), (0, 148, "AI / ML"), (0, 30, "NLP"),
-             (2, 352, "AGENTIC AI"), (1, 172, "GEOSPATIAL")]
-    for oi, th, name in nodes:
-        rx, ry, rot, col = orbits[oi]
-        px, py = ellipse_pt(cx, cy, rx * k, ry * k, rot, th)
-        is_front = math.sin(math.radians(th)) > 0
-        layer = front if is_front else back
-        r = (4.2 if is_front else 3.2) * max(k, .8)
-        layer.append(node(px, py, r, col, True, "d%d" % (len(name) % 4 + 1)))
-        right = px >= cx
-        lx = px + (12 if right else -12)
-        anchor = "start" if right else "end"
-        layer.append(t(lx, py + 4, name, 10.5 if k >= 1 else 10, TEXT, MONO, anchor, "600", 1.6,
-                       ".95" if is_front else ".75"))
-
-    # the core itself
-    R = 64 * k
-    core.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="url(#coreglow)"/>' % (cx, cy, R * 1.9))
-    ticks = []
-    for i in range(72):
-        a = math.radians(i * 5)
-        r1, r2 = R + 7 * k, R + (13 if i % 6 == 0 else 10) * k
-        ticks.append('M%.1f %.1fL%.1f %.1f' % (cx + r1 * math.cos(a), cy + r1 * math.sin(a),
-                                               cx + r2 * math.cos(a), cy + r2 * math.sin(a)))
-    core.append('<path d="%s" stroke="%s" stroke-opacity=".35"/>' % ("".join(ticks), CYAN))
-    core.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="%s" stroke="url(#rim)" stroke-width="1.6"/>'
-                % (cx, cy, R, PANEL))
+def portrait(cx, top, size):
+    """The GitHub avatar as a cut-out portrait, lit from behind."""
+    o = '<circle cx="%.1f" cy="%.1f" r="%.1f" fill="url(#halo)"/>' % (cx, top + size * .42, size * .62)
+    o += '<circle cx="%.1f" cy="%.1f" r="%.1f" fill="url(#halo2)"/>' % (cx + size * .22, top + size * .3, size * .4)
+    # one thin ring behind the head - the only orbital gesture left
+    r = size * .43
+    o += ('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="none" stroke="%s" stroke-opacity=".35" '
+          'stroke-dasharray="2 6" class="orbit"/>' % (cx, top + size * .4, r, TEXT))
+    o += ('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="none" stroke="%s" stroke-opacity=".12"/>'
+          % (cx, top + size * .4, r + 16, TEXT))
+    o += node(cx + r * math.cos(math.radians(-38)), top + size * .4 + r * math.sin(math.radians(-38)), 3, RED, True)
     if AVATAR_B64:
-        ar = R - 7 * k
-        core.append('<g mask="url(#vig)"><image x="%.1f" y="%.1f" width="%.1f" height="%.1f" '
-                    'preserveAspectRatio="xMidYMid slice" href="data:image/jpeg;base64,%s"/></g>'
-                    % (cx - ar, cy - ar, ar * 2, ar * 2, AVATAR_B64))
-    core.append('<circle cx="%.1f" cy="%.1f" r="%.1f" fill="none" stroke="#fff" stroke-opacity=".08" '
-                'stroke-width="6"/>' % (cx, cy, R - 4 * k))
-    # glass highlight
-    core.append('<path d="M%.1f %.1fA%.1f %.1f 0 0 1 %.1f %.1f" fill="none" stroke="#fff" '
-                'stroke-opacity=".35" stroke-width="1.4" stroke-linecap="round"/>'
-                % (cx - R * .72, cy - R * .5, R * .9, R * .9, cx + R * .1, cy - R * .88))
-    return "".join(back), "".join(core), "".join(front)
+        o += ('<g mask="url(#pm)"><image x="%.1f" y="%.1f" width="%.1f" height="%.1f" filter="url(#cut)" '
+              'preserveAspectRatio="xMidYMid slice" href="data:image/jpeg;base64,%s"/></g>'
+              % (cx - size / 2, top, size, size, AVATAR_B64))
+        # The face itself is drawn again unfiltered, so a bright skin highlight
+        # can never be mistaken for background and punched out.
+        o += ('<clipPath id="face"><ellipse cx="%.1f" cy="%.1f" rx="%.1f" ry="%.1f"/></clipPath>'
+              '<image x="%.1f" y="%.1f" width="%.1f" height="%.1f" clip-path="url(#face)" '
+              'preserveAspectRatio="xMidYMid slice" href="data:image/jpeg;base64,%s"/>'
+              % (cx, top + size * .41, size * .125, size * .165, cx - size / 2, top, size, size, AVATAR_B64))
+    return o
 
 
-def hero_defs(cx, cy, k):
-    R = 64 * k
-    ar = R - 7 * k
-    return ('<radialGradient id="coreglow"><stop offset="0" stop-color="%s" stop-opacity=".28"/>'
-            '<stop offset=".55" stop-color="%s" stop-opacity=".08"/><stop offset="1" stop-color="%s" stop-opacity="0"/>'
-            '</radialGradient>'
-            '<radialGradient id="aura" cx="50%%" cy="50%%" r="50%%"><stop offset="0" stop-color="%s" stop-opacity=".16"/>'
-            '<stop offset="1" stop-color="%s" stop-opacity="0"/></radialGradient>'
-            '<linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="%s" stop-opacity="0"/>'
-            '<stop offset="1" stop-color="%s" stop-opacity=".13"/></linearGradient>'
-            '<radialGradient id="vg" cx="%.1f" cy="%.1f" r="%.1f" gradientUnits="userSpaceOnUse">'
-            '<stop offset=".72" stop-color="#fff"/><stop offset="1" stop-color="#000"/></radialGradient>'
-            '<mask id="vig"><circle cx="%.1f" cy="%.1f" r="%.1f" fill="url(#vg)"/></mask>'
-            '<linearGradient id="floorfade" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity="0"/>'
-            '<stop offset="1" stop-color="#fff" stop-opacity=".7"/></linearGradient>'
-            % (CYAN, BLUE, BLUE, VIOLET, VIOLET, CYAN, CYAN, cx, cy, ar, cx, cy, ar))
-
-
-def floor(w, h, vx, horizon, top):
-    """Perspective floor grid converging on (vx, horizon), visible below `top`."""
-    ls = []
-    for i in range(-14, 15):
-        bx = vx + i * 70
-        # clip each ray to start at y=top
-        f = (top - horizon) / float(h - horizon)
-        sx = vx + (bx - vx) * f
-        ls.append("M%.1f %.1fL%.1f %d" % (sx, top, bx, h))
-    for j in range(1, 9):
-        y = top + (h - top) * (j / 8.0) ** 1.8
-        ls.append("M0 %.1fH%d" % (y, w))
-    return ('<mask id="fm"><rect y="%d" width="%d" height="%d" fill="url(#floorfade)"/></mask>'
-            '<path d="%s" stroke="%s" stroke-opacity=".35" mask="url(#fm)"/>'
-            % (top, w, h - top, "".join(ls), CYAN))
-
-
-def rail(x, y, items, size, anchor="start"):
-    """AI / ML ◆ NLP ◆ ... discipline rail with coloured separators."""
-    sep = "  "
-    total = sum(text_w(s, size, True, 2) for s, _ in items) + (len(items) - 1) * text_w(" ◆ ", size, True, 2)
-    if anchor == "middle":
-        x -= total / 2
-    out = ""
-    for i, (s, col) in enumerate(items):
-        out += t(x, y, s, size, TEXT, MONO, None, "600", 2)
-        x += text_w(s, size, True, 2)
-        if i < len(items) - 1:
-            out += t(x + text_w(" ", size, True, 2), y, "◆", size * .7, col, MONO, None, None, 0, cls="blink")
-            x += text_w(" ◆ ", size, True, 2)
-    return out
-
-
-RAIL = [("AI / ML", CYAN), ("NLP", VIOLET), ("SOFTWARE", BLUE), ("DATA", TEAL), ("SYSTEMS", RED)]
+FACTS = [("EDUCATION", "B.E. CSE · 2024–28"), ("HACKATHONS", "2× FIRST PRIZE"), ("RESEARCH", "IEEE ICCPCT 2026")]
+DISCIPLINES = "AI / ML   ·   NLP   ·   SOFTWARE   ·   DATA   ·   SYSTEMS"
 TAG1, TAG2 = "Building practical intelligent systems", "for real-world problems."
 
 
+def name(x, y, size, width):
+    """The name in the display face, pinned to an exact width with textLength so
+    it lands identically whichever system font renders it. The red full stop
+    is the portfolio's signature mark."""
+    return ('<text x="%d" y="%d" font-family="%s" font-size="%d" font-weight="800" fill="url(#namefill)" '
+            'textLength="%d" lengthAdjust="spacingAndGlyphs">ASHWIN S</text>'
+            '<text x="%d" y="%d" font-family="%s" font-size="%d" font-weight="800" fill="%s">.</text>'
+            % (x, y, SANS, size, width, x + width + 4, y, SANS, size, RED))
+
+
 def hero(W):
+    b = []
     if W == WIDE:
-        H, cx, cy, k = 470, 694, 214, 1.0
-        back, core, front = orbit_system(cx, cy, k)
-        b = ['<circle cx="%d" cy="%d" r="300" fill="url(#aura)"/>' % (cx, cy), floor(W, H, 450, 250, 330)]
-        b.append(t(28, 34, "ASHWIN.SYS", 10, DIM, MONO, None, "600", 3))
-        b.append(t(W - 28, 34, "NODE · ashwinsathishkumar846-wq", 10, DIM, MONO, "end", None, 1.2))
-        b.append('<rect x="28" y="46" width="%d" height="1" fill="url(#hair)"/>' % (W - 56))
-        b.append(back + core + front)
-        x = 44
-        b.append('<circle cx="%d" cy="87" r="3.5" fill="%s" class="blink"/>' % (x + 3, RED))
-        b.append(t(x + 14, 91, "THIRD-YEAR CSE · SRI RAMAKRISHNA ENGINEERING COLLEGE", 10.5, MUTED, MONO,
-                   None, None, 1.4))
-        b.append(wordmark(x, 110, 0.78))
-        b.append(t(x, 222, "COMPUTER SCIENCE ENGINEER", 17, TEXT, SANS, None, "600", 4.2))
-        b.append(rail(x, 252, RAIL, 11.5))
-        b.append(t(x, 298, TAG1, 23, TEXT, SANS, None, "300", 0.2))
-        b.append(t(x, 326, TAG2, 23, MUTED, SANS, None, "300", 0.2))
-        cxx = x
-        for s, col, f in (("B.E. CSE · 2024—2028", CYAN, False), ("2× HACKATHON 1ST PRIZE", GOLD, True),
-                          ("IEEE · ICCPCT 2026", VIOLET, False)):
-            c, w = chip(cxx, 352, s, col, 10.5, f)
-            b.append(c)
-            cxx += w + 8
-        b.append('<rect x="28" y="%d" width="%d" height="1" fill="url(#hair)"/>' % (H - 44, W - 56))
-        b.append(t(28, H - 20, "01 // IDENTITY", 10, DIM, MONO, None, "600", 2.4))
-        b.append(t(W / 2, H - 20, "COIMBATORE, INDIA", 10, FAINT, MONO, "middle", None, 2.4))
-        b.append(t(W - 28, H - 20, "AI · SOFTWARE · DATA · SYSTEMS", 10, DIM, MONO, "end", None, 2.4))
-        b.append(brackets(12, 12, W - 24, H - 24, CYAN, 16, ".35"))
+        H = 460
+        pcx, ptop, psz = 712, 30, 440
+        b.append(stars(W, H, 50, 5, "#b9c2d0"))
+        b.append(portrait(pcx, ptop, psz))
+        b.append('<rect x="0" y="%d" width="%d" height="90" fill="url(#ground)"/>' % (H - 90, W))
+        b.append(t(44, 58, "PORTFOLIO // 2026", 10, DIM, MONO, None, "600", 3))
+        b.append('<rect x="44" y="96" width="22" height="2" fill="%s"/>' % RED)
+        b.append(t(76, 101, "THIRD-YEAR CSE · SREC, COIMBATORE", 10.5, MUTED, MONO, None, None, 2))
+        b.append(name(40, 196, 96, 450))
+        b.append(t(44, 232, "COMPUTER SCIENCE ENGINEER", 16, TEXT, SANS, None, "600", 6))
+        b.append(t(44, 282, TAG1, 22, TEXT, SANS, None, "300"))
+        b.append(t(44, 310, TAG2, 22, DIM, SANS, None, "300"))
+        b.append(t(44, 344, DISCIPLINES, 10.5, CYAN, MONO, None, "600", 1.6))
+        y = 372
+        b.append('<rect x="44" y="%d" width="480" height="1" fill="%s"/>' % (y, LINE_2))
+        for i, (k, v) in enumerate(FACTS):
+            x = 44 + i * 164
+            if i:
+                b.append('<rect x="%d" y="%d" width="1" height="42" fill="%s"/>' % (x - 12, y + 12, LINE_2))
+            b.append(t(x, y + 28, k, 9, DIM, MONO, None, "600", 2))
+            b.append(t(x, y + 50, v, 12, GOLD if i == 1 else TEXT, MONO, None, "700", .6))
     else:
-        H, cx, cy, k = 700, 220, 214, 0.86
-        back, core, front = orbit_system(cx, cy, k)
-        b = ['<circle cx="%d" cy="%d" r="240" fill="url(#aura)"/>' % (cx, cy), floor(W, 430, 220, 250, 330)]
-        b.append(t(20, 32, "ASHWIN.SYS", 10, DIM, MONO, None, "600", 3))
-        b.append(t(W - 20, 32, "01 // IDENTITY", 10, DIM, MONO, "end", "600", 2))
-        b.append('<rect x="20" y="44" width="%d" height="1" fill="url(#hair)"/>' % (W - 40))
-        b.append(back + core + front)
-        b.append(t(W / 2, 418, "THIRD-YEAR CSE · SREC COIMBATORE", 11, MUTED, MONO, "middle", None, 1.6))
-        s = 0.74
-        b.append(wordmark((W - wordmark_width(scale=s)) / 2, 436, s))
-        b.append(t(W / 2, 540, "COMPUTER SCIENCE ENGINEER", 16, TEXT, SANS, "middle", "600", 3.4))
-        b.append(rail(W / 2, 568, RAIL, 11, "middle"))
-        b.append(t(W / 2, 606, TAG1, 19, TEXT, SANS, "middle", "300"))
-        b.append(t(W / 2, 630, TAG2, 19, MUTED, SANS, "middle", "300"))
-        b.append(centred_chips(W / 2, 652, [("B.E. CSE · 2024—2028", CYAN, False),
-                                            ("IEEE · ICCPCT 2026", VIOLET, False)], 10.5))
-        b.append(brackets(10, 10, W - 20, H - 20, CYAN, 14, ".35"))
+        pcx, ptop, psz = 220, 34, 330
+        b.append(stars(W, 700, 40, 5, "#b9c2d0"))
+        b.append(portrait(pcx, ptop, psz))
+        b.append(t(24, 42, "PORTFOLIO // 2026", 10, DIM, MONO, None, "600", 2.4))
+        y0 = ptop + psz + 18
+        b.append('<rect x="24" y="%d" width="18" height="2" fill="%s"/>' % (y0 - 4, RED))
+        b.append(t(50, y0, "THIRD-YEAR CSE · SREC COIMBATORE", 10.5, MUTED, MONO, None, None, 1.4))
+        b.append(name(20, y0 + 78, 72, 360))
+        b.append(t(24, y0 + 108, "COMPUTER SCIENCE ENGINEER", 14, TEXT, SANS, None, "600", 4.4))
+        b.append(t(24, y0 + 146, TAG1, 19, TEXT, SANS, None, "300"))
+        b.append(t(24, y0 + 170, TAG2, 19, DIM, SANS, None, "300"))
+        b.append(t(24, y0 + 200, "AI/ML · NLP · SOFTWARE · DATA · SYSTEMS", 10.5, CYAN, MONO, None, "600", 1))
+        y = y0 + 220
+        b.append('<rect x="24" y="%d" width="%d" height="1" fill="%s"/>' % (y, W - 48, LINE_2))
+        cw = (W - 48) / 3.0
+        for i, (k, v) in enumerate(FACTS):
+            x = 24 + i * cw
+            b.append(t(x, y + 22, k, 8.5, DIM, MONO, None, "600", 1.4))
+            b.append(t(x, y + 40, v.replace(" · ", " "), 10, GOLD if i == 1 else TEXT, MONO, None, "700"))
+        H = int(y + 62)
     return svg(W, H, "".join(b),
-               "Ashwin S. Computer Science Engineer, third-year B.E. CSE student at Sri Ramakrishna Engineering "
-               "College, Coimbatore. AI and ML, NLP, software, data and systems. Building practical intelligent "
-               "systems for real-world problems.",
-               hero_defs(cx, cy, k))
+               "Ashwin S, Computer Science Engineer. Third-year B.E. CSE student at Sri Ramakrishna Engineering "
+               "College, Coimbatore, 2024 to 2028. AI and ML, NLP, software, data and systems. Building practical "
+               "intelligent systems for real-world problems. Two hackathon first prizes; IEEE ICCPCT 2026 paper.",
+               hero_defs(pcx - psz / 2, ptop, psz, psz))
 
 
 # ============================================================ LINK BUTTONS
