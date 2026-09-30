@@ -51,14 +51,6 @@ dept2.paragraph_format.page_break_before = True
 sig2 = [p for p in paras if 'Mr.N.Manoj' in p.text][1]
 drop_blanks_after(sig2._p)
 
-_sp = copy.deepcopy(cover['CONTENTS']._p)
-for r_ in _sp.findall(qn('w:r')): _sp.remove(r_)
-cover['CONTENTS']._p.addprevious(_sp)
-_spp = Paragraph(_sp, d); _spp.paragraph_format.page_break_before = False
-from docx.enum.text import WD_LINE_SPACING
-_spp.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY; _spp.paragraph_format.line_spacing = Pt(225)
-_spp.paragraph_format.space_before = Pt(0); _spp.paragraph_format.space_after = Pt(0)
-
 # ---------- index table ----------
 t0, t1 = d.tables[0], d.tables[1]
 for i, (n, r_) in enumerate(students, 1):
@@ -84,7 +76,7 @@ for i in range(1, 6):
 sect = body.find(qn('w:sectPr'))
 def add_el(el): sect.addprevious(el)
 
-def para(text='', bold=False, size=13, align=AL.JUSTIFY, italic=False, space_after=6, keep=False, font=FONT, indent=None):
+def para(text='', bold=False, size=12, align=AL.JUSTIFY, italic=False, space_after=6, keep=False, font=FONT, indent=None):
     p = d.add_paragraph()   # appended before sectPr by python-docx
     p.alignment = align
     pf = p.paragraph_format
@@ -96,14 +88,14 @@ def para(text='', bold=False, size=13, align=AL.JUSTIFY, italic=False, space_aft
         r._r.rPr.rFonts.set(qn('w:eastAsia'), font)
     return p
 
-def rich(parts, size=13, align=AL.JUSTIFY, space_after=4, indent=None, hanging=None):
+def rich(parts, size=12, align=AL.JUSTIFY, space_after=4, indent=None, hanging=None):
     p = para('', align=align, space_after=space_after, indent=indent)
     for txt, b in parts:
         r = p.add_run(txt); r.bold = b; r.font.size = Pt(size); r.font.name = FONT
     if hanging: p.paragraph_format.first_line_indent = Inches(-hanging)
     return p
 
-def heading(num, text, page_break=True):
+def heading(num, text, page_break=False):
     p = para(f'{num}. {text.upper()}', bold=True, size=14, align=AL.CENTER, space_after=8, keep=True)
     p.paragraph_format.space_before = Pt(10)
     if page_break: p.paragraph_format.page_break_before = True
@@ -116,10 +108,8 @@ def heading(num, text, page_break=True):
     else: pPr.append(b)
     return p
 
-def sub(text, page_break=False):
-    p = para(text, bold=True, size=12, align=AL.LEFT, space_after=4, keep=True); p.paragraph_format.space_before = Pt(6)
-    if page_break: p.paragraph_format.page_break_before = True
-    return p
+def sub(text):
+    p = para(text, bold=True, size=12, align=AL.LEFT, space_after=4, keep=True); p.paragraph_format.space_before = Pt(6); return p
 
 def bullet(text, boldlead=None):
     parts = ([(boldlead, True)] if boldlead else []) + [(text, False)]
@@ -145,12 +135,12 @@ def shade(cell, color):
     tcPr = cell._tc.get_or_add_tcPr(); s = OxmlElement('w:shd')
     s.set(qn('w:val'), 'clear'); s.set(qn('w:color'), 'auto'); s.set(qn('w:fill'), color); tcPr.append(s)
 
-def table(headers, rows, widths, size=12):
+def table(headers, rows, widths, size=10.5):
     t = d.add_table(rows=1, cols=len(headers)); t.autofit = False
     set_borders(t)
     def fill(cell, text, bold=False, w=None, center=False):
         cell.width = Inches(w); p = cell.paragraphs[0]
-        p.paragraph_format.space_after = Pt(4); p.paragraph_format.space_before = Pt(4)
+        p.paragraph_format.space_after = Pt(2); p.paragraph_format.space_before = Pt(2)
         p.alignment = AL.CENTER if center else AL.LEFT
         r = p.add_run(text); r.bold = bold; r.font.size = Pt(size); r.font.name = FONT
     for i, h in enumerate(headers):
@@ -160,9 +150,6 @@ def table(headers, rows, widths, size=12):
         cells = t.add_row().cells
         for i, v in enumerate(row): fill(cells[i], v, i == 0, widths[i])
     for i, w in enumerate(widths): t.columns[i].width = Inches(w)
-    for r in t.rows[:-1]:
-        for c in r.cells:
-            for p_ in c.paragraphs: p_.paragraph_format.keep_with_next = True
     for r in t.rows:
         trPr = r._tr.get_or_add_trPr(); cs = OxmlElement('w:cantSplit'); trPr.append(cs)
     para('', space_after=4)
@@ -212,12 +199,6 @@ for lead, txt in [
     ('Usability: ', 'labels, placeholders, hints, a password-strength meter, grouped sections and a responsive layout for phones and desktops.'),
     ('Feedback: ', 'invalid fields are highlighted in red with a message, valid fields in green, and a success message is shown after a correct submission.')]:
     bullet(txt, lead)
-sub('1.4 Expected outcome')
-for txt in ['A responsive registration page in which every field uses the most suitable HTML5 input type.',
-            'Wrong emails, phone numbers, birth dates and weak passwords are rejected before submission.',
-            'Clear red / green feedback and a success message improve the experience of the student.',
-            'Clean data reaches the portal, which reduces failed confirmation mails and support requests.']:
-    bullet(txt)
 
 heading(2, 'ICT Tool Used')
 para('The following Information and Communication Technology tools were used to design, code, test and document the '
@@ -231,40 +212,18 @@ table(['S. No.', 'Tool / Technology', 'Purpose in this activity'], [
     ['6', 'Playwright (headless Chromium)', 'Used to open the page automatically, fill the fields and capture the output screenshots shown in this report.'],
     ['7', 'Microsoft Word', 'Preparation of this Active Learning Methodology report.']],
     [0.6, 1.9, 3.9])
-sub('2.2 System requirements')
-table(['Item', 'Minimum requirement'], [
-    ['Operating system', 'Windows 10 / Linux / macOS'],
-    ['Processor and memory', 'Dual-core processor, 4 GB RAM'],
-    ['Web browser', 'Google Chrome, Microsoft Edge, Mozilla Firefox or Safari (latest version)'],
-    ['Editor', 'Visual Studio Code or any text editor'],
-    ['Internet', 'Not required - the page is a single self-contained HTML file']],
-    [2.0, 4.4])
 
 heading(3, 'Activity Procedure')
 sub('3.1 Steps followed')
 step(1, 'Read the problem statement and list all the data that a student must give while registering.', 'Analyse: ')
-step(2, 'Choose the most suitable HTML5 input type for every data item (see Table 3.4).', 'Select input types: ')
+step(2, 'Choose the most suitable HTML5 input type for every data item (see Table 3.2).', 'Select input types: ')
 step(3, 'Create registration.html with the HTML5 boilerplate and the viewport meta tag for mobile devices.', 'Create the page: ')
 step(4, 'Build a form with three fieldsets - Personal Details, Account Security and Course Preferences - and add a label for every control.', 'Design the form: ')
 step(5, 'Add required, minlength, maxlength, min, max and pattern attributes so that the browser validates the data.', 'Add validation attributes: ')
 step(6, 'Style the page with CSS (two-column grid, red / green states, responsive media query).', 'Apply CSS: ')
 step(7, 'Write JavaScript to show messages, compare the two passwords, show the password strength and display a success message.', 'Add JavaScript: ')
 step(8, 'Open the page in the browser, test empty submission, wrong values and correct values, and capture the screenshots.', 'Test and record output: ')
-sub('3.2 Layout plan of the form')
-table(['Fieldset', 'Fields it contains', 'No. of fields'], [
-    ['Personal Details', 'Full name, date of birth, email address, phone number, gender', '5'],
-    ['Account Security', 'Password, confirm password (with strength meter)', '2'],
-    ['Course Preferences', 'Course, qualification, start month, class time, experience, study hours, profile link, photo, address', '9'],
-    ['Agreements and buttons', 'Course-update checkbox, terms checkbox, Register Now and Reset buttons', '4']],
-    [1.7, 3.7, 1.0])
-sub('3.3 Design decisions')
-for lead, txt in [
-    ('Labels: ', 'every control has a label linked with the for attribute, which improves accessibility and makes the click area larger.'),
-    ('Grouping: ', 'fieldset and legend group related fields so that the long form is easy to read.'),
-    ('Hints: ', 'short hint text under the date, phone and password fields tells the student the expected format before the mistake is made.'),
-    ('Two columns: ', 'a CSS grid places two fields in a row on wide screens and one field per row on phones.')]:
-    bullet(txt, lead)
-sub('3.4 Selection of HTML5 input types', True)
+sub('3.2 Selection of HTML5 input types')
 table(['Data', 'Input type', 'Key attributes', 'Reason for selection'], [
     ['Full name', 'type="text"', 'required, minlength, pattern', 'Free text; pattern allows only letters, space and dot.'],
     ['Email', 'type="email"', 'required', 'Browser checks the name@domain format; mobile shows the @ keyboard.'],
@@ -283,7 +242,7 @@ table(['Data', 'Input type', 'Key attributes', 'Reason for selection'], [
     ['Photo', 'type="file"', 'accept="image/png, image/jpeg"', 'Restricts the upload to image files.'],
     ['Address', '<textarea>', 'rows, maxlength', 'Multi-line text.'],
     ['Terms / Updates', 'type="checkbox"', 'required (terms)', 'Yes / no choice; terms must be accepted.']],
-    [1.15, 1.3, 1.85, 2.1], size=11.5)
+    [1.15, 1.3, 1.85, 2.1], size=10)
 
 heading(4, 'Student Activity / Implementation')
 para('The complete source code of the Student Registration Form is given below. The HTML part defines the form and '
@@ -291,24 +250,8 @@ para('The complete source code of the Student Registration Form is given below. 
      'the feedback. The file is saved as registration.html and can be opened in any modern web browser.')
 sub('Program: registration.html')
 lines = open('registration.html').read().split('\n')
-import math
-vis = [max(1, math.ceil(len(ln) / 84)) for ln in lines]
-V = sum(vis); FIRST = 46
-rest_pages = math.ceil((V - FIRST) / 64)
-REST = min(64, math.ceil((V - FIRST) / rest_pages) + 3)
-chunks, cur, used, budget = [], [], 0, FIRST
-for ln, v in zip(lines, vis):
-    if used + v > budget:
-        chunks.append(cur); cur, used, budget = [], 0, REST
-    cur.append(ln); used += v
-chunks.append(cur)
-for ci, ch in enumerate(chunks):
-    if ci:
-        pp = para('', size=2, space_after=0); pp.paragraph_format.page_break_before = True
-        pp.paragraph_format.line_spacing = 1.0
-        for r_ in pp.runs: r_.font.size = Pt(2)
-    code_block(ch, 9)
-print('code chunks', [len(c) for c in chunks])
+code_block(lines, 8)
+para('', space_after=4)
 sub('Explanation of the code')
 for lead, txt in [
     ('Form and fieldsets: ', 'the form uses novalidate so that our JavaScript can show custom messages, while the HTML5 constraint attributes still define the rules.'),
@@ -318,7 +261,7 @@ for lead, txt in [
     ('Validation flow: ', 'validateField() uses checkValidity() and setCustomValidity() to decide whether a field is valid and then shows the message and the red / green border.')]:
     bullet(txt, lead)
 
-sub('Explanation of the CSS and JavaScript', True)
+sub('Explanation of the CSS and JavaScript')
 for lead, txt in [
     ('CSS grid: ', 'the .grid class creates two equal columns; the media query (max-width: 640px) changes it to one column so the form fits phone screens.'),
     ('Visual feedback: ', 'the .invalid class gives a red border and pink background, and the .valid class gives a green border, so the student sees the result of every field immediately.'),
@@ -332,25 +275,7 @@ for txt in ['Mobile devices open the correct keyboard automatically (email keybo
             'Passwords are masked, and pattern rules enforce a strong password.',
             'Clean and correct data is stored, so confirmation mails and phone contacts do not fail.']:
     bullet(txt)
-sub('Behaviour of the main input types in the browser')
-table(['Input type', 'On a desktop browser', 'On a mobile browser'], [
-    ['type="email"', 'Rejects values without @ and a domain', 'Shows a keyboard with @ and .com keys'],
-    ['type="tel"', 'Accepts text; pattern checks 10 digits', 'Shows the numeric dial pad'],
-    ['type="date"', 'Calendar drop-down picker', 'Native date wheel / calendar'],
-    ['type="password"', 'Characters shown as dots', 'Characters masked; no auto-capitalisation'],
-    ['type="number"', 'Up / down spinner within min and max', 'Numeric keyboard'],
-    ['type="url"', 'Rejects values without a scheme', 'Keyboard with / and .com keys'],
-    ['type="range"', 'Draggable slider', 'Touch slider']],
-    [1.5, 2.5, 2.4], size=11)
-
-sub('Conclusion')
-para('Choosing the right HTML5 input type is the first and simplest level of validation. With type="email", '
-     'type="tel", type="date" and type="password", the browser itself gives the student the correct keyboard, '
-     'picker or masking and checks the format before the data reaches the server. Combined with attributes such as '
-     'required, pattern, min and max, and a little JavaScript for friendly messages, the LearnHub registration '
-     'form collects accurate data with less effort for both the student and the portal.')
-
-sub('HTML5 validation attributes used in the form', True)
+sub('HTML5 validation attributes used in the form')
 table(['Attribute', 'Purpose', 'Used on'], [
     ['required', 'Field cannot be left empty', 'Name, date of birth, email, phone, password, course, terms'],
     ['minlength / maxlength', 'Limits the number of characters', 'Name, password, phone, address'],
@@ -360,7 +285,7 @@ table(['Attribute', 'Purpose', 'Used on'], [
     ['accept', 'Allowed file types', 'Profile photo (PNG, JPEG)'],
     ['list (datalist)', 'Type-ahead suggestions', 'Course'],
     ['placeholder / autocomplete', 'Sample text and browser auto-fill hints', 'Name, email, phone, passwords']],
-    [1.7, 2.3, 2.4], size=12)
+    [1.7, 2.3, 2.4], size=10.5)
 sub('Sample test data used for the outputs')
 table(['Field', 'Valid data entered (Output 4 and 5)', 'Invalid data entered (Output 3)'], [
     ['Full name', 'Aishwarya U', 'Ajay Iyanraj (valid)'],
@@ -373,13 +298,30 @@ table(['Field', 'Valid data entered (Output 4 and 5)', 'Invalid data entered (Ou
     ['Qualification', 'Undergraduate', '(not selected)'],
     ['Profile link', 'https://www.linkedin.com/in/aishwarya-u', 'linkedin.com/in/ajay'],
     ['Terms and Conditions', 'Accepted', 'Not accepted']],
-    [1.6, 2.6, 2.2], size=12)
+    [1.6, 2.6, 2.2], size=10.5)
+sub('Behaviour of the main input types in the browser')
+table(['Input type', 'On a desktop browser', 'On a mobile browser'], [
+    ['type="email"', 'Rejects values without @ and a domain', 'Shows a keyboard with @ and .com keys'],
+    ['type="tel"', 'Accepts text; pattern checks 10 digits', 'Shows the numeric dial pad'],
+    ['type="date"', 'Calendar drop-down picker', 'Native date wheel / calendar'],
+    ['type="password"', 'Characters shown as dots', 'Characters masked; no auto-capitalisation'],
+    ['type="number"', 'Up / down spinner within min and max', 'Numeric keyboard'],
+    ['type="url"', 'Rejects values without a scheme', 'Keyboard with / and .com keys'],
+    ['type="range"', 'Draggable slider', 'Touch slider']],
+    [1.5, 2.5, 2.4], size=10.5)
 sub('Learning outcomes')
 for txt in ['Identified the HTML5 input type that best fits each kind of data in a registration form.',
             'Applied constraint-validation attributes (required, pattern, min, max, minlength, maxlength).',
             'Used JavaScript and CSS to give instant visual feedback and a responsive design.']:
     bullet(txt)
-
+sub('Conclusion')
+para('Choosing the right HTML5 input type is the first and simplest level of validation. With type="email", '
+     'type="tel", type="date" and type="password", the browser itself gives the student the correct keyboard, '
+     'picker or masking and checks the format before the data reaches the server. Combined with attributes such as '
+     'required, pattern, min and max, and a little JavaScript for friendly messages, the LearnHub registration '
+     'form collects accurate data with less effort for both the student and the portal.')
+para('The next section shows the form running in the browser in its different states, starting with the blank form and '
+     'ending with the mobile view and the test results.')
 heading(5, 'Expected Output', page_break=True)
 para('The screenshots below were captured from the running registration.html page in a Chromium browser. They show '
      'the form in its different states.')
@@ -413,7 +355,7 @@ table(['S. No.', 'Test input', 'Expected behaviour', 'Result'], [
     ['6', 'Confirm password different from password', 'Message: passwords do not match', 'Pass'],
     ['7', 'Profile link = linkedin.com/in/ajay', 'Message: URL must start with http:// or https://', 'Pass'],
     ['8', 'All fields valid and terms accepted', 'Green borders and success message', 'Pass']],
-    [0.6, 2.4, 2.8, 0.7], size=11.5)
+    [0.6, 2.4, 2.8, 0.7], size=10)
 sub('Result')
 para('The Student Registration Form for the online course portal was designed with suitable HTML5 input types - '
      'email for the email address, tel for the phone number, date for the date of birth and password for the '
