@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Registration - LearnHub Online Course Portal</title>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; background: #eef2f7; color: #1f2937; }
+  header { background: #0b5d3b; color: #fff; padding: 18px 24px; text-align: center; }
+  header h1 { margin: 0; font-size: 26px; }
+  header p { margin: 4px 0 0; font-size: 14px; opacity: .9; }
+  main { max-width: 860px; margin: 24px auto; padding: 0 12px; }
+  form { background: #fff; border-radius: 10px; padding: 24px; box-shadow: 0 2px 10px rgba(0,0,0,.12); }
+  fieldset { border: 1px solid #cbd5e1; border-radius: 8px; margin: 0 0 20px; padding: 14px 16px 6px; }
+  legend { font-weight: 600; color: #0b5d3b; padding: 0 8px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+  .field { margin-bottom: 14px; }
+  .full { grid-column: 1 / -1; }
+  label { display: block; font-size: 14px; font-weight: 600; margin-bottom: 5px; }
+  label span.req { color: #dc2626; }
+  input, select, textarea { width: 100%; padding: 9px 10px; font-size: 14px; border: 1px solid #94a3b8;
+                            border-radius: 6px; font-family: inherit; }
+  input[type=radio], input[type=checkbox] { width: auto; margin-right: 6px; }
+  input[type=range] { padding: 0; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid #34a56f; border-color: #34a56f; }
+  .inline label { display: inline-block; font-weight: 400; margin-right: 18px; }
+  .hint { font-size: 12px; color: #64748b; margin-top: 3px; }
+  .error { font-size: 12px; color: #dc2626; min-height: 15px; margin-top: 3px; }
+  .invalid { border-color: #dc2626; background: #fef2f2; }
+  .valid { border-color: #16a34a; }
+  .meter { height: 6px; background: #e2e8f0; border-radius: 3px; margin-top: 6px; overflow: hidden; }
+  .meter div { height: 100%; width: 0; transition: width .3s; }
+  .buttons { text-align: center; }
+  button { padding: 11px 30px; font-size: 15px; border: 0; border-radius: 6px; cursor: pointer; margin: 0 6px; }
+  button[type=submit] { background: #0b5d3b; color: #fff; }
+  button[type=reset] { background: #e2e8f0; color: #1f2937; }
+  #success { display: none; background: #dcfce7; border: 1px solid #16a34a; color: #14532d;
+             padding: 14px; border-radius: 8px; margin-bottom: 18px; }
+  @media (max-width: 640px) { .grid { grid-template-columns: 1fr; } header h1 { font-size: 21px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>LearnHub Online Course Portal</h1>
+  <p>Student Registration Form</p>
+</header>
+<main>
+<form id="regForm" novalidate>
+  <div id="success"></div>
+
+  <fieldset>
+    <legend>Personal Details</legend>
+    <div class="grid">
+      <div class="field">
+        <label for="fullname">Full Name <span class="req">*</span></label>
+        <input type="text" id="fullname" name="fullname" placeholder="e.g. Aishwarya U"
+               required minlength="3" maxlength="50" pattern="[A-Za-z .]+" autocomplete="name">
+        <div class="error"></div>
+      </div>
+      <div class="field">
+        <label for="dob">Date of Birth <span class="req">*</span></label>
+        <input type="date" id="dob" name="dob" required min="1990-01-01">
+        <div class="hint">You must be at least 16 years old.</div>
+        <div class="error"></div>
+      </div>
+      <div class="field">
+        <label for="email">Email Address <span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="name@example.com" required autocomplete="email">
+        <div class="error"></div>
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number <span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="9876543210" required
+               pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" autocomplete="tel">
+        <div class="hint">10-digit Indian mobile number.</div>
+        <div class="error"></div>
+      </div>
+      <div class="field full inline">
+        <label>Gender <span class="req">*</span></label>
+        <input type="radio" id="male" name="gender" value="Male" required><label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female"><label for="female">Female</label>
+        <input type="radio" id="other" name="gender" value="Other"><label for="other">Other</label>
+        <div class="error"></div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Account Security</legend>
+    <div class="grid">
+      <div class="field">
+        <label for="password">Password <span class="req">*</span></label>
+        <input type="password" id="password" name="password" required minlength="8"
+               pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{8,}" autocomplete="new-password">
+        <div class="meter"><div id="bar"></div></div>
+        <div class="hint">Min 8 characters with upper-case, lower-case and a digit.</div>
+        <div class="error"></div>
+      </div>
+      <div class="field">
+        <label for="confirm">Confirm Password <span class="req">*</span></label>
+        <input type="password" id="confirm" name="confirm" required autocomplete="new-password">
+        <div class="error"></div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Course Preferences</legend>
+    <div class="grid">
+      <div class="field">
+        <label for="course">Course <span class="req">*</span></label>
+        <input list="courses" id="course" name="course" placeholder="Type or select a course" required>
+        <datalist id="courses">
+          <option value="Full Stack Web Development">
+          <option value="Data Science with Python">
+          <option value="Artificial Intelligence">
+          <option value="Cyber Security">
+          <option value="Cloud Computing">
+        </datalist>
+        <div class="error"></div>
+      </div>
+      <div class="field">
+        <label for="qualification">Highest Qualification <span class="req">*</span></label>
+        <select id="qualification" name="qualification" required>
+          <option value="">-- Select --</option>
+          <option>Higher Secondary</option>
+          <option>Diploma</option>
+          <option>Undergraduate</option>
+          <option>Postgraduate</option>
+        </select>
+        <div class="error"></div>
+      </div>
+      <div class="field">
+        <label for="startdate">Preferred Start Month</label>
+        <input type="month" id="startdate" name="startdate">
+      </div>
+      <div class="field">
+        <label for="classtime">Preferred Class Time</label>
+        <input type="time" id="classtime" name="classtime" value="18:00">
+      </div>
+      <div class="field">
+        <label for="experience">Years of Experience</label>
+        <input type="number" id="experience" name="experience" min="0" max="40" step="1" value="0">
+      </div>
+      <div class="field">
+        <label for="hours">Weekly Study Hours: <output id="hoursOut">10</output> hrs</label>
+        <input type="range" id="hours" name="hours" min="1" max="40" value="10">
+      </div>
+      <div class="field">
+        <label for="profile">Profile Link (LinkedIn / GitHub)</label>
+        <input type="url" id="profile" name="profile" placeholder="https://www.linkedin.com/in/yourname">
+        <div class="error"></div>
+      </div>
+      <div class="field">
+        <label for="photo">Profile Photo</label>
+        <input type="file" id="photo" name="photo" accept="image/png, image/jpeg">
+      </div>
+      <div class="field full">
+        <label for="address">Address</label>
+        <textarea id="address" name="address" rows="3" maxlength="200" placeholder="Door no, street, city, PIN"></textarea>
+      </div>
+    </div>
+  </fieldset>
+
+  <div class="field inline">
+    <input type="checkbox" id="news" name="news" checked><label for="news">Send me course updates by email</label><br>
+    <input type="checkbox" id="terms" name="terms" required><label for="terms">I agree to the Terms &amp; Conditions <span class="req">*</span></label>
+    <div class="error"></div>
+  </div>
+
+  <div class="buttons">
+    <button type="submit">Register Now</button>
+    <button type="reset">Reset</button>
+  </div>
+</form>
+</main>
+
+<script>
+  const form = document.getElementById('regForm');
+  const pwd = document.getElementById('password');
+  const cpwd = document.getElementById('confirm');
+  const dob = document.getElementById('dob');
+
+  dob.max = new Date().toISOString().split('T')[0];
+
+  const messages = {
+    fullname: 'Enter a valid name (letters, spaces and dots only, min 3 characters).',
+    dob: 'Select a valid date of birth.',
+    email: 'Enter a valid email address, e.g. name@example.com.',
+    phone: 'Enter a valid 10-digit mobile number starting with 6-9.',
+    gender: 'Please select your gender.',
+    password: 'Password must be 8+ characters with upper-case, lower-case and a digit.',
+    course: 'Please choose a course.',
+    qualification: 'Please select your qualification.',
+    profile: 'Enter a valid URL starting with http:// or https://.',
+    terms: 'You must accept the Terms & Conditions.'
+  };
+
+  function showError(el, msg) {
+    const box = el.closest('.field').querySelector('.error');
+    if (box) box.textContent = msg;
+    if (el.type !== 'radio' && el.type !== 'checkbox') {
+      el.classList.toggle('invalid', !!msg);
+      el.classList.toggle('valid', !msg && el.value !== '');
+    }
+  }
+
+  function validateField(el) {
+    let msg = '';
+    if (el.id === 'dob' && el.value) {
+      const age = (Date.now() - new Date(el.value)) / (365.25 * 24 * 3600 * 1000);
+      if (age < 16) { el.setCustomValidity('age'); msg = 'You must be at least 16 years old.'; }
+      else el.setCustomValidity('');
+    }
+    if (el.id === 'confirm') {
+      el.setCustomValidity(el.value !== pwd.value ? 'mismatch' : '');
+      if (el.value !== pwd.value) msg = 'Passwords do not match.';
+    }
+    if (!msg && !el.checkValidity()) {
+      msg = el.validity.valueMissing && el.id === 'confirm' ? 'Please confirm your password.'
+          : messages[el.name] || 'This field is required.';
+    }
+    showError(el, msg);
+    return !msg;
+  }
+
+  pwd.addEventListener('input', () => {
+    let score = 0;
+    if (pwd.value.length >= 8) score++;
+    if (/[a-z]/.test(pwd.value) && /[A-Z]/.test(pwd.value)) score++;
+    if (/[0-9]/.test(pwd.value)) score++;
+    if (/[^A-Za-z0-9]/.test(pwd.value)) score++;
+    const bar = document.getElementById('bar');
+    bar.style.width = score * 25 + '%';
+    bar.style.background = ['#dc2626', '#dc2626', '#f59e0b', '#84cc16', '#16a34a'][score];
+    if (cpwd.value) validateField(cpwd);
+  });
+
+  document.getElementById('hours').addEventListener('input', e =>
+    document.getElementById('hoursOut').textContent = e.target.value);
+
+  form.querySelectorAll('input, select, textarea').forEach(el =>
+    el.addEventListener('blur', () => { if (el.required || el.value) validateField(el); }));
+
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    let ok = true;
+    form.querySelectorAll('input[required], select[required], input[type=url], input[type=email]')
+        .forEach(el => { if (!validateField(el)) ok = false; });
+    const success = document.getElementById('success');
+    if (ok) {
+      success.style.display = 'block';
+      success.innerHTML = '<strong>Registration successful!</strong> Welcome, ' +
+        form.fullname.value + '. A confirmation has been sent to ' + form.email.value + '.';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      success.style.display = 'none';
+    }
+  });
+
+  form.addEventListener('reset', () => {
+    document.getElementById('success').style.display = 'none';
+    form.querySelectorAll('.error').forEach(x => x.textContent = '');
+    form.querySelectorAll('.invalid, .valid').forEach(x => x.classList.remove('invalid', 'valid'));
+    document.getElementById('bar').style.width = '0';
+  });
+</script>
+</body>
+</html>
