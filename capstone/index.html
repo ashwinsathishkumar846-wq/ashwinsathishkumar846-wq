@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Course Registration System</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============ LOGIN VIEW ============ -->
+<section id="loginView" class="login-wrap">
+  <form id="loginForm" class="card login-card" novalidate>
+    <h1>Student Course Registration</h1>
+    <p class="sub">Sri Ramakrishna Engineering College</p>
+    <label for="roll">Roll Number</label>
+    <input type="text" id="roll" placeholder="e.g. 71812401006" maxlength="11" inputmode="numeric" required>
+    <label for="pwd">Password</label>
+    <input type="password" id="pwd" placeholder="Enter password" required>
+    <div id="loginError" class="error"></div>
+    <button type="submit" class="btn primary block">Login</button>
+    <p class="hint">Demo password for all students: <b>Srec@2026</b></p>
+  </form>
+</section>
+
+<!-- ============ MAIN APPLICATION ============ -->
+<section id="appView" class="hidden">
+  <header class="topbar">
+    <div>
+      <h2>Course Registration Portal</h2>
+      <span id="welcome"></span>
+    </div>
+    <div class="right">
+      <span class="chip" id="creditChip"></span>
+      <button id="logoutBtn" class="btn light">Logout</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="catalogue">Available Courses</button>
+    <button class="tab" data-tab="mine">My Registrations</button>
+    <button class="tab" data-tab="timetable">Timetable</button>
+  </nav>
+
+  <main>
+    <div id="catalogue" class="panel">
+      <div class="filters">
+        <input type="search" id="search" placeholder="Search by code, title or faculty">
+        <select id="deptFilter">
+          <option value="All">All Departments</option>
+        </select>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Code</th><th>Course Title</th><th>Dept</th><th>Credits</th>
+              <th>Faculty</th><th>Slots</th><th>Seats Left</th><th>Action</th></tr>
+        </thead>
+        <tbody id="courseBody"></tbody>
+      </table>
+    </div>
+
+    <div id="mine" class="panel hidden">
+      <div class="progress-box">
+        <span id="creditText"></span>
+        <div class="bar"><div id="creditBar"></div></div>
+      </div>
+      <table>
+        <thead>
+          <tr><th>Code</th><th>Course Title</th><th>Credits</th><th>Faculty</th><th>Slots</th><th>Action</th></tr>
+        </thead>
+        <tbody id="myBody"></tbody>
+      </table>
+    </div>
+
+    <div id="timetable" class="panel hidden">
+      <table class="grid" id="ttTable"></table>
+    </div>
+  </main>
+</section>
+
+<div id="toast" class="toast hidden"></div>
+<script src="script.js"></script>
+</body>
+</html>
