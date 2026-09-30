@@ -50,7 +50,6 @@ dept2 = [p for p in paras if p.text.startswith('DEPARTMENT')][1]
 dept2.paragraph_format.page_break_before = True
 sig2 = [p for p in paras if 'Mr.N.Manoj' in p.text][1]
 drop_blanks_after(sig2._p)
-cover['CONTENTS'].paragraph_format.page_break_before = True
 
 # ---------- index table ----------
 t0, t1 = d.tables[0], d.tables[1]
@@ -169,7 +168,7 @@ def code_block(lines, size=8):
         r._r.rPr.rFonts.set(qn('w:hAnsi'), 'Courier New'); r._r.rPr.rFonts.set(qn('w:cs'), 'Courier New')
     return t
 
-def figure(path, title, caption, width=6.2, maxh=7.9):
+def figure(path, title, caption, width=6.4, maxh=8.8):
     im = Image.open(path).convert('RGB'); width = min(width, maxh * im.width / im.height); im = ImageOps.expand(im, border=2, fill=(0, 0, 0))
     out = path.replace('.png', '_b.png'); im.save(out)
     p = para(title, bold=True, size=12, align=AL.LEFT, space_after=4, keep=True)
@@ -179,7 +178,7 @@ def figure(path, title, caption, width=6.2, maxh=7.9):
     para(caption, italic=True, size=10.5, align=AL.CENTER, space_after=6)
 
 # ================= CONTENT =================
-heading(1, 'Scenario / Problem Statement')
+heading(1, 'Scenario / Problem Statement', page_break=True)
 sub('1.1 Scenario')
 para('LearnHub is an online course portal that offers technology courses such as Full Stack Web Development, '
      'Data Science with Python, Artificial Intelligence, Cyber Security and Cloud Computing to students across the '
@@ -276,6 +275,17 @@ for txt in ['Mobile devices open the correct keyboard automatically (email keybo
             'Passwords are masked, and pattern rules enforce a strong password.',
             'Clean and correct data is stored, so confirmation mails and phone contacts do not fail.']:
     bullet(txt)
+sub('HTML5 validation attributes used in the form')
+table(['Attribute', 'Purpose', 'Used on'], [
+    ['required', 'Field cannot be left empty', 'Name, date of birth, email, phone, password, course, terms'],
+    ['minlength / maxlength', 'Limits the number of characters', 'Name, password, phone, address'],
+    ['pattern', 'Regular expression the value must match', 'Name, phone, password'],
+    ['min / max', 'Lowest and highest allowed value or date', 'Date of birth, experience, study hours'],
+    ['step', 'Step size of a number input', 'Years of experience'],
+    ['accept', 'Allowed file types', 'Profile photo (PNG, JPEG)'],
+    ['list (datalist)', 'Type-ahead suggestions', 'Course'],
+    ['placeholder / autocomplete', 'Sample text and browser auto-fill hints', 'Name, email, phone, passwords']],
+    [1.7, 2.3, 2.4], size=10.5)
 sub('Sample test data used for the outputs')
 table(['Field', 'Valid data entered (Output 4 and 5)', 'Invalid data entered (Output 3)'], [
     ['Full name', 'Aishwarya U', 'Ajay Iyanraj (valid)'],
@@ -289,11 +299,29 @@ table(['Field', 'Valid data entered (Output 4 and 5)', 'Invalid data entered (Ou
     ['Profile link', 'https://www.linkedin.com/in/aishwarya-u', 'linkedin.com/in/ajay'],
     ['Terms and Conditions', 'Accepted', 'Not accepted']],
     [1.6, 2.6, 2.2], size=10.5)
+sub('Behaviour of the main input types in the browser')
+table(['Input type', 'On a desktop browser', 'On a mobile browser'], [
+    ['type="email"', 'Rejects values without @ and a domain', 'Shows a keyboard with @ and .com keys'],
+    ['type="tel"', 'Accepts text; pattern checks 10 digits', 'Shows the numeric dial pad'],
+    ['type="date"', 'Calendar drop-down picker', 'Native date wheel / calendar'],
+    ['type="password"', 'Characters shown as dots', 'Characters masked; no auto-capitalisation'],
+    ['type="number"', 'Up / down spinner within min and max', 'Numeric keyboard'],
+    ['type="url"', 'Rejects values without a scheme', 'Keyboard with / and .com keys'],
+    ['type="range"', 'Draggable slider', 'Touch slider']],
+    [1.5, 2.5, 2.4], size=10.5)
 sub('Learning outcomes')
 for txt in ['Identified the HTML5 input type that best fits each kind of data in a registration form.',
             'Applied constraint-validation attributes (required, pattern, min, max, minlength, maxlength).',
             'Used JavaScript and CSS to give instant visual feedback and a responsive design.']:
     bullet(txt)
+sub('Conclusion')
+para('Choosing the right HTML5 input type is the first and simplest level of validation. With type="email", '
+     'type="tel", type="date" and type="password", the browser itself gives the student the correct keyboard, '
+     'picker or masking and checks the format before the data reaches the server. Combined with attributes such as '
+     'required, pattern, min and max, and a little JavaScript for friendly messages, the LearnHub registration '
+     'form collects accurate data with less effort for both the student and the portal.')
+para('The next section shows the form running in the browser in its different states, starting with the blank form and '
+     'ending with the mobile view and the test results.')
 heading(5, 'Expected Output', page_break=True)
 para('The screenshots below were captured from the running registration.html page in a Chromium browser. They show '
      'the form in its different states.')
@@ -304,7 +332,7 @@ figs = [
  ('shots/4_filled.png', 'Output 4: Correctly filled form', 'Fig. 4 - All fields contain valid data; borders turn green and the password-strength meter is full.'),
  ('shots/5_success.png', 'Output 5: Successful registration', 'Fig. 5 - After a valid submission a green confirmation message with the student name and email is displayed.'),
 ]
-for j,(f, t, c) in enumerate(figs): figure(f, t, c, maxh=(6.9 if j==0 else 7.9))
+for j,(f, t, c) in enumerate(figs): figure(f, t, c, maxh=(7.9 if j==0 else 8.8))
 p = para('Output 6: Responsive view on a mobile screen (390 px width)', bold=True, align=AL.LEFT, space_after=4, keep=True)
 # mobile shot is very tall: split into three side-by-side strips
 m = Image.open('shots/6_mobile.png').convert('RGB'); W, H = m.size; k = 3; h = H // k + 1
@@ -346,7 +374,6 @@ def fld(p, instr):
     c = OxmlElement('w:fldChar'); c.set(qn('w:fldCharType'), 'separate'); r._r.append(c)
     t = OxmlElement('w:t'); t.text = '1'; r._r.append(t)
     e = OxmlElement('w:fldChar'); e.set(qn('w:fldCharType'), 'end'); r._r.append(e)
-r = fp.add_run('Page '); r.font.size = Pt(10); r.font.name = FONT
 fld(fp, 'PAGE')
 
 sp = sect
@@ -356,5 +383,13 @@ for side in ('top', 'left', 'bottom', 'right'):
     for k_, v in (('val', 'single'), ('sz', '12'), ('space', '20'), ('color', '000000')): e.set(qn('w:' + k_), v)
     pb.append(e)
 sp.find(qn('w:pgMar')).addnext(pb)
+# section break after page 2: header only on cover + index pages
+sig2._p.get_or_add_pPr().append(copy.deepcopy(sp))
+last = d.sections[-1]
+for hr in last._sectPr.findall(qn('w:headerReference')): last._sectPr.remove(hr)
+last.header.is_linked_to_previous = False
+for p_ in last.header.paragraphs:
+    for r_ in list(p_.runs): r_._r.getparent().remove(r_._r)
+last.top_margin = Inches(0.8)
 d.core_properties.title = 'ALM Report - Student Registration Form'
 d.save('ALM_Student_Registration_Form.docx')
