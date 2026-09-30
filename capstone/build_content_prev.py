@@ -35,7 +35,7 @@ table(['Technology / Tool', 'Purpose'], [
     [2.2, 4.2])
 
 # ---------- 1. INTRODUCTION ----------
-heading(1, 'Introduction', page_break=True)
+heading(1, 'Introduction')
 sub('1.1 Background')
 para('At the beginning of every semester a student has to choose the courses to study, such as the core subjects, '
      'the electives and the laboratory courses. In many colleges this is still done with paper forms or spreadsheets. '
@@ -73,42 +73,8 @@ for txt in ['Saves the time of both students and the staff.',
             'Works in any browser without installation, and the data is available offline.']:
     bullet(txt)
 
-sub('1.7 Existing system versus proposed system')
-table(['Aspect', 'Manual / paper based system', 'Proposed web application'], [
-    ['Registration time', 'Long queues and several days', 'A few minutes from any device'],
-    ['Seat checking', 'Counted by the staff by hand', 'Seats left are calculated automatically'],
-    ['Time-table clash', 'Found only after registration', 'Rejected immediately with a message'],
-    ['Credit limit', 'Verified manually by the advisor', 'Checked automatically against 24 credits'],
-    ['Errors', 'Frequent writing and counting mistakes', 'Rules are enforced by the program'],
-    ['Records', 'Paper files that can be lost', 'Saved in the browser and shown instantly']],
-    [1.5, 2.4, 2.5], size=11)
-sub('1.8 Users of the system')
-table(['User', 'Role', 'Status in this project'], [
-    ['Student', 'Logs in, searches courses, registers, drops and views the timetable', 'Implemented'],
-    ['Faculty advisor', 'Approves the registrations of the students', 'Future enhancement'],
-    ['Administrator', 'Creates courses, sets seats and slots', 'Future enhancement']],
-    [1.5, 3.4, 1.5], size=11)
-sub('1.9 Software requirements')
-table(['Item', 'Requirement'], [
-    ['Operating system', 'Windows 10 / Linux / macOS'],
-    ['Web browser', 'Google Chrome, Microsoft Edge, Mozilla Firefox or Safari (latest version)'],
-    ['Editor', 'Visual Studio Code or any text editor'],
-    ['Internet', 'Not needed to run the application (static files only)']],
-    [2.0, 4.4], size=11)
-
-sub('1.10 Applications')
-for txt in ['Semester course registration in engineering and arts colleges.',
-            'Elective selection and add / drop process at the beginning of a semester.',
-            'Online training centres and certificate programmes with limited batch sizes.']:
-    bullet(txt)
-sub('1.11 Limitations')
-for txt in ['The data is stored in the browser of one computer, so it is not shared between different computers.',
-            'There is no real authentication server; the student list and password are kept in the script for demonstration.',
-            'Only student functions are implemented; faculty and administrator functions are future work.']:
-    bullet(txt)
-
 # ---------- 2. LOGIC BUILDING ----------
-heading(2, 'Logic Building', page_break=True)
+heading(2, 'Logic Building')
 sub('2.1 Overall logic')
 step(1, 'The student enters the roll number and the password; the login logic validates both.', 'Login: ')
 step(2, 'After a successful login the application hides the login view and shows the main view with the student name.', 'Show portal: ')
@@ -150,24 +116,15 @@ snippet(['registerCourse(code):',
          '    redraw catalogue, my registrations and timetable'], 9)
 para('', space_after=4)
 sub('2.5 Flowchart')
-figure('shots/flow.png', 'Flowchart of login and course registration', 'Fig. 1 - Logic of login and course registration.', width=3.8, maxh=5.2)
+figure('shots/flow.png', 'Flowchart of login and course registration', 'Fig. 1 - Logic of login and course registration.', width=4.2, maxh=6.3)
 sub('2.6 Logic of credits and timetable')
 para('The total credits are the sum of the credits of the registered courses; the width of the progress bar is '
      'total / 24 x 100 percent. For the timetable every slot is written as Day-Period (for example Wed-2). A map is '
      'created from slot to course code and the grid of five days and five periods is drawn by looking up each cell in '
      'this map, so a clash is impossible because a slot can hold only one course.')
 
-sub('2.7 Example walk-through of the logic')
-table(['Action of student 71812401006', 'Rule checked', 'Result'], [
-    ['Register 20CS212 (3 credits, Mon-1, Wed-2)', 'Seats, credits 3 <= 24, no clash', 'Registered; credits 3 / 24'],
-    ['Register 20CS202 (3 credits, Mon-3, Fri-2)', 'Seats, credits 6 <= 24, no clash', 'Registered; credits 6 / 24'],
-    ['Register 20CS204 (Mon-1, Thu-3)', 'Slot Mon-1 already used by 20CS212', 'Rejected: time clash'],
-    ['Register 20CS206 (4 credits)', 'Seats left = 0', 'Rejected: course is full'],
-    ['Drop 20CS202', 'Course removed from the list', 'Credits return to 3 / 24'],
-    ['Open Timetable', 'Slots mapped to periods', 'Mon-1 and Wed-2 highlighted']],
-    [2.6, 2.3, 1.5], size=10)
 # ---------- 3. IMPLEMENTATION STEPS ----------
-heading(3, 'Implementation Steps', page_break=True)
+heading(3, 'Implementation Steps')
 sub('3.1 Steps followed')
 for i, (lead, txt) in enumerate([
     ('Create the project folder ', 'with three files: index.html, style.css and script.js.'),
@@ -210,30 +167,6 @@ table(['S. No.', 'Test case', 'Expected result', 'Result'], [
     ['7', 'Open the Timetable tab', 'Registered slots are highlighted', 'Pass']],
     [0.6, 2.6, 2.6, 0.6], size=11)
 
-sub('3.5 Folder structure')
-snippet(['student-course-registration/',
-         '|-- index.html     (structure of the pages)',
-         '|-- style.css      (design and responsive rules)',
-         '|-- script.js      (data, logic and localStorage)',
-         '`-- shots/         (output screenshots used in this report)'], 9)
-para('', space_after=4)
-sub('3.6 How to run the application')
-step(1, 'Copy the three files index.html, style.css and script.js into one folder.')
-step(2, 'Double-click index.html; it opens in the default browser and shows the login page.')
-step(3, 'Log in with one of the sample accounts given below.')
-step(4, 'Register courses, open the other tabs and use Logout when finished.')
-sub('3.7 Sample student accounts')
-table(['S. No.', 'Name', 'Roll number (user name)', 'Password'],
-      [[str(i), n, r, 'Srec@2026'] for i, (n, r) in enumerate(students, 1)], [0.7, 2.2, 2.2, 1.3], size=11)
-
-sub('3.8 Coding conventions followed')
-for txt in ['Meaningful names for functions and variables (registerCourse, seatsLeft, totalCredits).',
-            'Data (courses, students) is kept separate from the display and rule functions.',
-            'Comments mark every section of the script: data, storage, login, tabs, catalogue, register / drop, timetable.',
-            'One function performs one job, so each rule can be tested separately.',
-            'Constants such as MAX_CREDITS are declared once and reused.']:
-    bullet(txt)
-
 # ---------- 4. CODE AND OUTPUT SCREENSHOTS ----------
 heading(4, 'Code and Output Screenshots', page_break=True)
 sub('4.1 index.html')
@@ -264,19 +197,12 @@ for f, t, c in figs:
     else: figure(f, None, c, width=4.8, maxh=3.4)
 
 # ---------- 5. CONCLUSION ----------
-heading(5, 'Conclusion', page_break=True)
+heading(5, 'Conclusion')
 para('The Student Course Registration System was designed and implemented with HTML5, CSS3 and JavaScript. It '
      'allows a student to log in, search and filter the courses, register and drop courses and view the credits and '
      'the timetable. The rules for seat availability, credit limit and time clash are applied automatically, which '
      'removes the manual work and the mistakes of the paper based process. The test cases and the screenshots show '
      'that the application works correctly on desktop and mobile screens.')
-sub('Challenges faced and solutions')
-table(['Challenge', 'Solution'], [
-    ['Keeping the seat count correct for all students', 'Seats left are calculated from all stored registrations every time the page is drawn'],
-    ['Finding a time clash between two courses', 'Each course stores its slots as Day-Period text and the slots are compared with find() and includes()'],
-    ['Data lost on page refresh', 'The registrations are saved in localStorage after every register or drop'],
-    ['Table too wide for a phone', 'A media query makes the table scroll horizontally on small screens']],
-    [2.6, 3.8], size=11)
 sub('Learning outcomes')
 for txt in ['Built a multi-view single page application using only HTML, CSS and JavaScript.',
             'Applied array methods (filter, find, reduce, map) to search and process the course data.',
