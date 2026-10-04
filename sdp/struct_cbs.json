@@ -1,0 +1,70 @@
+[
+ {
+  "no": 29,
+  "date": "15.09.26",
+  "title": "INTRODUCTION TO WIN RUNNER",
+  "cbs": true,
+  "b": [
+   {
+    "t": "h",
+    "text": "AIM:"
+   },
+   {
+    "t": "p",
+    "text": "To carry out a study experiment on WinRunner and to run a sample test script with it."
+   },
+   {
+    "t": "h",
+    "text": "DESCRIPTION:"
+   },
+   {
+    "t": "sh",
+    "text": "WIN RUNNER:"
+   },
+   {
+    "t": "p",
+    "text": "WinRunner is an automated software testing tool from HP, originally developed by Mercury Interactive. It is widely used for functional testing because it supports many programming languages and web technologies such as C, C++, C#, Visual Basic, VC++, Java, HTML, PowerBuilder, Delphi and Cibell. Testers use it for functional, user interface, integration and regression testing: the tool records the actions performed on an application as test steps and plays them back later through generated test scripts."
+   },
+   {
+    "t": "sh",
+    "text": "WORKING:"
+   },
+   {
+    "t": "p",
+    "text": "WinRunner is a functional testing tool that works on a collection of tests and is used together with HP QuickTest Professional as a supporting tool in the quality assurance process, mainly during the testing phase of the Software Development Life Cycle."
+   },
+   {
+    "t": "p",
+    "text": "The testing process begins by capturing the functional requirements and then comparing the actual results with the expected results while replaying the user operations on the software product. During this process the tool detects defects against the design given by the business or client team. WinRunner scripts are written in the Test Script Language (TSL), which is very similar to the C language, so the recorded user activities can be edited easily and constraints can be added when required."
+   },
+   {
+    "t": "p",
+    "text": "Recording is the main step for creating test items. While recording, the tool notes the functional flow of the application by imitating the user actions, and the tester can later revise and update the generated script so that it matches the functionality described in the requirement specification."
+   },
+   {
+    "t": "p",
+    "text": "The tester then inserts checkpoints so that the expected behaviour can be compared with the actual behaviour. A checkpoint can verify test criteria, user interface features, images or logos and the navigation flow in the form of URLs."
+   },
+   {
+    "t": "p",
+    "text": "The testing can include validations such as the look of the application, the web communication interfaces, middleware communication and database validation, and WinRunner is known as a data-driven automation tool. Its Virtual Object Wizard helps the tool to learn the objects of an application, and during execution the tool controls the software by itself, repeating the recorded steps like a real user. Built-in Recovery Handling and Exception Handling features deal with unexpected errors, misbehaviour or crashes automatically, so the test run continues without interruption."
+   },
+   {
+    "t": "h",
+    "text": "OUTPUT:"
+   },
+   {
+    "t": "img",
+    "n": 900
+   },
+   {
+    "t": "h",
+    "text": "RESULT:"
+   },
+   {
+    "t": "p",
+    "text": "Thus the study on the WinRunner test automation tool was completed successfully."
+   }
+  ]
+ }
+]

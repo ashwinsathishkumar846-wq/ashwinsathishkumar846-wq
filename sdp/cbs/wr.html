@@ -1,0 +1,57 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1584px;height:1000px;background:#e9edf3;font-family:"Segoe UI","Inter",Arial,sans-serif;font-size:15px;color:#1b1b1b;position:relative;overflow:hidden}
+.abs{position:absolute}
+.mono{font-family:Consolas,"DejaVu Sans Mono",monospace}
+.tb{left:0;top:0;width:1584px;height:44px;background:#e9edf3;display:flex;align-items:center;padding:0 14px;gap:10px;font-size:15px}
+.ic{width:18px;height:18px;border-radius:4px;background:#2d6cdf;display:inline-block}
+.menu{left:0;top:44px;width:1584px;height:34px;display:flex;align-items:center;gap:22px;padding-left:44px;font-size:15px;background:#eef1f6}
+.tool{left:0;top:78px;width:1584px;height:44px;background:#e6eaf1;border-bottom:1px solid #c9d0db;display:flex;align-items:center;gap:14px;padding-left:20px;font-size:15px}
+.tool i{width:22px;height:22px;background:#c7a76a;border-radius:3px;display:inline-block}
+.pane{background:#fff;border:1px solid #c5ccd8}
+.ph{height:30px;background:#dfe7f3;border-bottom:1px solid #c5ccd8;padding:5px 10px;font-size:15px;display:flex;justify-content:space-between}
+.tree div{height:25px;display:flex;align-items:center;gap:8px;font-size:15px}
+.fi{width:18px;height:14px;background:#e3b34a;border-radius:2px;display:inline-block}
+.pg{width:15px;height:17px;background:#fff;border:1.5px solid #c44;border-radius:2px;display:inline-block}
+.code div{height:24.4px;white-space:pre;font-size:15px;display:block;line-height:24px}
+.code b{width:56px;display:inline-block;text-align:right;color:#8a8f98;font-weight:400;padding-right:18px;flex:none}
+.k{color:#b01e1e}.s{color:#c0392b}.c{color:#2e8b3d}.f{color:#1f4fb4}
+.dlg{background:#f4f6fa;border:1px solid #b9c1ce;border-radius:8px;box-shadow:0 8px 28px rgba(0,0,0,.28)}
+.btn{display:inline-block;padding:9px 20px;border:1px solid #b9c1ce;background:#f5f7fb;border-radius:4px;font-size:15px}
+.tab{display:inline-block;padding:6px 14px;font-size:14px;border:1px solid #cfd5df;background:#eef1f6;margin-right:4px}
+</style></head><body>
+<div class="abs tb"><span class="ic"></span><span>HP Virtual User Generator&nbsp;&nbsp;WinRunner&nbsp;&nbsp;--&nbsp;[LibraryTest - Action1]</span><span style="margin-left:auto;letter-spacing:44px;margin-right:30px">&#8211; &#9633; &#10005;</span></div>
+<div class="abs menu"><span class="ic" style="margin-left:-24px;margin-right:2px"></span><span>File</span><span>Edit</span><span>View</span><span>Insert</span><span>Vuser</span><span>Actions</span><span>Tools</span><span>Window</span><span>Help</span></div>
+<div class="abs tool"><i style="background:#e0b84a"></i><i></i><i style="background:#3b78d8"></i><i style="background:#3b78d8"></i><i style="background:#999"></i><i style="background:#b9bec8"></i><i style="background:#b9bec8"></i><i style="background:#b9bec8"></i><i style="background:#6b9d62"></i><i style="background:#b9bec8"></i><i style="background:#555"></i><span><span style="display:inline-block;width:16px;height:16px;border-radius:50%;background:#d33;vertical-align:-3px"></span>&nbsp;Record</span><span style="color:#2a63c9">&#9654; Run</span><span style="color:#888">Stop</span></div>
+<!-- solution explorer -->
+<div class="abs pane" style="left:8px;top:128px;width:300px;height:538px"><div class="ph">Solution Explorer<span>&#8211; &#10005;</span></div>
+<div class="tree" style="padding:8px 10px 0 8px"><div><span class="fi" style="background:#cfd8e6"></span>Solution LibraryTest</div><div style="padding-left:20px"><span class="fi" style="background:#7aa5e6"></span><b>LibraryTest</b></div><div style="padding-left:40px"><span class="fi"></span><b style="font-weight:600">Actions</b></div><div style="padding-left:70px"><span class="pg"></span>vuser_init</div><div style="padding-left:70px;background:#dbe8fb"><span class="pg"></span>Action1</div><div style="padding-left:70px"><span class="pg"></span>vuser_end</div><div style="padding-left:40px"><span class="fi"></span>Extra Files</div><div style="padding-left:40px"><span class="fi" style="background:#7aa5e6"></span>Runtime Settings</div><div style="padding-left:70px"><span class="fi"></span>Parameters</div><div style="padding-left:70px"><span class="fi"></span>Replay Runs</div><div style="padding-left:70px"><span class="fi"></span>Analysis</div></div>
+<div class="abs" style="left:0;bottom:0;width:298px;height:34px;background:#dfe7f3;border-top:1px solid #c5ccd8;font-size:14px;padding:7px 14px">Solution Explorer &nbsp;&nbsp;&nbsp; Step Navigator</div></div>
+<!-- editor -->
+<div class="abs pane" style="left:314px;top:128px;width:1262px;height:538px"><div class="abs" style="left:0;top:0;width:1262px;height:30px;background:#dfe7f3;border-bottom:1px solid #c5ccd8"><span class="abs" style="left:8px;top:2px;background:#fff;border:1px solid #c5ccd8;padding:3px 14px;font-size:14px;font-weight:600">Action1* &#10005;</span></div>
+<div class="abs mono code" style="left:0;top:36px;width:1200px"><div><b>1</b><span class="k" style="color:#b01e1e">Action()</span></div><div><b>2</b>{</div><div><b>3</b>    <span class="c">// Open the library portal</span></div><div><b>4</b>    <span class="f">web_launch</span>(<span class="s">"https://www.srec.ac.in"</span>);</div><div><b>5</b></div><div><b>6</b>    <span class="c">// Search the catalogue</span></div><div><b>7</b>    <span class="f">web_reg_find</span>(<span class="s">"Text=Library"</span>, LAST);</div><div><b>8</b>    <span class="f">web_submit_data</span>(<span class="s">"Search"</span>,</div><div><b>9</b>        <span class="s">"Action=https://www.srec.ac.in/search"</span>,</div><div><b>10</b>        <span class="s">"Method=GET"</span>,</div><div><b>11</b>        <span class="s">"RecContentType=text/html"</span>,</div><div><b>12</b>        <span class="s">"Referer="</span>,</div><div><b>13</b>        <span class="s">"Snapshot=t7.inf"</span>,</div><div><b>14</b>        <span class="s">"Mode=HTML"</span>,</div><div><b>15</b>        <span class="k">ITEMDATA</span>,</div><div><b>16</b>        <span class="s">"Name=q"</span>, <span class="s">"Value=BookSearch"</span>, <span class="k">ENDITEM</span>,</div><div><b>17</b>        <span class="k">LAST</span>);</div><div><b>18</b></div><div><b>19</b>    <span class="k">return</span> 0;</div><div><b>20</b>}</div></div>
+<div class="abs dlg" style="left:612px;top:70px;width:630px;height:430px"><div style="height:44px;padding:11px 14px;font-size:16px;display:flex;gap:12px;background:#f9fafc;border-radius:8px 8px 0 0"><span class="ic"></span>Run Session - LibraryTest<span style="margin-left:auto;letter-spacing:34px">&#8211; &#9633; &#10005;</span></div>
+<div style="padding:12px 16px"><div style="display:flex;justify-content:space-between;font-weight:600"><span>Running Vuser...</span><span style="font-weight:400">Elapsed time: 00:00:09</span></div>
+<div style="height:24px;background:#d3d6dc;margin:14px 0 18px;border:1px solid #c0c5ce"><div style="width:44%;height:100%;background:#35b44a"></div></div>
+<div style="line-height:26px;font-size:15px">Scenario:&nbsp;&nbsp;&nbsp;&nbsp;LibraryScenario<br>Vuser:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LibraryTest<br>Iteration:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1 / 1</div>
+<table style="width:100%;border-collapse:collapse;margin-top:12px;background:#fff;font-size:15px"><tr style="height:34px;background:#f0f2f6"><th style="text-align:left;padding-left:10px;font-weight:400;border:1px solid #d5dae3;width:150px">Step Name</th><th style="text-align:left;padding-left:10px;font-weight:400;border:1px solid #d5dae3;width:140px">Status</th><th style="text-align:left;padding-left:10px;font-weight:400;border:1px solid #d5dae3;width:150px">Elapsed Time</th><th style="text-align:left;padding-left:10px;font-weight:400;border:1px solid #d5dae3">Details</th></tr>
+<tr style="height:28px"><td style="padding-left:8px;border:1px solid #e5e8ef"><span style="color:#2e9e45">&#9679;</span> vuser_init</td><td style="padding-left:10px;border:1px solid #e5e8ef">Passed</td><td style="padding-left:10px;border:1px solid #e5e8ef">00:00:01</td><td style="padding-left:10px;border:1px solid #e5e8ef">1 step(s)</td></tr>
+<tr style="height:28px"><td style="padding-left:8px;border:1px solid #e5e8ef"><span style="color:#2e9e45">&#9679;</span> Action1</td><td style="padding-left:10px;border:1px solid #e5e8ef">Passed</td><td style="padding-left:10px;border:1px solid #e5e8ef">00:00:07</td><td style="padding-left:10px;border:1px solid #e5e8ef">5 step(s)</td></tr>
+<tr style="height:28px"><td style="padding-left:8px;border:1px solid #e5e8ef"><span style="color:#2e9e45">&#9679;</span> vuser_end</td><td style="padding-left:10px;border:1px solid #e5e8ef">Passed</td><td style="padding-left:10px;border:1px solid #e5e8ef">00:00:01</td><td style="padding-left:10px;border:1px solid #e5e8ef">1 step(s)</td></tr><tr style="height:30px"><td style="border:1px solid #e5e8ef"></td><td style="border:1px solid #e5e8ef"></td><td style="border:1px solid #e5e8ef"></td><td style="border:1px solid #e5e8ef"></td></tr></table>
+<div style="display:flex;justify-content:space-between;align-items:center;margin-top:22px"><span><span style="display:inline-block;width:16px;height:16px;border:1.5px solid #6b7280;vertical-align:-3px;margin-right:6px"></span>Close when complete</span><span><span class="btn" style="border:2px solid #4a7fd8">Run Again</span>&nbsp;&nbsp;&nbsp;<span class="btn">Close</span></span></div></div></div></div>
+<!-- output -->
+<div class="abs pane" style="left:8px;top:672px;width:1568px;height:300px"><div class="ph">Output<span>&#8211; &#10005;</span></div>
+<div class="abs" style="left:10px;top:34px;width:210px;height:28px;border:1px solid #c5ccd8;background:#fff;padding:5px 8px;font-size:14px">Replay Log</div>
+<div class="abs mono" style="left:8px;top:68px;width:1550px;height:196px;background:#fff;border:1px solid #d5dae3;padding:6px 10px;font-size:14.5px;line-height:18.5px;white-space:pre">***** Replay started at 10:41:08  15-Sep-2026 *****
+Generating script...
+Launching browser 'Chrome' to navigate to 'https://www.srec.ac.in'.
+Web registration: "Library" found.
+Submitting the catalogue search request.
+Response received: 200 OK.
+Found 3 occurrence(s) of "Library".
+Action1 completed successfully.
+Replay ended at 10:41:17  15-Sep-2026 (9 seconds).
+<span style="color:#1e7a34;font-weight:700">Results: 0 error(s), 0 warning(s).</span></div>
+<div class="abs" style="left:8px;top:266px;font-size:14px"><span class="tab" style="background:#fff;font-weight:600">Replay Log</span><span class="tab">Recording Log</span><span class="tab">Correlation Results</span><span class="tab">Generation Log</span></div></div>
+<div class="abs" style="left:10px;top:972px;font-size:14px">Ready</div><div class="abs" style="left:1340px;top:972px;font-size:14px">Ln 1 &nbsp;&nbsp; Col 1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; NUM</div>
+</body></html>
