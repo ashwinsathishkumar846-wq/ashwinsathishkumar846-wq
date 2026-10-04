@@ -1,0 +1,14 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="ar.css"><style>
+body{background:#d9dde3;display:flex;justify-content:center;padding:20px}
+.ph{width:390px;height:800px;border:10px solid #111;border-radius:42px;position:relative;overflow:hidden;background:#222}
+.ph #mach{left:-170px;top:210px;width:700px;height:400px}
+.sb{position:absolute;top:0;left:0;right:0;height:30px;display:flex;justify-content:space-between;padding:8px 22px;color:#fff;font-size:12px;z-index:5}
+.notch{position:absolute;top:8px;left:50%;width:100px;height:22px;margin-left:-50px;background:#111;border-radius:12px;z-index:6}
+</style></head><body><div class="ph"><div id="bg" style="position:absolute;inset:0"></div><div id="mach"></div><div id="ui"></div><div class="sb"><span>10:42</span><span>&#9679;&#9679; 5G &#9646;</span></div><div class="notch"></div></div>
+<script src="common.js"></script><script>
+document.getElementById('mach').innerHTML=machineSVG({cover:true,done:[0,1]});
+document.getElementById('ui').innerHTML=`<div class="hud" style="left:18px;top:42px;font-size:12px"><b>ST-04 &bull; GB-220</b><br>S. Meena &middot; <span class="tag o">NOVICE</span></div>
+<div class="ring" style="left:105px;top:471px">3</div><div class="ring" style="left:199px;top:471px">4</div>
+<div class="card" style="left:14px;right:14px;top:96px;padding:10px 12px"><h3 style="font-size:15px">Step 4/9: Fix the bearing cover</h3><p style="font-size:12.5px"><span class="tag">12 N&middot;m</span><span class="tag">M6 x 20</span></p><p style="font-size:12.5px">Tighten bolts 3 and 4 in a cross pattern with the blue torque wrench.</p></div>
+<div class="bar" style="left:14px;right:14px;bottom:20px;height:70px;flex-direction:column;justify-content:center;gap:6px;border-radius:16px"><div style="display:flex;gap:10px;width:100%;align-items:center"><div class="prog"><i style="width:44%"></i></div><span style="font-size:12px">4/9</span></div><div style="display:flex;gap:8px"><span class="btn" style="margin:0">&#9664; Back</span><span class="btn" style="margin:0">&#9654; Animation</span><span class="btn" style="margin:0;background:#0e5a9c">Next &#9654;</span></div></div>`;
+</script></body></html>
