@@ -213,9 +213,11 @@ figure('shots/d1_arch.png', '4.1 System architecture', 'Fig. 6 - Shop-floor devi
 figure('shots/d3_levels.png', '4.2 Detail levels of the instruction', 'Fig. 7 - Novice, skilled and expert levels selected from the skill score.', width=6.6, maxh=2.4)
 figure('shots/d2_flow.png', '4.3 Flowchart of the adaptive instruction process', 'Fig. 8 - From the work order scan to the release of the unit with adaptation after every step.', width=5.9, maxh=8.9)
 sub('4.4 Supervisor dashboard (sample data)', True)
-figure('shots/w2_dash.png', None, 'Fig. 9 - Grafana dashboard of Line 2 showing cycle time, errors by step and live station status. The values are sample data of the simulation, not measurements from a factory.', width=6.6, maxh=4.0)
+figure('shots/w2_dash.png', None, 'Fig. 9 - Grafana dashboard of Line 2 showing cycle time, errors by step and live station status. The values are sample data of the simulation, not measurements from a factory.', width=6.6, maxh=3.6)
 sub('4.5 Development environment')
-figure('shots/u1_unity.png', None, 'Fig. 10 - Unity editor with the Model Target, the instruction layer, the Step Card and Adaptation Engine settings and the console log of one step.', width=6.6, maxh=3.9)
+figure('shots/u1_unity.png', None, 'Fig. 10 - Unity editor (Scene view) with the Model Target, the instruction layer, the Adaptation Engine settings and the console log of one step.', width=6.6, maxh=3.3)
+sub('4.6 Game view in Play mode')
+figure('shots/u2_play.png', None, 'Fig. 11 - Play mode: the Game view shows the AR overlay for the novice operator while the Console logs the checks.', width=6.6, maxh=3.3)
 
 # ---------- 5. CONCLUSION ----------
 heading(5, 'Conclusion', page_break=True)
