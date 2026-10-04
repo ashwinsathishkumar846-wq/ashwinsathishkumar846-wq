@@ -1,0 +1,460 @@
+0|To explore the JIRA tool and understand its features and practical uses.
+1|JIRA works on a client-server model: the application is first set up on a server, and users then open it from their own systems.
+2|The JIRA server is linked to a relational database that holds project data, issues, user accounts and other application information.
+3|Get the JIRA installer for Windows (.exe file) from the official Atlassian download page.
+4|Pick the operating system you are using and press Download.
+5|Open the downloaded .exe file to start the JIRA setup wizard.
+6|When the Run security prompt shows up, press Run.
+7|Press Next on the welcome screen to move ahead with the setup.
+8|Pick the installation type you need and press Next.
+9|Check the summary of the setup, which lists the Destination Directory, Home Directory and TCP Port values.
+10|Press Install so that the files start getting copied.
+11|Once the setup finishes, tick Start JIRA Software if you want it to open immediately, then press Next.
+12|Lastly, press Finish to close the wizard after a successful installation.
+13|JIRA is a well-known issue-tracking and project management product from Atlassian. Teams use it to log software bugs, organise project work, plan agile sprints and keep an eye on progress. Because it supports Agile approaches such as Scrum and Kanban, it has become a standard choice in software companies.
+14|Groups related work such as tasks, issues and team activities together inside one project.
+15|Lets users raise, assign, follow and close issues like bugs, tasks, stories and epics across the whole project life cycle.
+16|Provides configurable workflows that carry an issue through stages such as To Do, In Progress,
+17|Review and Done.
+18|Offers strong search and filter tools, including JQL (Jira Query Language), to find issues, projects or finished work quickly.
+19|Gives configurable dashboards whose gadgets show project progress, sprint status, assigned work, reports and other key figures.
+21|Software developers, project managers, testers and business analysts commonly use JIRA to run their projects smoothly.
+23|JIRA helps project teams arrange and handle their software development work in an effective way.
+24|It ships with many ready-made project templates that can be adjusted to suit the needs of a project.
+25|Teams are free to build workflows that match the way they develop software.
+26|Managers can hand out work, watch how tasks are moving and see the live status of every issue.
+27|Reports and dashboards produced by JIRA give a clear picture of how the project and the team are performing.
+28|It makes sprint planning, backlog handling, release tracking and defect management easier in Agile projects.
+29|Since all project details are stored at one location, JIRA improves teamwork, transparency and overall project control.
+30|Thus the study and installation of the JIRA tool was completed successfully.
+31|To explore the backlog items available in the JIRA tool.
+33|The JIRA Backlog is an ordered list of requirements, features or tasks that are still to be completed. It gives an overview of what the application should do, without going into detailed specifications.
+34|Work in the backlog is written as user stories or tasks and each one carries a priority. A user story describes a needed function from the user's side, which helps the team plan and organise the development effort.
+35|Open the Jira project and choose Backlog from the menu on the left.
+36|Press Create to add a new work item and fill in the details such as:
+47|Once the fields are filled, press Create. The new issue appears in the project backlog.
+48|The JIRA Backlog lets development teams arrange, prioritise and track project tasks in an efficient manner. Its main activities are creating issues, setting priorities, handling subtasks, updating workflow status, searching tasks and following team progress.
+49|New tasks, bugs, user stories or epics can be created and placed in the backlog, and later pulled into upcoming sprints.
+50|Every backlog item has a summary and a detailed description so that team members clearly know its purpose, scope and expected result.
+51|Each issue gets a priority such as High, Medium or Low, which lets the team concentrate on the most important work first.
+52|Big or complicated tasks can be split into smaller subtasks that are simpler to assign, follow and finish inside the sprint.
+53|Jira shows the present status of each issue, for example To Do, In Progress or Done, so the team can see how development is moving.
+54|Backlog items can be searched, edited, updated, moved, split or deleted at any time, which makes task handling easier.
+55|Items can be ranked and moved into a sprint depending on project needs, available resources and business demands.
+56|Jira keeps a record of who owns a task, who it is assigned to and whether it is complete, which supports teamwork and helps managers follow individual and team performance.
+57|Keeps one central list of project requirements and pending work.
+58|Makes sprint planning simpler by ordering tasks by priority.
+59|Helps in handling software defects, improvements and user stories properly.
+60|Allows easy tracking of project progress through workflow statuses.
+61|Supports subtasks for better handling of work.
+62|Improves teamwork by giving responsibilities to specific members.
+63|Makes it easy to see which tasks are finished, running or pending.
+64|Gives a well-organised method for planning software development.
+65|Allows issues to be created, edited, searched and managed quickly.
+66|Makes sure that key features and high-priority tasks get done first.
+67|Thus the backlog was created and studied successfully.
+68|To create and set up a project in Jira for managing work and tracking tasks effectively.
+69|Jira, from Atlassian, is a project management and issue-tracking tool. Software teams and organisations use it widely to plan, track, assign and manage their projects with ease.
+70|A Jira project is made up of issues such as tasks, bugs, stories and epics. It supports Agile methods like Scrum and Kanban through boards, backlogs, sprint planning and reports. Jira also helps teams work together by assigning tasks, setting priorities, tracking progress and keeping project documents.
+71|Sign in to the Jira account.
+72|Choose Projects from the navigation menu.
+73|Press Create Project.
+74|Pick a project template (Scrum, Kanban or Task Management).
+75|Choose Company-managed Project.
+76|Type the project name and the project key.
+77|Adjust the project settings if needed.
+78|Press Create.
+79|The project dashboard gets created.
+80|Start adding issues like Tasks, Stories, Bugs or Epics to manage the project.
+81|Thus a new project was created and configured successfully in Jira.
+82|To create a dashboard and add gadgets to it in JIRA.
+83|The Jira Dashboard is the first screen shown after a user logs in. It brings project information together through gadgets that help users watch tasks, issues, sprints and overall progress. A dashboard can be tailored as needed, and a user may keep many dashboards for different projects or one dashboard covering several projects. Dashboards save time by giving quick access to project status, assigned work, reports and key figures.
+84|The Default Dashboard is what users see when they first sign in to Jira. Administrators can change the system dashboard by adding, removing or configuring gadgets and altering the layout, and individual users can build personal dashboards to suit their projects.
+85|Sign in to your Jira account.
+86|Choose Dashboards from the navigation menu.
+87|Press Create Dashboard.
+88|Type a name for the dashboard.
+89|Write a short description for it.
+90|Select who can see it: Private, Project, Organization or Public.
+91|Press Save.
+92|Press Add Gadget.
+93|Pick the gadgets you need, such as Activity Stream, Assigned to Me or Filter Results.
+94|Set up each selected gadget.
+95|Place the gadgets in the layout you prefer.
+96|Save the dashboard.
+97|Open the finished dashboard to see the project information.
+98|Gives a central view of the project.
+99|Improves teamwork among members.
+100|Allows quick checking of project progress.
+101|Supports visual data through charts and gadgets.
+102|Saves time by showing key project details on a single screen.
+103|Agile project handling
+104|Sprint tracking
+105|Task monitoring
+106|Defect tracking
+107|Team performance review
+108|Software development projects
+109|Business workflow handling
+110|Thus a customised dashboard was created successfully in Jira.
+111|To create gadgets and configure them in Jira so that project details, reports and team progress appear on a dashboard.
+112|Jira Gadgets are building blocks of a dashboard that show project summaries, issue statistics, reports, charts and other helpful details. They let users follow project progress, assigned work, sprint status and team activity on one dashboard.
+113|Gadgets can be tuned to project needs by setting filters, projects, issue types and display options. A personal dashboard may hold many gadgets, and administrators can set up gadgets on the default system dashboard for every user.
+122|These gadgets give live updates and make the project easier for the team to see.
+123|Sign in to your Jira account.
+124|Open the dashboard you want to work on.
+125|Press Add Gadget.
+126|Browse or search for the gadget you need.
+127|Pick the gadget and press Add Gadget.
+128|Set up the gadget by choosing the project, filter, issue type or other options.
+129|Save the gadget settings.
+130|Move gadgets around by dragging and dropping them.
+131|Resize or maximise a gadget when needed.
+132|Edit or delete a gadget from its menu.
+133|Refresh the dashboard to see the latest project details.
+134|Shows live project information.
+135|Allows several gadgets on a dashboard.
+136|Simple to customise and configure.
+137|Offers charts, graphs and reports.
+138|Follows project progress and issue status.
+139|Shows sprint and backlog details.
+140|Gives fast access to project details.
+141|Strengthens teamwork.
+142|Improves project monitoring.
+143|Saves time by keeping key reports in one place.
+144|Supports better decisions through visual reports.
+145|Thus the required gadgets were created and configured successfully in Jira, which allows project activities to be monitored and visualised through the dashboard.
+146|To study how users and groups are created in Jira and used to control project access, permissions and team collaboration.
+147|Jira lets administrators manage users and groups so that projects and resources stay secure. A user is invited to the Jira site through an email address and given a suitable role such as Basic User, Trusted User or Site Administrator. After the invitation is accepted, the user can open the assigned Jira products and take part in project work.
+148|A group is a set of users who share similar permissions. Groups make permission handling easier because an administrator can give product access and project permissions to many users together. Administrators can also edit group details, add or remove members and delete groups that are no longer needed.
+150|Sign in to admin.atlassian.com.
+151|Pick the Jira organization you want.
+152|Go to Directory → Users.
+153|Press Invite users.
+154|Type the email address of the user.
+155|Choose a suitable role (Basic, Trusted or Site Administrator).
+156|Select the Jira products the user should be able to use.
+157|Press Invite users.
+158|The invited person gets an invitation by email.
+159|After the invitation is accepted, the status of the user becomes Active.
+161|Sign in to admin.atlassian.com.
+162|Go to Directory → Groups.
+163|Press Create group.
+164|Type a name for the group.
+165|Add the members to the group.
+166|Write a description for the group.
+167|Press Create.
+168|Give the group the Jira product access and permissions it needs.
+170|Go to Directory → Groups.
+171|Pick the group you want to change.
+172|Press the More (⋮) menu.
+173|Choose Edit description to change the group details.
+174|Choose Edit group's access to change its permissions.
+175|Choose Delete group when the group is not required any more.
+176|Thus the creation and management of users and groups in Jira was studied and carried out successfully.
+177|To understand how permissions work in JIRA.
+178|Permissions are settings in Jira applications that decide what users can view and do inside them. Jira offers many kinds of permissions, from the ability to create new projects to the ability to see a particular kind of comment on an issue, and they may vary from one application to another.
+179|Jira applications have three types of permissions, going from broad to detailed:
+180|Global permissions – Cover the whole application rather than single projects (for example, whether users can see other users).
+181|Project permissions – Grouped into permission schemes and applied to projects (for example, who can view, create, edit and assign the issues of a project).
+182|Issue security permissions – Grouped into security schemes; they let the visibility of single issues be adjusted within the limits of the project's permissions.
+183|Sign in to the Jira site.
+184|Press the gear icon (Settings) and choose System.
+185|Under Security in the left panel, press Global permissions to see the list of global permissions and the groups given each of them.
+186|Open a project, press Project settings → Permissions to see the permission scheme used by that project and which roles can browse, create, edit and assign issues.
+187|If the plan allows it, go to Project settings → Issue security to view or set up issue-level security schemes.
+188|Capture screenshots of the Global Permissions page and the Project Permissions page.
+189|Thus the permissions in JIRA were studied and verified successfully.
+190|To understand user management in the JIRA tool.
+191|Creating users is the main part of User Management, but it is not the only part. The key user-related tasks handled by a JIRA Admin are:
+192|Editing the details of a user
+193|Deleting a user
+194|Creating user groups
+195|Creating roles
+196|Handling permissions
+197|Setting preferences
+198|To add a user, press the "Invite Users" button under User Management → Users, type one or more email IDs and press Send. A message confirms that the invitation was sent. For an email invite, the user is added only after the recipient accepts it.
+200|1. Press the gear icon → User Management (or Administration → Users if you are a site admin at admin.atlassian.com).
+201|2. Press Invite users.
+202|3. Type one or more email addresses.
+203|4. If needed, pick the product access to give (Jira Software and so on) and a group.
+204|5. Press Send invites and capture the "Invitation sent" confirmation.
+205|Open User Management → Users and use the Filter section to shorten the list. Press the "Edit" link in the Operations column of the user whose details must change.
+207|Open admin.atlassian.com, choose your site and go to Directory → Users.
+208|Press the name of the user to open the profile.
+209|Change fields such as the name, or use the ⋯ menu to manage product access, groups or roles.
+210|Capture the edited profile.
+211|Press the "Delete" link beside the user who has to be removed from JIRA.
+212|A JIRA Admin can also set up the look and feel, workflows, project and issue level security, custom fields and screens, developer tool integrations, dashboard settings, time zone and email preferences.
+214|On the same Users list, pick the user.
+215|Press the ⋯ (more actions) menu → Deactivate account (or Remove from site, depending on the account type).
+216|Confirm the action and capture the result.
+217|Sign in to the Jira site as an admin.
+218|Press the gear icon → User Management (or open admin.atlassian.com → Directory → Users).
+219|To add a user: press Invite users, type the email address(es), choose product access if asked, and press Send invites.
+220|To edit a user: press the name of the user in the Users list to open the profile and change the details, groups or roles as required.
+221|To delete or deactivate a user: pick the user, press the "⋯" (more actions) menu, choose Deactivate account or Remove from site and confirm.
+222|Capture screenshots at every stage: invite sent, edited profile and deactivated or removed user.
+223|Thus a user was added, edited and deleted successfully in the JIRA tool.
+224|To understand project roles in JIRA.
+225|A project role in a Jira application is a flexible way of linking users and groups to a given project. Groups have the same members everywhere in Jira, but project roles have separate members for every project, so a person can hold different roles in different projects.
+226|Open the project and go to Project settings → People.
+227|Go to Project settings → People → Add people (top-right corner). Search for the user or group, choose the project role to give and press Add.
+228|Go to Project settings → People and press Remove in the row of the user or group.
+229|Open a project and press Project settings → People to see the members and the roles assigned to them.
+230|To assign a role: press Add people, search for the user or group by name or email, choose the project role (for example Administrators or Members) and press Add.
+231|To remove a role: find the user or group in the People list, press the remove (trash) icon beside it and confirm.
+232|Capture screenshots before and after assigning or removing a role to show the change.
+233|Thus the project roles were studied, created and assigned successfully in JIRA.
+234|To create and manage project roles in Jira.
+235|Project roles link users and groups with particular responsibilities in a project. Jira administrators create project roles that can be used in every project, and project administrators then place users or groups in those roles. Project roles make permission handling simpler and can be used in permission schemes, notification schemes, workflow conditions, issue security and comment visibility. Administrator, Developer and User are common default roles.
+236|Sign in to Jira as an administrator. 
+237|Go to Settings → System → Project Roles. 
+238|Press Add Project Role. 
+239|Type the role name and a description. 
+240|Press Add Project Role. 
+241|Choose Manage Default Members for the new role. 
+242|Add the users or groups to the role. 
+243|Save the changes. 
+244|Check the users listed under the project role. 
+245|Thus the project role was created and managed successfully in Jira.
+246|To create and test permission schemes in Jira.
+247|A permission scheme defines what users, groups and project roles may do inside a Jira project. Each company-managed project uses one permission scheme, and permissions such as creating, editing, assigning and closing issues or managing the project are granted through it.
+248|Sign in as a Jira administrator. 
+249|Go to Settings → Issues → Permission Schemes. 
+250|Press Add Permission Scheme. 
+251|Type a name and description for the scheme. 
+252|Save the permission scheme. 
+253|Open the permission scheme. 
+254|Pick the permission you need. 
+255|Grant it to a user, group or project role. 
+256|Save the changes. 
+257|Link the permission scheme to the project. 
+258|Thus the permission scheme was created and tested successfully in Jira.
+259|To create smart queries and filters in Jira.
+260|Queries search for issues using fields such as project, priority, issue type, assignee and status. Jira Query Language (JQL) gives advanced search power, and a filter is a saved search that quickly brings back the issues matching certain conditions.
+261|Open Jira. 
+262|Go to Filters → Advanced Issue Search. 
+263|Choose Basic Search or JQL Search. 
+264|Type the query you need. 
+265|Run the search. 
+266|Check the results. 
+267|Press Save As. 
+268|Type a name and description for the filter. 
+269|Save the filter. 
+270|Edit or share the filter if needed. 
+272|Thus smart queries and filters were created successfully in Jira.
+273|To create Scrum and Kanban boards in Jira.
+274|A Jira board shows the issues of a project visually. Scrum boards suit sprint-based Agile work, while Kanban boards suit a continuous flow of work. Boards help teams follow issue progress, handle backlogs, watch active sprints and produce reports.
+275|Sign in to Jira. 
+276|Open the project you need. 
+277|Press Create Board. 
+278|Choose Scrum Board or Kanban Board. 
+279|Pick the project. 
+280|Type the board name. 
+281|Press Create. 
+282|Adjust the board settings. 
+283|Add issues to the board. 
+284|Open the backlog, active sprint or reports. 
+285|Thus the board was created successfully in Jira.
+286|To understand and use the Rich Text Editor in Jira.
+287|The Rich Text Editor in Jira lets users write and edit formatted content in Visual Mode or Wiki Markup Mode. It handles bold, italics, lists, tables, links and headings, and is available in issue descriptions, comments and multi-line text fields.
+288|Sign in to Jira. 
+289|Go to Administration → System. 
+290|Open the Rich Text Editor settings. 
+291|Turn on the Rich Text Editor if it is off. 
+292|Create a new issue or edit one. 
+293|Type formatted text in the editor. 
+294|Apply formatting such as headings, bold, lists or tables. 
+295|Save the issue. 
+296|Check the formatted content. 
+297|Thus the Rich Text Editor was studied and used successfully in Jira.
+298|To understand and carry out sprint planning in Jira.
+299|A sprint is a fixed time box in which a Scrum team finishes a chosen set of backlog items. Jira's sprint planning features allow sprints to be created, issues to be assigned, progress to be tracked and sprints to be completed. Sprint planning helps teams organise their work, estimate effort and deliver the product in small increments.
+300|Open the Scrum project. 
+301|Go to Backlog. 
+302|Press Create Sprint. 
+303|Drag issues from the backlog into the sprint. 
+304|Type a name and a goal for the sprint. 
+305|Fix the start date and end date of the sprint. 
+306|Press Start Sprint. 
+307|Keep updating the issue status as the sprint runs. 
+308|Follow progress with the Sprint Reports. 
+309|Press Complete Sprint when all planned work is done. 
+310|Thus sprint planning was carried out successfully in Jira.
+311|To study and build a dashboard for sprints in Jira.
+312|A dashboard is the main screen shown when you log in to Jira. Separate dashboards can be made for different projects, or one dashboard can give an overview of the work in all projects. Dashboards hold gadgets that show projects, assignments and sprint progress as various charts. In the current Jira Cloud, dashboards are opened from the search bar or the apps grid, since there is no separate top-level "Dashboards" menu item.
+313|Sign in to Jira.
+314|Press "/" or click the Search bar and choose "View all dashboards."
+315|Press Create dashboard and then type the dashboard name and description.
+316|Press Save.
+317|Press Add gadget on the new dashboard.
+318|Pick sprint-related gadgets such as Sprint Health, Sprint Report or Filter Results.
+319|Set up each gadget by choosing the project and the sprint.
+320|Arrange the gadgets and save the layout.
+321|Share the dashboard with the team if needed.
+322|Thus the dashboard for sprints was created and studied successfully in Jira.
+323|To understand the automation tools available in Jira.
+324|Automation frees teams to concentrate on important work by taking over repeated manual tasks. An automation rule has three parts: a trigger that starts the rule, conditions that narrow it down, and actions that do the work. Triggers wait for events such as a work item being created or a field value changing. Conditions limit the scope of the rule, and the rule stops when a condition is not met. A rule can be Enabled, Disabled or in Draft, and each rule keeps an audit log that records when it ran and what the result was.
+325|Sign in to Jira.
+326|Open the project you need.
+327|Go to Project settings → Automation.
+328|Press Create rule to see the rule builder.
+329|Look through the triggers available (for example Work item created, Field value changed).
+330|Look through the conditions available (for example Work item fields condition).
+331|Look through the actions available (for example Create sub-tasks, Assign work item, Send notification).
+332|Check the rule status labels: Enabled, Disabled and Draft.
+333|Open the Audit log tab to see the history of rule runs.
+335|Thus the automation tools were studied successfully in Jira.
+336|To build an automation rule in Jira.
+337|Automation rules let teams run actions in Jira automatically when certain criteria are met. A rule has a trigger that starts it, conditions that decide when it runs and actions that do tasks such as creating sub-tasks or assigning work items.
+338|Go to Project settings → Automation.
+339|Press Create rule.
+340|Choose the Work item created trigger and press Save.
+341|Press New condition and choose Work item fields condition.
+342|Set Field = Work Type, Condition = equals, Value = Bug, and press Save.
+343|Press New action and choose Create sub-tasks.
+344|Add three sub-tasks called Inspect code, Troubleshoot and Resolve, then press Save.
+345|Press New action and choose Assign work item.
+346|Pick a user as the assignee and press Save.
+347|Type a name for the rule and press Turn it on.
+348|Thus the automation rule was created successfully in Jira.
+349|To test the automation rule that was built in Jira.
+350|Actions are the part of a rule that does the work, such as editing a work item, sending a notification or creating sub-tasks. Work items seldom stand alone; they often have sub-tasks or links to other items. Branching lets an action apply not only to the work item that fired the rule but also to the related ones.
+351|Open the automation rule created in EX.NO. 18.
+352|Press the "..." menu and choose Run rule to test it on an existing work item, or create a new Bug-type work item so that the rule fires by itself.
+353|Open the work item and check that the sub-tasks Inspect code, Troubleshoot and Resolve have been created.
+354|Check that the Assignee field was updated as set in the rule.
+355|Open the Audit log tab of the rule and confirm that the status reads Success.
+356|Go through the trigger, condition and action details recorded for the run.
+357|Change the rule and test again if the audit log shows a failure.
+359|Thus the automation rule was tested successfully in Jira.
+360|To understand subscriptions in Jira.
+361|Jira subscriptions keep users informed of important work items as they appear. A subscription runs a saved query on a schedule and emails the results to a person or a group. If no work item matches, no email is sent. Users can create any number of filters and subscriptions, and administrators can view and manage all of them for the site, including changing the owner of a filter, spotting broken or duplicate filters and searching by JQL.
+362|Sign in to Jira.
+363|Run a JQL or basic search to make a filter (for example, project = SCRUM AND sprint in openSprints()).
+364|Press Save as to keep the search as a filter.
+365|Open the saved filter and choose Subscribe from the Details or "..." menu.
+366|Pick the schedule (daily, weekly or custom).
+367|Pick the recipients (yourself, a group or particular users).
+368|Press Save to switch the subscription on.
+369|(Admin) If needed, go to Settings → System to view and manage all filters and subscriptions of the site.
+370|Thus subscriptions were studied and created successfully in Jira.
+371|To create and study visual alerts and task assignment through mentions in Jira.
+372|Jira adds visual context to discussions through comment mentions and dashboard gadgets. A user who is @mentioned in a comment gets a notification by email and in the notification feed, with a preview of the comment. This draws the attention of a person to a particular task within the work item discussion, without a separate messaging tool. Dashboard gadgets add to the alerts by bringing overdue items, flagged work and activity feeds together in one place.
+373|Sign in to Jira.
+374|Open any work item (for example a Task or Story) in your project.
+375|Scroll down to the comment box.
+376|Type "@" followed by the name of a teammate to mention them.
+377|Write the comment describing the task or the update needed.
+378|Press Save (or Comment) to post it.
+379|The mentioned user gets an email and an in-app notification with a preview of the comment.
+380|Open your Dashboard and add an "Activity Stream" or "Assigned to Me" gadget to follow mentions and assignments in one place.
+381|Check that the notification arrived by looking at the bell icon in the top bar or at the email of the mentioned user.
+383|Thus visual alerts through mentions and dashboard gadgets were studied and demonstrated successfully in Jira.
+384|To understand and build a product roadmap (Timeline) in Jira.
+385|A product roadmap is a shared reference that describes the vision, direction, priorities and progress of a product over time. It aligns the organisation around short-term and long-term goals and the way to reach them. In current Jira this feature is named Timeline (in Jira Software spaces); it shows Epics scheduled over weeks, months or quarters, with their child Stories, Tasks and Bugs below them. Development teams use it to arrange work by sprints, while executives prefer higher-level monthly or quarterly views to follow progress toward company goals. For roadmaps that cover several projects, Jira provides Plans (Advanced Roadmaps) as a premium feature.
+386|Sign in to Jira.
+387|Open the Scrum or Kanban space you need (for example, LIBRARY MANAGEMENT).
+388|Press the Timeline tab in the navigation of the space.
+389|Press Create epic to add a new Epic if there is none yet.
+390|Set the start date and due date of the Epic by dragging its bar on the timeline, or type the dates.
+391|Add child work items (Stories, Tasks, Bugs) under the Epic to split up the work.
+392|Switch the view between Weeks, Months and Quarters with the control at the bottom right.
+393|Look at the progress bar on each Epic, which shows the status of its child work items.
+394|Change the dates as priorities move, so that the roadmap stays current.
+395|Share the Timeline view with stakeholders so that everyone is aligned.
+397|Thus the product roadmap was studied and created successfully in Jira.
+398|To understand information radiators in Jira.
+399|An information radiator is a digital or physical board that gives a summarised and well laid-out view of how a team is progressing. It matters to stakeholders because passing a team's workspace and seeing such a board adds transparency about the team's progress. In Jira, this is done by building a Dashboard with certain gadgets:
+400|Sprint Health Gadget - gives a colour-coded summary of the issues in a sprint, showing overall progress from time elapsed, work completed and work remaining, with blue for To Do, yellow for In Progress and green for Done.
+401|Pie Chart Gadget - shows how much work each team member has and how fast it is completed, giving an instant visual picture that is handy in meetings.
+402|Filter Results Gadget - shows a board-style list of the items in the current sprint with their status and assignee, which is useful in daily stand-ups.
+403|Sprint Burndown Chart - draws line graphs of the sprint burndown, with a guideline for the total estimated work at the start and a line for the work actually remaining, so that anyone passing by can see whether the sprint is on track.
+404|Sign in to Jira.
+405|Go to Dashboards → Create dashboard.
+406|Type the dashboard name and description and press Save.
+407|Press Add gadget.
+408|Search for the Sprint Health gadget and add it; set it up with the board and active sprint of your project.
+409|Add the Pie Chart gadget and set it to group by Status or Assignee.
+410|Add the Filter Results gadget and set it with a JQL filter such as sprint in openSprints().
+411|Add the Sprint Burndown Chart gadget (reached from the Reports tab of the board, or shown through Filter Results).
+412|Arrange the gadgets in a clean layout that suits a wallboard display.
+413|Press Done to save the dashboard as your information radiator.
+418|Thus information radiators were studied and created successfully in Jira.
+419|To close a sprint in Jira.
+420|At the end of a sprint the team reviews its progress, usually with a demo of the completed work followed by a sprint retrospective to find improvements. Sprints exist only on Scrum boards; Kanban boards have none. To complete a sprint, a user must be a Jira Administrator or hold the Manage Sprints permission.
+421|Sign in to Jira and open the Scrum space you need.
+422|Open the Board tab, which shows the active sprint.
+423|If several sprints are active, pick the sprint from the sprint dropdown (the Complete sprint button appears only after a specific sprint is selected).
+424|Press Complete sprint (top right of the board).
+425|All work items marked Done leave the active sprint automatically.
+426|If unfinished work items remain, choose one of the following in the dialog: 
+427|Move them to the Backlog
+428|Move them to an existing future sprint
+429|Create a new sprint and move them into it
+430|Note: if a parent work item is Done but its sub-tasks are not, the sprint cannot be completed until those sub-tasks are finished.
+431|Confirm and complete the sprint.
+432|Check that the sprint status becomes "Closed" and that the board now shows the next sprint (if started) or an empty board.
+433|Open the Reports tab to look at the burndown and velocity data of the completed sprint.
+434|Thus the sprint was closed successfully in Jira.
+435|To create and study reports in Jira.
+436|Reporting in Jira means learning about the health, progress and overall state of projects through project reports, dashboard gadgets and filter-based views. Every space offers standard reports without extra setup. Current Jira Cloud groups them under the Reports tab of a project, and they include:
+437|In addition, dashboard gadgets give reporting at a personal or team level, such as: Activity Stream, Assigned to Me, Average Age Chart, Filter Results, Pie Chart, Sprint Health, Issue/Work Item Statistics and Two-Dimensional Filter Statistics.
+438|Sign in to Jira.
+439|Open the Scrum or Kanban space you need.
+440|Press the Reports tab in the navigation of the space.
+441|Choose a report type from the list, for example Sprint Report, Burndown Chart or Velocity Chart.
+442|Choose the sprint or date range for the report.
+443|Look at the visual result, which may be line graphs, bar charts or tables depending on the report.
+444|Go to Dashboards → Create dashboard for more gadget-based reports.
+445|Add gadgets such as Pie Chart, Filter Results or Average Age Chart and set each one with the project or filter needed.
+446|Save the dashboard.
+447|Check that the reports show correct and current data for the project.
+448|Thus reports were created and executed successfully in Jira.
+449|To understand sprint retrospective items in Jira.
+450|Agile retrospectives are not "post-mortem" meetings held only when a project ends; they take place at the close of every sprint during the life of the project. A retrospective is central to the incremental value of a product and to the continuous improvement of a team. Without regular retrospectives, problems cannot be fixed before they grow, and teams miss the long-term benefits of Agile. In current Jira, retrospectives are run through a Confluence whiteboard or page that opens straight from Jira when a sprint is completed, so the retrospective stays linked to the real sprint data.
+451|Set the Stage — builds a "safe space" for open sharing. Jira and Confluence are a natural venue because all the sprint information is already there and easy to refer to during the session.
+452|Gather Data — team members add their ideas on their own instead of speaking one after another, which avoids "groupthink" where the first opinion shared influences everybody else.
+453|Generate Insights — the team filters the ideas and votes on which topics matter most, deciding what to handle first. Voting can be set to limit the votes per person and per topic.
+454|Decide What to Do — the most important stage and the one most often skipped. The result must be a concrete action item rather than a vague remark, and it should be made as a Jira work item so it can be tracked and followed up.
+455|Close the Retrospective — the team agrees, formally or informally, on the action items and names an owner who makes sure each action gets done (not always the person who does the task).
+456|Sign in to Jira and open the Scrum space you need.
+457|Complete the active sprint (Board → Complete sprint), since retrospectives are normally triggered when a sprint closes.
+458|When asked, choose the option to create a Sprint Retrospective in Confluence (as a whiteboard or a page).
+459|Pick a whiteboard for real-time group input, or a page for a structured written retrospective.
+460|Set the stage by inviting the team and briefly stating the purpose of the retrospective.
+461|Gather data by letting each member add ideas or sticky notes on their own under headings such as "What went well," "What didn't go well" and "Ideas for improvement."
+462|Generate insights by grouping similar ideas and voting for the topics most worth discussing.
+463|Decide what to do by turning the top-voted insights into concrete action items and creating matching Jira work items to track them.
+464|Name an owner for every action item.
+465|Close the retrospective with the team's agreement and link it back to the completed sprint for future reference.
+466|Thus sprint retrospective items were studied and demonstrated successfully in Jira.
+467|To set up the Planning Poker integration in Jira using a Marketplace app.
+468|Planning poker, also called "scrum poker" or "pointing poker," is a game-like estimation method in which a development team jointly guesses the effort needed for tasks. Estimates come from group agreement and not from one person's judgement, which makes them more engaging and statistically more accurate. Planning Poker is not built into Jira; it comes from Marketplace apps (such as Planning Poker for Jira, Actioned or similar tools) that connect to Jira through OAuth or application links, unlike the older manual "Application Links" setup of Server/Data Center versions.
+469|Group estimates from planning poker are statistically more accurate than individual guesses.
+470|Helps to estimate tasks relative to one another instead of in absolute units.
+471|Brings out gaps between requirements and the understanding of the implementation early.
+472|(Current Jira Cloud):
+473|Sign in to Jira as an administrator.
+474|Open the Atlassian Marketplace (Settings → Apps → Find new apps, or marketplace.atlassian.com directly).
+475|Search for a Planning Poker app (for example, "Planning Poker for Jira").
+476|Press Get it now / Try it free to add the app to your Jira site.
+477|After the installation, open the app from the Apps menu in the top bar.
+478|Follow the setup wizard inside the app to connect it to your Jira site; modern apps use OAuth authorisation instead of manually creating Application Links.
+479|Grant the permissions it asks for (this takes the place of the older "Incoming Authentication" step).
+480|Confirm that the connection is active by checking that the app's dashboard shows your Jira site as linked.
+481|Move on to create a new estimation game (covered in Part 2).
+482|Thus the Planning Poker integration was set up successfully in Jira.
+483|To run a planning poker estimation session with a Planning Poker app in Jira.
+484|Planning poker is a game-like technique that estimates project tasks through group agreement instead of individual estimates. Estimates become more accurate over time as planning poker apps refine them with continued use. Modern Planning Poker apps pull stories straight from Jira and send the point values back automatically when voting ends, so no manual data entry is needed.
+485|Open the Planning Poker app from the Jira Apps menu (continuing from the setup in Part 1).
+486|Authorise the app to reach your Jira site if that is not done yet, and press Allow when asked.
+487|Press Create new game (or the equivalent) to begin a new estimation session.
+488|Name the session and pick the Jira space or board from which work items will be imported.
+489|Import the stories or tasks straight from the Jira backlog into the game.
+490|Invite team members to the session with the game link or the in-app invite.
+491|For every imported item, team members choose their estimates at the same time (the cards stay hidden until everyone has voted).
+492|Reveal all the votes together to avoid bias and discuss any big differences in the estimates.
+493|Vote again if required until the team agrees on a final estimate.
+494|Confirm the final story point value; the app automatically writes it back to the Story point estimate field of the matching work item in Jira.
+496|Thus planning poker estimation was conducted successfully in Jira.

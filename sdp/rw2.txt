@@ -1,0 +1,163 @@
+130|Move gadgets around by dragging and dropping them.
+131|Resize or maximise a gadget when needed.
+132|Edit or delete a gadget from its menu.
+133|Refresh the dashboard to see the latest project details.
+134|Shows live project information.
+135|Allows several gadgets on a dashboard.
+136|Simple to customise and configure.
+137|Offers charts, graphs and reports.
+138|Follows project progress and issue status.
+139|Shows sprint and backlog details.
+140|Gives fast access to project details.
+141|Strengthens teamwork.
+142|Improves project monitoring.
+143|Saves time by keeping key reports in one place.
+144|Supports better decisions through visual reports.
+145|Thus the required gadgets were created and configured successfully in Jira, which allows project activities to be monitored and visualised through the dashboard.
+146|To study how users and groups are created in Jira and used to control project access, permissions and team collaboration.
+147|Jira lets administrators manage users and groups so that projects and resources stay secure. A user is invited to the Jira site through an email address and given a suitable role such as Basic User, Trusted User or Site Administrator. After the invitation is accepted, the user can open the assigned Jira products and take part in project work.
+148|A group is a set of users who share similar permissions. Groups make permission handling easier because an administrator can give product access and project permissions to many users together. Administrators can also edit group details, add or remove members and delete groups that are no longer needed.
+150|Sign in to admin.atlassian.com.
+151|Pick the Jira organization you want.
+152|Go to Directory → Users.
+153|Press Invite users.
+154|Type the email address of the user.
+155|Choose a suitable role (Basic, Trusted or Site Administrator).
+156|Select the Jira products the user should be able to use.
+157|Press Invite users.
+158|The invited person gets an invitation by email.
+159|After the invitation is accepted, the status of the user becomes Active.
+161|Sign in to admin.atlassian.com.
+162|Go to Directory → Groups.
+163|Press Create group.
+164|Type a name for the group.
+165|Add the members to the group.
+166|Write a description for the group.
+167|Press Create.
+168|Give the group the Jira product access and permissions it needs.
+170|Go to Directory → Groups.
+171|Pick the group you want to change.
+172|Press the More (⋮) menu.
+173|Choose Edit description to change the group details.
+174|Choose Edit group's access to change its permissions.
+175|Choose Delete group when the group is not required any more.
+176|Thus the creation and management of users and groups in Jira was studied and carried out successfully.
+177|To understand how permissions work in JIRA.
+178|Permissions are settings in Jira applications that decide what users can view and do inside them. Jira offers many kinds of permissions, from the ability to create new projects to the ability to see a particular kind of comment on an issue, and they may vary from one application to another.
+179|Jira applications have three types of permissions, going from broad to detailed:
+180|Global permissions – Cover the whole application rather than single projects (for example, whether users can see other users).
+181|Project permissions – Grouped into permission schemes and applied to projects (for example, who can view, create, edit and assign the issues of a project).
+182|Issue security permissions – Grouped into security schemes; they let the visibility of single issues be adjusted within the limits of the project's permissions.
+183|Sign in to the Jira site.
+184|Press the gear icon (Settings) and choose System.
+185|Under Security in the left panel, press Global permissions to see the list of global permissions and the groups given each of them.
+186|Open a project, press Project settings → Permissions to see the permission scheme used by that project and which roles can browse, create, edit and assign issues.
+187|If the plan allows it, go to Project settings → Issue security to view or set up issue-level security schemes.
+188|Capture screenshots of the Global Permissions page and the Project Permissions page.
+189|Thus the permissions in JIRA were studied and verified successfully.
+190|To understand user management in the JIRA tool.
+191|Creating users is the main part of User Management, but it is not the only part. The key user-related tasks handled by a JIRA Admin are:
+192|Editing the details of a user
+193|Deleting a user
+194|Creating user groups
+195|Creating roles
+196|Handling permissions
+197|Setting preferences
+198|To add a user, press the "Invite Users" button under User Management → Users, type one or more email IDs and press Send. A message confirms that the invitation was sent. For an email invite, the user is added only after the recipient accepts it.
+200|1. Press the gear icon → User Management (or Administration → Users if you are a site admin at admin.atlassian.com).
+201|2. Press Invite users.
+202|3. Type one or more email addresses.
+203|4. If needed, pick the product access to give (Jira Software and so on) and a group.
+204|5. Press Send invites and capture the "Invitation sent" confirmation.
+205|Open User Management → Users and use the Filter section to shorten the list. Press the "Edit" link in the Operations column of the user whose details must change.
+207|Open admin.atlassian.com, choose your site and go to Directory → Users.
+208|Press the name of the user to open the profile.
+209|Change fields such as the name, or use the ⋯ menu to manage product access, groups or roles.
+210|Capture the edited profile.
+211|Press the "Delete" link beside the user who has to be removed from JIRA.
+212|A JIRA Admin can also set up the look and feel, workflows, project and issue level security, custom fields and screens, developer tool integrations, dashboard settings, time zone and email preferences.
+214|On the same Users list, pick the user.
+215|Press the ⋯ (more actions) menu → Deactivate account (or Remove from site, depending on the account type).
+216|Confirm the action and capture the result.
+217|Sign in to the Jira site as an admin.
+218|Press the gear icon → User Management (or open admin.atlassian.com → Directory → Users).
+219|To add a user: press Invite users, type the email address(es), choose product access if asked, and press Send invites.
+220|To edit a user: press the name of the user in the Users list to open the profile and change the details, groups or roles as required.
+221|To delete or deactivate a user: pick the user, press the "⋯" (more actions) menu, choose Deactivate account or Remove from site and confirm.
+222|Capture screenshots at every stage: invite sent, edited profile and deactivated or removed user.
+223|Thus a user was added, edited and deleted successfully in the JIRA tool.
+224|To understand project roles in JIRA.
+225|A project role in a Jira application is a flexible way of linking users and groups to a given project. Groups have the same members everywhere in Jira, but project roles have separate members for every project, so a person can hold different roles in different projects.
+226|Open the project and go to Project settings → People.
+227|Go to Project settings → People → Add people (top-right corner). Search for the user or group, choose the project role to give and press Add.
+228|Go to Project settings → People and press Remove in the row of the user or group.
+229|Open a project and press Project settings → People to see the members and the roles assigned to them.
+230|To assign a role: press Add people, search for the user or group by name or email, choose the project role (for example Administrators or Members) and press Add.
+231|To remove a role: find the user or group in the People list, press the remove (trash) icon beside it and confirm.
+232|Capture screenshots before and after assigning or removing a role to show the change.
+233|Thus the project roles were studied, created and assigned successfully in JIRA.
+234|To create and manage project roles in Jira.
+235|Project roles link users and groups with particular responsibilities in a project. Jira administrators create project roles that can be used in every project, and project administrators then place users or groups in those roles. Project roles make permission handling simpler and can be used in permission schemes, notification schemes, workflow conditions, issue security and comment visibility. Administrator, Developer and User are common default roles.
+236|Sign in to Jira as an administrator. 
+237|Go to Settings → System → Project Roles. 
+238|Press Add Project Role. 
+239|Type the role name and a description. 
+240|Press Add Project Role. 
+241|Choose Manage Default Members for the new role. 
+242|Add the users or groups to the role. 
+243|Save the changes. 
+244|Check the users listed under the project role. 
+245|Thus the project role was created and managed successfully in Jira.
+246|To create and test permission schemes in Jira.
+247|A permission scheme defines what users, groups and project roles may do inside a Jira project. Each company-managed project uses one permission scheme, and permissions such as creating, editing, assigning and closing issues or managing the project are granted through it.
+248|Sign in as a Jira administrator. 
+249|Go to Settings → Issues → Permission Schemes. 
+250|Press Add Permission Scheme. 
+251|Type a name and description for the scheme. 
+252|Save the permission scheme. 
+253|Open the permission scheme. 
+254|Pick the permission you need. 
+255|Grant it to a user, group or project role. 
+256|Save the changes. 
+257|Link the permission scheme to the project. 
+258|Thus the permission scheme was created and tested successfully in Jira.
+259|To create smart queries and filters in Jira.
+260|Queries search for issues using fields such as project, priority, issue type, assignee and status. Jira Query Language (JQL) gives advanced search power, and a filter is a saved search that quickly brings back the issues matching certain conditions.
+261|Open Jira. 
+262|Go to Filters → Advanced Issue Search. 
+263|Choose Basic Search or JQL Search. 
+264|Type the query you need. 
+265|Run the search. 
+266|Check the results. 
+267|Press Save As. 
+268|Type a name and description for the filter. 
+269|Save the filter. 
+270|Edit or share the filter if needed. 
+272|Thus smart queries and filters were created successfully in Jira.
+273|To create Scrum and Kanban boards in Jira.
+274|A Jira board shows the issues of a project visually. Scrum boards suit sprint-based Agile work, while Kanban boards suit a continuous flow of work. Boards help teams follow issue progress, handle backlogs, watch active sprints and produce reports.
+275|Sign in to Jira. 
+276|Open the project you need. 
+277|Press Create Board. 
+278|Choose Scrum Board or Kanban Board. 
+279|Pick the project. 
+280|Type the board name. 
+281|Press Create. 
+282|Adjust the board settings. 
+283|Add issues to the board. 
+284|Open the backlog, active sprint or reports. 
+285|Thus the board was created successfully in Jira.
+286|To understand and use the Rich Text Editor in Jira.
+287|The Rich Text Editor in Jira lets users write and edit formatted content in Visual Mode or Wiki Markup Mode. It handles bold, italics, lists, tables, links and headings, and is available in issue descriptions, comments and multi-line text fields.
+288|Sign in to Jira. 
+289|Go to Administration → System. 
+290|Open the Rich Text Editor settings. 
+291|Turn on the Rich Text Editor if it is off. 
+292|Create a new issue or edit one. 
+293|Type formatted text in the editor. 
+294|Apply formatting such as headings, bold, lists or tables. 
+295|Save the issue. 
+296|Check the formatted content. 
+297|Thus the Rich Text Editor was studied and used successfully in Jira.
+298|To understand and carry out sprint planning in Jira.
+299|A sprint is a fixed time box in which a Scrum team finishes a chosen set of backlog items. Jira's sprint planning features allow sprints to be created, issues to be assigned, progress to be tracked and sprints to be completed. Sprint planning helps teams organise their work, estimate effort and deliver the product in small increments.

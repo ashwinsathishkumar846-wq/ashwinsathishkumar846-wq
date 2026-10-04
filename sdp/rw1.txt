@@ -1,0 +1,109 @@
+0|To explore the JIRA tool and understand its features and practical uses.
+1|JIRA works on a client-server model: the application is first set up on a server, and users then open it from their own systems.
+2|The JIRA server is linked to a relational database that holds project data, issues, user accounts and other application information.
+3|Get the JIRA installer for Windows (.exe file) from the official Atlassian download page.
+4|Pick the operating system you are using and press Download.
+5|Open the downloaded .exe file to start the JIRA setup wizard.
+6|When the Run security prompt shows up, press Run.
+7|Press Next on the welcome screen to move ahead with the setup.
+8|Pick the installation type you need and press Next.
+9|Check the summary of the setup, which lists the Destination Directory, Home Directory and TCP Port values.
+10|Press Install so that the files start getting copied.
+11|Once the setup finishes, tick Start JIRA Software if you want it to open immediately, then press Next.
+12|Lastly, press Finish to close the wizard after a successful installation.
+13|JIRA is a well-known issue-tracking and project management product from Atlassian. Teams use it to log software bugs, organise project work, plan agile sprints and keep an eye on progress. Because it supports Agile approaches such as Scrum and Kanban, it has become a standard choice in software companies.
+14|Groups related work such as tasks, issues and team activities together inside one project.
+15|Lets users raise, assign, follow and close issues like bugs, tasks, stories and epics across the whole project life cycle.
+16|Provides configurable workflows that carry an issue through stages such as To Do, In Progress,
+17|Review and Done.
+18|Offers strong search and filter tools, including JQL (Jira Query Language), to find issues, projects or finished work quickly.
+19|Gives configurable dashboards whose gadgets show project progress, sprint status, assigned work, reports and other key figures.
+21|Software developers, project managers, testers and business analysts commonly use JIRA to run their projects smoothly.
+23|JIRA helps project teams arrange and handle their software development work in an effective way.
+24|It ships with many ready-made project templates that can be adjusted to suit the needs of a project.
+25|Teams are free to build workflows that match the way they develop software.
+26|Managers can hand out work, watch how tasks are moving and see the live status of every issue.
+27|Reports and dashboards produced by JIRA give a clear picture of how the project and the team are performing.
+28|It makes sprint planning, backlog handling, release tracking and defect management easier in Agile projects.
+29|Since all project details are stored at one location, JIRA improves teamwork, transparency and overall project control.
+30|Thus the study and installation of the JIRA tool was completed successfully.
+31|To explore the backlog items available in the JIRA tool.
+33|The JIRA Backlog is an ordered list of requirements, features or tasks that are still to be completed. It gives an overview of what the application should do, without going into detailed specifications.
+34|Work in the backlog is written as user stories or tasks and each one carries a priority. A user story describes a needed function from the user's side, which helps the team plan and organise the development effort.
+35|Open the Jira project and choose Backlog from the menu on the left.
+36|Press Create to add a new work item and fill in the details such as:
+47|Once the fields are filled, press Create. The new issue appears in the project backlog.
+48|The JIRA Backlog lets development teams arrange, prioritise and track project tasks in an efficient manner. Its main activities are creating issues, setting priorities, handling subtasks, updating workflow status, searching tasks and following team progress.
+49|New tasks, bugs, user stories or epics can be created and placed in the backlog, and later pulled into upcoming sprints.
+50|Every backlog item has a summary and a detailed description so that team members clearly know its purpose, scope and expected result.
+51|Each issue gets a priority such as High, Medium or Low, which lets the team concentrate on the most important work first.
+52|Big or complicated tasks can be split into smaller subtasks that are simpler to assign, follow and finish inside the sprint.
+53|Jira shows the present status of each issue, for example To Do, In Progress or Done, so the team can see how development is moving.
+54|Backlog items can be searched, edited, updated, moved, split or deleted at any time, which makes task handling easier.
+55|Items can be ranked and moved into a sprint depending on project needs, available resources and business demands.
+56|Jira keeps a record of who owns a task, who it is assigned to and whether it is complete, which supports teamwork and helps managers follow individual and team performance.
+57|Keeps one central list of project requirements and pending work.
+58|Makes sprint planning simpler by ordering tasks by priority.
+59|Helps in handling software defects, improvements and user stories properly.
+60|Allows easy tracking of project progress through workflow statuses.
+61|Supports subtasks for better handling of work.
+62|Improves teamwork by giving responsibilities to specific members.
+63|Makes it easy to see which tasks are finished, running or pending.
+64|Gives a well-organised method for planning software development.
+65|Allows issues to be created, edited, searched and managed quickly.
+66|Makes sure that key features and high-priority tasks get done first.
+67|Thus the backlog was created and studied successfully.
+68|To create and set up a project in Jira for managing work and tracking tasks effectively.
+69|Jira, from Atlassian, is a project management and issue-tracking tool. Software teams and organisations use it widely to plan, track, assign and manage their projects with ease.
+70|A Jira project is made up of issues such as tasks, bugs, stories and epics. It supports Agile methods like Scrum and Kanban through boards, backlogs, sprint planning and reports. Jira also helps teams work together by assigning tasks, setting priorities, tracking progress and keeping project documents.
+71|Sign in to the Jira account.
+72|Choose Projects from the navigation menu.
+73|Press Create Project.
+74|Pick a project template (Scrum, Kanban or Task Management).
+75|Choose Company-managed Project.
+76|Type the project name and the project key.
+77|Adjust the project settings if needed.
+78|Press Create.
+79|The project dashboard gets created.
+80|Start adding issues like Tasks, Stories, Bugs or Epics to manage the project.
+81|Thus a new project was created and configured successfully in Jira.
+82|To create a dashboard and add gadgets to it in JIRA.
+83|The Jira Dashboard is the first screen shown after a user logs in. It brings project information together through gadgets that help users watch tasks, issues, sprints and overall progress. A dashboard can be tailored as needed, and a user may keep many dashboards for different projects or one dashboard covering several projects. Dashboards save time by giving quick access to project status, assigned work, reports and key figures.
+84|The Default Dashboard is what users see when they first sign in to Jira. Administrators can change the system dashboard by adding, removing or configuring gadgets and altering the layout, and individual users can build personal dashboards to suit their projects.
+85|Sign in to your Jira account.
+86|Choose Dashboards from the navigation menu.
+87|Press Create Dashboard.
+88|Type a name for the dashboard.
+89|Write a short description for it.
+90|Select who can see it: Private, Project, Organization or Public.
+91|Press Save.
+92|Press Add Gadget.
+93|Pick the gadgets you need, such as Activity Stream, Assigned to Me or Filter Results.
+94|Set up each selected gadget.
+95|Place the gadgets in the layout you prefer.
+96|Save the dashboard.
+97|Open the finished dashboard to see the project information.
+98|Gives a central view of the project.
+99|Improves teamwork among members.
+100|Allows quick checking of project progress.
+101|Supports visual data through charts and gadgets.
+102|Saves time by showing key project details on a single screen.
+103|Agile project handling
+104|Sprint tracking
+105|Task monitoring
+106|Defect tracking
+107|Team performance review
+108|Software development projects
+109|Business workflow handling
+110|Thus a customised dashboard was created successfully in Jira.
+111|To create gadgets and configure them in Jira so that project details, reports and team progress appear on a dashboard.
+112|Jira Gadgets are building blocks of a dashboard that show project summaries, issue statistics, reports, charts and other helpful details. They let users follow project progress, assigned work, sprint status and team activity on one dashboard.
+113|Gadgets can be tuned to project needs by setting filters, projects, issue types and display options. A personal dashboard may hold many gadgets, and administrators can set up gadgets on the default system dashboard for every user.
+122|These gadgets give live updates and make the project easier for the team to see.
+123|Sign in to your Jira account.
+124|Open the dashboard you want to work on.
+125|Press Add Gadget.
+126|Browse or search for the gadget you need.
+127|Pick the gadget and press Add Gadget.
+128|Set up the gadget by choosing the project, filter, issue type or other options.
+129|Save the gadget settings.

@@ -1,0 +1,188 @@
+300|Open the Scrum project. 
+301|Go to Backlog. 
+302|Press Create Sprint. 
+303|Drag issues from the backlog into the sprint. 
+304|Type a name and a goal for the sprint. 
+305|Fix the start date and end date of the sprint. 
+306|Press Start Sprint. 
+307|Keep updating the issue status as the sprint runs. 
+308|Follow progress with the Sprint Reports. 
+309|Press Complete Sprint when all planned work is done. 
+310|Thus sprint planning was carried out successfully in Jira.
+311|To study and build a dashboard for sprints in Jira.
+312|A dashboard is the main screen shown when you log in to Jira. Separate dashboards can be made for different projects, or one dashboard can give an overview of the work in all projects. Dashboards hold gadgets that show projects, assignments and sprint progress as various charts. In the current Jira Cloud, dashboards are opened from the search bar or the apps grid, since there is no separate top-level "Dashboards" menu item.
+313|Sign in to Jira.
+314|Press "/" or click the Search bar and choose "View all dashboards."
+315|Press Create dashboard and then type the dashboard name and description.
+316|Press Save.
+317|Press Add gadget on the new dashboard.
+318|Pick sprint-related gadgets such as Sprint Health, Sprint Report or Filter Results.
+319|Set up each gadget by choosing the project and the sprint.
+320|Arrange the gadgets and save the layout.
+321|Share the dashboard with the team if needed.
+322|Thus the dashboard for sprints was created and studied successfully in Jira.
+323|To understand the automation tools available in Jira.
+324|Automation frees teams to concentrate on important work by taking over repeated manual tasks. An automation rule has three parts: a trigger that starts the rule, conditions that narrow it down, and actions that do the work. Triggers wait for events such as a work item being created or a field value changing. Conditions limit the scope of the rule, and the rule stops when a condition is not met. A rule can be Enabled, Disabled or in Draft, and each rule keeps an audit log that records when it ran and what the result was.
+325|Sign in to Jira.
+326|Open the project you need.
+327|Go to Project settings → Automation.
+328|Press Create rule to see the rule builder.
+329|Look through the triggers available (for example Work item created, Field value changed).
+330|Look through the conditions available (for example Work item fields condition).
+331|Look through the actions available (for example Create sub-tasks, Assign work item, Send notification).
+332|Check the rule status labels: Enabled, Disabled and Draft.
+333|Open the Audit log tab to see the history of rule runs.
+335|Thus the automation tools were studied successfully in Jira.
+336|To build an automation rule in Jira.
+337|Automation rules let teams run actions in Jira automatically when certain criteria are met. A rule has a trigger that starts it, conditions that decide when it runs and actions that do tasks such as creating sub-tasks or assigning work items.
+338|Go to Project settings → Automation.
+339|Press Create rule.
+340|Choose the Work item created trigger and press Save.
+341|Press New condition and choose Work item fields condition.
+342|Set Field = Work Type, Condition = equals, Value = Bug, and press Save.
+343|Press New action and choose Create sub-tasks.
+344|Add three sub-tasks called Inspect code, Troubleshoot and Resolve, then press Save.
+345|Press New action and choose Assign work item.
+346|Pick a user as the assignee and press Save.
+347|Type a name for the rule and press Turn it on.
+348|Thus the automation rule was created successfully in Jira.
+349|To test the automation rule that was built in Jira.
+350|Actions are the part of a rule that does the work, such as editing a work item, sending a notification or creating sub-tasks. Work items seldom stand alone; they often have sub-tasks or links to other items. Branching lets an action apply not only to the work item that fired the rule but also to the related ones.
+351|Open the automation rule created in EX.NO. 18.
+352|Press the "..." menu and choose Run rule to test it on an existing work item, or create a new Bug-type work item so that the rule fires by itself.
+353|Open the work item and check that the sub-tasks Inspect code, Troubleshoot and Resolve have been created.
+354|Check that the Assignee field was updated as set in the rule.
+355|Open the Audit log tab of the rule and confirm that the status reads Success.
+356|Go through the trigger, condition and action details recorded for the run.
+357|Change the rule and test again if the audit log shows a failure.
+359|Thus the automation rule was tested successfully in Jira.
+360|To understand subscriptions in Jira.
+361|Jira subscriptions keep users informed of important work items as they appear. A subscription runs a saved query on a schedule and emails the results to a person or a group. If no work item matches, no email is sent. Users can create any number of filters and subscriptions, and administrators can view and manage all of them for the site, including changing the owner of a filter, spotting broken or duplicate filters and searching by JQL.
+362|Sign in to Jira.
+363|Run a JQL or basic search to make a filter (for example, project = SCRUM AND sprint in openSprints()).
+364|Press Save as to keep the search as a filter.
+365|Open the saved filter and choose Subscribe from the Details or "..." menu.
+366|Pick the schedule (daily, weekly or custom).
+367|Pick the recipients (yourself, a group or particular users).
+368|Press Save to switch the subscription on.
+369|(Admin) If needed, go to Settings → System to view and manage all filters and subscriptions of the site.
+370|Thus subscriptions were studied and created successfully in Jira.
+371|To create and study visual alerts and task assignment through mentions in Jira.
+372|Jira adds visual context to discussions through comment mentions and dashboard gadgets. A user who is @mentioned in a comment gets a notification by email and in the notification feed, with a preview of the comment. This draws the attention of a person to a particular task within the work item discussion, without a separate messaging tool. Dashboard gadgets add to the alerts by bringing overdue items, flagged work and activity feeds together in one place.
+373|Sign in to Jira.
+374|Open any work item (for example a Task or Story) in your project.
+375|Scroll down to the comment box.
+376|Type "@" followed by the name of a teammate to mention them.
+377|Write the comment describing the task or the update needed.
+378|Press Save (or Comment) to post it.
+379|The mentioned user gets an email and an in-app notification with a preview of the comment.
+380|Open your Dashboard and add an "Activity Stream" or "Assigned to Me" gadget to follow mentions and assignments in one place.
+381|Check that the notification arrived by looking at the bell icon in the top bar or at the email of the mentioned user.
+383|Thus visual alerts through mentions and dashboard gadgets were studied and demonstrated successfully in Jira.
+384|To understand and build a product roadmap (Timeline) in Jira.
+385|A product roadmap is a shared reference that describes the vision, direction, priorities and progress of a product over time. It aligns the organisation around short-term and long-term goals and the way to reach them. In current Jira this feature is named Timeline (in Jira Software spaces); it shows Epics scheduled over weeks, months or quarters, with their child Stories, Tasks and Bugs below them. Development teams use it to arrange work by sprints, while executives prefer higher-level monthly or quarterly views to follow progress toward company goals. For roadmaps that cover several projects, Jira provides Plans (Advanced Roadmaps) as a premium feature.
+386|Sign in to Jira.
+387|Open the Scrum or Kanban space you need (for example, LIBRARY MANAGEMENT).
+388|Press the Timeline tab in the navigation of the space.
+389|Press Create epic to add a new Epic if there is none yet.
+390|Set the start date and due date of the Epic by dragging its bar on the timeline, or type the dates.
+391|Add child work items (Stories, Tasks, Bugs) under the Epic to split up the work.
+392|Switch the view between Weeks, Months and Quarters with the control at the bottom right.
+393|Look at the progress bar on each Epic, which shows the status of its child work items.
+394|Change the dates as priorities move, so that the roadmap stays current.
+395|Share the Timeline view with stakeholders so that everyone is aligned.
+397|Thus the product roadmap was studied and created successfully in Jira.
+398|To understand information radiators in Jira.
+399|An information radiator is a digital or physical board that gives a summarised and well laid-out view of how a team is progressing. It matters to stakeholders because passing a team's workspace and seeing such a board adds transparency about the team's progress. In Jira, this is done by building a Dashboard with certain gadgets:
+400|Sprint Health Gadget - gives a colour-coded summary of the issues in a sprint, showing overall progress from time elapsed, work completed and work remaining, with blue for To Do, yellow for In Progress and green for Done.
+401|Pie Chart Gadget - shows how much work each team member has and how fast it is completed, giving an instant visual picture that is handy in meetings.
+402|Filter Results Gadget - shows a board-style list of the items in the current sprint with their status and assignee, which is useful in daily stand-ups.
+403|Sprint Burndown Chart - draws line graphs of the sprint burndown, with a guideline for the total estimated work at the start and a line for the work actually remaining, so that anyone passing by can see whether the sprint is on track.
+404|Sign in to Jira.
+405|Go to Dashboards → Create dashboard.
+406|Type the dashboard name and description and press Save.
+407|Press Add gadget.
+408|Search for the Sprint Health gadget and add it; set it up with the board and active sprint of your project.
+409|Add the Pie Chart gadget and set it to group by Status or Assignee.
+410|Add the Filter Results gadget and set it with a JQL filter such as sprint in openSprints().
+411|Add the Sprint Burndown Chart gadget (reached from the Reports tab of the board, or shown through Filter Results).
+412|Arrange the gadgets in a clean layout that suits a wallboard display.
+413|Press Done to save the dashboard as your information radiator.
+418|Thus information radiators were studied and created successfully in Jira.
+419|To close a sprint in Jira.
+420|At the end of a sprint the team reviews its progress, usually with a demo of the completed work followed by a sprint retrospective to find improvements. Sprints exist only on Scrum boards; Kanban boards have none. To complete a sprint, a user must be a Jira Administrator or hold the Manage Sprints permission.
+421|Sign in to Jira and open the Scrum space you need.
+422|Open the Board tab, which shows the active sprint.
+423|If several sprints are active, pick the sprint from the sprint dropdown (the Complete sprint button appears only after a specific sprint is selected).
+424|Press Complete sprint (top right of the board).
+425|All work items marked Done leave the active sprint automatically.
+426|If unfinished work items remain, choose one of the following in the dialog: 
+427|Move them to the Backlog
+428|Move them to an existing future sprint
+429|Create a new sprint and move them into it
+430|Note: if a parent work item is Done but its sub-tasks are not, the sprint cannot be completed until those sub-tasks are finished.
+431|Confirm and complete the sprint.
+432|Check that the sprint status becomes "Closed" and that the board now shows the next sprint (if started) or an empty board.
+433|Open the Reports tab to look at the burndown and velocity data of the completed sprint.
+434|Thus the sprint was closed successfully in Jira.
+435|To create and study reports in Jira.
+436|Reporting in Jira means learning about the health, progress and overall state of projects through project reports, dashboard gadgets and filter-based views. Every space offers standard reports without extra setup. Current Jira Cloud groups them under the Reports tab of a project, and they include:
+437|In addition, dashboard gadgets give reporting at a personal or team level, such as: Activity Stream, Assigned to Me, Average Age Chart, Filter Results, Pie Chart, Sprint Health, Issue/Work Item Statistics and Two-Dimensional Filter Statistics.
+438|Sign in to Jira.
+439|Open the Scrum or Kanban space you need.
+440|Press the Reports tab in the navigation of the space.
+441|Choose a report type from the list, for example Sprint Report, Burndown Chart or Velocity Chart.
+442|Choose the sprint or date range for the report.
+443|Look at the visual result, which may be line graphs, bar charts or tables depending on the report.
+444|Go to Dashboards → Create dashboard for more gadget-based reports.
+445|Add gadgets such as Pie Chart, Filter Results or Average Age Chart and set each one with the project or filter needed.
+446|Save the dashboard.
+447|Check that the reports show correct and current data for the project.
+448|Thus reports were created and executed successfully in Jira.
+449|To understand sprint retrospective items in Jira.
+450|Agile retrospectives are not "post-mortem" meetings held only when a project ends; they take place at the close of every sprint during the life of the project. A retrospective is central to the incremental value of a product and to the continuous improvement of a team. Without regular retrospectives, problems cannot be fixed before they grow, and teams miss the long-term benefits of Agile. In current Jira, retrospectives are run through a Confluence whiteboard or page that opens straight from Jira when a sprint is completed, so the retrospective stays linked to the real sprint data.
+451|Set the Stage — builds a "safe space" for open sharing. Jira and Confluence are a natural venue because all the sprint information is already there and easy to refer to during the session.
+452|Gather Data — team members add their ideas on their own instead of speaking one after another, which avoids "groupthink" where the first opinion shared influences everybody else.
+453|Generate Insights — the team filters the ideas and votes on which topics matter most, deciding what to handle first. Voting can be set to limit the votes per person and per topic.
+454|Decide What to Do — the most important stage and the one most often skipped. The result must be a concrete action item rather than a vague remark, and it should be made as a Jira work item so it can be tracked and followed up.
+455|Close the Retrospective — the team agrees, formally or informally, on the action items and names an owner who makes sure each action gets done (not always the person who does the task).
+456|Sign in to Jira and open the Scrum space you need.
+457|Complete the active sprint (Board → Complete sprint), since retrospectives are normally triggered when a sprint closes.
+458|When asked, choose the option to create a Sprint Retrospective in Confluence (as a whiteboard or a page).
+459|Pick a whiteboard for real-time group input, or a page for a structured written retrospective.
+460|Set the stage by inviting the team and briefly stating the purpose of the retrospective.
+461|Gather data by letting each member add ideas or sticky notes on their own under headings such as "What went well," "What didn't go well" and "Ideas for improvement."
+462|Generate insights by grouping similar ideas and voting for the topics most worth discussing.
+463|Decide what to do by turning the top-voted insights into concrete action items and creating matching Jira work items to track them.
+464|Name an owner for every action item.
+465|Close the retrospective with the team's agreement and link it back to the completed sprint for future reference.
+466|Thus sprint retrospective items were studied and demonstrated successfully in Jira.
+467|To set up the Planning Poker integration in Jira using a Marketplace app.
+468|Planning poker, also called "scrum poker" or "pointing poker," is a game-like estimation method in which a development team jointly guesses the effort needed for tasks. Estimates come from group agreement and not from one person's judgement, which makes them more engaging and statistically more accurate. Planning Poker is not built into Jira; it comes from Marketplace apps (such as Planning Poker for Jira, Actioned or similar tools) that connect to Jira through OAuth or application links, unlike the older manual "Application Links" setup of Server/Data Center versions.
+469|Group estimates from planning poker are statistically more accurate than individual guesses.
+470|Helps to estimate tasks relative to one another instead of in absolute units.
+471|Brings out gaps between requirements and the understanding of the implementation early.
+472|(Current Jira Cloud):
+473|Sign in to Jira as an administrator.
+474|Open the Atlassian Marketplace (Settings → Apps → Find new apps, or marketplace.atlassian.com directly).
+475|Search for a Planning Poker app (for example, "Planning Poker for Jira").
+476|Press Get it now / Try it free to add the app to your Jira site.
+477|After the installation, open the app from the Apps menu in the top bar.
+478|Follow the setup wizard inside the app to connect it to your Jira site; modern apps use OAuth authorisation instead of manually creating Application Links.
+479|Grant the permissions it asks for (this takes the place of the older "Incoming Authentication" step).
+480|Confirm that the connection is active by checking that the app's dashboard shows your Jira site as linked.
+481|Move on to create a new estimation game (covered in Part 2).
+482|Thus the Planning Poker integration was set up successfully in Jira.
+483|To run a planning poker estimation session with a Planning Poker app in Jira.
+484|Planning poker is a game-like technique that estimates project tasks through group agreement instead of individual estimates. Estimates become more accurate over time as planning poker apps refine them with continued use. Modern Planning Poker apps pull stories straight from Jira and send the point values back automatically when voting ends, so no manual data entry is needed.
+485|Open the Planning Poker app from the Jira Apps menu (continuing from the setup in Part 1).
+486|Authorise the app to reach your Jira site if that is not done yet, and press Allow when asked.
+487|Press Create new game (or the equivalent) to begin a new estimation session.
+488|Name the session and pick the Jira space or board from which work items will be imported.
+489|Import the stories or tasks straight from the Jira backlog into the game.
+490|Invite team members to the session with the game link or the in-app invite.
+491|For every imported item, team members choose their estimates at the same time (the cards stay hidden until everyone has voted).
+492|Reveal all the votes together to avoid bias and discuss any big differences in the estimates.
+493|Vote again if required until the team agrees on a final estimate.
+494|Confirm the final story point value; the app automatically writes it back to the Story point estimate field of the matching work item in Jira.
+496|Thus planning poker estimation was conducted successfully in Jira.
