@@ -1,0 +1,196 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@font-face{font-family:OS;font-weight:400;src:url(open-sans-latin-400-normal.woff2)}
+@font-face{font-family:OS;font-weight:600;src:url(open-sans-latin-600-normal.woff2)}
+@font-face{font-family:OS;font-weight:700;src:url(open-sans-latin-700-normal.woff2)}
+@font-face{font-family:IC;font-weight:400;src:url(inconsolata-latin-400-normal.woff2)}
+@font-face{font-family:IC;font-weight:700;src:url(inconsolata-latin-700-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{width:1864px;height:1182px;background:#f1f4f9;font-family:OS,"Segoe UI",sans-serif;font-size:17.5px;color:#1a1a1a;position:relative;overflow:hidden}
+.a{position:absolute}
+.t{position:absolute;white-space:pre;line-height:1}
+.ic{width:22px;height:22px;border-radius:5px;display:block;object-fit:cover}
+.mono{font-family:IC,Consolas,monospace}
+.hdr{background:linear-gradient(#e4ecf8,#d6e1f2);border-bottom:1px solid #b9c7dc}
+.pane{background:#fff;border:1px solid #b9c7dc}
+.tree .r{position:absolute;display:flex;align-items:center;gap:8px;height:28px;font-size:18px;white-space:nowrap}
+.cl div{position:absolute;white-space:pre;font-size:23.8px;line-height:28px;left:0}
+.cl .n{width:52px;text-align:right;color:#8b919b;font-size:20px}
+.cl .c{left:83px}
+.k{color:#a01f1f}.s{color:#b02a2a}.g{color:#2f8a3d}.b{color:#1b3fb5}
+.row{position:absolute;white-space:nowrap}
+</style></head><body>
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="folder" viewBox="0 0 24 20"><path d="M1 3.5C1 2.7 1.7 2 2.5 2h6l2.2 2.5H21.5c.8 0 1.5.7 1.5 1.5V17c0 .8-.7 1.5-1.5 1.5h-19C1.7 18.5 1 17.8 1 17z" fill="#e8b43c" stroke="#b98a1f" stroke-width="1"/><path d="M1 8h22v9.5c0 .8-.7 1.5-1.5 1.5h-19C1.7 19 1 18.3 1 17.5z" fill="#f7d874" stroke="#c99a2a" stroke-width="1"/></symbol>
+<symbol id="page" viewBox="0 0 20 24"><path d="M3 1h9.5L17 5.5V22a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1z" fill="#fff" stroke="#9aa3b2" stroke-width="1.2"/><path d="M12.5 1v4.5H17" fill="#e9edf3" stroke="#9aa3b2" stroke-width="1.2"/><path d="M5 9h5M5 12h7" stroke="#d33" stroke-width="1.6"/><path d="M5 16h8M5 19h6" stroke="#3b6fd8" stroke-width="1.4"/></symbol>
+<symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10.5" fill="#3aa84a" stroke="#2b8a39" stroke-width="1"/><ellipse cx="10" cy="7" rx="6.5" ry="3.5" fill="#fff" opacity=".28"/><path d="M6.5 12.5l3.6 3.6 7.3-8" stroke="#fff" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<!-- title bar -->
+<img class="a ic" src="hp.png" style="left:12px;top:13px;width:23px;height:23px;border-radius:50%">
+<div class="t" style="left:46px;top:17px;font-size:18px">HP Virtual User Generator&nbsp; -&nbsp;WinRunner&nbsp; --&nbsp;[LibraryTest&nbsp;-&nbsp;Action1]</div>
+<svg class="a" style="left:1690px;top:12px" width="170" height="26" viewBox="0 0 170 26" fill="none" stroke="#222" stroke-width="1.6"><path d="M16 13h13"/><rect x="72" y="7" width="12" height="12" rx="2"/><path d="M127 7l12 12M139 7l-12 12"/></svg>
+<!-- menu -->
+<img class="a ic" src="hp.png" style="left:14px;top:50px;width:22px;height:22px;border-radius:50%">
+<div class="t" style="left:46px;top:54px;font-size:17.5px;word-spacing:0"><u>F</u>ile</div>
+<div class="t" style="left:92px;top:54px;font-size:17.5px"><u>E</u>dit</div>
+<div class="t" style="left:144px;top:54px;font-size:17.5px"><u>V</u>iew</div>
+<div class="t" style="left:203px;top:54px;font-size:17.5px"><u>I</u>nsert</div>
+<div class="t" style="left:268px;top:54px;font-size:17.5px"><u>V</u>user</div>
+<div class="t" style="left:334px;top:54px;font-size:17.5px"><u>A</u>ctions</div>
+<div class="t" style="left:413px;top:54px;font-size:17.5px"><u>T</u>ools</div>
+<div class="t" style="left:476px;top:54px;font-size:17.5px"><u>W</u>indow</div>
+<div class="t" style="left:563px;top:54px;font-size:17.5px"><u>H</u>elp</div>
+<!-- toolbar -->
+<svg class="a" style="left:0;top:80px" width="1864" height="40" viewBox="0 0 1864 40">
+<g stroke="#c7cfdb" stroke-width="1"><path d="M66 6v28M194 6v28M308 6v28M458 6v28M742 6v28M884 6v28"/></g>
+<!-- home -->
+<circle cx="30" cy="20" r="11" fill="#e8c03c"/><path d="M21 21l9-9 9 9" stroke="#4a9d3a" stroke-width="3" fill="none"/><path d="M24 22v7h12v-7" fill="#6fc05a"/>
+<!-- open folder -->
+<path d="M80 12h7l2 3h11v13H80z" fill="#e6b53b" stroke="#a97d1c"/><path d="M82 19h22l-3 10H80z" fill="#f6d36e" stroke="#a97d1c"/><path d="M110 20l4 4 4-4z" fill="#333"/>
+<!-- save -->
+<path d="M126 10h17l4 4v17h-21z" fill="#2f66c8" stroke="#1d479a"/><rect x="130" y="10" width="11" height="8" fill="#e8eef8"/><rect x="130" y="23" width="13" height="8" fill="#cfd8ea"/>
+<path d="M158 10h17l4 4v17h-21z" fill="#2f66c8" stroke="#1d479a"/><rect x="162" y="10" width="11" height="8" fill="#e8eef8"/><rect x="162" y="23" width="13" height="8" fill="#cfd8ea"/><path d="M170 26h10M175 21v10" stroke="#e64" stroke-width="0"/>
+<!-- cut -->
+<path d="M210 8l10 15M222 8l-10 15" stroke="#556" stroke-width="2"/><circle cx="210" cy="27" r="4" fill="none" stroke="#d33" stroke-width="2"/><circle cx="222" cy="27" r="4" fill="none" stroke="#d33" stroke-width="2"/>
+<!-- copy -->
+<rect x="244" y="9" width="12" height="16" fill="#fff" stroke="#8a93a3"/><rect x="250" y="14" width="12" height="16" fill="#fff" stroke="#6a7385"/><path d="M252 19h8M252 22h8M252 25h6" stroke="#9aa" stroke-width="1"/>
+<!-- paste -->
+<rect x="276" y="10" width="16" height="20" rx="2" fill="#d9b36a" stroke="#97742a"/><rect x="281" y="7" width="8" height="5" fill="#8a8f99"/><rect x="283" y="16" width="12" height="14" fill="#fff" stroke="#8a93a3"/>
+<!-- undo/redo -->
+<path d="M327 22a8 8 0 1 1 8 8" fill="none" stroke="#3566c9" stroke-width="3"/><path d="M322 18l6 7 5-8z" fill="#3566c9"/>
+<path d="M376 22a8 8 0 1 0-8 8" fill="none" stroke="#aeb7c6" stroke-width="3"/><path d="M381 18l-6 7-5-8z" fill="#aeb7c6"/><path d="M391 19l4 4 4-4z" fill="#555"/>
+<rect x="413" y="10" width="16" height="20" rx="2" fill="#d9b36a" stroke="#97742a"/><rect x="418" y="15" width="12" height="15" fill="#fff" stroke="#6a7385"/>
+<!-- tools -->
+<path d="M474 12l14 14M488 12L474 26" stroke="#7b8494" stroke-width="3"/><circle cx="476" cy="14" r="4" fill="#c33"/><circle cx="486" cy="25" r="4" fill="#3b6fd8"/><path d="M503 19l4 4 4-4z" fill="#333"/>
+<path d="M530 12l14 14M544 12l-14 14" stroke="#7b8494" stroke-width="3"/><circle cx="532" cy="14" r="4" fill="#3b6fd8"/><circle cx="542" cy="25" r="4" fill="#c33"/><path d="M555 19l4 4 4-4z" fill="#333"/>
+<path d="M584 11l12 9-12 9z" fill="#6b7a62"/>
+<!-- record -->
+<circle cx="630" cy="20" r="10" fill="#d32f2f"/><ellipse cx="627" cy="16" rx="5" ry="3" fill="#fff" opacity=".35"/>
+<path d="M718 33l5-5h-10z" fill="#555" transform="translate(5,-6)"/>
+<!-- run -->
+<path d="M762 10l14 10-14 10z" fill="#2f78d6"/>
+<!-- step icons -->
+<path d="M899 11v18M899 20l8-8v16z" fill="#555" stroke="#333" stroke-width="1"/><path d="M921 20l-8-8v16z" fill="#555"/>
+<rect x="934" y="10" width="21" height="20" rx="3" fill="#fff" stroke="#6b7385" stroke-width="1.5"/><circle cx="944.5" cy="20" r="4" fill="#555"/>
+<rect x="968" y="11" width="24" height="18" rx="2" fill="#dfe6f2" stroke="#6b7385" stroke-width="1.5"/><rect x="972" y="15" width="16" height="10" fill="#6b7385"/>
+<path d="M1006 24l5 5 5-5z" fill="#444"/><path d="M1008 31h8" stroke="#444" stroke-width="1.5"/>
+</svg>
+<div class="t" style="left:650px;top:90px;font-size:17.5px">Record</div>
+<div class="t" style="left:788px;top:90px;font-size:17.5px">Run</div>
+<div class="t" style="left:830px;top:90px;font-size:17.5px;color:#999">Stop</div>
+
+<!-- solution explorer -->
+<div class="a pane" style="left:2px;top:121px;width:359px;height:670px"></div>
+<div class="a hdr" style="left:3px;top:122px;width:357px;height:28px"></div>
+<div class="t" style="left:10px;top:128px;font-size:18px">Solution Explorer</div>
+<svg class="a" style="left:300px;top:126px" width="56" height="22" viewBox="0 0 56 22" stroke="#333" fill="none" stroke-width="1.6"><path d="M8 4h7M10 4v6l-3 3h10l-3-3V4M12.5 13v6" /><path d="M36 5l10 11M46 5L36 16"/></svg>
+<div class="tree a" style="left:0;top:150px;width:360px;height:600px">
+ <svg class="a" style="left:0;top:0" width="360" height="330" viewBox="0 0 360 330" fill="none" stroke="#9aa3b2" stroke-width="1" stroke-dasharray="2 2"><path d="M46 44v20M46 72v20"/><path d="M76 72v110"/><path d="M104 100v82" /><path d="M46 38v200"/></svg>
+ <div class="r" style="left:12px;top:5px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x=".5" y=".5" width="13" height="13" fill="#fff" stroke="#8b93a3"/><path d="M3 7h8" stroke="#555"/></svg><svg width="24" height="24" viewBox="0 0 24 24"><rect x="2" y="3" width="19" height="18" rx="2" fill="#eef3fb" stroke="#8aa2cc"/><rect x="2" y="3" width="19" height="5" fill="#a9c1e8"/><path d="M5 12h12M5 16h9" stroke="#8aa2cc"/></svg>Solution LibraryTest</div>
+ <div class="r" style="left:38px;top:33px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x=".5" y=".5" width="13" height="13" fill="#fff" stroke="#8b93a3"/><path d="M3 7h8" stroke="#555"/></svg><svg width="26" height="26" viewBox="0 0 26 26"><rect x="2" y="3" width="21" height="20" rx="2" fill="#dfe9fb" stroke="#4d78c8"/><circle cx="12.5" cy="13" r="6" fill="#4d78c8"/><ellipse cx="12.5" cy="13" rx="2.6" ry="6" fill="none" stroke="#fff"/><path d="M6.5 13h12" stroke="#fff"/></svg><b style="font-weight:700">LibraryTest</b></div>
+ <div class="r" style="left:66px;top:61px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x=".5" y=".5" width="13" height="13" fill="#fff" stroke="#8b93a3"/><path d="M3 7h8" stroke="#555"/></svg><svg width="26" height="22"><use href="#folder"/></svg><b style="font-weight:700">Actions</b></div>
+ <div class="r" style="left:128px;top:89px"><svg width="22" height="26"><use href="#page"/></svg>vuser_init</div>
+ <div class="a" style="left:110px;top:117px;width:130px;height:30px;background:#d8e6fb"></div>
+ <div class="r" style="left:128px;top:118px"><svg width="22" height="26"><use href="#page"/></svg>Action1</div>
+ <div class="r" style="left:128px;top:147px"><svg width="22" height="26"><use href="#page"/></svg>vuser_end</div>
+ <div class="r" style="left:66px;top:176px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x=".5" y=".5" width="13" height="13" fill="#fff" stroke="#8b93a3"/><path d="M3 7h8M7 3v8" stroke="#555"/></svg><svg width="26" height="22"><use href="#folder"/></svg>Extra Files</div>
+ <div class="r" style="left:36px;top:206px"><svg width="14" height="14" viewBox="0 0 14 14"><rect x=".5" y=".5" width="13" height="13" fill="#fff" stroke="#8b93a3"/><path d="M3 7h8" stroke="#555"/></svg><svg width="14" height="14" viewBox="0 0 14 14"><rect x=".5" y=".5" width="13" height="13" fill="#fff" stroke="#8b93a3"/><path d="M3 7h8M7 3v8" stroke="#555"/></svg><svg width="26" height="26" viewBox="0 0 26 26"><circle cx="11" cy="11" r="7" fill="#dbe6f7" stroke="#6a86b8" stroke-width="2"/><path d="M16 16l7 7" stroke="#6a86b8" stroke-width="3.5"/><circle cx="19" cy="9" r="3" fill="#8a93a3"/></svg>Runtime Settings</div>
+ <div class="r" style="left:98px;top:236px"><svg width="26" height="24" viewBox="0 0 26 24"><rect x="2" y="2" width="21" height="19" rx="2" fill="#f4f7fc" stroke="#7d8ba5"/><rect x="5" y="6" width="9" height="3" fill="#6a86b8"/><rect x="5" y="12" width="14" height="3" fill="#6a86b8"/></svg>Parameters</div>
+ <div class="r" style="left:98px;top:264px"><svg width="26" height="22"><use href="#folder"/></svg>Replay Runs</div>
+ <div class="r" style="left:98px;top:292px"><svg width="26" height="22"><use href="#folder"/></svg>Analysis</div>
+</div>
+<div class="a" style="left:3px;top:748px;width:357px;height:42px;background:#e2e9f4;border-top:1px solid #b9c7dc"></div>
+<div class="a" style="left:10px;top:752px;width:172px;height:34px;background:#f7f9fd;border:1px solid #b9c7dc"></div>
+<svg class="a" style="left:16px;top:757px" width="26" height="24" viewBox="0 0 26 24"><rect x="2" y="2" width="21" height="19" rx="2" fill="#eaf0fa" stroke="#6a86b8"/><rect x="5" y="5" width="7" height="14" fill="#8aa6d6"/><path d="M14 8h7M14 12h7M14 16h7" stroke="#6a86b8"/></svg>
+<div class="t" style="left:44px;top:760px;font-size:17px">Solution Explorer</div>
+<svg class="a" style="left:192px;top:756px" width="26" height="26" viewBox="0 0 26 26" fill="none"><path d="M5 20l7-7" stroke="#6a86b8" stroke-width="3"/><path d="M12 5l10 6-8 4z" fill="#4d78c8"/><circle cx="5" cy="21" r="3" fill="#6a86b8"/></svg>
+<div class="t" style="left:221px;top:760px;font-size:17px">Step Navigator</div>
+
+<!-- editor -->
+<div class="a pane" style="left:365px;top:121px;width:1496px;height:670px"></div>
+<div class="a hdr" style="left:366px;top:122px;width:1494px;height:30px"></div>
+<div class="a" style="left:372px;top:124px;width:130px;height:31px;background:#fff;border:1px solid #b9c7dc;border-bottom:0;border-radius:3px 3px 0 0"></div>
+<div class="t" style="left:392px;top:131px;font-size:17px">Action1*</div>
+<svg class="a" style="left:473px;top:134px" width="14" height="14" stroke="#333" stroke-width="1.7"><path d="M3 3l8 8M11 3l-8 8"/></svg>
+<svg class="a" style="left:1794px;top:126px" width="60" height="24" stroke="#333" fill="none" stroke-width="1.6"><path d="M16 5h7M18 5v6l-3 3h10l-3-3V5M20 14v5"/><path d="M42 6l10 11M52 6L42 17"/></svg>
+<div class="a" style="left:395px;top:158px;width:67px;height:592px;background:#f1f3f7;border-right:1px solid #cfd5df"></div>
+<div class="a" style="left:1828px;top:158px;width:30px;height:592px;background:#f4f6f9"></div>
+<svg class="a" style="left:1830px;top:162px" width="26" height="30"><path d="M7 14l6-6 6 6z" fill="#8b93a3"/><rect x="11" y="20" width="4" height="0" /></svg>
+<div class="a" style="left:1834px;top:190px;width:4px;height:40px;background:#c8ced9;border-radius:2px"></div>
+<div class="a mono cl" style="left:395px;top:161px;width:1400px;height:580px">
+<div class="n" style="top:0">1</div><div class="c k" style="top:0">Action()</div>
+<div class="n" style="top:28.5px">2</div><div class="c" style="top:28.5px">{</div>
+<div class="n" style="top:57px">3</div><div class="c g" style="top:57px;left:131px">// Open the library portal</div>
+<div class="n" style="top:85.5px">4</div><div class="c" style="top:85.5px;left:131px"><span class="b">web_launch</span>(<span class="s">"https://www.srec.ac.in"</span>);</div>
+<div class="n" style="top:114px">5</div>
+<div class="n" style="top:142.5px">6</div><div class="c g" style="top:142.5px;left:131px">// Search the catalogue</div>
+<div class="n" style="top:171px">7</div><div class="c" style="top:171px;left:131px"><span class="b">web_reg_find</span>(<span class="s">"Text=Library"</span>, <span class="b">LAST</span>);</div>
+<div class="n" style="top:199.5px">8</div><div class="c" style="top:199.5px;left:131px"><span class="b">web_submit_data</span>(<span class="s">"Search"</span>,</div>
+<div class="n" style="top:228px">9</div><div class="c s" style="top:228px;left:183px">"Action=https://www.srec.ac.in/search",</div>
+<div class="n" style="top:256.5px">10</div><div class="c s" style="top:256.5px;left:183px">"Method=GET",</div>
+<div class="n" style="top:285px">11</div><div class="c s" style="top:285px;left:183px">"RecContentType=text/html",</div>
+<div class="n" style="top:313.5px">12</div><div class="c s" style="top:313.5px;left:183px">"Referer=",</div>
+<div class="n" style="top:342px">13</div><div class="c s" style="top:342px;left:183px">"Snapshot=t7.inf",</div>
+<div class="n" style="top:370.5px">14</div><div class="c s" style="top:370.5px;left:183px">"Mode=HTML",</div>
+<div class="n" style="top:399px">15</div><div class="c b" style="top:399px;left:183px;font-weight:700">ITEMDATA,</div>
+<div class="n" style="top:427.5px">16</div><div class="c" style="top:427.5px;left:183px"><span class="s">"Name=q"</span>, <span class="s">"Value=BookSearch"</span>, <span class="b" style="font-weight:700">ENDITEM</span>,</div>
+<div class="n" style="top:456px">17</div><div class="c b" style="top:456px;left:183px;font-weight:700">LAST<span style="color:#1a1a1a;font-weight:400">);</span></div>
+<div class="n" style="top:484.5px">18</div>
+<div class="n" style="top:513px">19</div><div class="c" style="top:513px;left:131px"><span class="b">return</span> 0;</div>
+<div class="n" style="top:541.5px">20</div><div class="c" style="top:541.5px">}</div>
+</div>
+<svg class="a" style="left:372px;top:760px" width="1450" height="28"><path d="M8 14l7-5v10z" fill="#c2c8d3"/><path d="M1436 14l-7-5v10z" fill="#c2c8d3"/></svg>
+
+<!-- run session dialog -->
+<div class="a" style="left:1086px;top:224px;width:754px;height:537px;background:#f3f3f3;border:1px solid #c9ced8;border-radius:9px;box-shadow:0 10px 34px rgba(0,0,0,.30),0 2px 6px rgba(0,0,0,.15)"></div>
+<img class="a ic" src="hp.png" style="left:1098px;top:231px;width:28px;height:28px;border-radius:50%">
+<div class="t" style="left:1140px;top:236px;font-size:19px">Run Session - LibraryTest</div>
+<svg class="a" style="left:1650px;top:230px" width="180" height="30" fill="none" stroke="#222" stroke-width="1.8"><path d="M18 15h14"/><rect x="76" y="8" width="14" height="14" rx="2"/><path d="M140 8l14 14M154 8l-14 14"/></svg>
+<div class="t" style="left:1130px;top:295px;font-size:18.5px;font-weight:700">Running Vuser...</div>
+<div class="t" style="left:1610px;top:296px;font-size:17.5px">Elapsed time: 00:00:09</div>
+<div class="a" style="left:1118px;top:330px;width:684px;height:30px;background:#d6d8dc;border:1px solid #c3c6cc"></div>
+<div class="a" style="left:1119px;top:331px;width:300px;height:28px;background:linear-gradient(#78d86c,#3fb33f 55%,#34a233)"></div>
+<div class="t" style="left:1122px;top:372px;font-size:18px">Scenario:</div><div class="t" style="left:1227px;top:372px;font-size:18px">LibraryScenario</div>
+<div class="t" style="left:1122px;top:403px;font-size:18px">Vuser:</div><div class="t" style="left:1227px;top:403px;font-size:18px">LibraryTest</div>
+<div class="t" style="left:1122px;top:434px;font-size:18px">Iteration:</div><div class="t" style="left:1227px;top:434px;font-size:18px">1 / 1</div>
+<div class="a" style="left:1108px;top:484px;width:708px;height:196px;background:#fff;border:1px solid #d0d4dc"></div>
+<div class="a" style="left:1109px;top:485px;width:706px;height:34px;background:#f5f6f8;border-bottom:1px solid #e0e3e9"></div>
+<div class="a" style="left:1298px;top:485px;width:1px;height:194px;background:#e3e6ec"></div><div class="a" style="left:1453px;top:485px;width:1px;height:194px;background:#e3e6ec"></div><div class="a" style="left:1633px;top:485px;width:1px;height:194px;background:#e3e6ec"></div>
+<div class="t" style="left:1122px;top:493px;font-size:18px">Step Name</div><div class="t" style="left:1312px;top:493px;font-size:18px">Status</div><div class="t" style="left:1467px;top:493px;font-size:18px">Elapsed Time</div><div class="t" style="left:1647px;top:493px;font-size:18px">Details</div>
+<svg class="a" style="left:1121px;top:524px" width="22" height="22"><use href="#check"/></svg><div class="t" style="left:1150px;top:527px;font-size:18px">vuser_init</div><div class="t" style="left:1312px;top:527px;font-size:18px">Passed</div><div class="t" style="left:1467px;top:527px;font-size:18px">00:00:01</div><div class="t" style="left:1647px;top:527px;font-size:18px">1 step(s)</div>
+<svg class="a" style="left:1121px;top:557px" width="22" height="22"><use href="#check"/></svg><div class="t" style="left:1150px;top:560px;font-size:18px">Action1</div><div class="t" style="left:1312px;top:560px;font-size:18px">Passed</div><div class="t" style="left:1467px;top:560px;font-size:18px">00:00:07</div><div class="t" style="left:1647px;top:560px;font-size:18px">5 step(s)</div>
+<svg class="a" style="left:1121px;top:591px" width="22" height="22"><use href="#check"/></svg><div class="t" style="left:1150px;top:594px;font-size:18px">vuser_end</div><div class="t" style="left:1312px;top:594px;font-size:18px">Passed</div><div class="t" style="left:1467px;top:594px;font-size:18px">00:00:01</div><div class="t" style="left:1647px;top:594px;font-size:18px">1 step(s)</div>
+<div class="a" style="left:1108px;top:713px;width:22px;height:22px;border:1.5px solid #6b6f78;border-radius:4px;background:#fff"></div>
+<div class="t" style="left:1137px;top:716px;font-size:18px">Close when complete</div>
+<div class="a" style="left:1510px;top:700px;width:147px;height:44px;border:2px solid #3b4a63;border-radius:5px;background:#fbfbfc;text-align:center;line-height:40px;font-size:18px">Run Again</div>
+<div class="a" style="left:1674px;top:700px;width:146px;height:44px;border:1px solid #d3d6dc;border-radius:5px;background:#fbfbfc;text-align:center;line-height:42px;font-size:18px">Close</div>
+
+<!-- output -->
+<div class="a pane" style="left:2px;top:796px;width:1859px;height:330px"></div>
+<div class="a hdr" style="left:3px;top:797px;width:1857px;height:28px"></div>
+<div class="t" style="left:10px;top:802px;font-size:18px">Output</div>
+<svg class="a" style="left:1796px;top:801px" width="56" height="22" stroke="#333" fill="none" stroke-width="1.6"><path d="M8 4h7M10 4v6l-3 3h10l-3-3V4M12.5 13v6"/><path d="M36 5l10 11M46 5L36 16"/></svg>
+<div class="a" style="left:12px;top:829px;width:300px;height:30px;background:#fff;border:1px solid #cfd5df"></div>
+<div class="t" style="left:20px;top:835px;font-size:17px">Replay Log</div><svg class="a" style="left:290px;top:838px" width="14" height="12"><path d="M2 3l5 5 5-5" stroke="#555" fill="none" stroke-width="1.6"/></svg>
+<div class="a" style="left:6px;top:866px;width:1850px;height:228px;background:#fff;border:1px solid #d4d9e2"></div>
+<div class="a" style="left:1834px;top:867px;width:22px;height:226px;background:#f4f6f9"></div>
+<svg class="a" style="left:1836px;top:870px" width="18" height="220"><path d="M3 10l6-6 6 6z" fill="#8b93a3"/><rect x="4" y="22" width="10" height="140" rx="2" fill="#cfd4dd"/><path d="M3 208l6 6 6-6z" fill="#8b93a3"/></svg>
+<div class="a mono" style="left:14px;top:868px;width:1800px;font-size:19.2px;line-height:20.3px;white-space:pre">***** Replay started at 10:41:08  15-Sep-2026 *****
+Generating script...
+Launching browser 'Chrome' to navigate to 'https://www.srec.ac.in'.
+Web registration: "Library" found.
+Submitting the catalogue search request.
+Response received: 200 OK.
+Found 3 occurrence(s) of "Library".
+Action1 completed successfully.
+Replay ended at 10:41:17  15-Sep-2026 (9 seconds).
+<span style="color:#1f7d2c;font-weight:700">Results: 0 error(s), 0 warning(s).</span></div>
+<div class="a" style="left:12px;top:1096px;width:138px;height:30px;background:#fff;border:1px solid #cfd5df"></div>
+<svg class="a" style="left:18px;top:1099px" width="24" height="24" viewBox="0 0 26 24"><rect x="2" y="2" width="21" height="19" rx="2" fill="#eaf0fa" stroke="#6a86b8"/><rect x="5" y="5" width="7" height="14" fill="#8aa6d6"/><path d="M14 8h7M14 12h7M14 16h7" stroke="#6a86b8"/></svg>
+<div class="t" style="left:47px;top:1101px;font-size:17px;font-weight:700">Replay Log</div>
+<div class="a" style="left:152px;top:1096px;width:136px;height:30px;background:#eef1f6;border:1px solid #d3d9e3"></div><div class="t" style="left:162px;top:1101px;font-size:16.5px;color:#444">Recording Log</div>
+<div class="a" style="left:290px;top:1096px;width:187px;height:30px;background:#eef1f6;border:1px solid #d3d9e3"></div><div class="t" style="left:300px;top:1101px;font-size:16.5px;color:#444">Correlation Results</div>
+<div class="a" style="left:479px;top:1096px;width:146px;height:30px;background:#eef1f6;border:1px solid #d3d9e3"></div><div class="t" style="left:490px;top:1101px;font-size:16.5px;color:#444">Generation Log</div>
+<div class="t" style="left:12px;top:1140px;font-size:17.5px">Ready</div>
+<div class="t" style="left:1576px;top:1140px;font-size:17px">Ln 1</div><div class="t" style="left:1634px;top:1140px;font-size:17px">Col 1</div><div class="t" style="left:1749px;top:1140px;font-size:17px">NUM</div>
+</body></html>
