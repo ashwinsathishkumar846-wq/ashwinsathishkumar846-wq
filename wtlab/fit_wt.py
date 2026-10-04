@@ -1,5 +1,5 @@
 import subprocess,re,json,os
-N='merged'
+N=os.environ.get('OUTN','merged')
 spc=json.load(open('spacers.json')) if os.path.exists('spacers.json') else {}
 shr=json.load(open('shrink.json')) if os.path.exists('shrink.json') else {}
 keys=None

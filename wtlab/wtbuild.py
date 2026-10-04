@@ -13,10 +13,17 @@ SHR=json.load(open('shrink.json')) if os.path.exists('shrink.json') else {}
 FONT='Times New Roman'
 SUBS=[('AMIRTHA VARSHINI S','AJAY.I'),('Amirtha Varshini S','Ajay I'),('Amirthavarshini S','Ajay I'),('S. Amirtha Varshini','Ajay I'),('Amirtha Varshini','Ajay I'),('Amirthavarshini','Ajay'),("Amirtha's","Ajay's"),('amirthavarshini693@gmail.com','ajay.i2007@gmail.com'),('amirthavarshini@example.com','ajay.i2007@example.com'),('amirthavarshini.2401015@srec.ac.in','ajay.2401007@srec.ac.in'),('71812401015','71812401007'),('7305687512','9025467813'),('+91 9025467813','+91 9025467813'),('9.03','8.74'),('varshini693@gmail.com','.i2007@gmail.com'),('amirtha','ajay'),('AMIRTHA','AJAY'),('Amirtha','Ajay')]
 MONO=('consolas','courier','cascadia','lucida console','monaco','menlo')
-dest=docx.Document('ref.docx'); dbody=dest.element.body
-for e in list(dbody):
-    if e.tag!=w('sectPr'): dbody.remove(e)
-sect=dbody.find(w('sectPr'))
+FRONT=os.environ.get('FRONT')
+if FRONT:
+    from docx.enum.section import WD_SECTION
+    dest=docx.Document(FRONT); dbody=dest.element.body
+    nsec=dest.add_section(WD_SECTION.NEW_PAGE); sect=nsec._sectPr
+    pn=OxmlElement('w:pgNumType'); pn.set(qn('w:start'),'4')
+else:
+    dest=docx.Document('ref.docx'); dbody=dest.element.body
+    for e in list(dbody):
+        if e.tag!=w('sectPr'): dbody.remove(e)
+    sect=dbody.find(w('sectPr'))
 # ---------- page setup ----------
 for ch in list(sect):
     if ch.tag in (w('pgMar'),): sect.remove(ch)
@@ -30,6 +37,9 @@ for side,val in (('top','thickThinSmallGap'),('left','thickThinSmallGap'),('bott
     for k,v in dict(val=val,sz=24,space=25,color='000000').items(): e.set(qn('w:'+k),str(v))
     pb.append(e)
 pm.addnext(pb)
+if FRONT:
+    for x in sect.findall(w('pgNumType')): sect.remove(x)
+    pb.addnext(pn)
 for dg in sect.findall(w('docGrid')): sect.remove(dg)
 # header / footer
 def runx(p,text,size=12,bold=False):
@@ -43,7 +53,7 @@ def fld(p,instr,size=12):
         elif typ is None:
             it=OxmlElement('w:instrText'); it.set(qn('xml:space'),'preserve'); it.text=' %s '%instr; r._r.append(it)
         else: r.text='1'
-sec=dest.sections[0]
+sec=dest.sections[-1] if FRONT else dest.sections[0]
 def setup(hf,items):
     for p in hf.paragraphs[1:]: p._p.getparent().remove(p._p)
     p=hf.paragraphs[0]
