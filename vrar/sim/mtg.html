@@ -1,0 +1,33 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>MTG</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#2b2b2b;font-family:"Segoe UI",Arial,sans-serif;font-size:12px;color:#d6d6d6}
+#a{width:1400px;height:800px;display:flex;flex-direction:column;background:#2d2f33;overflow:hidden}
+.t{height:30px;background:#202225;display:flex;align-items:center;padding:0 10px;gap:10px}.t i{margin-left:auto;font-style:normal;letter-spacing:24px}
+.lg{width:18px;height:18px;background:#2fb34a;border-radius:3px}
+.m{height:24px;background:#25272b;display:flex;gap:16px;align-items:center;padding:0 12px;border-bottom:1px solid #1a1b1d}
+.r{flex:1;display:flex;min-height:0}.l{width:330px;background:#2d2f33;border-right:1px solid #1a1b1d;padding:10px}
+.h{font-size:13px;color:#fff;margin:10px 0 6px;font-weight:600}.row{display:flex;justify-content:space-between;margin:4px 0;align-items:center}.v{background:#1f2124;border:1px solid #1a1b1d;border-radius:2px;padding:2px 8px;min-width:120px}
+.btn{background:#3c9a4e;color:#fff;border-radius:3px;padding:7px 12px;text-align:center;margin-top:10px}.btn.g{background:#44474d}
+.c{flex:1;position:relative;background:radial-gradient(circle at 50% 40%,#4a4d52,#26282b);overflow:hidden}
+.rg{width:310px;background:#2d2f33;border-left:1px solid #1a1b1d;padding:10px}
+.grid{position:absolute;left:0;right:0;bottom:0;top:58%;background:repeating-linear-gradient(0deg,rgba(255,255,255,.1) 0 1px,transparent 1px 36px),repeating-linear-gradient(90deg,rgba(255,255,255,.08) 0 1px,transparent 1px 60px)}
+.badge{position:absolute;background:#1d4e8a;color:#fff;padding:3px 8px;border-radius:3px}
+.st{height:24px;background:#25272b;border-top:1px solid #1a1b1d;display:flex;align-items:center;padding:0 12px;gap:20px;color:#9a9a9a}
+.pb{height:8px;background:#1f2124;border-radius:4px;margin:6px 0;overflow:hidden}.pb i{display:block;height:100%;width:100%;background:#3c9a4e}
+.cam{display:inline-block;width:62px;height:44px;border:1px solid #555;border-radius:3px;background:#3a3d42;margin:3px;font-size:10px;text-align:center;line-height:44px}.cam.s{border-color:#6bd07d;background:#2f4a35}
+</style></head><body><div id="a"></div><script src="common.js"></script><script>
+document.getElementById('a').innerHTML=`
+<div class="t"><span class="lg"></span>Model Target Generator &nbsp;-&nbsp; GearboxGB220.mtg<i>&#8212;&#10064;&#10005;</i></div>
+<div class="m"><span>File</span><span>Edit</span><span>View</span><span>Tools</span><span>Help</span></div>
+<div class="r"><div class="l"><div class="h">Model Target</div>
+<div class="row"><span>Name</span><span class="v">GearboxGB220</span></div><div class="row"><span>Model</span><span class="v">GB220_assembly.step</span></div><div class="row"><span>Units</span><span class="v">Millimeters</span></div><div class="row"><span>Size (L x W x H)</span><span class="v">620 x 410 x 380</span></div>
+<div class="h">Tracking</div><div class="row"><span>Motion hint</span><span class="v">Static</span></div><div class="row"><span>Target type</span><span class="v">Stationary</span></div><div class="row"><span>Tracking mode</span><span class="v">Default</span></div>
+<div class="h">Guide Views (4)</div><div><span class="cam s">Front</span><span class="cam">Left</span><span class="cam">Right</span><span class="cam">Top</span></div>
+<div class="h">Training</div><div class="row"><span>Status</span><span style="color:#6bd07d">&#10004; Trained</span></div><div class="pb"><i></i></div><div class="row"><span>Recognition range</span><span>360&deg; (Front)</span></div>
+<div class="btn">Generate Dataset</div><div class="btn g">Export for Unity</div></div>
+<div class="c"><div class="grid"></div><div style="position:absolute;left:240px;top:90px;width:760px;height:430px">${machineSVG({cover:true})}</div>
+<div class="badge" style="left:20px;top:16px">Guide View: Front &nbsp;|&nbsp; Perspective</div><div class="badge" style="right:20px;top:16px;background:#2f6e3c">Model Target quality: GOOD (82/100)</div></div>
+<div class="rg"><div class="h">Dataset report</div><div class="row"><span>Triangles</span><span>184,320</span></div><div class="row"><span>Parts</span><span>12</span></div><div class="row"><span>Symmetry</span><span>None</span></div><div class="row"><span>Texture</span><span>No (CAD only)</span></div><div class="row"><span>Dataset size</span><span>6.2 MB</span></div>
+<div class="h">Warnings</div><div style="color:#f0d060">&#9888; Highly reflective surfaces may reduce tracking quality</div><div style="color:#c8c8c8;margin-top:6px">&#9432; Use the Front guide view when starting the AR session</div>
+<div class="h">Log</div><div style="font-family:Consolas,monospace;font-size:11px;line-height:16px;color:#aeb4bb">Importing GB220_assembly.step ... done<br>Computing guide view Front ... done<br>Training Model Target ... 100%<br>Dataset GearboxGB220.dat created</div></div></div>
+<div class="st"><span>Ready</span><span style="margin-left:auto">Vuforia Engine 10.x</span></div>`;
+</script></body></html>

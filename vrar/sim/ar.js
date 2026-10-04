@@ -11,9 +11,7 @@ h += '<div class="reticle"></div>';
 const ring = (i, cls, label) => { const p = scr(i); return '<div class="ring ' + cls + '" style="left:' + p[0] + 'px;top:' + p[1] + 'px">' + label + '</div>'; };
 if (sc === 'novice') {
   h += ring(0, 'd', '&#10003;') + ring(1, 'd', '&#10003;') + ring(2, '', '3') + ring(3, '', '4');
-  h += '<div class="line" style="left:' + (scr(3)[0] + 56) + 'px;top:' + (scr(3)[1] + 28) + 'px;width:' + (790 - scr(3)[0] - 56) + 'px;transform:rotate(-62deg)"></div>';
   h += '<div class="card" style="left:790px;top:150px;width:400px"><h3>Step 4 of 9: Fix the bearing cover</h3><p><span class="tag">Torque 12 N&middot;m</span><span class="tag">M6 x 20</span><span class="tag o">4 bolts</span></p><p>1. Place the cover on the housing so the dowel pin enters the hole.</p><p>2. Tighten the two <b>highlighted bolts (3 and 4)</b> in a cross pattern.</p><p>3. Use the <b>blue torque wrench</b> and wait for the green tick.</p><p style="color:#ffd27f">&#9888; Wear gloves. Keep fingers away from the gear.</p><span class="btn">&#9654; Show animation</span><span class="btn">&#127908; Say "Next"</span><span class="btn">Help</span></div>';
-  h += '<div class="hand" style="left:300px;top:520px"></div>';
   h += '<div class="bar"><b>Step 4 / 9</b><div class="prog"><i style="width:44%"></i></div><span>Elapsed 01:12</span><span>Target 01:30</span><span class="tag g">On time</span></div>';
 } else if (sc === 'expert') {
   h += ring(0, 'd', '&#10003;') + ring(1, 'd', '&#10003;') + ring(2, '', '3') + ring(3, '', '4');

@@ -1,6 +1,6 @@
 import copy, json, os, math
 from docx import Document
-from docx.shared import Pt, Inches, Emu
+from docx.shared import Pt, Inches, Emu, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH as AL, WD_LINE_SPACING
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
@@ -35,7 +35,7 @@ sect_final.append(pb)
 sect_final.append(mk('cols', space=720))
 sect = sect_final
 students = [('ABINAYA S', '71812401002'), ('AISHWARYA U', '71812401006'), ('AJAY IYANRAJ', '71812401007'), ('AKHILESH RAJ P', '71812401009')]
-BLUE = '2F5496'
+BLUE = '000000'
 
 def para(text='', bold=False, size=13, align=AL.JUSTIFY, italic=False, space_after=6, keep=False, font=FONT, indent=None, before=0):
     p = d.add_paragraph(); p.alignment = align
@@ -91,7 +91,7 @@ para('INDEX', True, 14, C, space_after=10)
 cols = [('S.\nNo.', 0.6, False), ('Name & Roll No.', 2.5, False), ('Introduction\n(2)', 0.75, True), ('Working Steps\n(4)', 0.8, True), ('Presentation\n(2)', 0.8, True), ('Report\n(2)', 0.7, True), ('Total\n(10)', 0.75, False)]
 t = d.add_table(rows=1 + len(students), cols=7); t.autofit = False; t.alignment = WD_TABLE_ALIGNMENT.CENTER; tbl_borders(t)
 for i, (h, w, v) in enumerate(cols):
-    cell_text(t.rows[0].cells[i], h, True, 11.5, C, v, 'BDD7EE', w)
+    cell_text(t.rows[0].cells[i], h, True, 11.5, C, v, None, w)
 t.rows[0].height = Inches(1.35)
 from docx.enum.table import WD_ROW_HEIGHT_RULE
 t.rows[0].height_rule = WD_ROW_HEIGHT_RULE.AT_LEAST
@@ -111,7 +111,7 @@ sp.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY; sp.paragraph_fo
 para('CONTENTS', True, 14, C, space_after=14)
 rows = [TITLE, 'INTRODUCTION', 'DESCRIPTION', 'WORKING STEPS', 'DIAGRAMMATIC REPRESENTATION', 'CONCLUSION']
 t = d.add_table(rows=1 + len(rows), cols=3); t.autofit = False; t.alignment = WD_TABLE_ALIGNMENT.CENTER; tbl_borders(t)
-for i, (h, w) in enumerate((('S. No.', 0.8), ('TITLE', 4.6), ('PAGE\nNUMBER', 1.1))): cell_text(t.rows[0].cells[i], h, True, 12, C, False, 'BDD7EE', w)
+for i, (h, w) in enumerate((('S. No.', 0.8), ('TITLE', 4.6), ('PAGE\nNUMBER', 1.1))): cell_text(t.rows[0].cells[i], h, True, 12, C, False, None, w)
 for ri, name in enumerate(rows, 1):
     row = t.rows[ri]; row.height = Inches(0.42); row.height_rule = WD_ROW_HEIGHT_RULE.AT_LEAST
     cell_text(row.cells[0], '' if ri == 1 else f'{ri-1}.', False, 12, C, False, None, 0.8)
@@ -189,7 +189,7 @@ def set_borders(tbl, sz=6):
     b = OxmlElement('w:tblBorders')
     for e in ('top', 'left', 'bottom', 'right', 'insideH', 'insideV'):
         x = OxmlElement('w:' + e)
-        for k, v in (('val', 'single'), ('sz', str(sz)), ('space', '0'), ('color', '2F5496')): x.set(qn('w:' + k), v)
+        for k, v in (('val', 'single'), ('sz', str(sz)), ('space', '0'), ('color', '002060')): x.set(qn('w:' + k), v)
         b.append(x)
     anchor = next((c for c in tblPr if c.tag in [qn('w:' + n) for n in ('shd', 'tblLayout', 'tblCellMar', 'tblLook', 'tblCaption')]), None)
     if anchor is not None: anchor.addprevious(b)
@@ -202,13 +202,14 @@ def shade(cell, color):
 def table(headers, rows, widths, size=10.5):
     t = d.add_table(rows=1, cols=len(headers)); t.autofit = False
     set_borders(t)
-    def fill(cell, text, bold=False, w=None, center=False):
+    def fill(cell, text, bold=False, w=None, center=False, white=False):
         cell.width = Inches(w); p = cell.paragraphs[0]
         p.paragraph_format.space_after = Pt(2); p.paragraph_format.space_before = Pt(2)
         p.alignment = AL.CENTER if center else AL.LEFT
         r = p.add_run(text); r.bold = bold; r.font.size = Pt(size); r.font.name = FONT
+        if white: r.font.color.rgb = RGBColor(255, 255, 255)
     for i, h in enumerate(headers):
-        fill(t.rows[0].cells[i], h, True, widths[i], True); shade(t.rows[0].cells[i], 'BDD7EE')
+        fill(t.rows[0].cells[i], h, True, widths[i], True, True); shade(t.rows[0].cells[i], '6666A0')
     trPr = t.rows[0]._tr.get_or_add_trPr(); th = OxmlElement('w:tblHeader'); trPr.append(th)
     for row in rows:
         cells = t.add_row().cells

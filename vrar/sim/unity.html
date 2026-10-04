@@ -1,35 +1,57 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><title>Unity</title><style>
-*{box-sizing:border-box}html,body{margin:0;background:#383838;font-family:"Segoe UI",Arial,sans-serif;font-size:12px;color:#d2d2d2}
-#u{width:1400px;height:820px;position:relative;background:#383838;overflow:hidden;display:flex;flex-direction:column}
-.t{height:22px;background:#191919;display:flex;align-items:center;padding:0 8px;font-size:12px;color:#ccc}.t i{margin-left:auto;font-style:normal;letter-spacing:22px}
-.m{height:22px;background:#282828;display:flex;gap:16px;align-items:center;padding:0 10px}
-.tb{height:34px;background:#3c3c3c;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:6px;padding:0 10px}
-.tb .b{width:26px;height:22px;background:#585858;border-radius:3px;text-align:center;line-height:22px}.tb .p{margin:0 auto;display:flex;gap:4px}.tb .b.on{background:#2c5d87}
-.row{flex:1;display:flex;gap:2px;padding:2px;min-height:0}.pn{background:#282828;border:1px solid #1a1a1a;display:flex;flex-direction:column;min-width:0}
-.ph{height:22px;background:#3c3c3c;padding:3px 8px;border-bottom:1px solid #1a1a1a;display:flex;gap:8px}.ph span.a{border-bottom:2px solid #5aa0e0;color:#fff}
-.pb{padding:6px 8px;flex:1;overflow:hidden;line-height:19px}
-.sel{background:#2c5d87;color:#fff;margin:0 -8px;padding:0 8px}
-.cmp{background:#3b3b3b;border:1px solid #1f1f1f;margin:6px 0}.cmp h5{margin:0;padding:3px 8px;background:#444;font-size:12px;font-weight:600;color:#eee}.cmp div{padding:3px 8px}
-.f{display:flex;justify-content:space-between;gap:6px}.v{background:#2a2a2a;border:1px solid #1a1a1a;padding:0 6px;min-width:70px}
-.con{font-family:Consolas,monospace;font-size:11.5px}.con div{padding:1px 6px;border-bottom:1px solid #2f2f2f}.w{color:#e8c64a}.e{color:#ff6b6b}
-.sv{flex:1;position:relative;background:linear-gradient(#5b7a99,#3d4d5e 55%,#34383d 55%,#2b2e32);overflow:hidden}
-.gz{position:absolute;left:0;right:0;bottom:0;top:55%;background:repeating-linear-gradient(0deg,rgba(255,255,255,.07) 0 1px,transparent 1px 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 40px)}
-.lbl{position:absolute;background:rgba(10,30,52,.85);border:1px solid #4fc3ff;color:#fff;border-radius:6px;padding:4px 8px;font-size:12px}
+*{box-sizing:border-box}html,body{margin:0;background:#383838;font-family:"Segoe UI",Arial,sans-serif;font-size:12px;color:#c8c8c8}
+#u{width:1500px;height:880px;position:relative;background:#282828;overflow:hidden;display:flex;flex-direction:column}
+.t{height:23px;background:#1c1c1c;display:flex;align-items:center;padding:0 8px;font-size:12px;color:#bdbdbd}.t i{margin-left:auto;font-style:normal;letter-spacing:24px}
+.m{height:22px;background:#2a2a2a;display:flex;gap:15px;align-items:center;padding:0 10px;border-bottom:1px solid #1a1a1a}
+.tb{height:36px;background:#383838;border-bottom:1px solid #1a1a1a;display:flex;align-items:center;gap:5px;padding:0 8px}
+.b{min-width:28px;height:24px;background:#4a4a4a;border:1px solid #2a2a2a;border-radius:3px;text-align:center;line-height:22px;padding:0 6px}.b.on{background:#4b6d92;border-color:#35526f}
+.sp{flex:1}.pl{display:flex;gap:2px}
+.row{flex:1;display:flex;min-height:0;gap:3px;padding:3px;background:#1a1a1a}
+.pn{background:#383838;display:flex;flex-direction:column;min-width:0;border:1px solid #232323}
+.tabs{height:23px;background:#2c2c2c;display:flex;border-bottom:1px solid #1a1a1a}.tabs span{padding:4px 12px;color:#9a9a9a;border-right:1px solid #1d1d1d}.tabs span.a{background:#383838;color:#e6e6e6;border-top:2px solid #5a89c4;padding-top:2px}
+.pb{padding:4px 6px;flex:1;overflow:hidden;line-height:19px}
+.tr div{white-space:pre;padding-left:2px}.tr div.s{background:#2c5d87;color:#fff}
+.cmp{background:#3f3f3f;border:1px solid #232323;margin:4px 0}.cmp h5{margin:0;padding:3px 8px;background:#474747;font-size:12px;font-weight:500;color:#e8e8e8;border-bottom:1px solid #2a2a2a}.cmp .c{padding:3px 8px 5px}
+.f{display:flex;align-items:center;margin:2px 0}.f label{width:140px;color:#c0c0c0}.v{flex:1;background:#2a2a2a;border:1px solid #1d1d1d;padding:1px 6px;border-radius:2px;color:#e6e6e6}
+.sv{flex:1;position:relative;overflow:hidden;background:linear-gradient(#6f8aa8 0,#4a6280 45%,#3f4348 45%,#33363a 100%)}
+.grid{position:absolute;left:-10%;right:-10%;top:45%;bottom:-30%;transform:perspective(500px) rotateX(58deg);transform-origin:top;background:repeating-linear-gradient(0deg,rgba(255,255,255,.17) 0 1px,transparent 1px 48px),repeating-linear-gradient(90deg,rgba(255,255,255,.17) 0 1px,transparent 1px 48px)}
+.sb{position:absolute;top:6px;left:6px;right:6px;height:24px;display:flex;gap:4px}.sb span{background:#3a3a3acc;border:1px solid #1d1d1d;padding:2px 8px;border-radius:2px}
+.gz{position:absolute;right:16px;top:50px;width:70px;height:70px}
+.gz i{position:absolute;font-style:normal;font-weight:700;font-size:11px;width:20px;height:20px;border-radius:50%;text-align:center;line-height:20px;color:#111}
+.con{font-family:Consolas,monospace;font-size:11.5px}.con div{padding:2px 8px;border-bottom:1px solid #2f2f2f;display:flex;gap:6px}.con .w{color:#f0d060}.con .e{color:#ff7b7b}.con .i{color:#c8c8c8}
+.lbl{position:absolute;color:#fff;background:rgba(0,0,0,.6);padding:1px 6px;font-size:11px;border-radius:2px}
+.fol{display:flex;flex-wrap:wrap;gap:14px;padding:8px}.fol div{width:70px;text-align:center;font-size:11px}.fol i{display:block;width:54px;height:44px;margin:0 auto 3px;background:#9aa4ae;border-radius:3px}
+.fol i.f{background:#c9a24a}.fol i.s{background:#7f8fa2}.fol i.p{background:#5b8bd0}
 </style></head><body><div id="u"></div><script src="common.js"></script><script>
-const R=(a,b)=>a.map((x,i)=>`<div class="${i===b?'sel':''}">${x}</div>`).join('');
+const T=(a,s)=>a.map((x,i)=>`<div class="${i===s?'s':''}">${x}</div>`).join('');
 document.getElementById('u').innerHTML=`
-<div class="t">&#9670; AdaptiveAR_Assembly - SampleScene - Android - Unity 2022.3.20f1 &lt;DX11&gt;<i>&#8212;&#10064;&#10005;</i></div>
-<div class="m"><span>File</span><span>Edit</span><span>Assets</span><span>GameObject</span><span>Component</span><span>Vuforia Engine</span><span>Window</span><span>Help</span></div>
-<div class="tb"><span class="b">&#9995;</span><span class="b on">&#10021;</span><span class="b">&#8635;</span><span class="b">&#9645;</span><div class="p"><span class="b">&#9654;</span><span class="b">&#10074;&#10074;</span><span class="b">&#9197;</span></div><span class="b">Layers &#9662;</span><span class="b">Layout &#9662;</span></div>
+<div class="t">&#9670; &nbsp;AdaptiveAR_Assembly - Assembly_Station04 - Android - Unity 2022.3.20f1 Personal &lt;DX11&gt;<i>&#8212;&#10064;&#10005;</i></div>
+<div class="m"><span>File</span><span>Edit</span><span>Assets</span><span>GameObject</span><span>Component</span><span>Vuforia Engine</span><span>Services</span><span>Window</span><span>Help</span></div>
+<div class="tb"><span class="b">&#9995;</span><span class="b on">&#10021;</span><span class="b">&#8635;</span><span class="b">&#9645;</span><span class="b">&#9707;</span><span class="b">Pivot &#9662;</span><span class="b">Global &#9662;</span><span class="sp"></span><div class="pl"><span class="b">&#9654;</span><span class="b">&#10074;&#10074;</span><span class="b">&#9197;</span></div><span class="sp"></span><span class="b">&#9729;</span><span class="b">Account &#9662;</span><span class="b">Layers &#9662;</span><span class="b">Layout &#9662;</span></div>
 <div class="row">
- <div class="pn" style="width:270px"><div class="ph"><span class="a">Hierarchy</span></div><div class="pb">${R(['&#9660; SampleScene','&nbsp;&nbsp;&#9654; Main Camera (AR Camera)','&nbsp;&nbsp;&#9660; ModelTarget_GearboxGB220','&nbsp;&nbsp;&nbsp;&nbsp;&#9654; Gearbox_Model','&nbsp;&nbsp;&nbsp;&nbsp;&#9660; InstructionLayer','&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;StepCard_Canvas','&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BoltHighlights (x4)','&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GhostPart_Cover','&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ArrowGuide','&nbsp;&nbsp;StepManager','&nbsp;&nbsp;AdaptationEngine','&nbsp;&nbsp;OperatorProfileService','&nbsp;&nbsp;VisionChecker','&nbsp;&nbsp;TorqueToolBridge (MQTT)','&nbsp;&nbsp;VoiceCommands','&nbsp;&nbsp;EventSystem'],5)}</div></div>
- <div class="pn" style="flex:1"><div class="ph"><span class="a">Scene</span><span>Game</span><span>Simulator</span></div><div class="sv"><div class="gz"></div><div style="position:absolute;left:90px;top:40px;width:560px;height:330px">${machineSVG({cover:true,done:[0,1]})}</div><div class="lbl" style="left:420px;top:60px">StepCard_Canvas (World Space)</div><div class="lbl" style="left:260px;top:310px">BoltHighlights</div>
-  <div style="position:absolute;right:12px;top:10px;background:#3c3c3c;border:1px solid #1a1a1a;padding:3px 8px;border-radius:3px">Shaded &#9662; &nbsp; 2D &nbsp; &#9728; &nbsp; Gizmos &#9662;</div></div>
-  <div class="ph" style="border-top:1px solid #1a1a1a"><span class="a">Console</span><span>Project</span></div><div class="pb con" style="height:140px;flex:none"><div>[10:41:02] ModelTarget tracking: GearboxGB220 &mdash; status TRACKED (quality good)</div><div>[10:41:05] StepManager: loaded work order WO-5521, 9 steps</div><div>[10:41:05] OperatorProfileService: S. Meena &rarr; skill level NOVICE (score 0.31)</div><div>[10:41:49] AdaptationEngine: step 3 time 21 s (target 15 s) &rarr; keep detail level NOVICE</div><div class="w">[10:42:11] VisionChecker: bolt 3 length mismatch (M8 detected, M6 expected)</div><div class="e">[10:42:11] TorqueToolBridge: tool TW-12 LOCKED until check passes</div></div></div>
- <div class="pn" style="width:340px"><div class="ph"><span class="a">Inspector</span></div><div class="pb"><b style="color:#fff;font-size:13px">&#9745; AdaptationEngine</b>
-  <div class="cmp"><h5>Transform</h5><div class="f">Position<span class="v">0, 0, 0</span></div></div>
-  <div class="cmp"><h5>Adaptation Engine (Script)</h5><div class="f">Profile Service<span class="v">OperatorProfileService</span></div><div class="f">Novice threshold<span class="v">0.40</span></div><div class="f">Expert threshold<span class="v">0.75</span></div><div class="f">Time tolerance %<span class="v">20</span></div><div class="f">Errors to step down<span class="v">2</span></div><div class="f">Steps to step up<span class="v">5</span></div><div class="f">Show animation (novice)<span class="v">&#9745;</span></div></div>
-  <div class="cmp"><h5>Model Target Behaviour (Script)</h5><div class="f">Database<span class="v">GearboxGB220_MT</span></div><div class="f">Guide view<span class="v">Front</span></div><div class="f">Tracking mode<span class="v">Default</span></div></div>
-  <div class="cmp"><h5>MQTT Client (Script)</h5><div class="f">Broker<span class="v">plant-broker:1883</span></div><div class="f">Topic<span class="v">line2/st04/torque</span></div></div></div></div>
+ <div style="width:290px;display:flex;flex-direction:column;gap:3px">
+  <div class="pn" style="flex:1"><div class="tabs"><span class="a">&#9776; Hierarchy</span></div><div class="pb tr">${T(['&#9660; Assembly_Station04*','   &#9654; AR Camera','   &#9660; ModelTarget_GearboxGB220','       &#9654; Gearbox_Model','       &#9660; InstructionLayer','            StepCard_Canvas','            BoltHighlights','            GhostPart_Cover','            ArrowGuide','   StepManager','   AdaptationEngine','   OperatorProfileService','   VisionChecker','   TorqueToolBridge','   VoiceCommands','   EventSystem'],5)}</div></div>
+  <div class="pn" style="height:250px"><div class="tabs"><span class="a">&#128193; Project</span><span>Console</span></div><div class="pb"><div style="color:#9a9a9a">Assets &rsaquo; Scripts</div><div class="fol"><div><i class="s"></i>StepManager</div><div><i class="s"></i>Adaptation Engine</div><div><i class="s"></i>VisionChecker</div><div><i class="s"></i>MqttClient</div><div><i class="f"></i>Models</div><div><i class="p"></i>StepCard</div></div></div></div>
+ </div>
+ <div class="pn" style="flex:1"><div class="tabs"><span class="a">&#9632; Scene</span><span>&#9654; Game</span><span>Simulator</span></div>
+  <div class="sv"><div class="grid"></div>
+   <div class="sb"><span>Shaded &#9662;</span><span>2D</span><span>&#9728;</span><span>&#9835;</span><span>&#9873;</span><span style="margin-left:auto">Gizmos &#9662;</span></div>
+   <div style="position:absolute;left:150px;top:60px;width:760px;height:430px">${machineSVG({cover:true,done:[0,1]})}</div>
+   <div style="position:absolute;left:250px;top:120px;width:640px;height:400px;border:2px solid #7fd0ff;opacity:.85"></div>
+   <div class="lbl" style="left:252px;top:98px">ModelTarget_GearboxGB220</div>
+   <div class="gz"><i style="left:25px;top:0;background:#8ad04a">Y</i><i style="left:50px;top:25px;background:#e0524a">X</i><i style="left:0;top:48px;background:#4a8be0">Z</i><div style="position:absolute;left:30px;top:30px;width:10px;height:10px;background:#aaa;border-radius:50%"></div></div>
+  </div>
+  <div class="tabs" style="border-top:1px solid #1a1a1a"><span class="a">&#9888; Console</span><span>Clear</span><span>Collapse</span><span style="margin-left:auto">&#9432; 5 &nbsp;&#9888; 1 &nbsp;&#9940; 1</span></div>
+  <div class="pb con" style="height:150px;flex:none"><div class="i">[10:41:02] ModelTarget tracking: GearboxGB220 status TRACKED (quality GOOD)</div><div class="i">[10:41:05] StepManager: loaded work order WO-5521, 9 steps</div><div class="i">[10:41:05] OperatorProfileService: S. Meena -> skill level NOVICE (score 0.31)</div><div class="i">[10:41:49] AdaptationEngine: step 3 time 21 s (target 15 s) keep detail level NOVICE</div><div class="w">[10:42:11] VisionChecker: bolt 3 length mismatch (M8 detected, M6 expected)</div><div class="e">[10:42:11] TorqueToolBridge: tool TW-12 LOCKED until check passes</div></div>
+ </div>
+ <div class="pn" style="width:370px"><div class="tabs"><span class="a">&#9432; Inspector</span></div><div class="pb">
+  <div style="font-size:13px;color:#fff;margin-bottom:4px">&#9745; &nbsp;<b>StepCard_Canvas</b></div>
+  <div class="cmp"><h5>&#9660; Rect Transform</h5><div class="c"><div class="f"><label>Pos X / Y / Z</label><span class="v">0.18</span><span class="v">0.24</span><span class="v">0</span></div><div class="f"><label>Width / Height</label><span class="v">400</span><span class="v">260</span></div></div></div>
+  <div class="cmp"><h5>&#9660; Canvas</h5><div class="c"><div class="f"><label>Render Mode</label><span class="v">World Space</span></div><div class="f"><label>Event Camera</label><span class="v">AR Camera</span></div></div></div>
+  <div class="cmp"><h5>&#9660; Step Card (Script)</h5><div class="c"><div class="f"><label>Title Text</label><span class="v">TitleLabel</span></div><div class="f"><label>Detail Level</label><span class="v">Novice</span></div><div class="f"><label>Show Animation</label><span class="v" style="flex:none">&#9745;</span></div><div class="f"><label>Torque Target</label><span class="v">12</span></div></div></div>
+  <div class="cmp"><h5>&#9660; Adaptation Engine (Script)</h5><div class="c"><div class="f"><label>Novice Threshold</label><span class="v">0.4</span></div><div class="f"><label>Expert Threshold</label><span class="v">0.75</span></div><div class="f"><label>Time Tolerance %</label><span class="v">20</span></div><div class="f"><label>Errors To Step Down</label><span class="v">2</span></div></div></div>
+  <div class="cmp"><h5>&#9660; Model Target Behaviour (Script)</h5><div class="c"><div class="f"><label>Database</label><span class="v">GearboxGB220_MT</span></div><div class="f"><label>Guide View</label><span class="v">Front</span></div></div></div>
+  <div style="margin-top:8px;text-align:center"><span class="b" style="display:inline-block;width:80%">Add Component</span></div>
+ </div></div>
 </div>`;
 </script></body></html>

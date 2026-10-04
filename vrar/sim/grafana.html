@@ -1,0 +1,43 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>Grafana</title><style>
+*{box-sizing:border-box}html,body{margin:0;background:#111217;font-family:Inter,"Segoe UI",Roboto,Arial,sans-serif;font-size:12px;color:#ccccdc}
+#w{width:1500px;height:860px;position:relative;overflow:hidden;background:#111217;border:1px solid #333}
+.tabs{height:38px;background:#dee1e6;display:flex;align-items:flex-end;padding:0 8px;gap:2px;color:#202124}
+.tab{width:240px;height:30px;background:#f1f3f4;border-radius:9px 9px 0 0;padding:7px 12px;font-size:12px;display:flex;gap:8px;align-items:center}.tab.o{background:#dee1e6;width:190px;color:#555}.fav{width:14px;height:14px;border-radius:50%;background:#f46800}
+.wc{margin-left:auto;display:flex;align-self:flex-start}.wc i{width:44px;text-align:center;font-style:normal;line-height:30px}
+.nav{height:38px;background:#f1f3f4;display:flex;align-items:center;gap:10px;padding:0 10px;border-bottom:1px solid #d0d3d7;color:#555}.url{flex:1;background:#fff;border-radius:16px;height:28px;padding:5px 14px;font-size:12.5px;color:#3c4043}
+.top{height:44px;background:#181b1f;border-bottom:1px solid #2c3235;display:flex;align-items:center;padding:0 16px;gap:12px}.top .lg{width:22px;height:22px;border-radius:50%;background:conic-gradient(#f46800,#fbc02d,#f46800)}
+.crumb{color:#ccccdc}.srch{margin-left:auto;background:#111217;border:1px solid #2c3235;border-radius:3px;padding:4px 40px 4px 8px;color:#8e8e9d}
+.bar{height:46px;display:flex;align-items:center;padding:0 16px;gap:10px;background:#111217}.bar h1{font-size:19px;margin:0;font-weight:500;color:#fff}
+.btn{border:1px solid #34363e;background:#22252b;border-radius:3px;padding:5px 10px;color:#ccccdc}.btn.p{background:#3274d9;border-color:#3274d9;color:#fff}
+.vars{display:flex;gap:10px;padding:0 16px 10px;align-items:center}.v{background:#22252b;border:1px solid #34363e;border-radius:3px;display:flex}.v b{padding:4px 8px;border-right:1px solid #34363e;font-weight:500;color:#9fa7b3}.v span{padding:4px 10px}
+.g{display:grid;grid-template-columns:repeat(24,1fr);gap:8px;padding:0 16px}
+.p{background:#181b1f;border:1px solid #2c3235;border-radius:2px;display:flex;flex-direction:column;overflow:hidden}.p h4{margin:0;padding:6px 10px;font-weight:500;font-size:13px;color:#ccccdc;display:flex}.p h4 i{margin-left:auto;color:#6e7380;font-style:normal}
+.st{padding:10px 12px;text-align:center;flex:1;display:flex;flex-direction:column;justify-content:center}.st b{font-size:38px;font-weight:500}.st small{color:#8e8e9d}
+.sp{height:34px;margin-top:4px}
+table{width:100%;border-collapse:collapse;font-size:12px}th{background:#22252b;text-align:left;padding:6px 10px;font-weight:500;color:#ccccdc}td{padding:6px 10px;border-bottom:1px solid #22252b}
+.pill{display:inline-block;padding:1px 8px;border-radius:2px;color:#111}.gr{background:#73bf69}.re{background:#f2495c}.ye{background:#ff9830}
+</style></head><body><div id="w"></div><script>
+const line=(a,mn,mx,W,H,col,fill)=>{const dx=W/(a.length-1);const pts=a.map((v,i)=>[i*dx,H-(v-mn)/(mx-mn)*H]);const d=pts.map((p,i)=>(i?'L':'M')+p[0].toFixed(1)+' '+p[1].toFixed(1)).join(' ');return `<path d="${d} L${W} ${H} L0 ${H}Z" fill="${fill}"/><path d="${d}" fill="none" stroke="${col}" stroke-width="2"/>`};
+const A=[96,94,95,92,90,91,88,86,87,84,82,83,80,79,78,77,76,74,73,72,71,70,70,69,68,68,67,66,66,65];
+const B=[18,16,17,15,14,15,13,12,12,11,10,9,9,8,8,7,7,6,6,5,5,5,4,4,4,4,4,4,4,4];
+const grid=(W,H,n)=>Array.from({length:n},(_,i)=>`<line x1="0" x2="${W}" y1="${H/n*i}" y2="${H/n*i}" stroke="#2c3235"/>`).join('');
+document.getElementById('w').innerHTML=`
+<div class="tabs"><div class="tab"><i class="fav"></i>Line 2 Assembly / Adaptive AR - Dashboards - Grafana<span style="margin-left:auto">&#10005;</span></div><div class="tab o">New Tab</div><span class="wc"><i>&#8212;</i><i>&#10064;</i><i>&#10005;</i></span></div>
+<div class="nav"><b>&#8592;</b><b>&#8594;</b><b>&#8635;</b><div class="url">&#128274; localhost:3000/d/line2-ar/adaptive-ar-assembly-line-2?orgId=1&amp;refresh=10s</div><b>&#9734;</b><b>&#8942;</b></div>
+<div class="top"><span class="lg"></span><span class="crumb">Home &rsaquo; Dashboards &rsaquo; Plant &rsaquo; <b style="color:#fff;font-weight:500">Adaptive AR - Line 2</b></span><span class="srch">&#128269; Search or jump to...</span><span class="btn">&#10010; Add</span></div>
+<div class="bar"><h1>Adaptive AR - Line 2 Assembly</h1><span style="color:#8e8e9d">&#9733;</span><span style="margin-left:auto" class="btn">&#8634; Last 30 days &#9662;</span><span class="btn">&#8635; 10s</span><span class="btn p">Save dashboard</span></div>
+<div class="vars"><div class="v"><b>station</b><span>All</span></div><div class="v"><b>operator</b><span>All</span></div><div class="v"><b>skill_level</b><span>All</span></div></div>
+<div class="g">
+ <div class="p" style="grid-column:span 6;height:120px"><h4>Average cycle time</h4><div class="st"><b style="color:#73bf69">65.8 s</b><small>paper baseline 96 s</small></div></div>
+ <div class="p" style="grid-column:span 6;height:120px"><h4>Errors per 1000 units</h4><div class="st"><b style="color:#73bf69">4.1</b><small>-69% vs baseline 13.1</small></div></div>
+ <div class="p" style="grid-column:span 6;height:120px"><h4>First pass yield</h4><div class="st"><b style="color:#5794f2">98.4%</b><small>target 98%</small></div></div>
+ <div class="p" style="grid-column:span 6;height:120px"><h4>Operators at expert level</h4><div class="st"><b style="color:#ff9830">7 / 12</b><small>3 skilled, 2 novice</small></div></div>
+ <div class="p" style="grid-column:span 14;height:300px"><h4>Cycle time per unit (s)<i>&#8942;</i></h4><svg viewBox="0 0 760 250" style="width:100%;flex:1"><g transform="translate(40,10)">${grid(710,215,4)}${line(A,60,100,710,215,'#73bf69','rgba(115,191,105,.15)')}<line x1="0" x2="710" y1="${215-(96-60)/40*215}" y2="${215-(96-60)/40*215}" stroke="#f2495c" stroke-dasharray="6 4"/></g><g fill="#8e8e9d" font-size="10">${[100,90,80,70,60].map((v,i)=>`<text x="8" y="${18+i*53}">${v}</text>`).join('')}${['Oct 1','Oct 8','Oct 15','Oct 22','Oct 29'].map((v,i)=>`<text x="${60+i*165}" y="246">${v}</text>`).join('')}</g></svg><div style="padding:0 14px 8px;color:#8e8e9d;font-size:11px"><span style="color:#73bf69">&#9632;</span> avg cycle time &nbsp; <span style="color:#f2495c">&#9644;</span> paper baseline</div></div>
+ <div class="p" style="grid-column:span 10;height:300px"><h4>Errors by step (30 days)<i>&#8942;</i></h4><svg viewBox="0 0 520 250" style="width:100%;flex:1"><g transform="translate(34,10)">${grid(480,215,4)}${[['S1',3],['S2',4],['S3',6],['S4',18],['S5',7],['S6',5],['S7',4],['S8',2],['S9',1]].map((d,i)=>`<rect x="${12+i*52}" y="${215-d[1]*10.5}" width="34" height="${d[1]*10.5}" fill="${d[0]==='S4'?'#f2495c':'#5794f2'}"/><text x="${22+i*52}" y="${210+14}" font-size="10" fill="#8e8e9d">${d[0]}</text>`).join('')}</g></svg></div>
+ <div class="p" style="grid-column:span 24;height:190px"><h4>Station status (live)<i>&#8942;</i></h4><table><tr><th>Station</th><th>Operator</th><th>Skill level</th><th>Step</th><th>Cycle (s)</th><th>Errors today</th><th>Status</th></tr>
+ <tr><td>ST-03 Housing</td><td>V. Anand</td><td>Expert</td><td>6 / 8</td><td>58</td><td>0</td><td><span class="pill gr">RUNNING</span></td></tr>
+ <tr><td>ST-04 Gearbox GB-220</td><td>S. Meena</td><td>Novice</td><td>3 / 9</td><td>83</td><td>1</td><td><span class="pill re">QUALITY HOLD</span></td></tr>
+ <tr><td>ST-05 Final test</td><td>R. Kumar</td><td>Expert</td><td>2 / 5</td><td>64</td><td>0</td><td><span class="pill gr">RUNNING</span></td></tr>
+ <tr><td>ST-06 Packing</td><td>A. Nisha</td><td>Skilled</td><td>-</td><td>71</td><td>0</td><td><span class="pill ye">WAITING</span></td></tr></table></div>
+</div>`;
+</script></body></html>

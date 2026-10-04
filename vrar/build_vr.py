@@ -1,6 +1,6 @@
 import copy, json, os, math
 from docx import Document
-from docx.shared import Pt, Inches, Emu
+from docx.shared import Pt, Inches, Emu, RGBColor
 from docx.enum.text import WD_ALIGN_PARAGRAPH as AL, WD_LINE_SPACING
 from docx.enum.table import WD_TABLE_ALIGNMENT
 from docx.oxml.ns import qn
@@ -35,7 +35,7 @@ sect_final.append(pb)
 sect_final.append(mk('cols', space=720))
 sect = sect_final
 students = [('ABINAYA S', '71812401002'), ('AISHWARYA U', '71812401006'), ('AJAY IYANRAJ', '71812401007'), ('AKHILESH RAJ P', '71812401009')]
-BLUE = '2F5496'
+BLUE = '000000'
 
 def para(text='', bold=False, size=13, align=AL.JUSTIFY, italic=False, space_after=6, keep=False, font=FONT, indent=None, before=0):
     p = d.add_paragraph(); p.alignment = align
@@ -91,7 +91,7 @@ para('INDEX', True, 14, C, space_after=10)
 cols = [('S.\nNo.', 0.6, False), ('Name & Roll No.', 2.5, False), ('Introduction\n(2)', 0.75, True), ('Working Steps\n(4)', 0.8, True), ('Presentation\n(2)', 0.8, True), ('Report\n(2)', 0.7, True), ('Total\n(10)', 0.75, False)]
 t = d.add_table(rows=1 + len(students), cols=7); t.autofit = False; t.alignment = WD_TABLE_ALIGNMENT.CENTER; tbl_borders(t)
 for i, (h, w, v) in enumerate(cols):
-    cell_text(t.rows[0].cells[i], h, True, 11.5, C, v, 'BDD7EE', w)
+    cell_text(t.rows[0].cells[i], h, True, 11.5, C, v, None, w)
 t.rows[0].height = Inches(1.35)
 from docx.enum.table import WD_ROW_HEIGHT_RULE
 t.rows[0].height_rule = WD_ROW_HEIGHT_RULE.AT_LEAST
@@ -111,7 +111,7 @@ sp.paragraph_format.line_spacing_rule = WD_LINE_SPACING.EXACTLY; sp.paragraph_fo
 para('CONTENTS', True, 14, C, space_after=14)
 rows = [TITLE, 'INTRODUCTION', 'DESCRIPTION', 'WORKING STEPS', 'DIAGRAMMATIC REPRESENTATION', 'CONCLUSION']
 t = d.add_table(rows=1 + len(rows), cols=3); t.autofit = False; t.alignment = WD_TABLE_ALIGNMENT.CENTER; tbl_borders(t)
-for i, (h, w) in enumerate((('S. No.', 0.8), ('TITLE', 4.6), ('PAGE\nNUMBER', 1.1))): cell_text(t.rows[0].cells[i], h, True, 12, C, False, 'BDD7EE', w)
+for i, (h, w) in enumerate((('S. No.', 0.8), ('TITLE', 4.6), ('PAGE\nNUMBER', 1.1))): cell_text(t.rows[0].cells[i], h, True, 12, C, False, None, w)
 for ri, name in enumerate(rows, 1):
     row = t.rows[ri]; row.height = Inches(0.42); row.height_rule = WD_ROW_HEIGHT_RULE.AT_LEAST
     cell_text(row.cells[0], '' if ri == 1 else f'{ri-1}.', False, 12, C, False, None, 0.8)
@@ -189,7 +189,7 @@ def set_borders(tbl, sz=6):
     b = OxmlElement('w:tblBorders')
     for e in ('top', 'left', 'bottom', 'right', 'insideH', 'insideV'):
         x = OxmlElement('w:' + e)
-        for k, v in (('val', 'single'), ('sz', str(sz)), ('space', '0'), ('color', '2F5496')): x.set(qn('w:' + k), v)
+        for k, v in (('val', 'single'), ('sz', str(sz)), ('space', '0'), ('color', '002060')): x.set(qn('w:' + k), v)
         b.append(x)
     anchor = next((c for c in tblPr if c.tag in [qn('w:' + n) for n in ('shd', 'tblLayout', 'tblCellMar', 'tblLook', 'tblCaption')]), None)
     if anchor is not None: anchor.addprevious(b)
@@ -202,13 +202,14 @@ def shade(cell, color):
 def table(headers, rows, widths, size=10.5):
     t = d.add_table(rows=1, cols=len(headers)); t.autofit = False
     set_borders(t)
-    def fill(cell, text, bold=False, w=None, center=False):
+    def fill(cell, text, bold=False, w=None, center=False, white=False):
         cell.width = Inches(w); p = cell.paragraphs[0]
         p.paragraph_format.space_after = Pt(2); p.paragraph_format.space_before = Pt(2)
         p.alignment = AL.CENTER if center else AL.LEFT
         r = p.add_run(text); r.bold = bold; r.font.size = Pt(size); r.font.name = FONT
+        if white: r.font.color.rgb = RGBColor(255, 255, 255)
     for i, h in enumerate(headers):
-        fill(t.rows[0].cells[i], h, True, widths[i], True); shade(t.rows[0].cells[i], 'BDD7EE')
+        fill(t.rows[0].cells[i], h, True, widths[i], True, True); shade(t.rows[0].cells[i], '6666A0')
     trPr = t.rows[0]._tr.get_or_add_trPr(); th = OxmlElement('w:tblHeader'); trPr.append(th)
     for row in rows:
         cells = t.add_row().cells
@@ -271,7 +272,7 @@ table(['Component / Tool', 'Specification', 'Purpose'], [
     ['Unity + AR Foundation / Vuforia', 'Unity 2022 LTS, Model Targets from CAD', 'Tracking and 3D overlay'],
     ['Vision checker', 'Lightweight CNN (part, bolt, orientation)', 'Detect wrong or missing parts'],
     ['IoT torque tool', 'MQTT messages over the plant Wi-Fi', 'Confirm tightening torque'],
-    ['Web studio (HTML5 / JavaScript)', 'Browser based authoring and dashboard', 'Create instructions and view data'],
+    ['Grafana dashboard (browser)', 'Time-series database + web dashboard', 'View cycle time, errors and station status'],
     ['MES / PLC', 'Work order and station signals', 'Link the system with the line']],
     [2.1, 2.7, 2.2], size=12)
 sub('Key idea in one line')
@@ -308,7 +309,7 @@ para('A new operator needs animations, text and warnings for every step. An expe
 sub('1.5 Scope of the project')
 for t_ in ['One gearbox assembly station of nine steps with four fastened bolts on the bearing cover.',
            'Three skill levels (novice, skilled, expert) and automatic switching between them.',
-           'Authoring in a web studio, display on an AR tablet / headset, supervisor dashboard.',
+           'Authoring in the Unity editor, display on an AR tablet / headset, supervisor dashboard.',
            'The screenshots in this report are simulated screens built to show the design; no factory trial was run.']: bl(t_)
 sub('1.6 Benefits expected')
 table(['Benefit', 'How it is achieved'], [
@@ -344,7 +345,7 @@ table(['Solution', 'Main idea', 'Gap addressed here'], [
 heading(2, 'Description', page_break=True)
 sub('2.1 System overview')
 para('The system has three parts: the shop-floor devices (AR device, torque tool, scanner, PLC), the adaptive work instruction '
-     'server, and the web studio used by engineers and supervisors. The server holds the instructions, the operator profiles and '
+     'server, and the Unity editor and web dashboard used by engineers and supervisors. The server holds the instructions, the operator profiles and '
      'the rules. The AR device only has to track the part, render the overlay and send camera frames and sensor events.')
 table(['Module', 'Function'], [
     ['Tracking service', 'Recognises the gearbox from its CAD model (Model Target) and keeps the overlay fixed to it; QR marker as fallback'],
@@ -405,7 +406,7 @@ sub('3.1 Steps followed')
 for i, (lead, txt) in enumerate([
     ('Study the assembly: ', 'list the nine steps of the gearbox GB-220 station, the parts, tools, torque values and risks.'),
     ('Prepare the 3D data: ', 'import the CAD model, reduce it for mobile use and create the Model Target used for tracking.'),
-    ('Author the instructions: ', 'in the web studio write each step with title, tool, torque, completion check and three detail levels.'),
+    ('Author the instructions: ', 'in the Unity editor create the step cards with title, tool, torque, completion check and the three detail levels.'),
     ('Define the adaptation rules: ', 'set the skill thresholds (0.40 and 0.75), the 20% time tolerance and the error rules.'),
     ('Build the AR application: ', 'create the Unity scene with the Model Target, instruction cards, highlights, ghost part and arrows.'),
     ('Connect the tools: ', 'link the torque wrench and scanner through MQTT and the vision checker to the camera feed.'),
@@ -414,7 +415,7 @@ for i, (lead, txt) in enumerate([
     ('Handle errors: ', 'a wrong part turns the ring red, locks the tool and informs the supervisor until the check is passed.'),
     ('Adapt and log: ', 'after each step the skill score is updated; times and errors are sent to the dashboard.')], 1):
     step(i, txt, lead)
-figure('shots/w1_studio.png', 'Output 1: Instruction authoring in the web studio (browser)', 'Fig. 1 - Step 4 "Fix the bearing cover" with 3D preview, tool, torque and the three detail levels.', width=6.5, maxh=2.9)
+figure('shots/w1_mtg.png', 'Output 1: Creating the Model Target from the CAD file', 'Fig. 1 - Model Target Generator: guide view, tracking settings, training status and dataset report for the gearbox.', width=6.5, maxh=2.9)
 figure('shots/ar1_novice.png', 'Output 2: AR view for a novice operator', 'Fig. 2 - Highlighted bolts 3 and 4, animation button and full text for Step 4 of 9.', width=6.5, maxh=3.0)
 
 # ---------- 3 (continued) ----------
@@ -422,7 +423,7 @@ sub('3.2 Operator view at different skill levels')
 figure('shots/ar2_expert.png', 'Output 3: AR view for an expert operator', 'Fig. 3 - Only the bolt rings and the torque value are shown; the card is small and Step 4 is ahead of time.', width=6.5, maxh=3.0)
 figure('shots/ar3_error.png', 'Output 4: Error detected by the vision checker', 'Fig. 4 - A wrong bolt (M8) is detected at bolt 3; the ring turns red, the tool is locked and the supervisor is notified.', width=6.5, maxh=3.0)
 sub('3.3 Handheld (mobile) view')
-figure('shots/m1_mobile.png', 'Output 5: Instruction on a mobile phone / tablet', 'Fig. 5 - Compact card, step progress and Back / Animation / Next buttons.', width=2.0, maxh=3.6)
+figure('shots/m1_mobile.png', 'Output 5: Instruction on a mobile phone (screenshot)', 'Fig. 5 - Portrait screenshot with compact card, step progress and Back / Animation / Next buttons.', width=2.0, maxh=3.9)
 
 # ---------- 3.4 table steps ----------
 sub('3.4 Gearbox GB-220 assembly steps and checks')
@@ -461,16 +462,16 @@ figure('shots/d1_arch.png', '4.1 System architecture', 'Fig. 6 - Shop-floor devi
 figure('shots/d3_levels.png', '4.2 Detail levels of the instruction', 'Fig. 7 - Novice, skilled and expert levels selected from the skill score.', width=6.6, maxh=2.4)
 figure('shots/d2_flow.png', '4.3 Flowchart of the adaptive instruction process', 'Fig. 8 - From the work order scan to the release of the unit with adaptation after every step.', width=5.9, maxh=8.9)
 sub('4.4 Supervisor dashboard (sample data)', True)
-figure('shots/w2_dash.png', None, 'Fig. 9 - Dashboard of Line 2 showing cycle time, errors by step and live station status. The values are sample data of the simulation, not measurements from a factory.', width=6.6, maxh=4.0)
+figure('shots/w2_dash.png', None, 'Fig. 9 - Grafana dashboard of Line 2 showing cycle time, errors by step and live station status. The values are sample data of the simulation, not measurements from a factory.', width=6.6, maxh=4.0)
 sub('4.5 Development environment')
-figure('shots/u1_unity.png', None, 'Fig. 10 - Unity scene with the Model Target, the instruction layer, the Adaptation Engine settings and the console log of one step.', width=6.6, maxh=3.9)
+figure('shots/u1_unity.png', None, 'Fig. 10 - Unity editor with the Model Target, the instruction layer, the Step Card and Adaptation Engine settings and the console log of one step.', width=6.6, maxh=3.9)
 
 # ---------- 5. CONCLUSION ----------
 heading(5, 'Conclusion', page_break=True)
 para('An Adaptive AR work instruction system for a machine assembly line was designed. The instructions are overlaid on the '
      'real gearbox so the operator does not need to look away, and they are checked by sensors and a vision model at every '
      'step. The adaptation engine changes the detail level from the operator skill score, giving animations and warnings to '
-     'new workers and a quiet, fast view to experts. The authoring studio, the AR operator views, the error handling, the '
+     'new workers and a quiet, fast view to experts. The Unity authoring setup, the AR operator views, the error handling, the '
      'dashboard and the Unity setup were presented as simulated screens. A real trial on a line is needed to measure the '
      'actual reduction in training time, cycle time and errors.')
 sub('Advantages')
