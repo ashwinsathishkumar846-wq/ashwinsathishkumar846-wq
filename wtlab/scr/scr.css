@@ -1,0 +1,16 @@
+@font-face{font-family:Inter;font-weight:400;src:url(inter-latin-400-normal.woff2)}
+@font-face{font-family:Inter;font-weight:500;src:url(inter-latin-500-normal.woff2)}
+@font-face{font-family:Inter;font-weight:600;src:url(inter-latin-600-normal.woff2)}
+@font-face{font-family:Inter;font-weight:700;src:url(inter-latin-700-normal.woff2)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#fff;font-family:Arial,"Liberation Sans",Helvetica,sans-serif;color:#000}
+#cv{position:relative;overflow:hidden;background:#fff}
+.abs{position:absolute}
+/* Edge dark chrome */
+.edge{position:absolute;left:0;top:0;right:0;background:#000}
+.edge .tabs{height:72px;position:relative}
+.edge .dd{position:absolute;left:6px;top:8px;width:66px;height:56px;border-radius:10px;background:#1c1c1c;display:flex;align-items:center;justify-content:center}
+.edge .tab{position:absolute;left:78px;top:8px;height:64px;background:#323232;border-radius:14px 14px 0 0;display:flex;align-items:center;gap:14px;padding:0 20px 0 16px;color:#f2f2f2;font-family:"Segoe UI",Inter,sans-serif;font-size:25px;white-space:nowrap}
+.edge .tool{height:62px;background:#323232;position:relative}
+.edge .pill{position:absolute;left:150px;top:6px;right:-40px;height:60px;border-radius:30px;background:#1f1f1f;border:2px solid #444;display:flex;align-items:center;gap:14px;padding-left:18px;font-family:"Segoe UI",Inter,sans-serif;font-size:26px;color:#fff;white-space:nowrap}
+.mono{font-family:"DejaVu Sans Mono","Liberation Mono",monospace}
