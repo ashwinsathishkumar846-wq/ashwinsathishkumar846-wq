@@ -28,13 +28,13 @@ else:
 for ch in list(sect):
     if ch.tag in (w('pgMar'),): sect.remove(ch)
 pm=OxmlElement('w:pgMar')
-for k,v in dict(top=1050,right=850,bottom=1250,left=850,header=560,footer=600,gutter=0).items(): pm.set(qn('w:'+k),str(v))
+for k,v in dict(top=1050,right=850,bottom=1250,left=850,header=170,footer=620,gutter=0).items(): pm.set(qn('w:'+k),str(v))
 sect.find(w('pgSz')).addnext(pm)
 for pb in sect.findall(w('pgBorders')): sect.remove(pb)
 pb=OxmlElement('w:pgBorders'); pb.set(qn('w:offsetFrom'),'page')
-for side,val in (('top','thickThinSmallGap'),('left','thickThinSmallGap'),('bottom','thinThickSmallGap'),('right','thinThickSmallGap')):
+for side,val in (('top','single'),('left','single'),('bottom','single'),('right','single')):
     e=OxmlElement('w:'+side)
-    for k,v in dict(val=val,sz=24,space=25,color='000000').items(): e.set(qn('w:'+k),str(v))
+    for k,v in dict(val=val,sz=12,space=28,color='000000').items(): e.set(qn('w:'+k),str(v))
     pb.append(e)
 pm.addnext(pb)
 if FRONT:
@@ -67,10 +67,12 @@ def setup(hf,items):
     for pos in (4513,9026):
         e=OxmlElement('w:tab'); e.set(qn('w:val'),'clear'); e.set(qn('w:pos'),str(pos)); tb.insert(0,e)
     items[1](p)
+    fp=OxmlElement('w:framePr')
+    for k,v in dict(w=10210,hRule='auto',wrap='around',vAnchor='page',hAnchor='page',x=850,y=items[2]).items(): fp.set(qn('w:'+k),str(v))
 sec.header.is_linked_to_previous=False; sec.footer.is_linked_to_previous=False
 tw=Twips(10210)
-setup(sec.header,([(tw,TA.RIGHT)],lambda p:(runx(p,'20CS279 – WEB TECHNOLOGIES LABORATORY',11),runx(p,'\tCOURSE INSTRUCTOR: Mr. N. Manoj, AP/CSE',11))))
-setup(sec.footer,([(Twips(5105),TA.CENTER),(tw,TA.RIGHT)],lambda p:(runx(p,'AJAY.I',11),runx(p,'\t',11),fld(p,'PAGE',11),runx(p,'\t71812401007',11))))
+setup(sec.header,([(tw,TA.RIGHT)],lambda p:(runx(p,'20CS279 – WEB TECHNOLOGIES LABORATORY',10.5),runx(p,'\tCOURSE INSTRUCTOR: Mr. N. Manoj, AP/CSE',10.5)),230))
+setup(sec.footer,([(Twips(5105),TA.CENTER),(tw,TA.RIGHT)],lambda p:(runx(p,'AJAY.I',10.5),runx(p,'\t',10.5),fld(p,'PAGE',10.5),runx(p,'\t71812401007',10.5)),16370))
 # ---------- helpers ----------
 def para(text='',bold=False,size=12,align=AL.JUSTIFY,before=0,after=4,left=0,first=0,keep=False,ls=1.12):
     p=dest.add_paragraph(); pf=p.paragraph_format; p.alignment=align
@@ -347,5 +349,10 @@ if __name__=='__main__':
             kids2=sorted(seen.values(),key=lambda e:ORD.index(e.tag.split('}')[1]) if e.tag.split('}')[1] in ORD else 99)
             for k in kids: pp.remove(k)
             for k in kids2: pp.append(k)
+    if FRONT:
+        for sp_ in dest.element.iter(w('sectPr')):
+            for pb_ in sp_.findall(w('pgBorders')):
+                for sd in list(pb_): 
+                    sd.set(qn('w:val'),'single'); sd.set(qn('w:sz'),'12'); sd.set(qn('w:space'),'28')
     fixp(dest.element); fixp(sec.header._element); fixp(sec.footer._element)
     dest.save(OUT); print('saved',OUT)
