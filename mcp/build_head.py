@@ -129,8 +129,16 @@ def bullet(text, boldlead=None):
     return rich([('•  ', False)] + parts, indent=0.3, hanging=0.2)
 
 def step(n, text, boldlead=None):
-    parts = [(f'Step {n}: ', True)] + ([(boldlead, True)] if boldlead else []) + [(text, False)]
-    return rich(parts, indent=0.0)
+    p = para('', align=AL.JUSTIFY, space_after=5)
+    pf = p.paragraph_format
+    pf.left_indent = Inches(1.35); pf.first_line_indent = Inches(-0.95)
+    pf.tab_stops.add_tab_stop(Inches(1.35))
+    r = p.add_run(f'Step {n}:'); r.bold = True; r.font.size = Pt(12); r.font.name = FONT
+    r = p.add_run('\t'); r.font.size = Pt(12)
+    if boldlead:
+        r = p.add_run(boldlead); r.bold = True; r.font.size = Pt(12); r.font.name = FONT
+    r = p.add_run(text); r.font.size = Pt(12); r.font.name = FONT
+    return p
 
 def set_borders(tbl, sz=6):
     tblPr = tbl._tbl.tblPr

@@ -13,8 +13,17 @@ para('Temperature is one of the most commonly monitored physical quantities in i
      'the number into degrees Celsius, shows it on a 16 x 2 LCD, sends it to a PC through UART0, and switches a fan, a '
      'buzzer and an alarm LED when the temperature crosses the limit of 40 °C. The report explains in detail how '
      'the ADC of the LPC2148 is configured and used to read the sensor value.')
-sub('Team members')
-table(['S. No.', 'Name', 'Roll Number'], [[str(i), n, r] for i, (n, r) in enumerate(students, 1)], [0.9, 3.8, 2.5], size=11.5)
+sub('Working in brief')
+para('The LM35 output voltage is connected to the analog input AD0.1 (P0.28). The ADC of the LPC2148 converts it into a '
+     'number from 0 to 1023 in about 3 \u00b5s. The program averages eight conversions, calculates the temperature, shows '
+     'it on the LCD and the serial terminal, and drives the fan, the buzzer and the alarm LED when the temperature reaches '
+     '40 \u00b0C. The fan is switched off again at 38 \u00b0C so that it does not switch on and off continuously.')
+sub('Key formulas')
+table(['Quantity', 'Formula'], [
+    ['Input voltage', 'Vin = ADC x 3.3 / 1023'],
+    ['Temperature', 'T (\u00b0C) = Vin / 0.010 = ADC x 330 / 1023'],
+    ['ADC result', 'AD0DR1 bits 15:6 = (Vin / VREF) x 1023']],
+    [2.0, 5.2], size=11.5)
 sub('Objectives')
 for txt in ['To study the architecture and the on-chip ADC of the LPC2148 microcontroller.',
             'To interface the LM35 analog temperature sensor with the ADC channel AD0.1 (P0.28).',
@@ -266,33 +275,27 @@ table(['Name', 'Value / type', 'Meaning'], [
     [1.5, 1.6, 4.1], size=11)
 # ---------- 5. OUTPUT ----------
 heading(5, 'Output', page_break=True)
-para('The outputs below were produced by an HTML, CSS and JavaScript simulation of the LPC2148 board that runs the '
-     'same logic as the C program: LM35 voltage, 10-bit ADC conversion with 8-sample averaging, temperature '
-     'calculation, LCD, UART output, fan / buzzer / LED control with hysteresis and the AD0CR / AD0DR1 register values. '
-     'The ambient temperature was changed with the slider to create each situation.')
-closeup = [Image.open(f'shots/{n}.png') for n in ('1b_board', '3b_adc', '3c_terminal')]
-cw = sum(i.width for i in closeup) + 40 * 2; ch = max(i.height for i in closeup)
-canvas = Image.new('RGB', (cw, ch), 'white'); x = 0
-for i in closeup: canvas.paste(i, (x, 0)); x += i.width + 40
-canvas.save('shots/closeups.png')
+para('The outputs below are the Keil uVision4 screens of the program running in the simulator and debugger: the build '
+     'output, the Registers, Call Stack + Locals, Watch and Memory windows, the A/D Converter 0 and Parallel Port 0 '
+     'peripheral dialogs and the UART #1 serial window. The ambient temperature applied to the analog input AD0.1 was '
+     'changed to 28 \u00b0C, 36 \u00b0C, 45 \u00b0C and 30 \u00b0C to check the ADC value, the temperature calculation and '
+     'the fan, buzzer and LED control.')
 outs = [
- ('shots/1_normal.png', 'Output 1: Normal temperature (28 °C)', 'Fig. 1 - LCD shows Temp: 28.1 °C and ADC:057; the fan, buzzer and alarm LED are OFF; AD0DR1 shows DONE = 1.', 5.3),
- ('shots/2_warning.png', 'Output 2: Temperature rising (36 °C)', 'Fig. 2 - The UART log turns yellow near the limit but the fan is still OFF because 36 °C is below 40 °C.', 5.3),
- ('shots/3_alarm.png', 'Output 3: High temperature alarm (45 °C)', 'Fig. 3 - ADC = 0x08C (140); LCD shows ALERT! FAN ON; the fan rotates, the buzzer sounds and the alarm LED glows.', 5.3),
- ('shots/4_hysteresis.png', 'Output 4: Hysteresis (39 °C after the alarm)', 'Fig. 4 - The temperature has dropped to 39 °C but the fan stays ON until it falls to 38 °C or below.', 5.3),
- ('shots/5_cooldown.png', 'Output 5: Cooling down (30 °C)', 'Fig. 5 - After cooling, the fan, buzzer and LED are switched OFF and the trend graph falls below the limit line.', 5.3),
- ('shots/7_threshold.png', 'Output 6: Alarm limit changed to 50 °C', 'Fig. 6 - With the limit set to 50 °C, a reading of 45 °C does not trigger the alarm.', 5.3),
- ('shots/closeups.png', 'Output 7: Close-up of the LCD board, ADC registers and UART terminal', 'Fig. 7 - Left to right: LCD with fan / buzzer / LED status, ADC0 channel AD0.1 registers with the conversion formula, and the UART0 log with the trend graph.', 7.1),
- ('shots/6_table.png', 'Output 8: ADC conversion table', 'Fig. 8 - Temperature, LM35 voltage and the 10-bit ADC value in decimal, hexadecimal and binary (40 °C is the alarm point).', 7.1),
- ('shots/8_mobile.png', 'Output 9: Mobile view', 'Fig. 9 - The simulator adapts to a 390 px wide phone screen.', 3.0)]
-for f, t, c, w in outs:
-    figure(f, t, c, width=w, maxh=(3.0 if 'mobile' in f else 4.3 if w < 7 else 4.0), new_page=('6_table' in f))
-sub('Observation table')
-rows = []
-for t, state in ((25, 'OFF'), (28, 'OFF'), (30, 'OFF'), (36, 'OFF'), (39, 'ON (hysteresis)'), (45, 'ON')):
-    a = adc_of(t); rows.append([str(t), f'{t * 10 / 1000:.3f}', str(a), f'0x{a:03X}', f'{temp_of(a):.1f}', state])
-table(['Actual temp (°C)', 'LM35 Vout (V)', 'ADC (dec)', 'ADC (hex)', 'Displayed temp (°C)', 'Fan / buzzer'], rows, [1.2, 1.1, 0.9, 0.9, 1.6, 1.5], size=11)
-
+ ('shots/k1_build.png', 'Output 1: Building the project in Keil uVision4', 'Fig. 1 - main.c is compiled and linked: 0 Error(s), 0 Warning(s); the HEX file is created.'),
+ ('shots/k2_debug.png', 'Output 2: Debugging main() at 28 \u00b0C', 'Fig. 2 - Execution stops in the main loop; Watch / Locals show adc = 87 (0x57) and temp = 28.0645 with fan_on = 0.'),
+ ('shots/k3_adc.png', 'Output 3: A/D Converter 0 peripheral window (AD0.1 = 0.28 V)', 'Fig. 3 - AD0CR = 0x00200302 (SEL = 0x02, CLKDIV = 3, PDN = 1); AD0GDR = 0x810015C0 with DONE = 1, CHN = 1 and result 0x057; the Memory window shows the same registers.'),
+ ('shots/k4_serial.png', 'Output 4: UART #1 serial window while the temperature rises', 'Fig. 4 - The program sends one line every cycle: Temp: 28.1 C ... 36.1 C with the ADC value and FAN OFF.'),
+ ('shots/k5_thr.png', 'Output 5: Fan switched ON when the temperature reaches 40 \u00b0C', 'Fig. 5 - At 40.0 C (ADC = 0x07C) fan_on becomes 1 and the log shows FAN ON; the buzzer and LED are also driven.'),
+ ('shots/k5_alarm.png', 'Output 6: High temperature alarm at 45 \u00b0C', 'Fig. 6 - adc = 140 (0x8C), temp = 45.16, fan_on = 1; Parallel Port 0 shows P0.7, P0.8 and P0.9 set (IOPIN = 0x380): buzzer, fan relay and LED ON.'),
+ ('shots/k6_cool.png', 'Output 7: Cooling down to 30 \u00b0C', 'Fig. 7 - The log shows the hysteresis (39.0 C keeps the fan ON); at 30.0 C the fan is OFF and all Port 0 output bits are cleared.')]
+for f, t, cap in outs:
+    figure(f, t, cap, width=6.4, maxh=3.95)
+    if 'k1_build' in f:
+        sub('Observation table')
+        rows = []
+        for t, state in ((25, 'OFF'), (28, 'OFF'), (30, 'OFF'), (36, 'OFF'), (39, 'ON (hysteresis)'), (45, 'ON')):
+            a = adc_of(t); rows.append([str(t), f'{t * 10 / 1000:.3f}', str(a), f'0x{a:03X}', f'{temp_of(a):.1f}', state])
+        table(['Actual temp (°C)', 'LM35 Vout (V)', 'ADC (dec)', 'ADC (hex)', 'Displayed temp (°C)', 'Fan / buzzer'], rows, [1.2, 1.1, 0.9, 0.9, 1.6, 1.5], size=11)
 # ---------- 6. DIAGRAMMATIC REPRESENTATION ----------
 heading(6, 'Diagrammatic Representation', page_break=True)
 figure('shots/d1_block.png', '6.1 Block diagram', 'Fig. 10 - Block diagram of the temperature monitoring system.', width=6.0, maxh=3.7)

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TempMonitor - µVision4</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <div class="titlebar"><span class="logo">&micro;</span><span id="ttl">D:\LPC2148\TempMonitor\TempMonitor.uvproj - &micro;Vision4</span>
+    <span class="wbtn"><i>&#8211;</i><i>&#9633;</i><i class="x">&#10005;</i></span></div>
+  <div class="menubar"><span>File</span><span>Edit</span><span>View</span><span>Project</span><span>Flash</span><span>Debug</span><span>Peripherals</span><span>Tools</span><span>SVCS</span><span>Window</span><span>Help</span></div>
+  <div class="toolbar" id="toolbar"></div>
+  <div class="work">
+    <div class="left panel" id="leftPanel"></div>
+    <div class="center">
+      <div class="tabs"><span class="tab act">main.c</span><span class="tab">Startup.s</span></div>
+      <div class="editor" id="editor"></div>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="panel bl" id="bl"></div>
+    <div class="panel br" id="br"></div>
+  </div>
+  <div class="status" id="status"></div>
+  <div id="floats"></div>
+</div>
+<script src="code.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
