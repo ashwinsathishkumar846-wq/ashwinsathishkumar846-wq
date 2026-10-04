@@ -1,0 +1,67 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Arial, sans-serif; background: #0f172a; color: #e2e8f0; font-size: 14px; }
+.mut { color: #94a3b8; font-weight: 400; }
+.top { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px; padding: 12px 20px; background: #1e293b; border-bottom: 2px solid #38bdf8; }
+.status { font-family: Consolas, monospace; }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #64748b; }
+.dot.on { background: #22c55e; box-shadow: 0 0 8px #22c55e; }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr) minmax(0, 1.15fr); gap: 14px; padding: 14px 20px 6px; }
+.panel { background: #1e293b; border: 1px solid #334155; border-radius: 10px; padding: 14px; }
+.panel h2 { margin: 0 0 10px; font-size: 14px; letter-spacing: .5px; color: #38bdf8; text-transform: uppercase; }
+
+/* LCD */
+.lcdBox { background: #0b3d2e; padding: 12px; border-radius: 8px; border: 3px solid #475569; }
+.lcd { background: #9fd36a; border-radius: 4px; padding: 10px; font-family: "Courier New", monospace; font-weight: 700;
+       font-size: 24px; letter-spacing: 2px; color: #1a2e0a; line-height: 1.5; box-shadow: inset 0 0 12px rgba(0,0,0,.35); }
+.lcd div { display: flex; }
+.lcd span { display: inline-block; width: 1.05em; text-align: center; background: rgba(60,90,20,.18); margin: 1px; }
+.lcdCap { text-align: center; font-size: 11px; color: #94a3b8; margin-top: 6px; }
+
+/* outputs */
+.io { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 14px 0; }
+.ioItem { background: #0f172a; border-radius: 8px; padding: 10px 6px; text-align: center; font-size: 11px; color: #94a3b8; }
+.ioItem b { display: block; margin-top: 4px; font-size: 13px; }
+b.off { color: #94a3b8; } b.on { color: #22c55e; } b.alarm { color: #ef4444; }
+.fan { width: 46px; height: 46px; margin: 0 auto 6px; border-radius: 50%; border: 3px solid #475569; position: relative; }
+.fan i { position: absolute; left: 50%; top: 50%; width: 5px; height: 19px; margin-left: -2.5px; margin-top: -19px;
+         background: #94a3b8; border-radius: 3px; transform-origin: 50% 19px; }
+.fan i:nth-child(2) { transform: rotate(90deg); } .fan i:nth-child(3) { transform: rotate(180deg); } .fan i:nth-child(4) { transform: rotate(270deg); }
+.fan.spin { animation: spin .5s linear infinite; border-color: #22c55e; } .fan.spin i { background: #22c55e; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.buz { font-size: 34px; filter: grayscale(1) opacity(.5); } .buz.on { filter: none; animation: pulse .5s infinite; }
+@keyframes pulse { 50% { transform: scale(1.2); } }
+.led { width: 30px; height: 30px; margin: 8px auto 12px; border-radius: 50%; background: #475569; }
+.led.on { background: #ef4444; box-shadow: 0 0 16px 4px #ef4444; }
+
+/* sensor controls */
+.sensor label { display: block; margin-bottom: 6px; } .sensor input[type=range] { width: 100%; }
+.presets { display: flex; gap: 6px; margin: 8px 0; }
+button { background: #334155; color: #e2e8f0; border: 0; padding: 7px 12px; border-radius: 6px; cursor: pointer; }
+button.go { background: #0ea5e9; color: #fff; }
+.row2 { display: flex; justify-content: space-between; align-items: center; margin-top: 6px; }
+.row2 input { width: 70px; padding: 5px; background: #0f172a; color: #e2e8f0; border: 1px solid #475569; border-radius: 4px; }
+
+/* ADC panel */
+.kv, .conv { width: 100%; border-collapse: collapse; font-size: 13px; }
+.kv td { padding: 5px 6px; font-size: 12.5px; border-bottom: 1px solid #334155; } .kv td:last-child { text-align: right; font-family: Consolas, monospace; color: #fbbf24; }
+.reg { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+.regName { background: #38bdf8; color: #0f172a; font-weight: 700; padding: 3px 9px; border-radius: 4px; width: 70px; text-align: center; }
+.reg code { font-size: 17px; color: #4ade80; font-family: Consolas, monospace; }
+.bits { display: grid; grid-template-columns: repeat(32, 1fr); gap: 1px; margin-top: 8px; }
+.bits span { text-align: center; font-family: Consolas, monospace; font-size: 10px; padding: 3px 0; background: #0f172a; color: #64748b; }
+.bits span.one { background: #14532d; color: #bbf7d0; } .bits span.done { background: #b45309; color: #fff; }
+.formula { margin-top: 10px; background: #0f172a; border-left: 4px solid #38bdf8; padding: 10px; font-family: Consolas, monospace; font-size: 12.5px; line-height: 1.7; color: #cbd5e1; }
+.formula b { color: #fbbf24; }
+
+/* terminal and chart */
+.term { background: #020617; border: 1px solid #334155; border-radius: 6px; height: 230px; overflow: hidden; padding: 8px;
+        font-family: Consolas, "Courier New", monospace; font-size: 11.5px; color: #4ade80; white-space: pre; margin-bottom: 12px; }
+.term .warn { color: #fbbf24; } .term .alarm { color: #f87171; }
+canvas { width: 100%; background: #020617; border: 1px solid #334155; border-radius: 6px; }
+
+/* conversion table */
+.tableWrap { margin: 8px 20px 20px; }
+.conv th, .conv td { padding: 5px 8px; border: 1px solid #334155; text-align: center; }
+.conv th { background: #0c4a6e; } .conv tr.hl td { background: #7f1d1d; }
+
+@media (max-width: 1000px) { .grid { grid-template-columns: 1fr; } }

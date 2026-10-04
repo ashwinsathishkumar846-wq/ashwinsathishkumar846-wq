@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LPC2148 Temperature Monitor - Simulation</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <div><b>LPC2148 Temperature Monitoring System</b> <span class="mut">| ARM7TDMI-S | 12 MHz crystal | CCLK 60 MHz | PCLK 15 MHz</span></div>
+  <div class="status"><span id="runLed" class="dot on"></span> <span id="runTxt">RUNNING</span> &nbsp;|&nbsp; t = <span id="clock">0.0</span> s</div>
+</header>
+
+<main class="grid">
+  <!-- ================= LEFT : BOARD ================= -->
+  <section class="panel board">
+    <h2>Target Board</h2>
+    <div class="lcdBox">
+      <div class="lcd" id="lcd"></div>
+      <div class="lcdCap">JHD162A 16 x 2 LCD (4-bit mode)</div>
+    </div>
+
+    <div class="io">
+      <div class="ioItem"><div class="fan" id="fan"><i></i><i></i><i></i><i></i></div><span>DC FAN (relay P0.8)</span><b id="fanTxt" class="off">OFF</b></div>
+      <div class="ioItem"><div class="buz" id="buz">&#128276;</div><span>BUZZER (P0.7)</span><b id="buzTxt" class="off">OFF</b></div>
+      <div class="ioItem"><div class="led" id="led"></div><span>ALARM LED (P0.9)</span><b id="ledTxt" class="off">OFF</b></div>
+    </div>
+
+    <div class="sensor">
+      <label for="amb">LM35 ambient temperature: <b id="ambVal">28.0</b> &deg;C</label>
+      <input type="range" id="amb" min="0" max="100" step="0.5" value="28">
+      <div class="presets">
+        <button data-t="25">25 &deg;C</button><button data-t="36">36 &deg;C</button>
+        <button data-t="45">45 &deg;C</button><button data-t="60">60 &deg;C</button>
+      </div>
+      <div class="row2">
+        <label>Alarm limit (&deg;C) <input type="number" id="thr" value="40" min="20" max="100"></label>
+        <button id="runBtn" class="go">Pause</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MIDDLE : ADC ================= -->
+  <section class="panel adc">
+    <h2>ADC0 - Channel AD0.1 (P0.28)</h2>
+    <table class="kv">
+      <tr><td>LM35 output Vin</td><td id="vin">0.280 V</td></tr>
+      <tr><td>VREF</td><td>3.300 V</td></tr>
+      <tr><td>Resolution</td><td>10 bit</td></tr>
+      <tr><td>ADC clock</td><td>3.75 MHz</td></tr>
+      <tr><td>Conversion time</td><td>2.93 &micro;s</td></tr>
+      <tr><td>ADC result (dec)</td><td id="adcDec">0</td></tr>
+      <tr><td>ADC result (hex)</td><td id="adcHex">0x000</td></tr>
+      <tr><td>ADC result (bin)</td><td id="adcBin">0000000000</td></tr>
+    </table>
+    <div class="reg"><div class="regName">AD0CR</div><code id="ad0cr">0x01200302</code></div>
+    <div class="reg"><div class="regName">AD0DR1</div><code id="ad0dr1">0x00000000</code></div>
+    <div class="bits" id="bits"></div>
+    <div class="formula" id="formula"></div>
+  </section>
+
+  <!-- ================= RIGHT : TERMINAL + CHART ================= -->
+  <section class="panel right">
+    <h2>UART0 Terminal (9600, 8N1)</h2>
+    <div class="term" id="term"></div>
+    <h2>Temperature trend</h2>
+    <canvas id="chart" width="520" height="210"></canvas>
+  </section>
+</main>
+
+<section class="panel tableWrap" id="tableWrap">
+  <h2>ADC conversion table (VREF = 3.3 V, LM35 = 10 mV / &deg;C)</h2>
+  <table class="conv" id="conv"></table>
+</section>
+<script src="script.js"></script>
+</body>
+</html>

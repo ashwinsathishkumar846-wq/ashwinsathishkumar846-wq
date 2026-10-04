@@ -1,0 +1,22 @@
+const { chromium } = require('playwright');
+(async () => {
+  const b = await chromium.launch();
+  const url = 'file://' + process.cwd() + '/simulator/index.html';
+  const p = await (await b.newContext({ viewport: { width: 1280, height: 780 }, deviceScaleFactor: 1.5 })).newPage();
+  await p.goto(url);
+  const go = async (t, n) => { await p.evaluate(([t, n]) => { st.running = false; setAmbient(t); runFast(n); }, [t, n]); };
+  const snap = n => p.screenshot({ path: `shots/${n}.png`, fullPage: true });
+  const el = (sel, n) => p.locator(sel).first().screenshot({ path: `shots/${n}.png` });
+  await go(28, 30); await snap('1_normal'); await el('.board', '1b_board');
+  await go(36, 25); await snap('2_warning');
+  await go(45, 14); await snap('3_alarm'); await el('.adc', '3b_adc'); await el('.right', '3c_terminal');
+  await go(39, 8); await snap('4_hysteresis');
+  await go(30, 12); await snap('5_cooldown');
+  await el('#tableWrap', '6_table');
+  await p.evaluate(() => { st.thr = 50; document.getElementById('thr').value = 50; });
+  await go(45, 14); await snap('7_threshold');
+  const m = await (await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 })).newPage();
+  await m.goto(url); await m.evaluate(() => { st.running = false; setAmbient(46); runFast(20); });
+  await m.screenshot({ path: 'shots/8_mobile.png', fullPage: false });
+  await b.close();
+})();
