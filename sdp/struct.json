@@ -1,0 +1,3350 @@
+[
+{
+"no": 1,
+"date": "31.06.26",
+"title": "INTRODUCTION TO JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To explore the JIRA tool and understand its features and practical uses."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "sh",
+"text": "INSTALLATION OF JIRA TOOL"
+},
+{
+"t": "li",
+"text": "JIRA works on a client-server model: the application is first set up on a server, and users then open it from their own systems."
+},
+{
+"t": "li",
+"text": "The JIRA server is linked to a relational database that holds project data, issues, user accounts and other application information."
+},
+{
+"t": "li",
+"text": "Get the JIRA installer for Windows (.exe file) from the official Atlassian download page."
+},
+{
+"t": "li",
+"text": "Pick the operating system you are using and press Download."
+},
+{
+"t": "img",
+"n": 1
+},
+{
+"t": "li",
+"text": "Open the downloaded .exe file to start the JIRA setup wizard."
+},
+{
+"t": "li",
+"text": "When the Run security prompt shows up, press Run."
+},
+{
+"t": "img",
+"n": 2
+},
+{
+"t": "li",
+"text": "Press Next on the welcome screen to move ahead with the setup."
+},
+{
+"t": "img",
+"n": 3
+},
+{
+"t": "li",
+"text": "Pick the installation type you need and press Next."
+},
+{
+"t": "img",
+"n": 4
+},
+{
+"t": "li",
+"text": "Check the summary of the setup, which lists the Destination Directory, Home Directory and TCP Port values."
+},
+{
+"t": "img",
+"n": 5
+},
+{
+"t": "li",
+"text": "Press Install so that the files start getting copied."
+},
+{
+"t": "img",
+"n": 6
+},
+{
+"t": "li",
+"text": "Once the setup finishes, tick Start JIRA Software if you want it to open immediately, then press Next."
+},
+{
+"t": "img",
+"n": 7
+},
+{
+"t": "li",
+"text": "Lastly, press Finish to close the wizard after a successful installation."
+},
+{
+"t": "img",
+"n": 8
+},
+{
+"t": "cap",
+"text": "JIRA:"
+},
+{
+"t": "p",
+"text": "JIRA is a well-known issue-tracking and project management product from Atlassian. Teams use it to log software bugs, organise project work, plan agile sprints and keep an eye on progress. Because it supports Agile approaches such as Scrum and Kanban, it has become a standard choice in software companies."
+},
+{
+"t": "cap",
+"text": "Key Features of JIRA:"
+},
+{
+"t": "li",
+"text": "Projects:"
+},
+{
+"t": "p",
+"text": "Groups related work such as tasks, issues and team activities together inside one project."
+},
+{
+"t": "li",
+"text": "Issue Tracking:"
+},
+{
+"t": "p",
+"text": "Lets users raise, assign, follow and close issues like bugs, tasks, stories and epics across the whole project life cycle."
+},
+{
+"t": "li",
+"text": "Workflow Management:"
+},
+{
+"t": "p",
+"text": "Provides configurable workflows that carry an issue through stages such as To Do, In Progress,"
+},
+{
+"t": "p",
+"text": "Review and Done."
+},
+{
+"t": "li",
+"text": "Search:"
+},
+{
+"t": "p",
+"text": "Offers strong search and filter tools, including JQL (Jira Query Language), to find issues, projects or finished work quickly."
+},
+{
+"t": "li",
+"text": "Dashboards:"
+},
+{
+"t": "p",
+"text": "Gives configurable dashboards whose gadgets show project progress, sprint status, assigned work, reports and other key figures."
+},
+{
+"t": "p",
+"text": "Applications and Uses of JIRA"
+},
+{
+"t": "p",
+"text": "Software developers, project managers, testers and business analysts commonly use JIRA to run their projects smoothly."
+},
+{
+"t": "p",
+"text": "JIRA for Project Management Teams"
+},
+{
+"t": "li",
+"text": "JIRA helps project teams arrange and handle their software development work in an effective way."
+},
+{
+"t": "li",
+"text": "It ships with many ready-made project templates that can be adjusted to suit the needs of a project."
+},
+{
+"t": "li",
+"text": "Teams are free to build workflows that match the way they develop software."
+},
+{
+"t": "li",
+"text": "Managers can hand out work, watch how tasks are moving and see the live status of every issue."
+},
+{
+"t": "li",
+"text": "Reports and dashboards produced by JIRA give a clear picture of how the project and the team are performing."
+},
+{
+"t": "li",
+"text": "It makes sprint planning, backlog handling, release tracking and defect management easier in Agile projects."
+},
+{
+"t": "li",
+"text": "Since all project details are stored at one location, JIRA improves teamwork, transparency and overall project control."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 9
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the study and installation of the JIRA tool was completed successfully."
+}
+]
+},
+{
+"no": 2,
+"date": "07.07.26",
+"title": "BACKLOG ITEMS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To explore the backlog items available in the JIRA tool."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "BACKLOG:"
+},
+{
+"t": "li",
+"text": "The JIRA Backlog is an ordered list of requirements, features or tasks that are still to be completed. It gives an overview of what the application should do, without going into detailed specifications."
+},
+{
+"t": "li",
+"text": "Work in the backlog is written as user stories or tasks and each one carries a priority. A user story describes a needed function from the user's side, which helps the team plan and organise the development effort."
+},
+{
+"t": "h",
+"text": "CREATING A BACKLOG IN JIRA:"
+},
+{
+"t": "li",
+"text": "Open the Jira project and choose Backlog from the menu on the left."
+},
+{
+"t": "li",
+"text": "Press Create to add a new work item and fill in the details such as:"
+},
+{
+"t": "li",
+"text": "Project Name"
+},
+{
+"t": "li",
+"text": "Issue Type (Story, Task, Bug, or Epic)"
+},
+{
+"t": "li",
+"text": "Summary"
+},
+{
+"t": "li",
+"text": "Description"
+},
+{
+"t": "li",
+"text": "Priority (Low, Medium, High)"
+},
+{
+"t": "li",
+"text": "Labels"
+},
+{
+"t": "li",
+"text": "Assignee"
+},
+{
+"t": "li",
+"text": "Sprint"
+},
+{
+"t": "li",
+"text": "Attachments (if required)"
+},
+{
+"t": "li",
+"text": "Linked Issues and other relevant details."
+},
+{
+"t": "li",
+"text": "Once the fields are filled, press Create. The new issue appears in the project backlog."
+},
+{
+"t": "h",
+"text": "ACTIVITIES PERFORMED USING THE JIRA BACKLOG:"
+},
+{
+"t": "img",
+"n": 10
+},
+{
+"t": "p",
+"text": "The JIRA Backlog lets development teams arrange, prioritise and track project tasks in an efficient manner. Its main activities are creating issues, setting priorities, handling subtasks, updating workflow status, searching tasks and following team progress."
+},
+{
+"t": "li",
+"text": "New tasks, bugs, user stories or epics can be created and placed in the backlog, and later pulled into upcoming sprints."
+},
+{
+"t": "li",
+"text": "Every backlog item has a summary and a detailed description so that team members clearly know its purpose, scope and expected result."
+},
+{
+"t": "li",
+"text": "Each issue gets a priority such as High, Medium or Low, which lets the team concentrate on the most important work first."
+},
+{
+"t": "li",
+"text": "Big or complicated tasks can be split into smaller subtasks that are simpler to assign, follow and finish inside the sprint."
+},
+{
+"t": "li",
+"text": "Jira shows the present status of each issue, for example To Do, In Progress or Done, so the team can see how development is moving."
+},
+{
+"t": "li",
+"text": "Backlog items can be searched, edited, updated, moved, split or deleted at any time, which makes task handling easier."
+},
+{
+"t": "li",
+"text": "Items can be ranked and moved into a sprint depending on project needs, available resources and business demands."
+},
+{
+"t": "li",
+"text": "Jira keeps a record of who owns a task, who it is assigned to and whether it is complete, which supports teamwork and helps managers follow individual and team performance."
+},
+{
+"t": "h",
+"text": "ADVANTAGES OF USING JIRA BACKLOG:"
+},
+{
+"t": "li",
+"text": "Keeps one central list of project requirements and pending work."
+},
+{
+"t": "li",
+"text": "Makes sprint planning simpler by ordering tasks by priority."
+},
+{
+"t": "li",
+"text": "Helps in handling software defects, improvements and user stories properly."
+},
+{
+"t": "li",
+"text": "Allows easy tracking of project progress through workflow statuses."
+},
+{
+"t": "li",
+"text": "Supports subtasks for better handling of work."
+},
+{
+"t": "li",
+"text": "Improves teamwork by giving responsibilities to specific members."
+},
+{
+"t": "li",
+"text": "Makes it easy to see which tasks are finished, running or pending."
+},
+{
+"t": "li",
+"text": "Gives a well-organised method for planning software development."
+},
+{
+"t": "li",
+"text": "Allows issues to be created, edited, searched and managed quickly."
+},
+{
+"t": "li",
+"text": "Makes sure that key features and high-priority tasks get done first."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 11
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the backlog was created and studied successfully."
+}
+]
+},
+{
+"no": 3,
+"date": "14.07.26",
+"title": "CREATING A PROJECT IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create and set up a project in Jira for managing work and tracking tasks effectively."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Jira, from Atlassian, is a project management and issue-tracking tool. Software teams and organisations use it widely to plan, track, assign and manage their projects with ease."
+},
+{
+"t": "p",
+"text": "A Jira project is made up of issues such as tasks, bugs, stories and epics. It supports Agile methods like Scrum and Kanban through boards, backlogs, sprint planning and reports. Jira also helps teams work together by assigning tasks, setting priorities, tracking progress and keeping project documents."
+},
+{
+"t": "h",
+"text": "ALGORITHM / PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to the Jira account."
+},
+{
+"t": "li",
+"text": "Choose Projects from the navigation menu."
+},
+{
+"t": "li",
+"text": "Press Create Project."
+},
+{
+"t": "li",
+"text": "Pick a project template (Scrum, Kanban or Task Management)."
+},
+{
+"t": "img",
+"n": 12
+},
+{
+"t": "li",
+"text": "Choose Company-managed Project."
+},
+{
+"t": "li",
+"text": "Type the project name and the project key."
+},
+{
+"t": "img",
+"n": 13
+},
+{
+"t": "li",
+"text": "Adjust the project settings if needed."
+},
+{
+"t": "li",
+"text": "Press Create."
+},
+{
+"t": "li",
+"text": "The project dashboard gets created."
+},
+{
+"t": "li",
+"text": "Start adding issues like Tasks, Stories, Bugs or Epics to manage the project."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 14
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus a new project was created and configured successfully in Jira."
+}
+]
+},
+{
+"no": 4,
+"date": "14.07.26",
+"title": "DASHBOARDS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create a dashboard and add gadgets to it in JIRA."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "The Jira Dashboard is the first screen shown after a user logs in. It brings project information together through gadgets that help users watch tasks, issues, sprints and overall progress. A dashboard can be tailored as needed, and a user may keep many dashboards for different projects or one dashboard covering several projects. Dashboards save time by giving quick access to project status, assigned work, reports and key figures."
+},
+{
+"t": "p",
+"text": "The Default Dashboard is what users see when they first sign in to Jira. Administrators can change the system dashboard by adding, removing or configuring gadgets and altering the layout, and individual users can build personal dashboards to suit their projects."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to your Jira account."
+},
+{
+"t": "li",
+"text": "Choose Dashboards from the navigation menu."
+},
+{
+"t": "li",
+"text": "Press Create Dashboard."
+},
+{
+"t": "li",
+"text": "Type a name for the dashboard."
+},
+{
+"t": "li",
+"text": "Write a short description for it."
+},
+{
+"t": "li",
+"text": "Select who can see it: Private, Project, Organization or Public."
+},
+{
+"t": "li",
+"text": "Press Save."
+},
+{
+"t": "li",
+"text": "Press Add Gadget."
+},
+{
+"t": "li",
+"text": "Pick the gadgets you need, such as Activity Stream, Assigned to Me or Filter Results."
+},
+{
+"t": "li",
+"text": "Set up each selected gadget."
+},
+{
+"t": "li",
+"text": "Place the gadgets in the layout you prefer."
+},
+{
+"t": "li",
+"text": "Save the dashboard."
+},
+{
+"t": "li",
+"text": "Open the finished dashboard to see the project information."
+},
+{
+"t": "h",
+"text": "ADVANTAGES:"
+},
+{
+"t": "li",
+"text": "Gives a central view of the project."
+},
+{
+"t": "li",
+"text": "Improves teamwork among members."
+},
+{
+"t": "li",
+"text": "Allows quick checking of project progress."
+},
+{
+"t": "li",
+"text": "Supports visual data through charts and gadgets."
+},
+{
+"t": "li",
+"text": "Saves time by showing key project details on a single screen."
+},
+{
+"t": "h",
+"text": "APPLICATIONS:"
+},
+{
+"t": "li",
+"text": "Agile project handling"
+},
+{
+"t": "li",
+"text": "Sprint tracking"
+},
+{
+"t": "li",
+"text": "Task monitoring"
+},
+{
+"t": "li",
+"text": "Defect tracking"
+},
+{
+"t": "li",
+"text": "Team performance review"
+},
+{
+"t": "li",
+"text": "Software development projects"
+},
+{
+"t": "li",
+"text": "Business workflow handling"
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 15
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus a customised dashboard was created successfully in Jira."
+}
+]
+},
+{
+"no": 5,
+"date": "14.07.26",
+"title": "CONFIGURING GADGETS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create gadgets and configure them in Jira so that project details, reports and team progress appear on a dashboard."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Jira Gadgets are building blocks of a dashboard that show project summaries, issue statistics, reports, charts and other helpful details. They let users follow project progress, assigned work, sprint status and team activity on one dashboard."
+},
+{
+"t": "p",
+"text": "Gadgets can be tuned to project needs by setting filters, projects, issue types and display options. A personal dashboard may hold many gadgets, and administrators can set up gadgets on the default system dashboard for every user."
+},
+{
+"t": "cap",
+"text": "Some commonly used Jira gadgets include:"
+},
+{
+"t": "li",
+"text": "Activity Stream"
+},
+{
+"t": "li",
+"text": "Assigned to Me"
+},
+{
+"t": "li",
+"text": "Filter Results"
+},
+{
+"t": "li",
+"text": "Pie Chart"
+},
+{
+"t": "li",
+"text": "Issue Statistics"
+},
+{
+"t": "li",
+"text": "Sprint Burndown"
+},
+{
+"t": "li",
+"text": "Two-Dimensional Filter Statistics"
+},
+{
+"t": "li",
+"text": "Created vs Resolved Chart"
+},
+{
+"t": "p",
+"text": "These gadgets give live updates and make the project easier for the team to see."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to your Jira account."
+},
+{
+"t": "li",
+"text": "Open the dashboard you want to work on."
+},
+{
+"t": "li",
+"text": "Press Add Gadget."
+},
+{
+"t": "li",
+"text": "Browse or search for the gadget you need."
+},
+{
+"t": "li",
+"text": "Pick the gadget and press Add Gadget."
+},
+{
+"t": "li",
+"text": "Set up the gadget by choosing the project, filter, issue type or other options."
+},
+{
+"t": "li",
+"text": "Save the gadget settings."
+},
+{
+"t": "li",
+"text": "Move gadgets around by dragging and dropping them."
+},
+{
+"t": "li",
+"text": "Resize or maximise a gadget when needed."
+},
+{
+"t": "li",
+"text": "Edit or delete a gadget from its menu."
+},
+{
+"t": "li",
+"text": "Refresh the dashboard to see the latest project details."
+},
+{
+"t": "h",
+"text": "FEATURES OF JIRA GADGETS:"
+},
+{
+"t": "li",
+"text": "Shows live project information."
+},
+{
+"t": "li",
+"text": "Allows several gadgets on a dashboard."
+},
+{
+"t": "li",
+"text": "Simple to customise and configure."
+},
+{
+"t": "li",
+"text": "Offers charts, graphs and reports."
+},
+{
+"t": "li",
+"text": "Follows project progress and issue status."
+},
+{
+"t": "li",
+"text": "Shows sprint and backlog details."
+},
+{
+"t": "h",
+"text": "ADVANTAGES:"
+},
+{
+"t": "li",
+"text": "Gives fast access to project details."
+},
+{
+"t": "li",
+"text": "Strengthens teamwork."
+},
+{
+"t": "li",
+"text": "Improves project monitoring."
+},
+{
+"t": "li",
+"text": "Saves time by keeping key reports in one place."
+},
+{
+"t": "li",
+"text": "Supports better decisions through visual reports."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 16
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the required gadgets were created and configured successfully in Jira, which allows project activities to be monitored and visualised through the dashboard."
+}
+]
+},
+{
+"no": 6,
+"date": "14.07.26",
+"title": "USERS AND GROUPS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To study how users and groups are created in Jira and used to control project access, permissions and team collaboration."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Jira lets administrators manage users and groups so that projects and resources stay secure. A user is invited to the Jira site through an email address and given a suitable role such as Basic User, Trusted User or Site Administrator. After the invitation is accepted, the user can open the assigned Jira products and take part in project work."
+},
+{
+"t": "p",
+"text": "A group is a set of users who share similar permissions. Groups make permission handling easier because an administrator can give product access and project permissions to many users together. Administrators can also edit group details, add or remove members and delete groups that are no longer needed."
+},
+{
+"t": "h",
+"text": "ALGORITHM / PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Creating Users"
+},
+{
+"t": "li",
+"text": "Sign in to admin.atlassian.com."
+},
+{
+"t": "li",
+"text": "Pick the Jira organization you want."
+},
+{
+"t": "li",
+"text": "Go to Directory → Users."
+},
+{
+"t": "li",
+"text": "Press Invite users."
+},
+{
+"t": "li",
+"text": "Type the email address of the user."
+},
+{
+"t": "li",
+"text": "Choose a suitable role (Basic, Trusted or Site Administrator)."
+},
+{
+"t": "li",
+"text": "Select the Jira products the user should be able to use."
+},
+{
+"t": "li",
+"text": "Press Invite users."
+},
+{
+"t": "li",
+"text": "The invited person gets an invitation by email."
+},
+{
+"t": "li",
+"text": "After the invitation is accepted, the status of the user becomes Active."
+},
+{
+"t": "img",
+"n": 17
+},
+{
+"t": "li",
+"text": "Creating Groups"
+},
+{
+"t": "li",
+"text": "Sign in to admin.atlassian.com."
+},
+{
+"t": "li",
+"text": "Go to Directory → Groups."
+},
+{
+"t": "li",
+"text": "Press Create group."
+},
+{
+"t": "li",
+"text": "Type a name for the group."
+},
+{
+"t": "li",
+"text": "Add the members to the group."
+},
+{
+"t": "li",
+"text": "Write a description for the group."
+},
+{
+"t": "li",
+"text": "Press Create."
+},
+{
+"t": "li",
+"text": "Give the group the Jira product access and permissions it needs."
+},
+{
+"t": "img",
+"n": 18
+},
+{
+"t": "li",
+"text": "Editing and Deleting Groups"
+},
+{
+"t": "li",
+"text": "Go to Directory → Groups."
+},
+{
+"t": "li",
+"text": "Pick the group you want to change."
+},
+{
+"t": "li",
+"text": "Press the More (⋮) menu."
+},
+{
+"t": "li",
+"text": "Choose Edit description to change the group details."
+},
+{
+"t": "li",
+"text": "Choose Edit group's access to change its permissions."
+},
+{
+"t": "li",
+"text": "Choose Delete group when the group is not required any more."
+},
+{
+"t": "img",
+"n": 19
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the creation and management of users and groups in Jira was studied and carried out successfully."
+}
+]
+},
+{
+"no": 7,
+"date": "21.07.26",
+"title": "PERMISSIONS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand how permissions work in JIRA."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "sh",
+"text": "PERMISSIONS"
+},
+{
+"t": "p",
+"text": "Permissions are settings in Jira applications that decide what users can view and do inside them. Jira offers many kinds of permissions, from the ability to create new projects to the ability to see a particular kind of comment on an issue, and they may vary from one application to another."
+},
+{
+"t": "sh",
+"text": "TYPES OF PERMISSIONS"
+},
+{
+"t": "p",
+"text": "Jira applications have three types of permissions, going from broad to detailed:"
+},
+{
+"t": "li",
+"text": "Global permissions – Cover the whole application rather than single projects (for example, whether users can see other users)."
+},
+{
+"t": "li",
+"text": "Project permissions – Grouped into permission schemes and applied to projects (for example, who can view, create, edit and assign the issues of a project)."
+},
+{
+"t": "li",
+"text": "Issue security permissions – Grouped into security schemes; they let the visibility of single issues be adjusted within the limits of the project's permissions."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to the Jira site."
+},
+{
+"t": "li",
+"text": "Press the gear icon (Settings) and choose System."
+},
+{
+"t": "li",
+"text": "Under Security in the left panel, press Global permissions to see the list of global permissions and the groups given each of them."
+},
+{
+"t": "li",
+"text": "Open a project, press Project settings → Permissions to see the permission scheme used by that project and which roles can browse, create, edit and assign issues."
+},
+{
+"t": "li",
+"text": "If the plan allows it, go to Project settings → Issue security to view or set up issue-level security schemes."
+},
+{
+"t": "li",
+"text": "Capture screenshots of the Global Permissions page and the Project Permissions page."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 20
+},
+{
+"t": "img",
+"n": 21
+},
+{
+"t": "img",
+"n": 22
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the permissions in JIRA were studied and verified successfully."
+}
+]
+},
+{
+"no": 8,
+"date": "21.07.26",
+"title": "USER MANAGEMENT IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand user management in the JIRA tool."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "cap",
+"text": "USER MANAGEMENT:"
+},
+{
+"t": "p",
+"text": "Creating users is the main part of User Management, but it is not the only part. The key user-related tasks handled by a JIRA Admin are:"
+},
+{
+"t": "li",
+"text": "Editing the details of a user"
+},
+{
+"t": "li",
+"text": "Deleting a user"
+},
+{
+"t": "li",
+"text": "Creating user groups"
+},
+{
+"t": "li",
+"text": "Creating roles"
+},
+{
+"t": "li",
+"text": "Handling permissions"
+},
+{
+"t": "li",
+"text": "Setting preferences"
+},
+{
+"t": "li",
+"text": "ADDING A USER"
+},
+{
+"t": "li",
+"text": "To add a user, press the \"Invite Users\" button under User Management → Users, type one or more email IDs and press Send. A message confirms that the invitation was sent. For an email invite, the user is added only after the recipient accepts it."
+},
+{
+"t": "sh",
+"text": "A. Invite/add a user"
+},
+{
+"t": "p",
+"text": "1. Press the gear icon → User Management (or Administration → Users if you are a site admin at admin.atlassian.com)."
+},
+{
+"t": "p",
+"text": "2. Press Invite users."
+},
+{
+"t": "p",
+"text": "3. Type one or more email addresses."
+},
+{
+"t": "p",
+"text": "4. If needed, pick the product access to give (Jira Software and so on) and a group."
+},
+{
+"t": "p",
+"text": "5. Press Send invites and capture the \"Invitation sent\" confirmation."
+},
+{
+"t": "li",
+"text": "EDITING A USER"
+},
+{
+"t": "li",
+"text": "Open User Management → Users and use the Filter section to shorten the list. Press the \"Edit\" link in the Operations column of the user whose details must change."
+},
+{
+"t": "sh",
+"text": "B. Edit a user"
+},
+{
+"t": "li",
+"text": "Open admin.atlassian.com, choose your site and go to Directory → Users."
+},
+{
+"t": "li",
+"text": "Press the name of the user to open the profile."
+},
+{
+"t": "li",
+"text": "Change fields such as the name, or use the ⋯ menu to manage product access, groups or roles."
+},
+{
+"t": "li",
+"text": "Capture the edited profile."
+},
+{
+"t": "li",
+"text": "DELETING A USER"
+},
+{
+"t": "li",
+"text": "Press the \"Delete\" link beside the user who has to be removed from JIRA."
+},
+{
+"t": "p",
+"text": "A JIRA Admin can also set up the look and feel, workflows, project and issue level security, custom fields and screens, developer tool integrations, dashboard settings, time zone and email preferences."
+},
+{
+"t": "sh",
+"text": "C. Delete/deactivate a user"
+},
+{
+"t": "li",
+"text": "On the same Users list, pick the user."
+},
+{
+"t": "li",
+"text": "Press the ⋯ (more actions) menu → Deactivate account (or Remove from site, depending on the account type)."
+},
+{
+"t": "li",
+"text": "Confirm the action and capture the result."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to the Jira site as an admin."
+},
+{
+"t": "li",
+"text": "Press the gear icon → User Management (or open admin.atlassian.com → Directory → Users)."
+},
+{
+"t": "li",
+"text": "To add a user: press Invite users, type the email address(es), choose product access if asked, and press Send invites."
+},
+{
+"t": "li",
+"text": "To edit a user: press the name of the user in the Users list to open the profile and change the details, groups or roles as required."
+},
+{
+"t": "li",
+"text": "To delete or deactivate a user: pick the user, press the \"⋯\" (more actions) menu, choose Deactivate account or Remove from site and confirm."
+},
+{
+"t": "li",
+"text": "Capture screenshots at every stage: invite sent, edited profile and deactivated or removed user."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 23
+},
+{
+"t": "img",
+"n": 24
+},
+{
+"t": "img",
+"n": 25
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus a user was added, edited and deleted successfully in the JIRA tool."
+}
+]
+},
+{
+"no": 9,
+"date": "21.07.26",
+"title": "PROJECT ROLES IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand project roles in JIRA."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "cap",
+"text": "PROJECT ROLES:"
+},
+{
+"t": "p",
+"text": "A project role in a Jira application is a flexible way of linking users and groups to a given project. Groups have the same members everywhere in Jira, but project roles have separate members for every project, so a person can hold different roles in different projects."
+},
+{
+"t": "sh",
+"text": "VIEWING PROJECT ROLE MEMBERS"
+},
+{
+"t": "p",
+"text": "Open the project and go to Project settings → People."
+},
+{
+"t": "sh",
+"text": "ASSIGNING A USER OR GROUP TO A PROJECT ROLE"
+},
+{
+"t": "p",
+"text": "Go to Project settings → People → Add people (top-right corner). Search for the user or group, choose the project role to give and press Add."
+},
+{
+"t": "sh",
+"text": "REMOVING A USER OR GROUP FROM A PROJECT ROLE"
+},
+{
+"t": "p",
+"text": "Go to Project settings → People and press Remove in the row of the user or group."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Open a project and press Project settings → People to see the members and the roles assigned to them."
+},
+{
+"t": "li",
+"text": "To assign a role: press Add people, search for the user or group by name or email, choose the project role (for example Administrators or Members) and press Add."
+},
+{
+"t": "li",
+"text": "To remove a role: find the user or group in the People list, press the remove (trash) icon beside it and confirm."
+},
+{
+"t": "li",
+"text": "Capture screenshots before and after assigning or removing a role to show the change."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 26
+},
+{
+"t": "img",
+"n": 27
+},
+{
+"t": "img",
+"n": 28
+},
+{
+"t": "img",
+"n": 29
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the project roles were studied, created and assigned successfully in JIRA."
+}
+]
+},
+{
+"no": 10,
+"date": "28.07.26",
+"title": "CREATE PROJECT ROLES IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create and manage project roles in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Project roles link users and groups with particular responsibilities in a project. Jira administrators create project roles that can be used in every project, and project administrators then place users or groups in those roles. Project roles make permission handling simpler and can be used in permission schemes, notification schemes, workflow conditions, issue security and comment visibility. Administrator, Developer and User are common default roles."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira as an administrator."
+},
+{
+"t": "li",
+"text": "Go to Settings → System → Project Roles."
+},
+{
+"t": "li",
+"text": "Press Add Project Role."
+},
+{
+"t": "li",
+"text": "Type the role name and a description."
+},
+{
+"t": "li",
+"text": "Press Add Project Role."
+},
+{
+"t": "li",
+"text": "Choose Manage Default Members for the new role."
+},
+{
+"t": "li",
+"text": "Add the users or groups to the role."
+},
+{
+"t": "li",
+"text": "Save the changes."
+},
+{
+"t": "li",
+"text": "Check the users listed under the project role."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 30
+},
+{
+"t": "img",
+"n": 31
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the project role was created and managed successfully in Jira."
+}
+]
+},
+{
+"no": 11,
+"date": "28.07.26",
+"title": "TEST PERMISSIONS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create and test permission schemes in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "A permission scheme defines what users, groups and project roles may do inside a Jira project. Each company-managed project uses one permission scheme, and permissions such as creating, editing, assigning and closing issues or managing the project are granted through it."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in as a Jira administrator."
+},
+{
+"t": "li",
+"text": "Go to Settings → Issues → Permission Schemes."
+},
+{
+"t": "li",
+"text": "Press Add Permission Scheme."
+},
+{
+"t": "li",
+"text": "Type a name and description for the scheme."
+},
+{
+"t": "li",
+"text": "Save the permission scheme."
+},
+{
+"t": "li",
+"text": "Open the permission scheme."
+},
+{
+"t": "li",
+"text": "Pick the permission you need."
+},
+{
+"t": "li",
+"text": "Grant it to a user, group or project role."
+},
+{
+"t": "li",
+"text": "Save the changes."
+},
+{
+"t": "li",
+"text": "Link the permission scheme to the project."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 32
+},
+{
+"t": "cap",
+"text": "PERMISSION SCHEME ADDED:"
+},
+{
+"t": "img",
+"n": 33
+},
+{
+"t": "cap",
+"text": "EDITING PERMISSION SCHEME:"
+},
+{
+"t": "img",
+"n": 34
+},
+{
+"t": "cap",
+"text": "GRANT PERMISSION:"
+},
+{
+"t": "img",
+"n": 35
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the permission scheme was created and tested successfully in Jira."
+}
+]
+},
+{
+"no": 12,
+"date": "28.07.26",
+"title": "SMART QUERIES AND FILTERS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create smart queries and filters in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Queries search for issues using fields such as project, priority, issue type, assignee and status. Jira Query Language (JQL) gives advanced search power, and a filter is a saved search that quickly brings back the issues matching certain conditions."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Open Jira."
+},
+{
+"t": "li",
+"text": "Go to Filters → Advanced Issue Search."
+},
+{
+"t": "li",
+"text": "Choose Basic Search or JQL Search."
+},
+{
+"t": "li",
+"text": "Type the query you need."
+},
+{
+"t": "li",
+"text": "Run the search."
+},
+{
+"t": "li",
+"text": "Check the results."
+},
+{
+"t": "li",
+"text": "Press Save As."
+},
+{
+"t": "li",
+"text": "Type a name and description for the filter."
+},
+{
+"t": "li",
+"text": "Save the filter."
+},
+{
+"t": "li",
+"text": "Edit or share the filter if needed."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "p",
+"text": "Query Execution :  [ project = SCRUM AND status = \"In Progress\"]"
+},
+{
+"t": "img",
+"n": 36
+},
+{
+"t": "cap",
+"text": "Save the Filter:"
+},
+{
+"t": "img",
+"n": 37
+},
+{
+"t": "cap",
+"text": "Filter Saved:"
+},
+{
+"t": "img",
+"n": 38
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus smart queries and filters were created successfully in Jira."
+}
+]
+},
+{
+"no": 13,
+"date": "04.08.26",
+"title": "BOARDS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create Scrum and Kanban boards in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "A Jira board shows the issues of a project visually. Scrum boards suit sprint-based Agile work, while Kanban boards suit a continuous flow of work. Boards help teams follow issue progress, handle backlogs, watch active sprints and produce reports."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Open the project you need."
+},
+{
+"t": "li",
+"text": "Press Create Board."
+},
+{
+"t": "li",
+"text": "Choose Scrum Board or Kanban Board."
+},
+{
+"t": "li",
+"text": "Pick the project."
+},
+{
+"t": "li",
+"text": "Type the board name."
+},
+{
+"t": "li",
+"text": "Press Create."
+},
+{
+"t": "li",
+"text": "Adjust the board settings."
+},
+{
+"t": "li",
+"text": "Add issues to the board."
+},
+{
+"t": "li",
+"text": "Open the backlog, active sprint or reports."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 39
+},
+{
+"t": "cap",
+"text": "SCRUM BOARD:"
+},
+{
+"t": "img",
+"n": 40
+},
+{
+"t": "cap",
+"text": "KANBAN BOARD:"
+},
+{
+"t": "img",
+"n": 41
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the board was created successfully in Jira."
+}
+]
+},
+{
+"no": 14,
+"date": "04.08.26",
+"title": "RICH TEXT IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand and use the Rich Text Editor in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "The Rich Text Editor in Jira lets users write and edit formatted content in Visual Mode or Wiki Markup Mode. It handles bold, italics, lists, tables, links and headings, and is available in issue descriptions, comments and multi-line text fields."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Go to Administration → System."
+},
+{
+"t": "li",
+"text": "Open the Rich Text Editor settings."
+},
+{
+"t": "li",
+"text": "Turn on the Rich Text Editor if it is off."
+},
+{
+"t": "li",
+"text": "Create a new issue or edit one."
+},
+{
+"t": "li",
+"text": "Type formatted text in the editor."
+},
+{
+"t": "li",
+"text": "Apply formatting such as headings, bold, lists or tables."
+},
+{
+"t": "li",
+"text": "Save the issue."
+},
+{
+"t": "li",
+"text": "Check the formatted content."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 42
+},
+{
+"t": "img",
+"n": 43
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the Rich Text Editor was studied and used successfully in Jira."
+}
+]
+},
+{
+"no": 15,
+"date": "04.08.26",
+"title": "SPRINT PLANNING IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand and carry out sprint planning in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "A sprint is a fixed time box in which a Scrum team finishes a chosen set of backlog items. Jira's sprint planning features allow sprints to be created, issues to be assigned, progress to be tracked and sprints to be completed. Sprint planning helps teams organise their work, estimate effort and deliver the product in small increments."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Open the Scrum project."
+},
+{
+"t": "li",
+"text": "Go to Backlog."
+},
+{
+"t": "li",
+"text": "Press Create Sprint."
+},
+{
+"t": "li",
+"text": "Drag issues from the backlog into the sprint."
+},
+{
+"t": "li",
+"text": "Type a name and a goal for the sprint."
+},
+{
+"t": "li",
+"text": "Fix the start date and end date of the sprint."
+},
+{
+"t": "li",
+"text": "Press Start Sprint."
+},
+{
+"t": "li",
+"text": "Keep updating the issue status as the sprint runs."
+},
+{
+"t": "li",
+"text": "Follow progress with the Sprint Reports."
+},
+{
+"t": "li",
+"text": "Press Complete Sprint when all planned work is done."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Create Sprint:"
+},
+{
+"t": "img",
+"n": 44
+},
+{
+"t": "cap",
+"text": "Moving Backlogs to New Sprint:"
+},
+{
+"t": "img",
+"n": 45
+},
+{
+"t": "cap",
+"text": "New Task added to Sprint:"
+},
+{
+"t": "img",
+"n": 46
+},
+{
+"t": "cap",
+"text": "CUSTOM SPRINT PLANNING:"
+},
+{
+"t": "img",
+"n": 47
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus sprint planning was carried out successfully in Jira."
+}
+]
+},
+{
+"no": 16,
+"date": "11.08.26",
+"title": "DASHBOARD FOR SPRINTS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To study and build a dashboard for sprints in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "A dashboard is the main screen shown when you log in to Jira. Separate dashboards can be made for different projects, or one dashboard can give an overview of the work in all projects. Dashboards hold gadgets that show projects, assignments and sprint progress as various charts. In the current Jira Cloud, dashboards are opened from the search bar or the apps grid, since there is no separate top-level \"Dashboards\" menu item."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Press \"/\" or click the Search bar and choose \"View all dashboards.\""
+},
+{
+"t": "li",
+"text": "Press Create dashboard and then type the dashboard name and description."
+},
+{
+"t": "li",
+"text": "Press Save."
+},
+{
+"t": "li",
+"text": "Press Add gadget on the new dashboard."
+},
+{
+"t": "li",
+"text": "Pick sprint-related gadgets such as Sprint Health, Sprint Report or Filter Results."
+},
+{
+"t": "li",
+"text": "Set up each gadget by choosing the project and the sprint."
+},
+{
+"t": "li",
+"text": "Arrange the gadgets and save the layout."
+},
+{
+"t": "li",
+"text": "Share the dashboard with the team if needed."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Creating Dashboard:"
+},
+{
+"t": "img",
+"n": 48
+},
+{
+"t": "cap",
+"text": "Gadgets in Dashboard:"
+},
+{
+"t": "img",
+"n": 49
+},
+{
+"t": "cap",
+"text": "Sprint reports in Dashboard using Gadget:"
+},
+{
+"t": "img",
+"n": 50
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the dashboard for sprints was created and studied successfully in Jira."
+}
+]
+},
+{
+"no": 17,
+"date": "11.08.26",
+"title": "AUTOMATION TOOLS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand the automation tools available in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Automation frees teams to concentrate on important work by taking over repeated manual tasks. An automation rule has three parts: a trigger that starts the rule, conditions that narrow it down, and actions that do the work. Triggers wait for events such as a work item being created or a field value changing. Conditions limit the scope of the rule, and the rule stops when a condition is not met. A rule can be Enabled, Disabled or in Draft, and each rule keeps an audit log that records when it ran and what the result was."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Open the project you need."
+},
+{
+"t": "li",
+"text": "Go to Project settings → Automation."
+},
+{
+"t": "li",
+"text": "Press Create rule to see the rule builder."
+},
+{
+"t": "li",
+"text": "Look through the triggers available (for example Work item created, Field value changed)."
+},
+{
+"t": "li",
+"text": "Look through the conditions available (for example Work item fields condition)."
+},
+{
+"t": "li",
+"text": "Look through the actions available (for example Create sub-tasks, Assign work item, Send notification)."
+},
+{
+"t": "li",
+"text": "Check the rule status labels: Enabled, Disabled and Draft."
+},
+{
+"t": "li",
+"text": "Open the Audit log tab to see the history of rule runs."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Automation Page:"
+},
+{
+"t": "img",
+"n": 51
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the automation tools were studied successfully in Jira."
+}
+]
+},
+{
+"no": 18,
+"date": "11.08.26",
+"title": "CREATE AUTOMATION RULE IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To build an automation rule in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Automation rules let teams run actions in Jira automatically when certain criteria are met. A rule has a trigger that starts it, conditions that decide when it runs and actions that do tasks such as creating sub-tasks or assigning work items."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Go to Project settings → Automation."
+},
+{
+"t": "li",
+"text": "Press Create rule."
+},
+{
+"t": "li",
+"text": "Choose the Work item created trigger and press Save."
+},
+{
+"t": "li",
+"text": "Press New condition and choose Work item fields condition."
+},
+{
+"t": "li",
+"text": "Set Field = Work Type, Condition = equals, Value = Bug, and press Save."
+},
+{
+"t": "li",
+"text": "Press New action and choose Create sub-tasks."
+},
+{
+"t": "li",
+"text": "Add three sub-tasks called Inspect code, Troubleshoot and Resolve, then press Save."
+},
+{
+"t": "li",
+"text": "Press New action and choose Assign work item."
+},
+{
+"t": "li",
+"text": "Pick a user as the assignee and press Save."
+},
+{
+"t": "li",
+"text": "Type a name for the rule and press Turn it on."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Create Rule:"
+},
+{
+"t": "img",
+"n": 52
+},
+{
+"t": "cap",
+"text": "Flow Created:"
+},
+{
+"t": "img",
+"n": 53
+},
+{
+"t": "cap",
+"text": "Audit Log Page shows a successful Creation:"
+},
+{
+"t": "img",
+"n": 54
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the automation rule was created successfully in Jira."
+}
+]
+},
+{
+"no": 19,
+"date": "11.08.26",
+"title": "TEST AUTOMATION RULE IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To test the automation rule that was built in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Actions are the part of a rule that does the work, such as editing a work item, sending a notification or creating sub-tasks. Work items seldom stand alone; they often have sub-tasks or links to other items. Branching lets an action apply not only to the work item that fired the rule but also to the related ones."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Open the automation rule created in EX.NO. 18."
+},
+{
+"t": "li",
+"text": "Press the \"...\" menu and choose Run rule to test it on an existing work item, or create a new Bug-type work item so that the rule fires by itself."
+},
+{
+"t": "li",
+"text": "Open the work item and check that the sub-tasks Inspect code, Troubleshoot and Resolve have been created."
+},
+{
+"t": "li",
+"text": "Check that the Assignee field was updated as set in the rule."
+},
+{
+"t": "li",
+"text": "Open the Audit log tab of the rule and confirm that the status reads Success."
+},
+{
+"t": "li",
+"text": "Go through the trigger, condition and action details recorded for the run."
+},
+{
+"t": "li",
+"text": "Change the rule and test again if the audit log shows a failure."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "p",
+"text": "Task Created to test the Rule: (Sub tasks Appeared)"
+},
+{
+"t": "img",
+"n": 55
+},
+{
+"t": "cap",
+"text": "Rule Success:"
+},
+{
+"t": "img",
+"n": 56
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the automation rule was tested successfully in Jira."
+}
+]
+},
+{
+"no": 20,
+"date": "11.08.26",
+"title": "SUBSCRIPTIONS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand subscriptions in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Jira subscriptions keep users informed of important work items as they appear. A subscription runs a saved query on a schedule and emails the results to a person or a group. If no work item matches, no email is sent. Users can create any number of filters and subscriptions, and administrators can view and manage all of them for the site, including changing the owner of a filter, spotting broken or duplicate filters and searching by JQL."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Run a JQL or basic search to make a filter (for example, project = SCRUM AND sprint in openSprints())."
+},
+{
+"t": "li",
+"text": "Press Save as to keep the search as a filter."
+},
+{
+"t": "li",
+"text": "Open the saved filter and choose Subscribe from the Details or \"...\" menu."
+},
+{
+"t": "li",
+"text": "Pick the schedule (daily, weekly or custom)."
+},
+{
+"t": "li",
+"text": "Pick the recipients (yourself, a group or particular users)."
+},
+{
+"t": "li",
+"text": "Press Save to switch the subscription on."
+},
+{
+"t": "li",
+"text": "(Admin) If needed, go to Settings → System to view and manage all filters and subscriptions of the site."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 57
+},
+{
+"t": "cap",
+"text": "Subscription Created:"
+},
+{
+"t": "img",
+"n": 58
+},
+{
+"t": "img",
+"n": 59
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus subscriptions were studied and created successfully in Jira."
+}
+]
+},
+{
+"no": 21,
+"date": "25.08.26",
+"title": "VISUAL DASHBOARD ALERTS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create and study visual alerts and task assignment through mentions in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Jira adds visual context to discussions through comment mentions and dashboard gadgets. A user who is @mentioned in a comment gets a notification by email and in the notification feed, with a preview of the comment. This draws the attention of a person to a particular task within the work item discussion, without a separate messaging tool. Dashboard gadgets add to the alerts by bringing overdue items, flagged work and activity feeds together in one place."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Open any work item (for example a Task or Story) in your project."
+},
+{
+"t": "li",
+"text": "Scroll down to the comment box."
+},
+{
+"t": "li",
+"text": "Type \"@\" followed by the name of a teammate to mention them."
+},
+{
+"t": "li",
+"text": "Write the comment describing the task or the update needed."
+},
+{
+"t": "li",
+"text": "Press Save (or Comment) to post it."
+},
+{
+"t": "li",
+"text": "The mentioned user gets an email and an in-app notification with a preview of the comment."
+},
+{
+"t": "li",
+"text": "Open your Dashboard and add an \"Activity Stream\" or \"Assigned to Me\" gadget to follow mentions and assignments in one place."
+},
+{
+"t": "li",
+"text": "Check that the notification arrived by looking at the bell icon in the top bar or at the email of the mentioned user."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Mention Created by teammate:"
+},
+{
+"t": "img",
+"n": 60
+},
+{
+"t": "cap",
+"text": "The Notification Panel showing the Mention Alert:"
+},
+{
+"t": "img",
+"n": 61
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus visual alerts through mentions and dashboard gadgets were studied and demonstrated successfully in Jira."
+}
+]
+},
+{
+"no": 22,
+"date": "25.08.26",
+"title": "PRODUCT ROADMAPS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand and build a product roadmap (Timeline) in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "A product roadmap is a shared reference that describes the vision, direction, priorities and progress of a product over time. It aligns the organisation around short-term and long-term goals and the way to reach them. In current Jira this feature is named Timeline (in Jira Software spaces); it shows Epics scheduled over weeks, months or quarters, with their child Stories, Tasks and Bugs below them. Development teams use it to arrange work by sprints, while executives prefer higher-level monthly or quarterly views to follow progress toward company goals. For roadmaps that cover several projects, Jira provides Plans (Advanced Roadmaps) as a premium feature."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Open the Scrum or Kanban space you need (for example, LIBRARY MANAGEMENT)."
+},
+{
+"t": "li",
+"text": "Press the Timeline tab in the navigation of the space."
+},
+{
+"t": "li",
+"text": "Press Create epic to add a new Epic if there is none yet."
+},
+{
+"t": "li",
+"text": "Set the start date and due date of the Epic by dragging its bar on the timeline, or type the dates."
+},
+{
+"t": "li",
+"text": "Add child work items (Stories, Tasks, Bugs) under the Epic to split up the work."
+},
+{
+"t": "li",
+"text": "Switch the view between Weeks, Months and Quarters with the control at the bottom right."
+},
+{
+"t": "li",
+"text": "Look at the progress bar on each Epic, which shows the status of its child work items."
+},
+{
+"t": "li",
+"text": "Change the dates as priorities move, so that the roadmap stays current."
+},
+{
+"t": "li",
+"text": "Share the Timeline view with stakeholders so that everyone is aligned."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Create Epic:"
+},
+{
+"t": "img",
+"n": 62
+},
+{
+"t": "cap",
+"text": "Set Start and End date:"
+},
+{
+"t": "img",
+"n": 63
+},
+{
+"t": "cap",
+"text": "Chile Work Created:"
+},
+{
+"t": "img",
+"n": 64
+},
+{
+"t": "p",
+"text": "Toggle Timeline : (Quarter)"
+},
+{
+"t": "img",
+"n": 65
+},
+{
+"t": "cap",
+"text": "Months:"
+},
+{
+"t": "img",
+"n": 66
+},
+{
+"t": "cap",
+"text": "Weeks:"
+},
+{
+"t": "img",
+"n": 67
+},
+{
+"t": "cap",
+"text": "Today:"
+},
+{
+"t": "img",
+"n": 68
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the product roadmap was studied and created successfully in Jira."
+}
+]
+},
+{
+"no": 23,
+"date": "25.08.26",
+"title": "INFORMATION RADIATORS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand information radiators in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "An information radiator is a digital or physical board that gives a summarised and well laid-out view of how a team is progressing. It matters to stakeholders because passing a team's workspace and seeing such a board adds transparency about the team's progress. In Jira, this is done by building a Dashboard with certain gadgets:"
+},
+{
+"t": "li",
+"text": "Sprint Health Gadget - gives a colour-coded summary of the issues in a sprint, showing overall progress from time elapsed, work completed and work remaining, with blue for To Do, yellow for In Progress and green for Done."
+},
+{
+"t": "li",
+"text": "Pie Chart Gadget - shows how much work each team member has and how fast it is completed, giving an instant visual picture that is handy in meetings."
+},
+{
+"t": "li",
+"text": "Filter Results Gadget - shows a board-style list of the items in the current sprint with their status and assignee, which is useful in daily stand-ups."
+},
+{
+"t": "li",
+"text": "Sprint Burndown Chart - draws line graphs of the sprint burndown, with a guideline for the total estimated work at the start and a line for the work actually remaining, so that anyone passing by can see whether the sprint is on track."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Go to Dashboards → Create dashboard."
+},
+{
+"t": "li",
+"text": "Type the dashboard name and description and press Save."
+},
+{
+"t": "li",
+"text": "Press Add gadget."
+},
+{
+"t": "li",
+"text": "Search for the Sprint Health gadget and add it; set it up with the board and active sprint of your project."
+},
+{
+"t": "li",
+"text": "Add the Pie Chart gadget and set it to group by Status or Assignee."
+},
+{
+"t": "li",
+"text": "Add the Filter Results gadget and set it with a JQL filter such as sprint in openSprints()."
+},
+{
+"t": "li",
+"text": "Add the Sprint Burndown Chart gadget (reached from the Reports tab of the board, or shown through Filter Results)."
+},
+{
+"t": "li",
+"text": "Arrange the gadgets in a clean layout that suits a wallboard display."
+},
+{
+"t": "li",
+"text": "Press Done to save the dashboard as your information radiator."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "p",
+"text": "Information Radiator,"
+},
+{
+"t": "p",
+"text": "giving an at-a-glance view of sprint status,"
+},
+{
+"t": "p",
+"text": "work distribution by status,"
+},
+{
+"t": "p",
+"text": "and the current filtered work items."
+},
+{
+"t": "cap",
+"text": "Add Gadgets:"
+},
+{
+"t": "img",
+"n": 69
+},
+{
+"t": "cap",
+"text": "Dashboard:"
+},
+{
+"t": "img",
+"n": 70
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus information radiators were studied and created successfully in Jira."
+}
+]
+},
+{
+"no": 24,
+"date": "01.09.26",
+"title": "CLOSE A SPRINT IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To close a sprint in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "At the end of a sprint the team reviews its progress, usually with a demo of the completed work followed by a sprint retrospective to find improvements. Sprints exist only on Scrum boards; Kanban boards have none. To complete a sprint, a user must be a Jira Administrator or hold the Manage Sprints permission."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira and open the Scrum space you need."
+},
+{
+"t": "li",
+"text": "Open the Board tab, which shows the active sprint."
+},
+{
+"t": "li",
+"text": "If several sprints are active, pick the sprint from the sprint dropdown (the Complete sprint button appears only after a specific sprint is selected)."
+},
+{
+"t": "li",
+"text": "Press Complete sprint (top right of the board)."
+},
+{
+"t": "li",
+"text": "All work items marked Done leave the active sprint automatically."
+},
+{
+"t": "li",
+"text": "If unfinished work items remain, choose one of the following in the dialog:"
+},
+{
+"t": "li",
+"text": "Move them to the Backlog"
+},
+{
+"t": "li",
+"text": "Move them to an existing future sprint"
+},
+{
+"t": "li",
+"text": "Create a new sprint and move them into it"
+},
+{
+"t": "li",
+"text": "Note: if a parent work item is Done but its sub-tasks are not, the sprint cannot be completed until those sub-tasks are finished."
+},
+{
+"t": "li",
+"text": "Confirm and complete the sprint."
+},
+{
+"t": "li",
+"text": "Check that the sprint status becomes \"Closed\" and that the board now shows the next sprint (if started) or an empty board."
+},
+{
+"t": "li",
+"text": "Open the Reports tab to look at the burndown and velocity data of the completed sprint."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Sprint Running:"
+},
+{
+"t": "img",
+"n": 71
+},
+{
+"t": "cap",
+"text": "Sprint Completed:"
+},
+{
+"t": "img",
+"n": 72
+},
+{
+"t": "cap",
+"text": "To Do and In Progress went to new Sprint:"
+},
+{
+"t": "img",
+"n": 73
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the sprint was closed successfully in Jira."
+}
+]
+},
+{
+"no": 25,
+"date": "01.09.26",
+"title": "REPORTS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To create and study reports in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Reporting in Jira means learning about the health, progress and overall state of projects through project reports, dashboard gadgets and filter-based views. Every space offers standard reports without extra setup. Current Jira Cloud groups them under the Reports tab of a project, and they include:"
+},
+{
+"t": "img",
+"n": 74
+},
+{
+"t": "p",
+"text": "In addition, dashboard gadgets give reporting at a personal or team level, such as: Activity Stream, Assigned to Me, Average Age Chart, Filter Results, Pie Chart, Sprint Health, Issue/Work Item Statistics and Two-Dimensional Filter Statistics."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira."
+},
+{
+"t": "li",
+"text": "Open the Scrum or Kanban space you need."
+},
+{
+"t": "li",
+"text": "Press the Reports tab in the navigation of the space."
+},
+{
+"t": "li",
+"text": "Choose a report type from the list, for example Sprint Report, Burndown Chart or Velocity Chart."
+},
+{
+"t": "li",
+"text": "Choose the sprint or date range for the report."
+},
+{
+"t": "li",
+"text": "Look at the visual result, which may be line graphs, bar charts or tables depending on the report."
+},
+{
+"t": "li",
+"text": "Go to Dashboards → Create dashboard for more gadget-based reports."
+},
+{
+"t": "li",
+"text": "Add gadgets such as Pie Chart, Filter Results or Average Age Chart and set each one with the project or filter needed."
+},
+{
+"t": "li",
+"text": "Save the dashboard."
+},
+{
+"t": "li",
+"text": "Check that the reports show correct and current data for the project."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Sprint Report View:"
+},
+{
+"t": "img",
+"n": 75
+},
+{
+"t": "cap",
+"text": "Burnup Report:"
+},
+{
+"t": "img",
+"n": 76
+},
+{
+"t": "cap",
+"text": "Burndown Report:"
+},
+{
+"t": "img",
+"n": 77
+},
+{
+"t": "cap",
+"text": "Velocity Chart:"
+},
+{
+"t": "img",
+"n": 78
+},
+{
+"t": "cap",
+"text": "Reporting View:"
+},
+{
+"t": "img",
+"n": 70
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus reports were created and executed successfully in Jira."
+}
+]
+},
+{
+"no": 26,
+"date": "08.09.26",
+"title": "SPRINT RETROSPECTIVE ITEMS IN JIRA",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To understand sprint retrospective items in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Agile retrospectives are not \"post-mortem\" meetings held only when a project ends; they take place at the close of every sprint during the life of the project. A retrospective is central to the incremental value of a product and to the continuous improvement of a team. Without regular retrospectives, problems cannot be fixed before they grow, and teams miss the long-term benefits of Agile. In current Jira, retrospectives are run through a Confluence whiteboard or page that opens straight from Jira when a sprint is completed, so the retrospective stays linked to the real sprint data."
+},
+{
+"t": "cap",
+"text": "Five stages of a retrospective:"
+},
+{
+"t": "li",
+"text": "Set the Stage — builds a \"safe space\" for open sharing. Jira and Confluence are a natural venue because all the sprint information is already there and easy to refer to during the session."
+},
+{
+"t": "li",
+"text": "Gather Data — team members add their ideas on their own instead of speaking one after another, which avoids \"groupthink\" where the first opinion shared influences everybody else."
+},
+{
+"t": "li",
+"text": "Generate Insights — the team filters the ideas and votes on which topics matter most, deciding what to handle first. Voting can be set to limit the votes per person and per topic."
+},
+{
+"t": "li",
+"text": "Decide What to Do — the most important stage and the one most often skipped. The result must be a concrete action item rather than a vague remark, and it should be made as a Jira work item so it can be tracked and followed up."
+},
+{
+"t": "li",
+"text": "Close the Retrospective — the team agrees, formally or informally, on the action items and names an owner who makes sure each action gets done (not always the person who does the task)."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Sign in to Jira and open the Scrum space you need."
+},
+{
+"t": "li",
+"text": "Complete the active sprint (Board → Complete sprint), since retrospectives are normally triggered when a sprint closes."
+},
+{
+"t": "li",
+"text": "When asked, choose the option to create a Sprint Retrospective in Confluence (as a whiteboard or a page)."
+},
+{
+"t": "li",
+"text": "Pick a whiteboard for real-time group input, or a page for a structured written retrospective."
+},
+{
+"t": "li",
+"text": "Set the stage by inviting the team and briefly stating the purpose of the retrospective."
+},
+{
+"t": "li",
+"text": "Gather data by letting each member add ideas or sticky notes on their own under headings such as \"What went well,\" \"What didn't go well\" and \"Ideas for improvement.\""
+},
+{
+"t": "li",
+"text": "Generate insights by grouping similar ideas and voting for the topics most worth discussing."
+},
+{
+"t": "li",
+"text": "Decide what to do by turning the top-voted insights into concrete action items and creating matching Jira work items to track them."
+},
+{
+"t": "li",
+"text": "Name an owner for every action item."
+},
+{
+"t": "li",
+"text": "Close the retrospective with the team's agreement and link it back to the completed sprint for future reference."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "cap",
+"text": "Choose the Template for Retrospective:"
+},
+{
+"t": "img",
+"n": 79
+},
+{
+"t": "img",
+"n": 80
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus sprint retrospective items were studied and demonstrated successfully in Jira."
+}
+]
+},
+{
+"no": 27,
+"date": "08.09.26",
+"title": "PLANNING POKER IN JIRA - PART 1",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To set up the Planning Poker integration in Jira using a Marketplace app."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Planning poker, also called \"scrum poker\" or \"pointing poker,\" is a game-like estimation method in which a development team jointly guesses the effort needed for tasks. Estimates come from group agreement and not from one person's judgement, which makes them more engaging and statistically more accurate. Planning Poker is not built into Jira; it comes from Marketplace apps (such as Planning Poker for Jira, Actioned or similar tools) that connect to Jira through OAuth or application links, unlike the older manual \"Application Links\" setup of Server/Data Center versions."
+},
+{
+"t": "cap",
+"text": "Benefits:"
+},
+{
+"t": "li",
+"text": "Group estimates from planning poker are statistically more accurate than individual guesses."
+},
+{
+"t": "li",
+"text": "Helps to estimate tasks relative to one another instead of in absolute units."
+},
+{
+"t": "li",
+"text": "Brings out gaps between requirements and the understanding of the implementation early."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "p",
+"text": "(Current Jira Cloud):"
+},
+{
+"t": "li",
+"text": "Sign in to Jira as an administrator."
+},
+{
+"t": "li",
+"text": "Open the Atlassian Marketplace (Settings → Apps → Find new apps, or marketplace.atlassian.com directly)."
+},
+{
+"t": "li",
+"text": "Search for a Planning Poker app (for example, \"Planning Poker for Jira\")."
+},
+{
+"t": "li",
+"text": "Press Get it now / Try it free to add the app to your Jira site."
+},
+{
+"t": "li",
+"text": "After the installation, open the app from the Apps menu in the top bar."
+},
+{
+"t": "li",
+"text": "Follow the setup wizard inside the app to connect it to your Jira site; modern apps use OAuth authorisation instead of manually creating Application Links."
+},
+{
+"t": "li",
+"text": "Grant the permissions it asks for (this takes the place of the older \"Incoming Authentication\" step)."
+},
+{
+"t": "li",
+"text": "Confirm that the connection is active by checking that the app's dashboard shows your Jira site as linked."
+},
+{
+"t": "li",
+"text": "Move on to create a new estimation game (covered in Part 2)."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 81
+},
+{
+"t": "cap",
+"text": "Added to Apps:"
+},
+{
+"t": "img",
+"n": 82
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus the Planning Poker integration was set up successfully in Jira."
+}
+]
+},
+{
+"no": 28,
+"date": "08.09.26",
+"title": "PLANNING POKER IN JIRA - PART 2",
+"b": [
+{
+"t": "h",
+"text": "AIM:"
+},
+{
+"t": "p",
+"text": "To run a planning poker estimation session with a Planning Poker app in Jira."
+},
+{
+"t": "h",
+"text": "DESCRIPTION:"
+},
+{
+"t": "p",
+"text": "Planning poker is a game-like technique that estimates project tasks through group agreement instead of individual estimates. Estimates become more accurate over time as planning poker apps refine them with continued use. Modern Planning Poker apps pull stories straight from Jira and send the point values back automatically when voting ends, so no manual data entry is needed."
+},
+{
+"t": "h",
+"text": "PROCEDURE:"
+},
+{
+"t": "li",
+"text": "Open the Planning Poker app from the Jira Apps menu (continuing from the setup in Part 1)."
+},
+{
+"t": "li",
+"text": "Authorise the app to reach your Jira site if that is not done yet, and press Allow when asked."
+},
+{
+"t": "li",
+"text": "Press Create new game (or the equivalent) to begin a new estimation session."
+},
+{
+"t": "li",
+"text": "Name the session and pick the Jira space or board from which work items will be imported."
+},
+{
+"t": "li",
+"text": "Import the stories or tasks straight from the Jira backlog into the game."
+},
+{
+"t": "li",
+"text": "Invite team members to the session with the game link or the in-app invite."
+},
+{
+"t": "li",
+"text": "For every imported item, team members choose their estimates at the same time (the cards stay hidden until everyone has voted)."
+},
+{
+"t": "li",
+"text": "Reveal all the votes together to avoid bias and discuss any big differences in the estimates."
+},
+{
+"t": "li",
+"text": "Vote again if required until the team agrees on a final estimate."
+},
+{
+"t": "li",
+"text": "Confirm the final story point value; the app automatically writes it back to the Story point estimate field of the matching work item in Jira."
+},
+{
+"t": "h",
+"text": "OUTPUT:"
+},
+{
+"t": "img",
+"n": 83
+},
+{
+"t": "cap",
+"text": "Game Setup:"
+},
+{
+"t": "img",
+"n": 84
+},
+{
+"t": "img",
+"n": 85
+},
+{
+"t": "p",
+"text": "Estimated Points: (Game Finished)"
+},
+{
+"t": "img",
+"n": 86
+},
+{
+"t": "h",
+"text": "RESULT:"
+},
+{
+"t": "p",
+"text": "Thus planning poker estimation was conducted successfully in Jira."
+}
+]
+}
+]
