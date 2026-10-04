@@ -31,6 +31,11 @@ students = [('AJAY IYANRAJ', '71812401007'), ('AKASHVARMAN R', '71812401008'), (
 
 # ---------- cover page ----------
 for p_ in paras:
+    if p_.text.strip() == 'ALM':
+        set_text(p_, 'ALM'); p_.alignment = AL.CENTER
+        p_.paragraph_format.left_indent = None; p_.paragraph_format.first_line_indent = None
+
+for p_ in paras:
     if p_.text == '<project title in caps>':
         set_text(p_, TITLE)
         for r_ in p_.runs: r_.bold = True

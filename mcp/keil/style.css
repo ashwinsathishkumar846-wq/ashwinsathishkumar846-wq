@@ -2,7 +2,7 @@
 html, body { margin: 0; background: #fff; font-family: "Segoe UI", Tahoma, Arial, sans-serif; font-size: 12px; color: #1b1b1b; }
 #app { width: 1400px; height: 850px; position: relative; background: #fff; border: 1px solid #b9b9b9; overflow: hidden; display: flex; flex-direction: column; }
 .titlebar { height: 24px; background: #f3f3f3; display: flex; align-items: center; padding: 0 4px; color: #3a3a3a; font-size: 12px; }
-.vlogo { width: 16px; height: 16px; background: #3f9b45; color: #fff; font-weight: 700; font-size: 11px; text-align: center; line-height: 16px; margin-right: 6px; border-radius: 2px; }
+.vlogo { width: 21px; height: 21px; margin-right: 6px; }
 .wc { margin-left: auto; display: flex; gap: 0; } .wc i { width: 46px; text-align: center; font-style: normal; color: #444; font-size: 11px; }
 .menubar { height: 24px; display: flex; align-items: center; gap: 15px; padding: 0 9px; background: #fff; font-size: 12px; }
 .tb { height: 29px; display: flex; align-items: center; padding: 0 6px; gap: 2px; background: #fff; border-top: 1px solid #f0f0f0; }
