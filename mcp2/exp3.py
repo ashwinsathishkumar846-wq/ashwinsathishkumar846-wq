@@ -56,7 +56,12 @@ def borders(tbl):
     b=OxmlElement('w:tblBorders')
     for e in('top','left','bottom','right','insideH','insideV'):
         x=OxmlElement('w:'+e);x.set(qn('w:val'),'single');x.set(qn('w:sz'),'6');x.set(qn('w:space'),'0');x.set(qn('w:color'),'000000');b.append(x)
-    tblPr.append(b)
+    nxt=None
+    for tag in ('shd','tblLayout','tblCellMar','tblLook'):
+        nxt=tblPr.find(qn('w:'+tag))
+        if nxt is not None: break
+    if nxt is not None: nxt.addprevious(b)
+    else: tblPr.append(b)
 def emit3(B,src,a,b,date,title):
     d=B.dest; para=B.para; runx=B.runx
     pbp=para(after=0,ls=1.0); pbp.paragraph_format.page_break_before=True
@@ -110,8 +115,8 @@ def emit3(B,src,a,b,date,title):
             q.alignment=AL.LEFT; q.paragraph_format.space_after=Pt(0); q.paragraph_format.left_indent=Inches(0.15)
             r=q.add_run(ln.replace(' ',' ',1) if False else ln); r.font.name='Courier New'; r.font.size=Pt(10.5); r._r.get_or_add_rPr().rFonts.set(qn('w:hAnsi'),'Courier New')
         if img:
-            os.makedirs('e3img',exist_ok=True); fp=f'e3img/s{k}.png'
-            Image.open(io.BytesIO(img)).convert('RGB').save(fp)
+            os.makedirs('e3img',exist_ok=True); fp=f'e3img/s{k}.jpg'
+            Image.open(io.BytesIO(img)).convert('RGB').save(fp,quality=88)
             W,H=Image.open(fp).size
             wi=min(4.3,1.55*W/H)
             q=pt.cell(1,1).paragraphs[0]; q.alignment=AL.CENTER; q.paragraph_format.space_before=Pt(2); q.paragraph_format.space_after=Pt(2)

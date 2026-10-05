@@ -15,7 +15,7 @@ def img_by_name(src,name):
 def T(src,j): return ' '.join(ptext(src.body[j]).split())
 def steps(src,a,b): return [T(src,j) for j in range(a,b+1) if T(src,j)]
 def save(blob,name):
-    os.makedirs('geni',exist_ok=True); fp='geni/'+name+'.png'; Image.open(io.BytesIO(blob)).convert('RGB').save(fp); return fp
+    os.makedirs('geni',exist_ok=True); fp='geni/'+name+'.jpg'; Image.open(io.BytesIO(blob)).convert('RGB').save(fp,quality=88); return fp
 def CODE(lines):
     return lines
 TXF=lambda x:x
