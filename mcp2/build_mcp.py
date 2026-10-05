@@ -97,7 +97,7 @@ def dosubs2(p):
         elif key=='Thus, the ARM7 buzzer interfacing program was executed and verified successfully.' and UNIT[1]=='11': settext(p,'Thus, the ARM7 program for buzzer interfacing was executed and verified successfully.')
         elif key=='Thus, the ARM7 buzzer interfacing program was executed and verified successfully.' and UNIT[1]=='12': settext(p,'Thus, the ARM7 program for LED blinking using the Timer was executed and verified successfully.')
 B.dosubs=dosubs2
-# ---- load sources ----
+
 my=B.Src('my.docx'); my.tag='my'; ref=B.Src('ref.docx'); ref.tag='ref'
 # exp 12 code replace in ref body
 rb=list(ref.body)
@@ -107,17 +107,45 @@ for n,j in enumerate(range(2185,2207)):
     if n<len(newcode): settext(rb[j],newcode[n])
     else: rb[j].getparent().remove(rb[j])
 RU=B.units_of(ref)
+import expgen
+expgen.TXF=lambda x:G2.get(x.strip(),x)
 MY=[('1b','VIRTUAL LABS PROGRAMMING FOR I/O INTERFACING (LED AND SWITCH INTERFACING)',2,118),('1a','VIRTUAL LABS PROGRAMMING FOR DELAY GENERATION AND EFFECT OF CPU CLOCK',120,238),('1c','VIRTUAL LABS PROGRAMMING WITH ON-CHIP TIMERS/COUNTERS',240,354),('2','STUDY OF KEIL SOFTWARE',356,501),('3','ARITHMETIC AND LOGICAL OPERATIONS USING 8051 ASSEMBLY LANGUAGE IN KEIL µVISION',503,1077),('4','8051 ALP FOR DATA TRANSFER BETWEEN MEMORY BLOCKS',1079,1216),('5','LARGEST AND SMALLEST NUMBER IN AN ARRAY USING 8051 ALP',1218,1309),('6','8051 C PROGRAMMING FOR TIMER',1311,len(list(my.body)))]
 DATES={'1a':'03.07.26','1b':'03.07.26','1c':'10.07.26','2':'17.07.26','3':'24.07.26','4':'07.08.26','5':'18.09.26','6':'18.09.26','7':'25.09.26','8':'09.10.26','9':'09.10.26','10':'16.10.26','11':'16.10.26','12':'23.10.26'}
 order=['1a','1b','1c','2','3','4','5','6']
 byno={n:(t,s,e) for n,t,s,e in MY}
 UNIT[0]='my'
+import exp3
 for n in order:
-    t,s,e=byno[n]; B.emit(my,n,DATES[n],t,s,e,n)
+    t,s,e=byno[n]
+    if n=='3':
+        res=exp3.emit3(B,my,s+1,e,DATES[n],t)[0]
+        B.para(after=0,size=4,ls=1.0)
+        hh=B.para('RESULT:',bold=True,before=float(B.SPC.get('3',0)),after=3,align=B.AL.LEFT,keep=True)
+        qq=B.para(res,left=0.3,after=0)
+    elif n in ('1a','1b','1c'):
+        import expgen
+        rt=expgen.emit_vl(B,my,n,DATES[n],t,s,e)
+        B.para(after=0,size=4,ls=1.0)
+        B.para('RESULT:',bold=True,before=float(B.SPC.get(n,0)),after=3,align=B.AL.LEFT,keep=True)
+        B.para(rt,left=0.3,after=0)
+    elif n in ('4','5','6'):
+        import expgen
+        parts=expgen.exp_parts(my)[n]
+        expgen.emit_gen(B,my,n,DATES[n],t,parts,None)
+        B.para(after=0,size=4,ls=1.0)
+        hh=B.para('RESULT:',bold=True,before=float(B.SPC.get(n,0)),after=3,align=B.AL.LEFT,keep=True)
+        B.para(parts[-1]['result'],left=0.3,after=0)
+    else: B.emit(my,n,DATES[n],t,s,e,n)
 UNIT[0]='ref'
 for (no,date,title),a,b in RU[8:]:
     n=re.sub(r'\D','',no); UNIT[1]=n
-    B.emit(ref,n,DATES[n],title,a,b,n)
+    if n=='7':
+        parts=expgen.exp7(ref)
+        expgen.emit_gen(B,ref,n,DATES[n],title,parts,None)
+        B.para(after=0,size=4,ls=1.0)
+        B.para('RESULT:',bold=True,before=float(B.SPC.get(n,0)),after=3,align=B.AL.LEFT,keep=True)
+        B.para(parts[-1]['result'],left=0.3,after=0)
+    else: B.emit(ref,n,DATES[n],title,a,b,n)
 # save (same order fix as wtbuild main)
 ORD=['pStyle','keepNext','keepLines','pageBreakBefore','framePr','widowControl','numPr','suppressLineNumbers','pBdr','shd','tabs','suppressAutoHyphens','kinsoku','wordWrap','overflowPunct','topLinePunct','autoSpaceDE','autoSpaceDN','bidi','adjustRightInd','snapToGrid','spacing','ind','contextualSpacing','mirrorIndents','suppressOverlap','jc','textDirection','textAlignment','textboxTightWrap','outlineLvl','divId','cnfStyle','rPr','sectPr','pPrChange']
 def fixp(root):
