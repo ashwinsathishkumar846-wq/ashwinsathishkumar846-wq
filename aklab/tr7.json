@@ -1,0 +1,19 @@
+{
+ "7a": [
+  "D:\\WT_LAB\\Programs\\Exp7>node exp7a.js\nEnter units consumed: 260\nUnits Consumed : 260\nTotal Bill     : Rs. 800"
+ ],
+ "7b": [
+  "D:\\WT_LAB\\Programs\\Exp7>node exp7b.js\nEnter mark 1: 91\nEnter mark 2: 84\nEnter mark 3: 77\nEnter mark 4: 95\nEnter mark 5: 88\nMarks   : 91, 84, 77, 95, 88\nTotal   : 435\nAverage : 87\nHighest : 95\nLowest  : 77\nGrade   : A+"
+ ],
+ "7c": [
+  "D:\\WT_LAB\\Programs\\Exp7>node exp7c.js\nEnter your PIN: 1234\nWrong PIN. Attempts left: 2\nEnter your PIN: 4821\nPIN Verified",
+  "D:\\WT_LAB\\Programs\\Exp7>node exp7c.js\nEnter your PIN: 1111\nWrong PIN. Attempts left: 2\nEnter your PIN: 2222\nWrong PIN. Attempts left: 1\nEnter your PIN: 3333\nWrong PIN. Attempts left: 0\nCard Blocked"
+ ],
+ "7d": [
+  "D:\\WT_LAB\\Programs\\Exp7>node exp7d.js\nPrice of product 1: 450\nPrice of product 2: 900\nPrice of product 3: 300\nPrice of product 4: 250\nTotal Amount  : Rs. 1900\nDiscount      : Rs. 0.00\nAmount to Pay : Rs. 1900.00",
+  "D:\\WT_LAB\\Programs\\Exp7>node exp7d.js\nPrice of product 1: 899\nPrice of product 2: 1250\nPrice of product 3: 640\nPrice of product 4: 410\nTotal Amount  : Rs. 3199\nDiscount      : Rs. 319.90\nAmount to Pay : Rs. 2879.10"
+ ],
+ "7e": [
+  "D:\\WT_LAB\\Programs\\Exp7>node exp7e.js\nEmployee Details\n------------------------\nName           : Akhilesh Raj P\nMonthly Salary : Rs. 32000\nAnnual Salary  : Rs. 384000\nWith 8% Bonus  : Rs. 414720\n------------------------\nName           : Naveen R\nMonthly Salary : Rs. 28500\nAnnual Salary  : Rs. 342000\nWith 8% Bonus  : Rs. 369360\n------------------------\nName           : Divya S\nMonthly Salary : Rs. 41000\nAnnual Salary  : Rs. 492000\nWith 8% Bonus  : Rs. 531360\n------------------------"
+ ]
+}
