@@ -1,0 +1,50 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>react-app</title><style>*{box-sizing:border-box}body{margin:0;background:#f4f6fb;font-family:Segoe UI,Inter,Arial,sans-serif}
+.page{max-width:520px;margin:0 auto;padding:30px 0;text-align:center}h1{color:#1e2a4a;font-size:34px;margin:0 0 22px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15);padding:18px 22px;margin-bottom:18px;text-align:left}
+.card h2{margin:0;color:#2f5fcf;font-size:22px}.role{color:#6b7280;margin:4px 0 8px}ul{color:#444;padding-left:22px;line-height:1.7}
+.on{color:#1d7a35;font-weight:600}.off{color:#c2410c;font-weight:600}button{background:#3f6fd1;color:#fff;border:0;border-radius:5px;padding:8px 16px;font-size:14px;cursor:pointer}
+.small{text-align:center}</style>
+<script src="../node_modules/react/umd/react.development.js"></script><script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="../node_modules/@babel/standalone/babel.min.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const {useState}=React;
+
+function ProfileCard({ name, role, skills }) {
+  const [available, setAvailable] = useState(true);
+  return (
+    <div className="card">
+      <h2>{name}</h2>
+      <p className="role">{role}</p>
+      <ul>
+        {skills.map((s, i) => <li key={i}>{s}</li>)}
+      </ul>
+      <p className={available ? "on" : "off"}>
+        Status: {available ? "Available" : "Busy"}
+      </p>
+      <button onClick={() => setAvailable(!available)}>Change Status</button>
+    </div>
+  );
+}
+
+function Counter() {
+  const [likes, setLikes] = useState(0);
+  return (
+    <div className="card small">
+      <p>Profile likes: <b>{likes}</b></p>
+      <button onClick={() => setLikes(likes + 1)}>Like</button>
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <div className="page">
+      <h1>Student Profile Board</h1>
+      <ProfileCard name="Akhilesh Raj P" role="B.E. CSE - Third Year"
+                   skills={["HTML & CSS", "JavaScript", "React JS", "Node.js"]} />
+      <Counter />
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script></body></html>

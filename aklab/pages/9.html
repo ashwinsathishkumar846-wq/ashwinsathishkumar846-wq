@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="enrolApp">
+<head>
+  <title>Course Enrolment</title>
+  <script src="../node_modules/angular/angular.min.js"></script>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    .err { color: crimson; font-size: 13px; }
+    input.ng-invalid.ng-dirty { border: 2px solid crimson; }
+    input.ng-valid.ng-dirty { border: 2px solid green; }
+  </style>
+</head>
+<body ng-controller="enrolCtrl">
+  <h2>Course Enrolment Form</h2>
+  <form name="enrolForm" novalidate ng-submit="save()">
+    <p>Name:<br>
+      <input type="text" name="nm" ng-model="s.name" required ng-minlength="3">
+      <span class="err" ng-show="enrolForm.nm.$dirty && enrolForm.nm.$invalid">Name must have at least 3 letters</span></p>
+    <p>Email:<br>
+      <input type="email" name="em" ng-model="s.email" required>
+      <span class="err" ng-show="enrolForm.em.$dirty && enrolForm.em.$invalid">Enter a valid email</span></p>
+    <p>Age:<br>
+      <input type="number" name="ag" ng-model="s.age" min="17" max="30" required>
+      <span class="err" ng-show="enrolForm.ag.$dirty && enrolForm.ag.$invalid">Age must be between 17 and 30</span></p>
+    <p>Mobile:<br>
+      <input type="text" name="mb" ng-model="s.mobile" ng-pattern="/^[0-9]{10}$/" required>
+      <span class="err" ng-show="enrolForm.mb.$dirty && enrolForm.mb.$invalid">Mobile must have 10 digits</span></p>
+    <button type="submit" ng-disabled="enrolForm.$invalid">Enrol</button>
+  </form>
+  <p ng-show="done"><b>Enrolled:</b> {{s.name}}, {{s.email}}, {{s.age}}, {{s.mobile}}</p>
+  <script>
+    angular.module("enrolApp", []).controller("enrolCtrl", function ($scope) {
+      $scope.s = {};
+      $scope.done = false;
+      $scope.save = function () { $scope.done = true; };
+    });
+  </script>
+</body>
+</html>

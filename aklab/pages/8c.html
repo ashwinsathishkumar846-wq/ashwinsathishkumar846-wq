@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Keyboard Events</title>
+  <style>
+    body { font-family: Arial; margin: 30px; }
+    table { border-collapse: collapse; width: 420px; }
+    th, td { border: 1px solid #555; padding: 9px; }
+  </style>
+</head>
+<body>
+  <h2>Keyboard Interaction</h2>
+  <p>Press G for a green border</p>
+  <p>Press R to remove the border</p>
+  <table id="mark">
+    <tr><th>Subject</th><th>Marks</th></tr>
+    <tr><td>Web Technologies</td><td>92</td></tr>
+    <tr><td>Microcontrollers</td><td>88</td></tr>
+  </table>
+  <p id="msg"></p>
+  <script>
+    var t = document.getElementById("mark");
+    document.addEventListener("keydown", function (e) {
+      var k = e.key.toUpperCase();
+      if (k === "G") t.style.border = "4px solid green";
+      if (k === "R") t.style.border = "";
+      document.getElementById("msg").innerHTML = "Last key pressed: " + k;
+    });
+  </script>
+</body>
+</html>

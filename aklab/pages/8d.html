@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Greeting Form</title>
+  <style>
+    body { font-family: Arial; margin: 40px; }
+    input, button { font-size: 16px; padding: 8px 12px; }
+    #out { margin-top: 20px; font-size: 20px; color: #0a6b2d; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Greeting Form</h2>
+  <input type="text" id="nm" placeholder="Enter your name">
+  <button onclick="greet()">Greet</button>
+  <p id="out"></p>
+  <script>
+    function greet() {
+      var n = document.getElementById("nm").value.trim();
+      var o = document.getElementById("out");
+      if (n === "") {
+        o.style.color = "red";
+        o.innerHTML = "Please enter your name.";
+      }
+      else {
+        o.style.color = "#0a6b2d";
+        o.innerHTML = "Hello, " + n + "! Welcome to the Web Technologies Lab.";
+      }
+    }
+  </script>
+</body>
+</html>

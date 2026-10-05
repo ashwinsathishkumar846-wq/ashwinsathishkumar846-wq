@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student List Events</title>
+  <style>
+    table { border-collapse: collapse; width: 560px; font-family: Arial; }
+    th, td { border: 1px solid #333; padding: 9px 12px; text-align: left; }
+    th { background: #cfe3f1; }
+    .hover { background: #fff3a8; }
+    .picked { background: #ffb36b; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <h2>Student List - Mouse Events</h2>
+  <table id="stuTable">
+    <tr><th>Name</th><th>Department</th><th>Year</th></tr>
+    <tr><td>Akhilesh Raj P</td><td>CSE</td><td>III</td></tr>
+    <tr><td>Naveen R</td><td>IT</td><td>III</td></tr>
+    <tr><td>Divya S</td><td>ECE</td><td>II</td></tr>
+    <tr><td>Karthik M</td><td>MECH</td><td>IV</td></tr>
+  </table>
+  <script>
+    var rows = document.querySelectorAll("#stuTable tr");
+    for (var i = 1; i < rows.length; i++) {
+      rows[i].addEventListener("mouseover", function () { this.classList.add("hover"); });
+      rows[i].addEventListener("mouseout", function () { this.classList.remove("hover"); });
+      rows[i].addEventListener("click", function () { this.classList.add("picked"); });
+      rows[i].addEventListener("dblclick", function () { this.classList.remove("picked"); });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Live Digital Clock</title>
+  <style>
+    body { font-family: Arial; text-align: center; margin-top: 70px; }
+    #date { font-size: 20px; color: #444; }
+    #time { font-size: 56px; font-weight: bold; color: #0b3d91; letter-spacing: 3px; }
+  </style>
+</head>
+<body>
+  <h2>Live Digital Clock</h2>
+  <div id="date"></div>
+  <div id="time"></div>
+  <script>
+    function two(n) { return n < 10 ? "0" + n : n; }
+    function tick() {
+      var d = new Date();
+      var h = d.getHours();
+      var ap = h >= 12 ? "PM" : "AM";
+      h = h % 12 || 12;
+      document.getElementById("time").innerHTML =
+        two(h) + ":" + two(d.getMinutes()) + ":" + two(d.getSeconds()) + " " + ap;
+      document.getElementById("date").innerHTML = d.toDateString();
+    }
+    tick();
+    setInterval(tick, 1000);
+  </script>
+</body>
+</html>

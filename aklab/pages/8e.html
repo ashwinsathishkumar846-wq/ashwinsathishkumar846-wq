@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini Login</title>
+  <style>
+    body { font-family: Arial; margin: 40px; }
+    .box { width: 300px; padding: 22px; border: 1px solid #aaa;
+           border-radius: 8px; }
+    input { width: 100%; padding: 9px; margin: 8px 0 14px;
+            font-size: 15px; box-sizing: border-box; }
+    button { padding: 9px 22px; font-size: 15px; }
+    #res { margin-top: 16px; font-weight: bold; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h2>Mini Login</h2>
+    <label>Username</label>
+    <input type="text" id="u">
+    <label>Password</label>
+    <input type="password" id="p">
+    <button onclick="check()">Login</button>
+    <div id="res"></div>
+  </div>
+  <script>
+    function check() {
+      var ok = (document.getElementById("u").value === "akhilesh" &&
+                document.getElementById("p").value === "wt@1009");
+      var r = document.getElementById("res");
+      r.style.color = ok ? "green" : "crimson";
+      r.innerHTML = ok ? "Welcome, Akhilesh!" : "Invalid username or password";
+    }
+  </script>
+</body>
+</html>

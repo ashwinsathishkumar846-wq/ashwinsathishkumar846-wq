@@ -1,0 +1,3 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><link rel="stylesheet" href="scr.css"></head><body><div id="o"></div><script src="scr.js"></script>
+<script>const d=JSON.parse(decodeURIComponent(location.hash.slice(1)));const k=0.78,ch=Math.round(134*k)+24;
+document.getElementById('o').innerHTML=`<div id="cv" style="width:${d.w}px;height:${d.h+ch}px">${edge(d.t,d.u,k,300,GLOBE(),24)}<img class="abs" style="left:0;top:${ch}px;width:${d.w}px;height:${d.h}px" src="out/raw_${d.id}.png"></div>`;</script></body></html>

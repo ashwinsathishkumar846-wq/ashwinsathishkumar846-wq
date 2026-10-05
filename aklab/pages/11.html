@@ -1,0 +1,55 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><title>react-app</title><style>*{box-sizing:border-box}body{margin:0;background:#eef1f7;font-family:Segoe UI,Inter,Arial,sans-serif}
+.wrap{max-width:430px;margin:26px auto;background:#fff;padding:22px 26px;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.15)}
+h2{text-align:center;color:#1e2a4a;margin:0 0 12px}label{display:block;font-weight:600;font-size:13px;margin:12px 0 4px;color:#333}
+input,select{width:100%;padding:9px;border:1px solid #c5cad6;border-radius:5px;font-size:14px}
+button{margin-top:16px;width:100%;padding:10px;background:#3f6fd1;color:#fff;border:0;border-radius:5px;font-size:15px;cursor:pointer}
+.live{font-size:13px;color:#555;background:#f3f5fa;padding:8px;border-radius:5px;margin-top:14px}
+.done{margin-top:14px;padding:12px;background:#e7f6ea;color:#1d6b32;border-radius:6px;font-weight:600}</style>
+<script src="../node_modules/react/umd/react.development.js"></script><script src="../node_modules/react-dom/umd/react-dom.development.js"></script>
+<script src="../node_modules/@babel/standalone/babel.min.js"></script></head><body><div id="root"></div>
+<script type="text/babel">
+const {useState}=React;
+
+function FeedbackForm() {
+  const [form, setForm] = useState({ name: "", email: "", course: "", rating: "5" });
+  const [sent, setSent] = useState(null);
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.course) {
+      alert("Please fill all the fields");
+      return;
+    }
+    setSent(form);
+  };
+
+  return (
+    <div className="wrap">
+      <h2>Course Feedback</h2>
+      <form onSubmit={handleSubmit}>
+        <label>Name</label>
+        <input name="name" value={form.name} onChange={handleChange} />
+        <label>Email</label>
+        <input name="email" value={form.email} onChange={handleChange} />
+        <label>Course</label>
+        <select name="course" value={form.course} onChange={handleChange}>
+          <option value="">Select</option>
+          <option>Web Technologies</option>
+          <option>Software Development Process</option>
+          <option>Microcontrollers</option>
+        </select>
+        <label>Rating (1-5)</label>
+        <input type="number" name="rating" min="1" max="5"
+               value={form.rating} onChange={handleChange} />
+        <button type="submit">Submit</button>
+      </form>
+      <p className="live">Live preview: {form.name} | {form.course} | {form.rating}/5</p>
+      {sent && <div className="done">Thank you, {sent.name}! Feedback saved for {sent.course}.</div>}
+    </div>
+  );
+}
+ReactDOM.createRoot(document.getElementById("root")).render(<FeedbackForm />);
+</script></body></html>
