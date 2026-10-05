@@ -1,5 +1,5 @@
 import os,sys,re,copy,json
-os.environ.update(NAME='AJAY.I',ROLL='71812401007',HDR_L='20CS252 – MICROCONTROLLER AND PROGRAMMING LABORATORY',HDR_R='COURSE INSTRUCTOR: Mrs. M. Amuthasurabi, AP/CSE',LABEL='EXP NO.',NORES='1',HDR_SZ='9',IMG_MAXH='3.3',HDR_D='170',FTR_D='60',BOT_M='820',FTR_SP='25')
+os.environ.update(NAME='AJAY.I',ROLL='71812401007',HDR_L='20CS252 – MICROCONTROLLER AND PROGRAMMING LABORATORY',HDR_R='COURSE INSTRUCTOR: Mrs. M. Amuthasurabi, AP/CSE',LABEL='EXP NO.',LASTRES='1',HDR_SZ='9',IMG_MAXH='3.3',HDR_D='170',FTR_D='60',BOT_M='820',FTR_SP='25')
 OUT=sys.argv[1] if len(sys.argv)>1 else 'mcp.docx'
 sys.argv=[sys.argv[0],OUT]
 import wtbuild as B

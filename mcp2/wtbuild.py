@@ -322,7 +322,8 @@ def emit(src,no,date,title,s,e,unitkey):
             npr.append(mkel('spacing',before=0,after=0,line=240,lineRule='auto'))
             rp=OxmlElement('w:rPr'); rp.append(mkel('sz',val=12)); npr.append(rp)
     # result block
-    ri=None if os.environ.get('NORES') else next((i for i,(a,t,h) in enumerate(clean) if re.match(r'(?i)^result\b',t)),None)
+    _ms=[i for i,(a,t,h) in enumerate(clean) if re.match(r'(?i)^result\b',t)]
+    ri=(_ms[-1] if os.environ.get('LASTRES') else _ms[0]) if _ms and not os.environ.get('NORES') else None
     for i,(np_,txt,hi) in enumerate(clean):
         npr=np_.find(w('pPr'))
         if txt and len(txt)<=45 and (txt.endswith(':') or txt.isupper()) and i+1<len(clean):
