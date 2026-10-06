@@ -1,0 +1,253 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,"DejaVu Sans","Liberation Sans",sans-serif;font-size:12px;color:#000;width:1600px;height:900px;overflow:hidden;background:#ece9d8;position:relative}
+.a{position:absolute}.t{position:absolute;white-space:pre;line-height:1}
+.mono{font-family:"Liberation Mono","Courier New",monospace}
+.tb{position:absolute;left:0;top:0;width:1600px;height:26px;background:linear-gradient(#2a6bd6,#1a50b8);color:#fff;font-weight:700;font-size:13px;line-height:26px;padding-left:28px}
+.mn{position:absolute;left:0;top:26px;width:1600px;height:22px;background:#ece9d8;border-bottom:1px solid #aca899;font-size:12px}
+.mn span{position:absolute;top:5px}
+.ib{position:absolute;width:22px;height:22px;border:1px solid transparent}
+.lt{position:absolute;left:4px;width:22px;height:22px;border:1px solid #b8b49a;background:#f4f2e6}
+</style></head><body>
+<div class="tb">LPC2148_Fault_Detection - ISIS Professional</div>
+<div class="a" style="left:6px;top:5px;width:16px;height:16px;border-radius:3px;background:#fff;color:#c00;font-weight:700;font-size:11px;text-align:center;line-height:16px">P</div>
+<div class="a" style="right:4px;top:3px;display:flex;gap:3px"><div style="width:21px;height:20px;background:#2c6ae0;border:1px solid #fff;border-radius:3px;color:#fff;text-align:center;line-height:16px">_</div><div style="width:21px;height:20px;background:#2c6ae0;border:1px solid #fff;border-radius:3px;color:#fff;text-align:center;line-height:18px">▢</div><div style="width:21px;height:20px;background:#d9482b;border:1px solid #fff;border-radius:3px;color:#fff;text-align:center;line-height:18px;font-weight:700">×</div></div>
+<div class="mn"><span style="left:8px">File</span><span style="left:44px">View</span><span style="left:88px">Edit</span><span style="left:124px">Tools</span><span style="left:170px">Design</span><span style="left:225px">Graph</span><span style="left:271px">Source</span><span style="left:325px">Debug</span><span style="left:372px">Library</span><span style="left:428px">Template</span><span style="left:494px">System</span><span style="left:548px">Help</span></div>
+<!-- toolbar -->
+<div class="a" style="left:0;top:49px;width:1600px;height:32px;background:#ece9d8;border-bottom:1px solid #aca899"></div>
+<svg class="a" style="left:6px;top:52px" width="900" height="26" id="tbsvg"></svg>
+<!-- left tool column -->
+<div class="a" style="left:0;top:82px;width:32px;height:790px;background:#ece9d8;border-right:1px solid #aca899"></div>
+<svg class="a" style="left:0;top:86px" width="32" height="520" id="lsvg"></svg>
+<!-- left panel -->
+<div class="a" style="left:34px;top:84px;width:192px;height:160px;background:#fff;border:1px solid #808080"></div>
+<div class="t" style="left:40px;top:88px;font-size:10.5px">Overview</div>
+<div class="a" style="left:100px;top:112px;width:100px;height:96px;background:#ffffe8;border:1px solid #b9a77a"></div>
+<div class="a" style="left:112px;top:130px;width:46px;height:42px;border:1px solid #9b0000;background:#fff3f3"></div>
+<div class="a" style="left:164px;top:142px;width:26px;height:18px;border:1px solid #9b0000;background:#fff3f3"></div>
+<div class="a" style="left:34px;top:250px;width:192px;height:22px;background:#d4d0c8;border:1px solid #808080;font-weight:700;font-size:11px;padding:5px 6px">P &nbsp;L &nbsp;DEVICES</div>
+<div class="a" style="left:34px;top:272px;width:192px;height:596px;background:#fff;border:1px solid #808080;font-size:11.5px;line-height:19px;padding:4px 8px;color:#001a8c">1N4007<br>2N2222<br>BUTTON<br>BUZZER<br>CAP<br>CRYSTAL<br>LAMP<br>LED-GREEN<br>LED-RED<br>LED-YELLOW<br>LM016L<br>LM35<br>LOGICTOGGLE<br>LPC2148<br>POT-HG<br>RELAY<br>RES<br>VIRTUAL TERMINAL</div>
+<!-- schematic sheet -->
+<div class="a" id="sheet" style="left:232px;top:84px;width:1360px;height:758px;background:#ffffe0;border:1px solid #808080;background-image:linear-gradient(#f0eac4 1px,transparent 1px),linear-gradient(90deg,#f0eac4 1px,transparent 1px);background-size:20px 20px"></div>
+<svg class="a" id="sch" style="left:232px;top:84px" width="1360" height="758"></svg>
+<!-- status -->
+<div class="a" style="left:34px;top:846px;width:1560px;height:26px;background:#ece9d8;border-top:1px solid #aca899"></div>
+<div class="a" id="pl" style="left:36px;top:848px;display:flex;gap:2px"></div>
+<div class="a" id="msg" style="left:178px;top:849px;width:460px;height:22px;border:1px inset #808080;background:#ece9d8;font-size:11.5px;line-height:20px;padding-left:6px"></div>
+<div class="a" style="left:1210px;top:849px;width:190px;height:22px;border:1px inset #808080;font-size:11.5px;line-height:20px;padding-left:10px">+400.0</div>
+<div class="a" style="left:1408px;top:849px;width:190px;height:22px;border:1px inset #808080;font-size:11.5px;line-height:20px;padding-left:10px">+300.0</div>
+<div id="over"></div>
+<script src="lcd.js"></script><script>
+const H=location.hash.slice(1)||'normal';
+const SCN={
+ design:{run:0,lcd:['',''],temp:'32.0',gas:21,curr:31,lamp:0,red:0,yel:0,grn:0,buz:0},
+ normal:{run:1,lcd:['T:32C G:210','STATUS: NORMAL'],temp:'32.0',gas:21,curr:31,lamp:1,red:0,yel:0,grn:1,buz:0,time:'00:00:05.300000'},
+ warn:{run:1,lcd:['T:56C G:240','STATUS: WARNING'],temp:'56.0',gas:24,curr:31,lamp:1,red:0,yel:1,grn:0,buz:1,time:'00:00:12.700000'},
+ temp:{run:1,lcd:['T:74C G:250','FLT:OVER TEMP'],temp:'74.0',gas:25,curr:33,lamp:0,red:1,yel:0,grn:0,buz:1,time:'00:00:19.400000'},
+ gas:{run:1,lcd:['T:33C G:820','FLT:GAS LEAK'],temp:'33.0',gas:80,curr:31,lamp:0,red:1,yel:0,grn:0,buz:1,time:'00:00:27.900000'},
+ estop:{run:1,lcd:['T:32C G:210','FLT:E-STOP'],temp:'32.0',gas:21,curr:31,lamp:0,red:1,yel:0,grn:0,buz:1,estop:1,time:'00:00:35.100000'},
+ curr:{run:1,lcd:['T:34C G:215','FLT:OVER CURRENT'],temp:'34.0',gas:21,curr:86,lamp:0,red:1,yel:0,grn:0,buz:1,time:'00:00:41.600000'},
+ flame:{run:1,lcd:['T:35C G:220','FLT:FLAME'],temp:'35.0',gas:22,curr:31,lamp:0,red:1,yel:0,grn:0,buz:1,flame:1,time:'00:00:48.200000'},
+ boot:{run:1,lcd:['FAULT DETECTION','SELF TEST...'],temp:'32.0',gas:21,curr:31,lamp:0,red:0,yel:0,grn:0,buz:0,time:'00:00:01.000000'},
+ prog:{run:0,dlg:1,lcd:['',''],temp:'32.0',gas:21,curr:31,lamp:0,red:0,yel:0,grn:0,buz:0},
+ vterm:{run:1,lcd:['T:74C G:250','FLT:OVER TEMP'],temp:'74.0',gas:25,curr:33,lamp:0,red:1,yel:0,grn:0,buz:1,time:'00:00:19.400000',vt:2}
+};
+const C=SCN[H.split('_')[0]];const RUN=C.run;
+const NS='http://www.w3.org/2000/svg';
+const sch=document.getElementById('sch');
+const S=(tag,at,par,txt)=>{const e=document.createElementNS(NS,tag);for(const k in at)e.setAttribute(k,at[k]);if(txt!==undefined)e.textContent=txt;(par||sch).appendChild(e);return e};
+// toolbar
+const tb=document.getElementById('tbsvg');let x=2;const IC=['#d8b45a','#c9b56a','#3d6fc2','#9aa','#6a8','#c33','#4a8','#79b','#a74','#47a','#888','#c80','#59c','#7a5','#a5a','#358','#c63','#6b7','#99c','#d77','#a88'];
+IC.forEach((c,i)=>{if([3,6,10,14,18].includes(i))x+=8;S('rect',{x:x,y:3,width:19,height:19,rx:2,fill:c,stroke:'#555','stroke-width':.7},tb);S('rect',{x:x+4,y:7,width:11,height:11,fill:'#fff',opacity:.55},tb);x+=24});
+const ls=document.getElementById('lsvg');
+for(let i=0;i<20;i++){const y=4+i*26;S('rect',{x:4,y:y,width:22,height:22,fill:'#f4f2e6',stroke:'#b8b49a'},ls);S('rect',{x:9,y:y+5,width:12,height:12,fill:['#2f5aa8','#a22','#c8801b','#2a8a5a','#7a3fa0','#444','#6a9a2a','#2a6','#a52','#58a'][i%10],opacity:.85},ls)}
+const pl=document.getElementById('pl');
+[['▶',RUN],['▶|',0],['❚❚',0],['■',!RUN]].forEach(([c,on])=>{const d=document.createElement('div');d.style.cssText=`width:34px;height:22px;border:1px solid #808080;background:${on?'#cfe6ff':'#ece9d8'};text-align:center;line-height:20px;font-size:11px;font-weight:700`;d.textContent=c;pl.appendChild(d)});
+document.getElementById('msg').textContent=RUN?'ANIMATING: '+C.time+'  (CPU load 14%)':'Ready';
+// ----- drawing helpers (sheet coords)
+const RED='#800000',BLUE='#0000c8',GRN='#007000';
+const wc=(hi)=>RUN?(hi===1?'#d00000':hi===0?'#0030d0':'#808080'):GRN;
+const wire=(pts,hi,w)=>S('polyline',{points:pts.map(p=>p.join(',')).join(' '),fill:'none',stroke:wc(hi),'stroke-width':w||1.5,'stroke-linejoin':'round'});
+const dot=(x,y,hi)=>S('circle',{cx:x,cy:y,r:3,fill:wc(hi)});
+const txt=(x,y,t,o={})=>{const e=S('text',{x:x,y:y,'font-size':o.s||11,'font-family':'Tahoma,DejaVu Sans,sans-serif',fill:o.c||'#000','text-anchor':o.a||'start'},sch,t);if(o.b)e.setAttribute('font-weight','700');return e};
+const lab=(x,y,t,o={})=>txt(x,y,t,Object.assign({c:RED,s:11,b:1},o));
+const val=(x,y,t,o={})=>txt(x,y,t,Object.assign({c:BLUE,s:10.5},o));
+const gnd=(x,y)=>{S('line',{x1:x,y1:y,x2:x,y2:y+8,stroke:RED});[[10,8],[6,12],[2,16]].forEach(([w,d])=>S('line',{x1:x-w,y1:y+d,x2:x+w,y2:y+d,stroke:RED,'stroke-width':1.5}))};
+const vcc=(x,y,t)=>{S('line',{x1:x,y1:y,x2:x,y2:y-10,stroke:RED});S('line',{x1:x-8,y1:y-10,x2:x+8,y2:y-10,stroke:RED,'stroke-width':1.8});txt(x,y-15,t,{a:'middle',c:'#000',s:10})};
+const box=(x,y,w,h,fill)=>S('rect',{x:x,y:y,width:w,height:h,fill:fill||'#ffffc8',stroke:RED,'stroke-width':1.6});
+const res=(x,y,t,v,vert)=>{ // horizontal resistor centred pins at x..x+40
+ if(vert){S('rect',{x:x-5,y:y,width:10,height:30,fill:'#ffffc8',stroke:RED,'stroke-width':1.4});lab(x+9,y+14,t,{s:10});val(x+9,y+26,v,{s:10})}
+ else{S('rect',{x:x,y:y-5,width:34,height:10,fill:'#ffffc8',stroke:RED,'stroke-width':1.4});lab(x+17,y-9,t,{a:'middle',s:10});val(x+17,y+17,v,{a:'middle',s:10})}};
+const led=(x,y,col,on)=>{ // anode left, horizontal; centre x,y
+ if(RUN&&on){const g=S('radialGradient',{id:'g'+col.replace('#','')+x+y,cx:.5,cy:.5,r:.5});S('stop',{offset:0,'stop-color':col,'stop-opacity':.9},g);S('stop',{offset:1,'stop-color':col,'stop-opacity':0},g);S('circle',{cx:x,cy:y,r:30,fill:`url(#${g.id})`})}
+ S('polygon',{points:`${x-9},${y-9} ${x-9},${y+9} ${x+9},${y}`,fill:RUN&&on?col:'#ffffc8',stroke:RED,'stroke-width':1.5});S('line',{x1:x+9,y1:y-9,x2:x+9,y2:y+9,stroke:RED,'stroke-width':1.8});
+ S('path',{d:`M${x-2} ${y-12} l6 -6 M${x+4} ${y-12} l6 -6`,stroke:RED,fill:'none'})};
+// ---------- U1 LPC2148
+const bx=430,by=30,bw=310,bh=690;
+S('rect',{x:bx,y:by,width:bw,height:bh,fill:'#ffffc8',stroke:RED,'stroke-width':1.8});
+lab(bx+bw/2,by-9,'U1',{a:'middle',s:12});
+txt(bx+bw/2,by+505,'LPC2148',{a:'middle',s:17,c:RED,b:1});
+txt(bx+bw/2,by+523,'ARM7TDMI-S',{a:'middle',s:9.5,c:'#555'});
+txt(bx+bw/2,by+bh+22,'LPC2148',{a:'middle',s:11,c:RED,b:1});
+const pinL=[['P0.0/TXD0',50,1],['P0.1/RXD0',80,1],['P0.3/EINT1/AD0.0',150,'f'],['P0.4/SCK0/CAP0.1',190,'r'],['P0.16/EINT0/MAT0.2',250,'e'],['P0.28/AD0.1/CAP0.2',330,'t'],['P0.29/AD0.2/CAP0.3',370,'g'],['P0.30/AD0.3/EINT3',410,'c'],['XTAL1',520,'x'],['XTAL2',560,'x'],['RST',630,'x']];
+const pinR=[['P0.10/AD1.2',60,'buz'],['P0.11/CS',120,'red'],['P0.12/DSR1/MAT1.0',180,'yel'],['P0.13/DTR1/MAT1.1',240,'grn'],['P0.15/RI1/EINT2',320,'rly'],['P1.16/TRACEPKT0',410,'rs'],['P1.17/TRACEPKT1',440,'en'],['P1.18/TRACEPKT2',470,'d4'],['P1.19/TRACEPKT3',500,'d5'],['P1.20/TRACESYNC',530,'d6'],['P1.21/PIPESTAT0',560,'d7']];
+pinL.forEach(([n,y])=>{S('line',{x1:bx-20,y1:by+y,x2:bx,y2:by+y,stroke:RED,'stroke-width':1.4});txt(bx+7,by+y+4,n,{s:10.5,c:RED})});
+pinR.forEach(([n,y])=>{S('line',{x1:bx+bw,y1:by+y,x2:bx+bw+20,y2:by+y,stroke:RED,'stroke-width':1.4});txt(bx+bw-7,by+y+4,n,{s:10.5,c:RED,a:'end'})});
+// supply pins
+[['VDD',610],['VDDA',635],['VBAT',655],['VSS',678]].forEach(([n,y])=>{S('line',{x1:bx+bw,y1:by+y,x2:bx+bw+20,y2:by+y,stroke:RED,'stroke-width':1.4});txt(bx+bw-7,by+y+4,n,{s:10.5,c:RED,a:'end'})});
+const sq=(x,y,hi)=>{if(RUN)S('rect',{x:x-3,y:y-3,width:6,height:6,fill:hi?'#e00000':'#0030d0'})};
+// ---------- left : sensors
+const LX=bx-20, PY=(y)=>by+y;
+// LM35 (U3)
+const l35x=70,l35y=70;
+S('rect',{x:l35x,y:l35y,width:96,height:64,fill:'#ffffc8',stroke:RED,'stroke-width':1.6});
+txt(l35x+40,l35y+48,'LM35',{a:'middle',s:13,c:RED,b:1});lab(l35x+48,l35y-8,'U3',{a:'middle',s:11});
+txt(l35x+6,l35y+14,'+VS',{s:9.5,c:RED});txt(l35x+90,l35y+30,'VOUT',{s:9.5,c:RED,a:'end'});txt(l35x+22,l35y+62,'GND',{s:9.5,c:RED});
+S('line',{x1:l35x+96,y1:l35y+30,x2:l35x+116,y2:l35y+30,stroke:RED});
+S('line',{x1:l35x+16,y1:l35y-14,x2:l35x+16,y2:l35y,stroke:RED});S('line',{x1:l35x+16,y1:l35y+64,x2:l35x+16,y2:l35y+78,stroke:RED});
+vcc(l35x+16,l35y-14,'+3.3V');gnd(l35x+16,l35y+78);
+// temp control box (ISIS sim arrows)
+S('rect',{x:l35x+30,y:l35y+98,width:58,height:20,fill:'#fff',stroke:'#808080'});val(l35x+59,l35y+112,'+'+C.temp+'°C',{a:'middle',c:BLUE,s:10.5});
+S('polygon',{points:`${l35x+94},${l35y+108} ${l35x+104},${l35y+108} ${l35x+99},${l35y+100}`,fill:'#444'});S('polygon',{points:`${l35x+94},${l35y+112} ${l35x+104},${l35y+112} ${l35x+99},${l35y+120}`,fill:'#444'});
+// pots
+const pot=(x,y,ref,name,pct,hi)=>{
+ S('line',{x1:x,y1:y-20,x2:x,y2:y,stroke:RED});S('rect',{x:x-6,y:y,width:12,height:50,fill:'#ffffc8',stroke:RED,'stroke-width':1.5});S('line',{x1:x,y1:y+50,x2:x,y2:y+70,stroke:RED});
+ S('line',{x1:x+34,y1:y+25,x2:x+6,y2:y+25,stroke:RED});S('polygon',{points:`${x+6},${y+25} ${x+14},${y+21} ${x+14},${y+29}`,fill:RED});
+ lab(x-12,y+22,ref,{a:'end',s:10.5});val(x-12,y+36,'1k',{a:'end'});txt(x+40,y+14,name,{s:10,c:'#555'});
+ S('rect',{x:x+38,y:y+19,width:44,height:16,fill:'#fff',stroke:'#808080'});val(x+60,y+31,pct+'%',{a:'middle'});
+ vcc(x,y-20,'+3.3V');gnd(x,y+70)};
+pot(100,240,'RV1','MQ-2',C.gas);pot(100,370,'RV2','ACS712',C.curr);
+// switches: horizontal pull-up row, push button to ground
+const sw=(y,ref,rn,name,pressed,tog,lane,pin)=>{
+ const J=125,hi=pressed?0:1;
+ txt(26,y+4,'+3.3V',{s:10});S('line',{x1:62,y1:y,x2:70,y2:y,stroke:RED});res(70,y,rn,'10k',false);
+ S('line',{x1:104,y1:y,x2:J,y2:y,stroke:RED});
+ S('line',{x1:J,y1:y,x2:J,y2:y+10,stroke:RED});
+ if(tog){S('rect',{x:J-14,y:y+10,width:28,height:28,fill:'#ffffc8',stroke:RED,'stroke-width':1.4});txt(J,y+29,pressed?'0':'1',{a:'middle',c:BLUE,s:13,b:1});S('line',{x1:J,y1:y+38,x2:J,y2:y+50,stroke:RED})}
+ else{S('line',{x1:J,y1:y+10,x2:J,y2:y+18,stroke:RED});S('line',{x1:J-9,y1:y+18,x2:J+9,y2:pressed?y+32:y+26,stroke:RED,'stroke-width':1.6});S('line',{x1:J,y1:y+36,x2:J,y2:y+50,stroke:RED});S('line',{x1:J-8,y1:y+36,x2:J+8,y2:y+36,stroke:RED})}
+ gnd(J,y+50);lab(J+16,y+22,ref,{s:10.5});txt(J+16,y+36,name,{s:10,c:'#555'});
+ wire([[J,y],[lane,y],[lane,by+pin],[LX,by+pin]],hi);dot(J,y,hi)};
+sw(500,'SW3','R10','FLAME',C.flame,1,250,150);
+sw(580,'SW2','R9','RESET',0,0,266,190);
+sw(660,'SW1','R8','E-STOP',C.estop,0,282,250);
+// sensor wires -> MCU
+wire([[l35x+116,l35y+30],[392,l35y+30],[392,by+330],[LX,by+330]],1);
+wire([[134,265],[376,265],[376,by+370],[LX,by+370]],1);
+wire([[134,395],[360,395],[360,by+410],[LX,by+410]],1);
+// crystal X1
+const cxx=350,cyy=by+580;
+S('rect',{x:cxx-10,y:cyy-12,width:20,height:24,fill:'#ffffc8',stroke:RED,'stroke-width':1.5});S('line',{x1:cxx-16,y1:cyy-14,x2:cxx-16,y2:cyy+14,stroke:RED,'stroke-width':2});S('line',{x1:cxx+16,y1:cyy-14,x2:cxx+16,y2:cyy+14,stroke:RED,'stroke-width':2});
+lab(cxx,cyy-40,'X1',{a:'middle',s:10.5});val(cxx,cyy-28,'12MHz',{a:'middle'});
+wire([[cxx-16,cyy],[cxx-40,cyy],[cxx-40,by+520],[LX,by+520]],2);wire([[cxx+16,cyy],[cxx+30,cyy],[cxx+30,by+560],[LX,by+560]],2);
+S('line',{x1:cxx-40,y1:cyy,x2:cxx-40,y2:cyy+40,stroke:wc(2)});S('line',{x1:cxx+30,y1:cyy,x2:cxx+30,y2:cyy+40,stroke:wc(2)});
+[[cxx-40,'C1'],[cxx+30,'C2']].forEach(([x,n])=>{S('line',{x1:x-10,y1:cyy+40,x2:x+10,y2:cyy+40,stroke:RED,'stroke-width':2});S('line',{x1:x-10,y1:cyy+47,x2:x+10,y2:cyy+47,stroke:RED,'stroke-width':2});S('line',{x1:x,y1:cyy+47,x2:x,y2:cyy+56,stroke:RED});gnd(x,cyy+56);lab(x+(n==='C1'?-12:12),cyy+46,n,{s:10,a:n==='C1'?'end':'start'});val(x+(n==='C1'?-12:12),cyy+58,'33pF',{s:9.5,a:n==='C1'?'end':'start'})});
+wire([[LX,by+630],[LX-24,by+630],[LX-24,by+610]],2);vcc(LX-24,by+610,'+3.3V');
+// ---------- right outputs
+const outs=[['buz',60,'BUZ1',0],['red',120,'D1','#e02020'],['yel',180,'D2','#f0c010'],['grn',240,'D3','#20c030']];
+const pv={buz:C.buz,red:C.red,yel:C.yel,grn:C.grn};
+outs.forEach(([k,y,ref,col])=>{const Y=by+y,hi=pv[k]?1:0;
+ sq(bx+bw+20,Y,hi);wire([[bx+bw+20,Y],[bx+bw+60,Y]],hi);
+ res(bx+bw+60,Y,'R'+(k==='buz'?'3':k==='red'?'4':k==='yel'?'5':'6'),k==='buz'?'1k':'330',false);
+ wire([[bx+bw+94,Y],[bx+bw+130,Y]],hi);
+ if(k==='buz'){ // buzzer symbol
+   box(bx+bw+130,Y-14,58,28);txt(bx+bw+159,Y+4,'BUZZER',{a:'middle',s:9.5,c:RED,b:1});lab(bx+bw+159,Y-19,ref,{a:'middle',s:10.5});
+   if(RUN&&C.buz){for(let i=1;i<4;i++)S('path',{d:`M${bx+bw+196+i*6} ${Y-4-i*3} q${4+i} ${4+i*3} 0 ${8+i*6}`,stroke:'#c02020',fill:'none','stroke-width':1.5})}
+   S('line',{x1:bx+bw+188,y1:Y,x2:bx+bw+205,y2:Y,stroke:RED});wire([[bx+bw+130,Y],[bx+bw+130,Y]],hi);
+   gnd(bx+bw+205,Y)
+ }else{led(bx+bw+156,Y,col,pv[k]);lab(bx+bw+156,Y-22,ref,{a:'middle',s:10.5});val(bx+bw+156,Y+26,k==='red'?'LED-RED':k==='yel'?'LED-YELLOW':'LED-GREEN',{a:'middle',s:9.5});
+   wire([[bx+bw+165,Y],[bx+bw+205,Y]],hi);gnd(bx+bw+205,Y)}
+});
+// relay driver
+const ry=by+320, rx0=bx+bw+240;
+const rhi=C.lamp?1:0;
+sq(bx+bw+20,ry,rhi);wire([[bx+bw+20,ry],[rx0+40,ry]],rhi);res(rx0+40,ry,'R7','1k',false);wire([[rx0+74,ry],[rx0+100,ry]],rhi);
+// transistor Q1 at x=rx0+130,y=ry
+const qx=rx0+124;
+S('line',{x1:qx-6,y1:ry-16,x2:qx-6,y2:ry+16,stroke:RED,'stroke-width':2.4});S('line',{x1:rx0+100,y1:ry,x2:qx-6,y2:ry,stroke:RED});S('circle',{cx:qx+6,cy:ry,r:22,fill:'none',stroke:RED});
+S('line',{x1:qx-6,y1:ry-6,x2:qx+16,y2:ry-22,stroke:RED,'stroke-width':1.5});S('line',{x1:qx-6,y1:ry+6,x2:qx+16,y2:ry+22,stroke:RED,'stroke-width':1.5});S('polygon',{points:`${qx+16},${ry+22} ${qx+8},${ry+19} ${qx+13},${ry+13}`,fill:RED});
+lab(qx+34,ry-4,'Q1',{s:10.5});val(qx+34,ry+10,'2N2222',{s:9.5});
+wire([[qx+16,ry+22],[qx+16,ry+50]],rhi);gnd(qx+16,ry+50);
+// relay coil above collector
+const cy0=ry-22;
+wire([[qx+16,cy0],[qx+16,ry-60]],rhi);
+S('rect',{x:qx+4,y:ry-120,width:24,height:56,fill:'#ffffc8',stroke:RED,'stroke-width':1.5});txt(qx+16,ry-88,'RL1',{a:'middle',s:9.5,c:RED,b:1});
+S('line',{x1:qx+16,y1:ry-140,x2:qx+16,y2:ry-120,stroke:RED});vcc(qx+16,ry-140,'+12V');
+S('line',{x1:qx+16,y1:ry-64,x2:qx+16,y2:ry-60,stroke:RED});
+// flyback diode D4 across coil
+wire([[qx+16,ry-100],[qx-24,ry-100],[qx-24,ry-60],[qx+16,ry-60]],rhi,1.3);
+S('polygon',{points:`${qx-33},${ry-90} ${qx-15},${ry-90} ${qx-24},${ry-76}`,fill:'#ffffc8',stroke:RED});S('line',{x1:qx-33,y1:ry-76,x2:qx-15,y2:ry-76,stroke:RED,'stroke-width':1.8});lab(qx-40,ry-84,'D4',{a:'end',s:10});val(qx-40,ry-72,'1N4007',{a:'end',s:9.5});
+// relay contact -> lamp
+const lx=qx+110,ly=ry-110;
+S('line',{x1:qx+28,y1:ry-92,x2:lx-40,y2:ry-92,stroke:RED,'stroke-dasharray':'3 3'});
+vcc(lx-40,ly-12,'+12V');S('line',{x1:lx-40,y1:ly-12,x2:lx-40,y2:ly+22,stroke:RED});
+S('line',{x1:lx-48,y1:ly+22,x2:lx-32,y2:C.lamp?ly+22:ly+10,stroke:RED,'stroke-width':1.7});S('line',{x1:lx-40,y1:ly+34,x2:lx-40,y2:ly+52,stroke:wc(rhi)});
+wire([[lx-40,ly+52],[lx-40,ly+64],[lx,ly+64]],rhi);
+// lamp
+if(RUN&&C.lamp){const g=S('radialGradient',{id:'lg',cx:.5,cy:.5,r:.5});S('stop',{offset:0,'stop-color':'#fff27a','stop-opacity':.95},g);S('stop',{offset:.5,'stop-color':'#ffd23a','stop-opacity':.55},g);S('stop',{offset:1,'stop-color':'#ffd23a','stop-opacity':0},g);S('circle',{cx:lx+22,cy:ly+64,r:58,fill:'url(#lg)'})}
+S('circle',{cx:lx+22,cy:ly+64,r:20,fill:RUN&&C.lamp?'#fff6a8':'#ffffc8',stroke:RED,'stroke-width':1.6});S('path',{d:`M${lx+8} ${ly+50} L${lx+36} ${ly+78} M${lx+36} ${ly+50} L${lx+8} ${ly+78}`,stroke:RED,'stroke-width':1.4});
+S('line',{x1:lx+42,y1:ly+64,x2:lx+60,y2:ly+64,stroke:RED});gnd(lx+60,ly+64);lab(lx+22,ly+30,'LAMP1',{a:'middle',s:10.5});val(lx+22,ly+104,'12V',{a:'middle'});
+// ---------- LCD LM016L
+const lcx=bx+bw+240,lcy=by+400,lcw=380,lch=235;
+S('rect',{x:lcx,y:lcy,width:lcw,height:lch,fill:'#ffffc8',stroke:RED,'stroke-width':1.8});
+lab(lcx+lcw/2,lcy-8,'LCD1',{a:'middle',s:11});val(lcx+lcw/2,lcy+lch+16,'LM016L',{a:'middle',s:11});
+const lp=['VSS','VDD','VEE','RS','RW','E','D0','D1','D2','D3','D4','D5','D6','D7'];
+lp.forEach((n,i)=>{const y=lcy+16+i*14.6;S('line',{x1:lcx-20,y1:y,x2:lcx,y2:y,stroke:RED});txt(lcx+5,y+3.5,n,{s:9,c:RED});txt(lcx-4,y-3,String(i+1),{s:8,c:'#333',a:'end'})});
+// glass
+const lr=lcdSVG(C.lcd[0],C.lcd[1],{mode:'isis',px:3});
+const gx0=lcx+66,gy0=lcy+82;
+const gg=S('g',{transform:`translate(${gx0},${gy0})`});
+const wrap=document.createElementNS(NS,'g');gg.appendChild(wrap);wrap.innerHTML=lr.svg;
+S('rect',{x:gx0-3,y:gy0-3,width:lr.w+6,height:lr.h+6,fill:'none',stroke:'#444','stroke-width':1.2});
+// LCD wiring from U1 (RS, EN, D4-D7 -> pins 4,6,11-14)
+const pinY=i=>lcy+16+i*14.6;
+const lanes=[[410,3,0],[440,5,0],[470,10,0],[500,11,0],[530,12,0],[560,13,0]];
+const wires=[];
+lanes.forEach(([y,li,lx2],k)=>{const Y=by+y,hi=C.lcd[0]?(k%2?1:0):2;sq(bx+bw+20,Y,k%2);
+ const X=bx+bw+40+k*16;
+ wire([[bx+bw+20,Y],[X,Y],[X,pinY(li)],[lcx-20,pinY(li)]],C.lcd[0]?(k%2?1:0):2,1.3);});
+// VSS/VDD/VEE
+wire([[lcx-20,pinY(0)],[lcx-34,pinY(0)],[lcx-34,pinY(4)],[lcx-20,pinY(4)]],2);gnd(lcx-34,pinY(4));
+wire([[lcx-20,pinY(1)],[lcx-46,pinY(1)]],2);vcc(lcx-46,pinY(1),'+5V');
+wire([[lcx-20,pinY(2)],[lcx-58,pinY(2)],[lcx-58,pinY(2)+30]],2);
+S('rect',{x:lcx-63,y:pinY(2)+30,width:10,height:34,fill:'#ffffc8',stroke:RED});lab(lcx-70,pinY(2)+44,'RV3',{a:'end',s:10});val(lcx-70,pinY(2)+57,'10k',{a:'end',s:9.5});gnd(lcx-58,pinY(2)+64);
+// power supply pins
+S('line',{x1:bx+bw+20,y1:by+610,x2:bx+bw+36,y2:by+610,stroke:RED});vcc(bx+bw+36,by+610,'+3.3V');
+S('line',{x1:bx+bw+20,y1:by+678,x2:bx+bw+36,y2:by+678,stroke:RED});gnd(bx+bw+36,by+678);
+// virtual terminal
+const vx=bx+bw+270,vy=by-6;
+S('rect',{x:vx,y:vy+6,width:120,height:98,fill:'#ffffc8',stroke:RED,'stroke-width':1.7});
+txt(vx+60,vy+52,'VIRTUAL',{a:'middle',s:10.5,c:RED,b:1});txt(vx+60,vy+66,'TERMINAL',{a:'middle',s:10.5,c:RED,b:1});
+txt(vx+8,vy+30,'RXD',{s:10,c:RED});txt(vx+8,vy+88,'TXD',{s:10,c:RED});txt(vx+112,vy+30,'RTS',{s:10,c:RED,a:'end'});txt(vx+112,vy+88,'CTS',{s:10,c:RED,a:'end'});
+S('line',{x1:vx-20,y1:vy+26,x2:vx,y2:vy+26,stroke:RED});S('line',{x1:vx-20,y1:vy+84,x2:vx,y2:vy+84,stroke:RED});
+lab(vx+60,vy-2,'VT1',{a:'middle',s:11});
+// UART wires: P0.0 TXD0 -> VT RXD ; P0.1 RXD0 <- VT TXD  (routed over the top)
+wire([[LX,by+50],[LX-60,by+50],[LX-60,by-24],[vx-40,by-24],[vx-40,vy+26],[vx-20,vy+26]],1,1.3);
+wire([[LX,by+80],[LX-80,by+80],[LX-80,by-40],[vx-60,by-40],[vx-60,vy+84],[vx-20,vy+84]],1,1.3);
+// Labels
+
+// ---- overlays ----
+const over=document.getElementById('over');
+if(C.vt===2){
+ over.innerHTML=`<div id="vtw" class="a" style="left:420px;top:300px;width:700px;height:${H.includes('full')?150:120}px;border:2px solid #1a50b8;background:#000;box-shadow:0 3px 10px rgba(0,0,0,.5)"><div style="height:22px;background:linear-gradient(#2a6bd6,#1a50b8);color:#fff;font-size:12px;font-weight:700;line-height:22px;padding-left:8px">Virtual Terminal</div><pre class="mono" style="color:#e8e8e8;font-size:13px;line-height:17px;padding:8px 10px">System started: all sensors normal
+
+*** FAULT: OVER TEMP | T=74C GAS=250 I=310 | LOAD OFF ***${H.includes('full')?'\nFault cleared, load restarted':''}
+</pre></div>`;
+}
+if(C.dlg){
+ const f=(l,v,y,ex)=>`<div class="t" style="left:14px;top:${y+4}px;font-size:12px">${l}</div><div class="a" style="left:150px;top:${y}px;width:${ex||150}px;height:22px;border:1px solid #7f9db9;background:#fff;font-size:12px;line-height:20px;padding-left:4px;white-space:nowrap">${v}</div>`;
+ over.innerHTML=`<div class="a" style="left:760px;top:260px;width:440px;height:376px;background:#ece9d8;border:2px solid #1a50b8;box-shadow:0 4px 14px rgba(0,0,0,.5)"><div style="height:24px;background:linear-gradient(#2a6bd6,#1a50b8);color:#fff;font-size:13px;font-weight:700;line-height:24px;padding-left:8px">Edit Component</div>
+ <div class="a" style="left:0;top:32px;width:436px">
+ ${f('Part Reference:','U1',4)}${f('Part Value:','LPC2148',34)}
+ <div class="t" style="left:14px;top:72px;font-size:12px">PCB Package:</div><div class="a" style="left:150px;top:68px;width:150px;height:22px;border:1px solid #7f9db9;background:#fff;font-size:12px;line-height:20px;padding-left:4px">LQFP64</div>
+ ${f('Program File:','<span style="border:0">LPC2148_Fault_Detection.hex</span>',102,230)}
+ <div class="a" style="left:384px;top:100px;width:28px;height:24px;border:1px solid #003c74;background:#f4f3ee;text-align:center;line-height:20px;font-size:14px">📁</div>
+ ${f('Crystal Frequency:','12MHz',140)}${f('Advanced Properties:','Enable trace logging ▾',174,200)}
+ <div class="a" style="left:14px;top:216px;width:13px;height:13px;border:1px solid #1c5180;background:#fff"></div><div class="t" style="left:34px;top:217px;font-size:12px">Exclude from Simulation</div>
+ <div class="a" style="left:214px;top:216px;width:13px;height:13px;border:1px solid #1c5180;background:#fff"></div><div class="t" style="left:234px;top:217px;font-size:12px">Attach hierarchy module</div>
+ <div class="a" style="left:14px;top:244px;width:13px;height:13px;border:1px solid #1c5180;background:#fff"></div><div class="t" style="left:34px;top:245px;font-size:12px">Exclude from PCB Layout</div>
+ <div class="a" style="left:214px;top:244px;width:13px;height:13px;border:1px solid #1c5180;background:#fff"></div><div class="t" style="left:234px;top:245px;font-size:12px">Hide common pins</div>
+ </div>
+ <div class="a" style="left:236px;top:322px;width:80px;height:28px;border:2px solid #003c74;border-radius:3px;background:#f4f3ee;text-align:center;line-height:24px;font-size:12.5px">OK</div>
+ <div class="a" style="left:330px;top:322px;width:80px;height:28px;border:1px solid #003c74;border-radius:3px;background:#f4f3ee;text-align:center;line-height:26px;font-size:12.5px">Cancel</div></div>`;
+}
+</script></body></html>

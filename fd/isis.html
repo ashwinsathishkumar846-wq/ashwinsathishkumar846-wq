@@ -1,0 +1,154 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Tahoma,"DejaVu Sans","Liberation Sans",sans-serif;font-size:12px;color:#000;width:1600px;height:900px;overflow:hidden;background:#ece9d8;position:relative}
+.a{position:absolute}.t{position:absolute;white-space:pre;line-height:1}
+.mono{font-family:"Liberation Mono","Courier New",monospace}
+.tb{position:absolute;left:0;top:0;width:1600px;height:26px;background:linear-gradient(#2a6bd6,#1a50b8);color:#fff;font-weight:700;font-size:13px;line-height:26px;padding-left:28px}
+.mn{position:absolute;left:0;top:26px;width:1600px;height:22px;background:#ece9d8;border-bottom:1px solid #aca899;font-size:12px}
+.mn span{position:absolute;top:5px}
+.ib{position:absolute;width:22px;height:22px;border:1px solid transparent}
+.lt{position:absolute;left:4px;width:22px;height:22px;border:1px solid #b8b49a;background:#f4f2e6}
+</style></head><body>
+<div class="tb">DC Motor Speed Control - ISIS Professional</div>
+<div class="a" style="left:6px;top:5px;width:16px;height:16px;border-radius:3px;background:#fff;color:#c00;font-weight:700;font-size:11px;text-align:center;line-height:16px">P</div>
+<div class="a" style="right:4px;top:3px;display:flex;gap:3px"><div style="width:21px;height:20px;background:#2c6ae0;border:1px solid #fff;border-radius:3px;color:#fff;text-align:center;line-height:16px">_</div><div style="width:21px;height:20px;background:#2c6ae0;border:1px solid #fff;border-radius:3px;color:#fff;text-align:center;line-height:18px">▢</div><div style="width:21px;height:20px;background:#d9482b;border:1px solid #fff;border-radius:3px;color:#fff;text-align:center;line-height:18px;font-weight:700">×</div></div>
+<div class="mn"><span style="left:8px">File</span><span style="left:44px">View</span><span style="left:88px">Edit</span><span style="left:124px">Tools</span><span style="left:170px">Design</span><span style="left:225px">Graph</span><span style="left:271px">Source</span><span style="left:325px">Debug</span><span style="left:372px">Library</span><span style="left:428px">Template</span><span style="left:494px">System</span><span style="left:548px">Help</span></div>
+<!-- toolbar -->
+<div class="a" style="left:0;top:49px;width:1600px;height:32px;background:#ece9d8;border-bottom:1px solid #aca899"></div>
+<svg class="a" style="left:6px;top:52px" width="900" height="26" id="tbsvg"></svg>
+<!-- left tool column -->
+<div class="a" style="left:0;top:82px;width:32px;height:790px;background:#ece9d8;border-right:1px solid #aca899"></div>
+<svg class="a" style="left:0;top:86px" width="32" height="520" id="lsvg"></svg>
+<!-- left panel -->
+<div class="a" style="left:34px;top:84px;width:192px;height:160px;background:#fff;border:1px solid #808080"></div>
+<div class="t" style="left:40px;top:88px;font-size:10.5px">Overview</div>
+<div class="a" style="left:100px;top:112px;width:100px;height:96px;background:#ffffe8;border:1px solid #b9a77a"></div>
+<div class="a" style="left:112px;top:130px;width:46px;height:42px;border:1px solid #9b0000;background:#fff3f3"></div>
+<div class="a" style="left:164px;top:142px;width:26px;height:18px;border:1px solid #9b0000;background:#fff3f3"></div>
+<div class="a" style="left:34px;top:250px;width:192px;height:22px;background:#d4d0c8;border:1px solid #808080;font-weight:700;font-size:11px;padding:5px 6px">P &nbsp;L &nbsp;DEVICES</div>
+<div class="a" style="left:34px;top:272px;width:192px;height:596px;background:#fff;border:1px solid #808080;font-size:11.5px;line-height:19px;padding:4px 8px;color:#001a8c">LPC2148<br>L293D<br>MOTOR<br>VIRTUAL TERMINAL<br>BATTERY</div>
+<!-- schematic sheet -->
+<div class="a" id="sheet" style="left:232px;top:84px;width:1360px;height:758px;background:#ffffe0;border:1px solid #808080;background-image:linear-gradient(#f0eac4 1px,transparent 1px),linear-gradient(90deg,#f0eac4 1px,transparent 1px);background-size:20px 20px"></div>
+<svg class="a" id="sch" style="left:232px;top:84px" width="1360" height="758"></svg>
+<!-- status -->
+<div class="a" style="left:34px;top:846px;width:1560px;height:26px;background:#ece9d8;border-top:1px solid #aca899"></div>
+<div class="a" id="pl" style="left:36px;top:848px;display:flex;gap:2px"></div>
+<div class="a" id="msg" style="left:178px;top:849px;width:460px;height:22px;border:1px inset #808080;background:#ece9d8;font-size:11.5px;line-height:20px;padding-left:6px"></div>
+<div class="a" style="left:1210px;top:849px;width:190px;height:22px;border:1px inset #808080;font-size:11.5px;line-height:20px;padding-left:10px">+400.0</div>
+<div class="a" style="left:1408px;top:849px;width:190px;height:22px;border:1px inset #808080;font-size:11.5px;line-height:20px;padding-left:10px">+300.0</div>
+<div id="over"></div>
+<script>
+const RUN=location.hash.includes('run'), DLG=location.hash.includes('dlg');
+const NS='http://www.w3.org/2000/svg';
+const S=(tag,at,par,txt)=>{const e=document.createElementNS(NS,tag);for(const k in at)e.setAttribute(k,at[k]);if(txt!==undefined)e.textContent=txt;(par||sch).appendChild(e);return e};
+const sch=document.getElementById('sch');
+// toolbar icons
+const tb=document.getElementById('tbsvg');let x=2;const IC=['#d8b45a','#c9b56a','#3d6fc2','#9aa','#6a8','#c33','#4a8','#79b','#a74','#47a','#888','#c80','#59c','#7a5','#a5a','#358','#c63','#6b7','#99c','#d77','#a88'];
+IC.forEach((c,i)=>{if([3,6,10,14,18].includes(i))x+=8;S('rect',{x:x,y:3,width:19,height:19,rx:2,fill:c,stroke:'#555','stroke-width':.7},tb);S('rect',{x:x+4,y:7,width:11,height:11,fill:'#fff',opacity:.55},tb);x+=24});
+const ls=document.getElementById('lsvg');
+for(let i=0;i<20;i++){const y=4+i*26;S('rect',{x:4,y:y,width:22,height:22,fill:'#f4f2e6',stroke:'#b8b49a'},ls);S('rect',{x:9,y:y+5,width:12,height:12,fill:['#2f5aa8','#a22','#c8801b','#2a8a5a','#7a3fa0','#444','#6a9a2a','#235a9a','#a33','#4a7'][i%10]},ls)}
+// play controls
+const pl=document.getElementById('pl');
+[['▶',RUN],['▶|',0],['❚❚',0],['■',!RUN]].forEach(([c,on])=>{const d=document.createElement('div');d.style.cssText=`width:34px;height:22px;border:1px solid #808080;background:${on?'#cfe6ff':'#ece9d8'};text-align:center;line-height:20px;font-size:11px;color:${c==='■'&&!RUN?'#a00':(c==='▶'&&RUN?'#0a0':'#333')}`;d.textContent=c;pl.appendChild(d)});
+document.getElementById('msg').textContent=RUN?'ANIMATING: 00:00:07.020000':'4 Message(s)';
+// helpers
+const RED='#800000',BLUE='#0000c8';
+const wire=(pts,c,w)=>S('polyline',{points:pts.map(p=>p.join(',')).join(' '),fill:'none',stroke:c||'#007000','stroke-width':w||1.6});
+const txt=(x,y,t,o={})=>{const e=S('text',Object.assign({x:x,y:y,'font-size':o.s||11,'font-family':'Tahoma,DejaVu Sans,sans-serif',fill:o.c||'#000','text-anchor':o.a||'start'},o.at||{}),sch,t);if(o.b)e.setAttribute('font-weight','700');return e};
+// LPC2148 block
+const bx=380,by=70,bw=260,bh=560;
+S('rect',{x:bx,y:by,width:bw,height:bh,fill:'#ffffc8',stroke:RED,'stroke-width':1.6});
+txt(bx+bw/2,by+bh/2-6,'LPC2148',{a:'middle',s:15,c:RED,b:1});
+txt(bx+bw/2,by-8,'U1',{a:'middle',s:12,c:RED,b:1});
+txt(bx+bw/2,by+bh+22,'LPC2148',{a:'middle',s:12,c:RED,b:1});
+const lp=[['P0.0/TXD0',90],['P0.1/RXD0',130],['P0.4/SCK0/CAP0.1/AD0.6',230],['P0.5/MISO0/MAT0.1/AD0.7',270],['P0.7/SSEL0/PWM2/EINT2',350]];
+const rp=[];
+lp.forEach(([n,y])=>{S('line',{x1:bx-20,y1:by+y,x2:bx,y2:by+y,stroke:RED,'stroke-width':1.4});txt(bx+8,by+y+4,n,{s:11,c:RED})});
+// supply labels
+txt(bx-24,by+470,'VDDA',{a:'end',s:10,c:RED});S('line',{x1:bx-20,y1:by+466,x2:bx,y2:by+466,stroke:RED});
+txt(bx-24,by+500,'VREF',{a:'end',s:10,c:RED});S('line',{x1:bx-20,y1:by+496,x2:bx,y2:by+496,stroke:RED});
+txt(bx+8,by+bh-10,'VSS',{s:10,c:RED});
+const nodeCol=(name,hi)=>RUN?(hi?'#d00000':'#0030d0'):'#007000';
+// L293D
+const lx=900,ly=210,lw=170,lh=240;
+S('rect',{x:lx,y:ly,width:lw,height:lh,fill:'#ffffc8',stroke:RED,'stroke-width':1.6});
+txt(lx+lw/2,ly+lh/2+4,'L293D',{a:'middle',s:14,c:RED,b:1});txt(lx+lw/2,ly-8,'U2',{a:'middle',s:12,c:RED,b:1});
+[['1,2EN',40],['1A',80],['2A',120],['VSS',200]].forEach(([n,y],i)=>{S('line',{x1:lx-20,y1:ly+y,x2:lx,y2:ly+y,stroke:RED,'stroke-width':1.4});txt(lx+8,ly+y+4,n,{s:10.5,c:RED})});
+[['1Y',80],['2Y',120]].forEach(([n,y])=>{S('line',{x1:lx+lw,y1:ly+y,x2:lx+lw+20,y2:ly+y,stroke:RED,'stroke-width':1.4});txt(lx+lw-8,ly+y+4,n,{s:10.5,c:RED,a:'end'})});
+S('line',{x1:lx+lw/2,y1:ly-20,x2:lx+lw/2,y2:ly,stroke:RED,'stroke-width':1.4});txt(lx+lw/2+6,ly+14,'VS',{s:10,c:RED});
+S('line',{x1:lx+lw/2,y1:ly+lh,x2:lx+lw/2,y2:ly+lh+20,stroke:RED,'stroke-width':1.4});
+// wires from MCU
+const en=by+350;
+wire([[bx-20,by+350],[bx-60,by+350],[bx-60,by+620],[lx-70,by+620],[lx-70,ly+40],[lx-20,ly+40]],nodeCol('pwm',true));
+wire([[bx-20,by+230],[bx-90,by+230],[bx-90,by+640],[lx-50,by+640],[lx-50,ly+80],[lx-20,ly+80]],nodeCol('in1',true));
+wire([[bx-20,by+270],[bx-110,by+270],[bx-110,by+660],[lx-30,by+660],[lx-30,ly+120],[lx-20,ly+120]],nodeCol('in2',false));
+// shift: crossing wires drawn roughly ok
+// motor
+const mx=1220,my=ly+130,mr=44;
+wire([[lx+lw+20,ly+80],[mx-mr-30,ly+80],[mx-mr-30,my],[mx-mr,my]],nodeCol('o1',true));
+wire([[lx+lw+20,ly+120],[mx,ly+120],[mx,my+mr]],nodeCol('o2',false));
+wire([[mx,my-mr],[mx,my-mr-30]],nodeCol('o1',true));
+S('circle',{cx:mx,cy:my,r:mr,fill:'#ffffc8',stroke:RED,'stroke-width':1.6});
+txt(mx,my+6,'M',{a:'middle',s:22,c:RED,b:1});txt(mx+mr+10,my-mr+10,'MOTOR',{s:11,c:RED,b:1});txt(mx+mr+10,my-mr+24,'DC MOTOR',{s:10,c:'#444'});
+if(RUN){const g=S('g',{});for(let i=0;i<3;i++){const a=i*2.1+.6;S('line',{x1:mx,y1:my,x2:mx+Math.cos(a)*30,y2:my+Math.sin(a)*30,stroke:'#555','stroke-width':3},g)}txt(mx,my+mr+22,'1800 RPM',{a:'middle',s:11,c:'#0030d0',b:1})}
+// battery
+const batx=lx+lw/2;
+wire([[batx,ly-20],[batx,ly-70],[batx-60,ly-70]],'#d00000');
+S('line',{x1:batx-60,y1:ly-90,x2:batx-60,y2:ly-50,stroke:RED,'stroke-width':2.4});S('line',{x1:batx-72,y1:ly-80,x2:batx-72,y2:ly-60,stroke:RED,'stroke-width':4});
+txt(batx-66,ly-102,'BAT1',{a:'middle',s:11,c:RED,b:1});txt(batx-66,ly-40,'12V',{a:'middle',s:11,c:RED});
+wire([[batx-72,ly-70],[batx-90,ly-70],[batx-90,ly+lh+20]],'#007000');
+// ground symbols
+const gnd=(x,y)=>{S('line',{x1:x,y1:y,x2:x,y2:y+10,stroke:RED});S('line',{x1:x-9,y1:y+10,x2:x+9,y2:y+10,stroke:RED,'stroke-width':1.6});S('line',{x1:x-6,y1:y+14,x2:x+6,y2:y+14,stroke:RED,'stroke-width':1.6});S('line',{x1:x-3,y1:y+18,x2:x+3,y2:y+18,stroke:RED,'stroke-width':1.6})};
+gnd(bx+bw/2,by+bh);gnd(batx,ly+lh+20);
+wire([[batx-90,ly+lh+20],[batx,ly+lh+20]],'#007000');
+wire([[lx-20,ly+200],[lx-40,ly+200],[lx-40,ly+lh+20],[batx-90,ly+lh+20]],'#007000');
+// VDDA/VREF tie
+wire([[bx-20,by+466],[bx-40,by+466],[bx-40,by+496],[bx-20,by+496]],'#007000');wire([[bx-40,by+466],[bx-40,by+430],[bx-60,by+430]],'#007000');txt(bx-62,by+426,'+3.3V',{a:'end',s:10.5,c:'#007000'});
+// virtual terminal
+const vx=190,vy=60;
+S('rect',{x:vx,y:vy+10,width:110,height:90,fill:'#ffffc8',stroke:RED,'stroke-width':1.6});
+txt(vx+55,vy+52,'VIRTUAL',{a:'middle',s:10.5,c:RED,b:1});txt(vx+55,vy+66,'TERMINAL',{a:'middle',s:10.5,c:RED,b:1});
+txt(vx+8,vy+34,'RXD',{s:10,c:RED});txt(vx+8,vy+88,'TXD',{s:10,c:RED});txt(vx+102,vy+34,'RTS',{s:10,c:RED,a:'end'});txt(vx+102,vy+88,'CTS',{s:10,c:RED,a:'end'});
+S('line',{x1:vx-20,y1:vy+30,x2:vx,y2:vy+30,stroke:RED});S('line',{x1:vx-20,y1:vy+84,x2:vx,y2:vy+84,stroke:RED});
+txt(vx+55,vy,'VT1',{a:'middle',s:11,c:RED,b:1});
+wire([[vx-20,vy+30],[vx-70,vy+30],[vx-70,by+90],[bx-20,by+90]],RUN?'#d00000':'#007000');txt(vx-60,vy+24,'TXD',{s:9.5,c:'#0000c8',b:0});
+wire([[vx-20,vy+84],[vx-90,vy+84],[vx-90,by+130],[bx-20,by+130]],RUN?'#0030d0':'#007000');txt(vx-70,vy+80,'RXD',{s:9.5,c:'#0000c8'});
+txt(vx+55,vy+118,'9600 baud, 8N1',{a:'middle',s:10.5,c:'#222'});
+// pin states (run)
+if(RUN){[[bx+bw+4,by+350,'▲'],].forEach(()=>{})}
+// ===== overlay: terminal or dialog =====
+const over=document.getElementById('over');
+if(RUN){
+ over.innerHTML=`<div class="a" style="left:1000px;top:560px;width:590px;height:284px;border:2px solid #1a50b8;background:#000;box-shadow:0 3px 10px rgba(0,0,0,.45)"><div style="height:22px;background:linear-gradient(#2a6bd6,#1a50b8);color:#fff;font-weight:700;font-size:12px;line-height:22px;padding-left:8px">Virtual Terminal<span style="float:right;display:flex;gap:2px;margin:2px 2px 0 0"><i style="width:16px;height:16px;background:#2c6ae0;border:1px solid #fff;border-radius:2px"></i><i style="width:16px;height:16px;background:#2c6ae0;border:1px solid #fff;border-radius:2px"></i><i style="width:16px;height:16px;background:#d9482b;border:1px solid #fff;border-radius:2px"></i></span></div><pre class="mono" style="color:#e8e8e8;font-size:13.5px;line-height:17.4px;padding:8px 10px;overflow:hidden;height:256px">Step No      : 02
+PWM Duty     : 40 %
+Avg Voltage  : 4.8 V
+Motor Speed  : 1200 RPM
+Direction    : FORWARD
+--------------------------------
+PWM Updated Successfully
+
+Step No      : 03
+PWM Duty     : 60 %
+Avg Voltage  : 7.2 V
+Motor Speed  : 1800 RPM
+Direction    : FORWARD
+--------------------------------
+PWM Updated Successfully</pre></div>`;
+}
+if(DLG){
+ const f=(l,v,y,hid)=>`<div class="t" style="left:14px;top:${y+4}px;font-size:12px">${l}</div><div class="a" style="left:150px;top:${y}px;width:150px;height:22px;border:1px solid #7f9db9;background:#fff;font-size:12px;line-height:20px;padding-left:4px">${v}</div><div class="t" style="left:318px;top:${y+4}px;font-size:12px">Hidden:</div><div class="a" style="left:372px;top:${y+4}px;width:13px;height:13px;border:1px solid #1c5180;background:#fff"></div>`;
+ over.innerHTML=`<div class="a" style="left:720px;top:380px;width:420px;height:356px;background:#ece9d8;border:2px solid #1a50b8;box-shadow:0 4px 14px rgba(0,0,0,.5)"><div style="height:24px;background:linear-gradient(#2a6bd6,#1a50b8);color:#fff;font-weight:700;font-size:12.5px;line-height:24px;padding-left:8px">Edit Component<span style="float:right;margin:3px 3px 0 0;width:18px;height:18px;background:#d9482b;border:1px solid #fff;border-radius:3px;color:#fff;text-align:center;line-height:16px;font-size:13px;font-weight:700">×</span></div>
+ <div class="a" style="left:0;top:32px;width:416px">
+ ${f('Component Reference:','U1',4)}${f('Component Value:','LPC2148',34)}
+ <div class="t" style="left:14px;top:72px;font-size:12px">PCB Package:</div><div class="a" style="left:150px;top:68px;width:150px;height:22px;border:1px solid #7f9db9;background:#fff;font-size:12px;line-height:20px;padding-left:4px">QFP64 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;▾</div>
+ <div class="t" style="left:14px;top:106px;font-size:12px">Program File:</div><div class="a" style="left:150px;top:100px;width:200px;height:24px;border:2px solid #d9482b;background:#fff;font-size:12px;line-height:20px;padding-left:4px">DC_Motor_PWM.hex</div><div class="a" style="left:356px;top:100px;width:28px;height:24px;border:1px solid #707070;background:#f0f0f0;text-align:center;line-height:18px;border-radius:3px">...</div>
+ <div class="t" style="left:14px;top:142px;font-size:12px">Crystal Frequency:</div><div class="a" style="left:150px;top:138px;width:150px;height:22px;border:1px solid #7f9db9;background:#fff;font-size:12px;line-height:20px;padding-left:4px">12MHz</div>
+ <div class="t" style="left:14px;top:176px;font-size:12px">Advanced Properties:</div><div class="a" style="left:150px;top:172px;width:200px;height:22px;border:1px solid #7f9db9;background:#fff;font-size:12px;line-height:20px;padding-left:4px">Simulate Program Fetches &nbsp;▾</div>
+ <div class="a" style="left:14px;top:212px;width:13px;height:13px;border:1px solid #1c5180;background:#fff"></div><div class="t" style="left:34px;top:213px;font-size:12px">Exclude from Simulation</div>
+ <div class="a" style="left:214px;top:212px;width:13px;height:13px;border:1px solid #1c5180;background:#fff"></div><div class="t" style="left:234px;top:213px;font-size:12px">Attach hierarchy module</div>
+ <div class="a" style="left:214px;top:244px;width:13px;height:13px;border:1px solid #1c5180;background:#fff"></div><div class="t" style="left:234px;top:245px;font-size:12px">Hide common pins</div>
+ </div>
+ <div class="a" style="left:226px;top:306px;width:80px;height:28px;border:2px solid #003c74;border-radius:3px;background:#f4f3ee;text-align:center;line-height:24px;font-size:12.5px">OK</div>
+ <div class="a" style="left:318px;top:306px;width:80px;height:28px;border:1px solid #003c74;border-radius:3px;background:#f4f3ee;text-align:center;line-height:26px;font-size:12.5px">Cancel</div></div>`;
+}
+</script></body></html>

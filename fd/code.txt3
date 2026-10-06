@@ -1,0 +1,356 @@
+#include <LPC214x.h>
+
+/* ---------- Pin definitions ---------- */
+#define BUZZER (1 << 10) /* P0.10 */
+#define LED_RED (1 << 11) /* P0.11 - Critical fault */
+#define LED_YEL (1 << 12) /* P0.12 - Warning */
+#define LED_GRN (1 << 13) /* P0.13 - Normal */
+#define LOAD_RELAY (1 << 15) /* P0.15 - Main load supply */
+#define RESET_KEY (1 << 4) /* P0.4 - Fault reset key */
+
+#define LCD_RS (1 << 16) /* P1.16 */
+#define LCD_EN (1 << 17) /* P1.17 */
+#define LCD_D4 (1 << 18) /* P1.18 */
+#define LCD_D5 (1 << 19) /* P1.19 */
+#define LCD_D6 (1 << 20) /* P1.20 */
+#define LCD_D7 (1 << 21) /* P1.21 */
+#define LCD_DATA (LCD_D4 | LCD_D5 | LCD_D6 | LCD_D7)
+
+/* ---------- Thresholds ---------- */
+#define TEMP_WARN 50 /* deg C */
+#define TEMP_CRIT 70
+#define GAS_WARN 600 /* raw ADC count */
+#define GAS_CRIT 800
+#define CURR_WARN 700
+#define CURR_CRIT 850
+#define CONFIRM_CNT 3 /* consecutive samples to confirm */
+
+/* ---------- System states ---------- */
+#define ST_NORMAL 0
+#define ST_WARNING 1
+#define ST_SHUTDOWN 2
+/* ---------- Fault codes ---------- */
+#define F_NONE 0
+#define F_TEMP 1
+#define F_GAS 2
+#define F_CURRENT 3
+#define F_FLAME 4
+#define F_ESTOP 5
+
+volatile unsigned char check_due = 0; /* set by Timer0 ISR */
+volatile unsigned char sys_state = ST_NORMAL;
+volatile unsigned char fault_code = F_NONE;
+volatile unsigned char log_due = 0;
+volatile unsigned int tick_100ms = 0;
+volatile unsigned char disp_due = 0; /* LCD refresh request */
+
+unsigned int temp_c, gas_val, curr_val;
+unsigned char temp_cnt = 0, gas_cnt = 0, curr_cnt = 0;
+
+const char *fault_text[] = { "NONE", "OVER TEMP", "GAS LEAK", "OVER CURRENT", "FLAME", "E-STOP" };
+
+/* ---------- Clock: 12 MHz crystal -> CCLK = PCLK = 60 MHz ---------- */
+void pll_init(void)
+{
+    PLL0CFG = 0x24; /* M = 5, P = 2 */
+    PLL0CON = 0x01; /* enable PLL */
+    PLL0FEED = 0xAA; PLL0FEED = 0x55;
+    while(!(PLL0STAT & (1 << 10))); /* wait for lock */
+    PLL0CON = 0x03; /* connect PLL */
+    PLL0FEED = 0xAA; PLL0FEED = 0x55;
+    VPBDIV = 0x01; /* PCLK = CCLK */
+}
+
+void delay_ms(unsigned int ms)
+{
+    unsigned int i, j;
+    for(i = 0; i < ms; i++)
+        for(j = 0; j < 6000; j++);
+}
+
+/* ---------- LCD (4-bit, Port 1) ---------- */
+void lcd_nibble(unsigned char n)
+{
+    IO1CLR = LCD_DATA;
+    if(n & 0x01) IO1SET = LCD_D4;
+    if(n & 0x02) IO1SET = LCD_D5;
+    if(n & 0x04) IO1SET = LCD_D6;
+    if(n & 0x08) IO1SET = LCD_D7;
+    IO1SET = LCD_EN; delay_ms(1); IO1CLR = LCD_EN;
+}
+
+void lcd_cmd(unsigned char c)
+{
+    IO1CLR = LCD_RS;
+    lcd_nibble(c >> 4); lcd_nibble(c & 0x0F);
+    delay_ms(2);
+}
+
+void lcd_char(unsigned char d)
+{
+    IO1SET = LCD_RS;
+    lcd_nibble(d >> 4); lcd_nibble(d & 0x0F);
+    delay_ms(1);
+}
+
+void lcd_string(const char *s) { while(*s) lcd_char(*s++); }
+
+void lcd_num(unsigned int n)
+{
+    char buf[6]; int i = 0;
+    if(n == 0) { lcd_char('0'); return; }
+    while(n) { buf[i++] = (n % 10) + '0'; n /= 10; }
+    while(i) lcd_char(buf[--i]);
+}
+
+void lcd_init(void)
+{
+    IO1DIR |= LCD_RS | LCD_EN | LCD_DATA;
+    delay_ms(20);
+    lcd_nibble(0x03); delay_ms(5);
+
+    lcd_nibble(0x03); delay_ms(1);
+    lcd_nibble(0x03); lcd_nibble(0x02);
+    lcd_cmd(0x28); lcd_cmd(0x0C); lcd_cmd(0x06); lcd_cmd(0x01);
+}
+
+/* ---------- UART0: 9600 baud @ PCLK 60 MHz ---------- */
+void uart0_init(void)
+{
+    PINSEL0 |= 0x00000005; /* P0.0 TxD0, P0.1 RxD0 */
+    U0LCR = 0x83; /* 8N1, DLAB = 1 */
+    U0DLL = 0x87; /* 391 = 0x0187 */
+    U0DLM = 0x01;
+    U0LCR = 0x03; /* DLAB = 0 */
+}
+
+void uart0_char(char c) { while(!(U0LSR & 0x20)); U0THR = c; }
+void uart0_string(const char *s) { while(*s) uart0_char(*s++); }
+
+void uart0_num(unsigned int n)
+{
+    char buf[6]; int i = 0;
+    if(n == 0) { uart0_char('0'); return; }
+    while(n) { buf[i++] = (n % 10) + '0'; n /= 10; }
+    while(i) uart0_char(buf[--i]);
+}
+
+/* ---------- ADC0: channels 1, 2, 3 ---------- */
+void adc_init(void)
+{
+    PINSEL1 &= ~((3 << 24) | (3 << 26) | (3 << 28));
+    PINSEL1 |= ((1 << 24) | (1 << 26) | (1 << 28)); /* P0.28-P0.30 = AD0.1-AD0.3 */
+}
+
+unsigned int adc_read(unsigned char ch)
+{
+    unsigned int val;
+    AD0CR = (1 << ch) | (13 << 8) | (1 << 21) | (1 << 24); /* 4.28 MHz, start */
+    while(!(AD0GDR & (1UL << 31))); /* wait DONE */
+    val = (AD0GDR >> 6) & 0x3FF;
+    AD0CR &= ~(7 << 24); /* stop */
+    return val;
+}
+
+/* ---------- Safe shutdown (callable from ISR or main) ---------- */
+void safe_shutdown(unsigned char code)
+{
+    IO0CLR = LOAD_RELAY; /* 1. cut power to load first */
+    IO0CLR = LED_GRN | LED_YEL;
+    IO0SET = LED_RED | BUZZER; /* 2. raise alarm */
+    if(sys_state != ST_SHUTDOWN)
+        fault_code = code; /* 3. latch first fault cause */
+    sys_state = ST_SHUTDOWN;
+    log_due = 1; /* 4. main loop logs on UART */
+}
+
+/* ---------- Timer0 ISR: 100 ms system tick ---------- */
+__irq void TIMER0_ISR(void)
+{
+    tick_100ms++;
+
+    check_due = 1; /* request periodic sensor scan */
+    if((tick_100ms % 5) == 0) disp_due = 1; /* LCD every 500 ms */
+    if(sys_state == ST_WARNING) /* blink warning LED/buzzer */
+        {
+        if(tick_100ms & 0x04) IO0SET = LED_YEL | BUZZER;
+        else IO0CLR = LED_YEL | BUZZER;
+    }
+    T0IR = 0x01; /* clear MR0 flag */
+    VICVectAddr = 0;
+}
+
+/* ---------- EINT0 ISR: Emergency stop ---------- */
+__irq void EINT0_ISR(void)
+{
+    safe_shutdown(F_ESTOP);
+    EXTINT = (1 << 0);
+    VICVectAddr = 0;
+}
+
+/* ---------- EINT1 ISR: Flame sensor ---------- */
+__irq void EINT1_ISR(void)
+{
+    safe_shutdown(F_FLAME);
+    EXTINT = (1 << 1);
+    VICVectAddr = 0;
+}
+
+/* ---------- Timer0: 100 ms periodic interrupt ---------- */
+void timer0_init(void)
+{
+    T0TCR = 0x02; /* reset timer */
+    T0PR = 59; /* 60 MHz / 60 = 1 MHz */
+    T0MR0 = 100000; /* 100 ms */
+    T0MCR = 0x03; /* interrupt + reset on MR0 */
+    T0TCR = 0x01; /* start */
+}
+
+/* ---------- External interrupts + VIC ---------- */
+void interrupt_init(void)
+{
+    PINSEL1 &= ~(3 << 0); PINSEL1 |= (1 << 0); /* P0.16 = EINT0 */
+    PINSEL0 |= (3 << 6); /* P0.3 = EINT1 */
+
+    EXTMODE |= (1 << 0) | (1 << 1); /* edge sensitive */
+    EXTPOLAR &= ~((1 << 0) | (1 << 1)); /* falling edge */
+    EXTINT = (1 << 0) | (1 << 1); /* clear flags */
+
+    VICIntSelect = 0x00000000; /* all IRQ */
+
+    VICVectAddr0 = (unsigned)EINT0_ISR; VICVectCntl0 = 0x20 | 14; /* highest */
+    VICVectAddr1 = (unsigned)EINT1_ISR; VICVectCntl1 = 0x20 | 15;
+    VICVectAddr2 = (unsigned)TIMER0_ISR; VICVectCntl2 = 0x20 | 4;
+
+    VICIntEnable = (1 << 14) | (1 << 15) | (1 << 4);
+}
+
+/* ---------- Watchdog: resets CPU if software hangs (~2 s) ---------- */
+void wdt_init(void)
+{
+    WDTC = 30000000; /* 2 s x (60 MHz / 4) */
+    WDMOD = 0x03; /* enable + reset on timeout */
+    WDFEED = 0xAA; WDFEED = 0x55;
+}
+
+void wdt_feed(void)
+{
+    unsigned int saved = VICIntEnable;
+    VICIntEnClr = 0xFFFFFFFF; /* no IRQ between feed bytes */
+    WDFEED = 0xAA; WDFEED = 0x55;
+    VICIntEnable = saved;
+}
+
+/* ---------- Confirm a reading over N consecutive samples ---------- */
+unsigned char confirm(unsigned int val, unsigned int limit, unsigned char *cnt)
+{
+    if(val >= limit) { if(*cnt < 255) (*cnt)++; }
+    else *cnt = 0;
+    return (*cnt >= CONFIRM_CNT);
+}
+
+/* ---------- Periodic sensor scan (called from main) ---------- */
+void scan_sensors(void)
+{
+    unsigned char warn = 0;
+
+    temp_c = (adc_read(1) * 330) / 1023; /* LM35: 10 mV/degC */
+    gas_val = adc_read(2);
+    curr_val = adc_read(3);
+
+    if(confirm(temp_c, TEMP_CRIT, &temp_cnt)) { safe_shutdown(F_TEMP); return; }
+    if(confirm(gas_val, GAS_CRIT, &gas_cnt)) { safe_shutdown(F_GAS); return; }
+    if(confirm(curr_val,CURR_CRIT, &curr_cnt)) { safe_shutdown(F_CURRENT); return; }
+
+    if(temp_c >= TEMP_WARN || gas_val >= GAS_WARN || curr_val >= CURR_WARN)
+        warn = 1;
+
+    if(sys_state == ST_SHUTDOWN) return; /* ISR may have tripped meanwhile */
+    if(warn) {
+        sys_state = ST_WARNING;
+        IO0CLR = LED_GRN | LED_RED;
+    } else {
+        sys_state = ST_NORMAL;
+        IO0CLR = LED_YEL | LED_RED | BUZZER;
+        IO0SET = LED_GRN;
+    }
+}
+
+void show_status(void)
+{
+    lcd_cmd(0x80);
+    lcd_string("T:"); lcd_num(temp_c); lcd_string("C G:");
+    lcd_num(gas_val); lcd_string(" ");
+    lcd_cmd(0xC0);
+    if(sys_state == ST_NORMAL) lcd_string("STATUS: NORMAL ");
+    else if(sys_state == ST_WARNING) lcd_string("STATUS: WARNING ");
+
+    else { lcd_string("FLT:"); lcd_string(fault_text[fault_code]); lcd_string(" "); }
+}
+
+void log_fault(void)
+{
+    uart0_string("\r\n*** FAULT: ");
+    uart0_string(fault_text[fault_code]);
+    uart0_string(" | T="); uart0_num(temp_c);
+    uart0_string("C GAS="); uart0_num(gas_val);
+    uart0_string(" I="); uart0_num(curr_val);
+    uart0_string(" | LOAD OFF ***\r\n");
+}
+
+int main(void)
+{
+    unsigned char i;
+
+    pll_init();
+
+    IO0DIR |= BUZZER | LED_RED | LED_YEL | LED_GRN | LOAD_RELAY;
+    IO0DIR &= ~RESET_KEY;
+    IO0CLR = BUZZER | LED_RED | LED_YEL | LOAD_RELAY; /* safe default */
+
+    lcd_init();
+    uart0_init();
+    adc_init();
+
+    lcd_cmd(0x80); lcd_string("FAULT DETECTION ");
+    lcd_cmd(0xC0); lcd_string("SELF TEST... ");
+    delay_ms(1000);
+
+    for(i = 0; i < CONFIRM_CNT; i++) { /* power-on self test */
+        scan_sensors();
+        delay_ms(100);
+    }
+    if(sys_state != ST_SHUTDOWN) {
+        IO0SET = LOAD_RELAY | LED_GRN; /* start load only if healthy */
+        uart0_string("\r\nSystem started: all sensors normal\r\n");
+    }
+
+    interrupt_init();
+    timer0_init();
+    wdt_init();
+
+    while(1)
+        {
+        if(check_due && sys_state != ST_SHUTDOWN) {
+            check_due = 0;
+            scan_sensors();
+        }
+        if(log_due) { log_due = 0; log_fault(); }
+
+        if(sys_state == ST_SHUTDOWN && !(IO0PIN & RESET_KEY)) {
+            delay_ms(50); /* debounce reset key */
+            temp_cnt = gas_cnt = curr_cnt = 0;
+            sys_state = ST_NORMAL;
+            scan_sensors(); /* re-check before restart */
+            if(sys_state != ST_SHUTDOWN) {
+                fault_code = F_NONE;
+                IO0CLR = BUZZER | LED_RED;
+                IO0SET = LOAD_RELAY | LED_GRN;
+                uart0_string("Fault cleared, load restarted\r\n");
+            }
+        }
+
+        if(disp_due) { disp_due = 0; show_status(); }
+        wdt_feed();
+    }
+}
