@@ -104,5 +104,12 @@ B([('Third Prize',True),(' — 24-hr VeloHack’26, Vel Tech University, Chennai
 H('Certifications')
 B([('Introduction to Artificial Intelligence',True),(' — Infosys Springboard',False)],before=1)
 B([('Cleared ',False),('Business English Certificate (BEC)',True),(' — Business Preliminary Examination',False)])
+ORD=['pStyle','keepNext','keepLines','pageBreakBefore','widowControl','numPr','pBdr','shd','tabs','spacing','ind','contextualSpacing','jc','rPr']
+for pp in d.element.iter(qn('w:pPr')):
+    k=list(pp)
+    for e in k: pp.remove(e)
+    for e in sorted(k,key=lambda e:ORD.index(e.tag.split('}')[1]) if e.tag.split('}')[1] in ORD else 99): pp.append(e)
+z=d.settings.element.find(qn('w:zoom'))
+if z is not None: z.set(qn('w:percent'),'100')
 d.core_properties.title='Ajay I - Resume'; d.core_properties.author='Ajay I'
 d.save('Ajay_I_Resume.docx')
