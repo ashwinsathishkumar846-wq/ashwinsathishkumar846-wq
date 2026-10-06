@@ -1,0 +1,1008 @@
+UHV 10 MARKS
+
+# 1) GLOBALISATION — 10 MARKS
+
+## Meaning of Globalisation
+
+**Globalisation** is the process by which countries, businesses, people and technologies become increasingly connected with each other across the world.
+
+### Simple flow
+
+**One country**
+↓  
+**Trade + Technology + Communication**
+↓  
+**Connection with other countries**
+↓  
+**Exchange of products, ideas, knowledge and services**
+↓  
+**Globalisation**
+
+---
+
+## 1. Benefits of Globalisation
+
+Globalisation provides several advantages:
+
+**Globalisation**
+→ **Larger markets**  
+→ **More employment opportunities**  
+→ **Better technology**  
+→ **Lower production costs**  
+→ **International cooperation**  
+→ **Improved products and services**
+
+### Important benefits
+
+- **Larger market:** Companies can sell products to customers in many countries.
+- **Employment:** International companies create jobs in different countries.
+- **Technology development:** Countries can obtain and use advanced technologies.
+- **Better quality:** Global competition encourages companies to improve quality.
+- **Lower cost:** Production can be carried out where resources and labour are economical.
+- **Knowledge sharing:** Countries can exchange scientific and technical knowledge.
+
+---
+
+## 2. Transfer of Technology
+
+**Transfer of technology** means moving technical knowledge, machines, methods or expertise from one country or organisation to another.
+
+### Flow
+
+**Developed technology**
+↓  
+**Transfer to another country**
+↓  
+**Training + Knowledge sharing**
+↓  
+**Local implementation**
+↓  
+**Improved production / services**
+
+### Example
+
+A company from Germany transfers advanced manufacturing technology to an Indian company.
+
+The Indian company receives:
+
+**Technology + Equipment + Training + Technical knowledge**
+
+This helps the company produce better products.
+
+### Problems
+
+Technology transfer should be done carefully because:
+
+- Old or unsuitable technology may be transferred.
+- The receiving country may become dependent on another country.
+- Environmental damage may occur.
+- Intellectual property rights must be respected.
+
+---
+
+## 3. Relative Values
+
+**Relative values** means that values, customs and moral expectations may differ between different societies and cultures.
+
+### Flow
+
+**Different countries**
+↓  
+**Different cultures**
+↓  
+**Different beliefs & practices**
+↓  
+**Different views about what is acceptable**
+
+For example, a business practice considered acceptable in one country may be considered inappropriate in another.
+
+Therefore, engineers and companies working internationally must **respect cultural differences while maintaining basic ethical principles**.
+
+---
+
+## 4. International Rights
+
+International rights are basic rights that should be respected for people across countries.
+
+Important rights include:
+
+- Right to life and safety
+- Right to equality
+- Right to freedom
+- Right to fair treatment
+- Right to privacy
+- Right to dignity
+- Workers' rights
+
+### Simple idea
+
+**Globalisation**
+↓  
+**International interaction**
+↓  
+**Need to protect human rights**
+↓  
+**Fair and ethical treatment of people**
+
+Engineers and organisations should ensure that their activities do not violate these rights.
+
+---
+
+## 5. Promoting Morally Justifiable Measures
+
+Globalisation can create ethical problems such as exploitation of workers, environmental pollution and unfair business practices.
+
+Therefore, organisations should take **morally justifiable measures**, meaning actions that are ethically acceptable and beneficial to people and society.
+
+### Ethical approach
+
+**Business decision**
+↓  
+**Check safety + fairness + human rights + environment**
+↓  
+**Choose ethically acceptable action**
+↓  
+**Implement responsibly**
+
+For example, a company should not reduce production costs by using unsafe working conditions.
+
+---
+
+## 6. Business Process Outsourcing (BPO)
+
+**BPO** means giving certain business activities to an external company, often located in another country.
+
+### Flow
+
+**Company A**
+↓  
+Outsources a business activity  
+↓  
+**Company B**
+↓  
+Performs the activity
+↓  
+**Service delivered to Company A**
+
+Examples:
+
+- Customer support
+- Data entry
+- Accounting
+- Technical support
+- Call centres
+
+### Advantages
+
+- Reduces operating costs
+- Provides specialised skills
+- Saves time
+- Allows companies to focus on core activities
+
+### Ethical concerns
+
+- Employee job security
+- Data privacy
+- Fair wages
+- Working conditions
+- Protection of confidential information
+
+---
+
+# 2) COMPUTER ETHICS — 10 MARKS
+
+## Meaning of Computer Ethics
+
+**Computer ethics** refers to the moral principles and rules that guide the responsible use of computers, software, networks and digital information.
+
+### Flow
+
+**Computer technology**
+↓  
+**Power to access / create / modify information**
+↓  
+**Possibility of misuse**
+↓  
+**Need for ethical rules**
+↓  
+**Computer Ethics**
+
+---
+
+# 1. Computer Crimes
+
+A **computer crime** is an illegal activity in which a computer, network or digital information is used as a target or as a tool.
+
+Examples:
+
+- Hacking
+- Identity theft
+- Online fraud
+- Data theft
+- Malware attacks
+- Password theft
+- Cyberstalking
+
+### Basic flow
+
+**Computer / Network**
+↓  
+**Unauthorised access or misuse**
+↓  
+**Damage / theft / fraud**
+↓  
+**Computer crime**
+
+---
+
+# 2. Categories of Computer Crimes
+
+Computer crimes can broadly be classified according to what is attacked.
+
+### A. Crimes against individuals
+
+Target a particular person.
+
+Examples:
+- Identity theft
+- Cyberstalking
+- Online harassment
+- Phishing
+
+### B. Crimes against property
+
+Target digital or physical property.
+
+Examples:
+- Data theft
+- Software piracy
+- Intellectual property theft
+- Malware causing damage
+
+### C. Crimes against organisations
+
+Target companies or institutions.
+
+Examples:
+- Database attacks
+- Ransomware
+- Data breaches
+- Denial-of-service attacks
+
+### D. Crimes against society/government
+
+Target large groups or public systems.
+
+Examples:
+- Cyberterrorism
+- Attacks on government systems
+- Spreading harmful information
+
+### Easy classification
+
+**Computer Crimes**
+↓
+├── **Individuals**  
+├── **Property**  
+├── **Organisations**  
+└── **Society / Government**
+
+---
+
+# 3. Commandments of Computer Ethics
+
+The **Ten Commandments of Computer Ethics** provide basic rules for responsible computer use.
+
+1. Do not use a computer to harm others.
+2. Do not interfere with another person's computer work.
+3. Do not access another person's files without permission.
+4. Do not use a computer to steal.
+5. Do not use a computer to spread false information.
+6. Do not copy or use software without permission.
+7. Do not use another person's computer resources without authorisation.
+8. Do not take another person's intellectual work.
+9. Think about the social consequences of the programs you create.
+10. Use computers with consideration and respect for others.
+
+### Core idea
+
+**Use technology**
+→ **Legally**
+→ **Responsibly**
+→ **Respectfully**
+→ **Without harming others**
+
+---
+
+# 4. Ethical Principles for Software
+
+Software engineers should develop and use software responsibly.
+
+Important principles:
+
+### 1. Public interest
+Software should not unnecessarily harm users or society.
+
+### 2. Quality
+Software should be reliable, safe and properly tested.
+
+### 3. Privacy
+Users' personal information must be protected.
+
+### 4. Confidentiality
+Confidential information should not be disclosed without permission.
+
+### 5. Intellectual property
+Copyrights, patents and licenses must be respected.
+
+### 6. Honesty
+Developers should not intentionally provide false information about software.
+
+### Flow
+
+**Software development**
+↓  
+**Safety + Quality + Privacy + Security**
+↓  
+**Respect laws & intellectual property**
+↓  
+**Ethical software**
+
+---
+
+# 5. Mobile Etiquette Guidelines
+
+**Mobile etiquette** means using mobile phones in a socially responsible and respectful manner.
+
+Important guidelines:
+
+- Keep the phone silent in classrooms, meetings and hospitals.
+- Do not disturb others with loud conversations.
+- Do not use phones while driving.
+- Respect other people's privacy.
+- Do not record or photograph people without permission.
+- Avoid unnecessary calls in public places.
+- Do not use phones during important discussions.
+- Use mobile devices responsibly.
+
+### Simple idea
+
+**Use mobile**
+→ **Respect others**
+→ **Protect privacy**
+→ **Maintain safety**
+→ **Use appropriately**
+
+---
+
+# 6. Ethical Hackers
+
+An **ethical hacker** is a security professional who legally tests computer systems to find vulnerabilities before malicious hackers can exploit them.
+
+### Flow
+
+**Organisation gives permission**
+↓  
+**Ethical hacker tests system**
+↓  
+**Finds vulnerabilities**
+↓  
+**Reports vulnerabilities**
+↓  
+**Organisation fixes them**
+↓  
+**Improved security**
+
+### Ethical hacker vs malicious hacker
+
+| Ethical Hacker | Malicious Hacker |
+|---|---|
+| Has permission | No permission |
+| Finds vulnerabilities | Exploits vulnerabilities |
+| Protects systems | Damages/steals |
+| Reports problems | Hides activities |
+| Legal | Illegal |
+
+---
+
+# 3) SAFETY AND RISK — 10 MARKS
+
+## Meaning of Safety
+
+**Safety** means protecting people, property and the environment from harm or unacceptable danger.
+
+## Meaning of Risk
+
+**Risk** is the possibility that a hazard may cause harm, together with the seriousness of that harm.
+
+### Basic relationship
+
+**Hazard**
+↓  
+**Possibility of occurrence**
+↓  
+**Possible consequences**
+↓  
+**Risk**
+
+For example:
+
+**Damaged electrical wire**
+→ possibility of electric shock  
+→ injury/death  
+→ **electrical risk**
+
+---
+
+# 1. Underestimation of Risk
+
+**Underestimation of risk** means judging a danger as less serious or less likely than it actually is.
+
+### Flow
+
+**Actual danger**
+↓  
+**Risk judged too low**
+↓  
+**Insufficient safety measures**
+↓  
+**Accident / damage**
+↓  
+**Loss of life or property**
+
+### Example
+
+An engineer thinks a machine has only a very small chance of failure and does not install adequate protection.
+
+If the machine fails, workers may be injured.
+
+---
+
+# 2. Overestimation of Risk
+
+**Overestimation of risk** means judging a danger as greater than it actually is.
+
+### Flow
+
+**Actual risk**
+↓  
+**Risk judged too high**
+↓  
+**Excessive safety measures**
+↓  
+**Higher cost / unnecessary restrictions**
+
+### Example
+
+If an engineer assumes that a very unlikely failure will definitely occur, they may spend excessive money on unnecessary protection.
+
+---
+
+## Underestimation vs Overestimation
+
+**Risk estimation**
+
+↙️ **Too Low**  
+→ Underestimation  
+→ Unsafe decisions  
+→ Higher possibility of accidents
+
+↘️ **Too High**  
+→ Overestimation  
+→ Excessive cost/restrictions  
+→ Inefficient decisions
+
+Therefore, engineers should aim for **realistic and scientifically supported risk assessment**.
+
+---
+
+# 3. Designing for Safety
+
+**Designing for safety** means considering safety from the beginning of the engineering design process instead of trying to add safety after the product is completed.
+
+### Flow
+
+**Identify hazards**
+↓  
+**Assess risks**
+↓  
+**Remove / reduce hazards**
+↓  
+**Add protective measures**
+↓  
+**Test the design**
+↓  
+**Safe product/system**
+
+### Important methods
+
+**1. Eliminate the hazard**
+
+Best option: remove the dangerous condition completely.
+
+**2. Reduce the risk**
+
+If elimination is impossible, reduce the probability or severity of harm.
+
+**3. Protective devices**
+
+Use guards, alarms, emergency stops, insulation, etc.
+
+**4. Warning systems**
+
+Provide warnings where hazards cannot be completely removed.
+
+**5. Testing and maintenance**
+
+Regular testing ensures that safety features continue to work.
+
+### Important principle
+
+> **Safety should be built into the design, not added as an afterthought.**
+
+---
+
+# 4) ENGINEERING AS EXPERIMENTATION — 10 MARKS
+
+Engineering is similar to experimentation because engineers often **design, test, observe results and improve their solutions**.
+
+An engineering product may not behave exactly as predicted because real-world conditions are complex.
+
+### Main flow
+
+**Engineering Problem**
+↓  
+**Propose a solution**
+↓  
+**Design**
+↓  
+**Test / Experiment**
+↓  
+**Observe results**
+↓  
+**Learn**
+↓  
+**Improve design**
+↓  
+**Final solution**
+
+---
+
+# 1. Similarities to Standard Experiments
+
+Engineering activities have many similarities with scientific experiments.
+
+### Scientific experiment
+
+**Problem**
+↓  
+**Hypothesis**
+↓  
+**Experiment**
+↓  
+**Observation**
+↓  
+**Analysis**
+↓  
+**Conclusion**
+
+### Engineering
+
+**Problem**
+↓  
+**Design / proposed solution**
+↓  
+**Prototype / testing**
+↓  
+**Performance measurement**
+↓  
+**Analysis**
+↓  
+**Improved design**
+
+Both involve:
+
+- Planning
+- Testing
+- Observation
+- Data collection
+- Analysis
+- Learning from results
+
+---
+
+# 2. Learning from the Past
+
+Engineers should study previous failures and successes before designing a new system.
+
+### Flow
+
+**Previous project / accident**
+↓  
+**Study what happened**
+↓  
+**Identify causes**
+↓  
+**Learn lessons**
+↓  
+**Apply lessons to new design**
+↓  
+**Avoid repeating mistakes**
+
+### Example
+
+If an earlier bridge failed because of inadequate load calculations, engineers designing a new bridge should study that failure and improve the design calculations.
+
+**Past failure → Knowledge → Better future design**
+
+---
+
+# 3. Knowledge Gained
+
+Engineering experiments generate useful knowledge about the behaviour and performance of a system.
+
+For example, testing a machine may reveal:
+
+- Maximum load
+- Temperature limits
+- Failure points
+- Efficiency
+- Material behaviour
+- Safety limits
+
+### Flow
+
+**Testing**
+↓  
+**Measurements / observations**
+↓  
+**Analysis**
+↓  
+**New knowledge**
+↓  
+**Improved engineering design**
+
+The knowledge gained should be properly documented and used in future engineering decisions.
+
+---
+
+# 4. Framing the Problem
+
+**Framing the problem** means clearly defining what the actual engineering problem is before trying to solve it.
+
+A poorly defined problem can lead to a wrong solution.
+
+### Flow
+
+**Observe situation**
+↓  
+**Identify actual problem**
+↓  
+**Identify requirements**
+↓  
+**Identify constraints**
+↓  
+**Identify risks**
+↓  
+**Define clear engineering problem**
+↓  
+**Develop solution**
+
+### Example
+
+Instead of saying:
+
+❌ **"The vehicle is unsafe."**
+
+A better engineering problem statement is:
+
+✅ **"The vehicle's braking distance is too long at high speeds and must be reduced while maintaining cost and passenger comfort."**
+
+Now the engineer knows exactly **what needs to be improved and what constraints must be considered**.
+
+---
+
+## Complete Engineering Experimentation Concept
+
+You can remember the entire topic through this single flow:
+
+**FRAME THE PROBLEM**  
+↓  
+**Study previous knowledge / failures**  
+↓  
+**Propose engineering solution**  
+↓  
+**Design / build prototype**  
+↓  
+**Test experimentally**  
+↓  
+**Collect data**  
+↓  
+**Analyse results**  
+↓  
+**Gain knowledge**  
+↓  
+**Improve design**  
+↓  
+**Safe + effective final solution**
+
+
+
+
+UHV 2 MARKS
+
+# 1) DEFINITIVENESS OF ETHICAL HUMAN CONDUCT — 5 MARKS
+
+**Ethical human conduct** means behaving in a way that is morally right, responsible and beneficial to oneself and others.
+
+**Definitiveness** means that ethical behaviour should be **clear, consistent and based on correct understanding**, rather than changing according to convenience or personal benefit.
+
+### Basic concept
+
+**Right understanding**
+↓  
+**Correct identification of values**
+↓  
+**Right decision**
+↓  
+**Right behaviour**
+↓  
+**Harmony with others and society**
+
+### Main points
+
+- Ethical conduct should be based on **right understanding and universal human values**.
+- A person should distinguish between **right and wrong** before taking decisions.
+- Ethical behaviour should be **consistent**, even when there is pressure or temptation.
+- It should promote **mutual happiness, trust and respect**.
+- A person should consider the **effect of their actions on others and society**.
+- Ethical conduct should not depend only on fear of punishment or personal gain.
+
+### Example
+
+An engineer discovers a safety defect in a product.
+
+**Personal benefit:** Hide the defect → earn profit  
+**Ethical conduct:** Report the defect → protect users
+
+Therefore, ethical human conduct means **choosing the right action based on values and responsibility, even when it is difficult**.
+
+---
+
+# 2) COMPETENCE IN PROFESSIONAL ETHICS — 5 MARKS
+
+**Professional ethical competence** is the ability of a professional to combine **technical knowledge with ethical understanding** and make responsible decisions.
+
+An engineer should not only know **how to build something**, but also understand **whether it is safe, fair and beneficial**.
+
+### Flow
+
+**Technical knowledge**
++
+**Ethical values**
+↓
+**Professional competence**
+↓
+**Responsible decisions**
+↓
+**Safe and beneficial technology**
+
+### Main requirements
+
+An ethically competent engineer should:
+
+- Have sufficient **technical knowledge and skills**.
+- Understand **professional codes of ethics**.
+- Give importance to **public safety and welfare**.
+- Be honest about technical limitations and risks.
+- Protect confidential information.
+- Respect intellectual property.
+- Avoid discrimination and conflicts of interest.
+- Take responsibility for professional decisions.
+- Continuously improve knowledge and skills.
+
+### Example
+
+An engineer is asked to approve a product even though testing shows a serious safety problem.
+
+A technically competent but unethical engineer may approve it.
+
+A **professionally ethically competent engineer** will:
+
+**Identify risk → refuse unsafe approval → report the problem → protect users.**
+
+Thus, professional competence requires **both technical excellence and ethical responsibility**.
+
+---
+
+# 3) ROLE AND RESPONSIBILITIES OF ENGINEERS — 5 MARKS
+
+Engineers use scientific and technical knowledge to design and develop products, systems and technologies that affect society.
+
+Therefore, their responsibility is not only towards their employer but also towards **public safety, society and the environment**.
+
+### Flow
+
+**Engineering knowledge**
+↓
+**Design / develop technology**
+↓
+**Technology affects society**
+↓
+**Engineer has responsibility**
+↓
+**Safety + welfare + environment + honesty**
+
+### Major responsibilities
+
+**1. Protect public safety**
+
+Engineers must ensure that their designs do not unnecessarily endanger people.
+
+**2. Maintain professional competence**
+
+They should continuously update their technical knowledge and skills.
+
+**3. Be honest**
+
+Engineers should provide accurate information and should not hide important risks or defects.
+
+**4. Protect the environment**
+
+Engineering activities should minimise pollution, waste and environmental damage.
+
+**5. Follow laws and ethical standards**
+
+Engineers must comply with applicable laws, regulations and professional codes.
+
+**6. Maintain confidentiality**
+
+Confidential information obtained through professional work should be protected.
+
+**7. Report unsafe practices**
+
+Engineers should raise concerns when they identify serious safety or ethical problems.
+
+**8. Consider society**
+
+Engineers should consider the social consequences of their technologies.
+
+### Example
+
+If an engineer discovers that a bridge design has a serious structural weakness, the engineer must **report it and ensure corrective action**, even if it causes delay or financial loss.
+
+---
+
+# 4) PROFESSIONAL SOCIETIES AND THEIR CODES OF ETHICS — 5 MARKS
+
+### Professional Societies
+
+A **professional society** is an organisation formed by people belonging to a particular profession to promote professional knowledge, standards and responsible practice.
+
+Examples include engineering professional organisations that establish standards and ethical guidelines for engineers.
+
+### Flow
+
+**Engineers**
+↓
+**Professional Society**
+↓
+**Standards + Code of Ethics**
+↓
+**Guidance for professionals**
+↓
+**Responsible engineering practice**
+
+### Functions of Professional Societies
+
+- Promote professional knowledge and education.
+- Organise conferences, seminars and technical activities.
+- Develop professional standards.
+- Encourage ethical behaviour.
+- Provide professional development opportunities.
+- Protect the reputation and integrity of the profession.
+- Help professionals understand their responsibilities.
+
+---
+
+## Codes of Ethics
+
+A **code of ethics** is a set of principles and rules that guides professionals in making ethical decisions.
+
+Important principles include:
+
+- **Protect public safety and welfare.**
+- Be **honest and trustworthy**.
+- Maintain professional **competence**.
+- Avoid **conflicts of interest**.
+- Respect **confidentiality**.
+- Respect intellectual property.
+- Follow laws and professional standards.
+- Act responsibly towards society and the environment.
+
+### Example
+
+If an engineer's company asks them to hide a dangerous defect:
+
+**Code of Ethics**
+↓
+**Public safety comes first**
+↓
+**Engineer should not hide the defect**
+↓
+**Report and correct the problem**
+
+Thus, professional societies and their codes of ethics help engineers **maintain professional standards and make responsible decisions**.
+
+---
+
+# 5) CONSTRAINTS IN ENGINEERING — 5 MARKS
+
+**Engineering constraints** are the limitations or conditions that engineers must consider while designing and developing a product or system.
+
+An engineer cannot design something based only on what is technically possible. The design must also satisfy practical limitations.
+
+### Flow
+
+**Engineering Problem**
+↓
+**Identify requirements**
+↓
+**Identify constraints**
+↓
+**Develop possible solutions**
+↓
+**Evaluate alternatives**
+↓
+**Choose best feasible solution**
+
+### Major Engineering Constraints
+
+**1. Cost**
+
+The solution must usually remain within the available budget.
+
+**2. Time**
+
+The project must be completed within the required deadline.
+
+**3. Materials**
+
+The availability, strength and properties of materials limit the design.
+
+**4. Technology**
+
+Available tools, machines and technical knowledge can restrict what can be developed.
+
+**5. Safety**
+
+The design must not create unacceptable risks to users or workers.
+
+**6. Environmental constraints**
+
+The design should minimise pollution, waste and environmental damage.
+
+**7. Legal constraints**
+
+Engineers must follow laws, regulations and standards.
+
+**8. Social and ethical constraints**
+
+The solution should respect human rights, social values and ethical principles.
+
+### Example
+
+Suppose an engineer has to design an electric vehicle.
+
+The design must satisfy:
+
+**Low cost + adequate battery range + safety + available materials + environmental requirements + legal standards**
+
+The engineer therefore cannot simply choose the most powerful battery. The solution must satisfy **multiple constraints simultaneously**.
+
+### Important concept
+
+**Best engineering solution ≠ Most powerful solution**
+
+It is the solution that provides the **best balance between performance, cost, safety, time, environmental impact and other requirements**.
+

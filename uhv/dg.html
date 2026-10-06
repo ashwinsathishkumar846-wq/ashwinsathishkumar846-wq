@@ -1,0 +1,97 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}body{margin:0;background:#fff;font-family:"Carlito","Calibri",Arial,sans-serif}
+#dg{position:relative;width:540px;padding:8px 6px 8px 6px;background:#fff}
+.row{display:flex;align-items:stretch;justify-content:center;gap:0}
+.rev{flex-direction:row-reverse}
+.box{position:relative;border:2px solid #2E6DB4;background:#EAF2FC;color:#16324F;border-radius:9px;padding:7px 8px 7px 8px;text-align:center;font-weight:700;font-size:15px;line-height:1.15;display:flex;align-items:center;justify-content:center;min-height:46px}
+.box.s{background:#1F3A5F;border-color:#1F3A5F;color:#fff}
+.box.e{background:#E8F5EC;border-color:#2E9B57;color:#14442A}
+.box.bad{background:#FDECEC;border-color:#C0392B;color:#7B1E15}
+.box.warn{background:#FFF4E0;border-color:#D98A00;color:#6B4300}
+.box.hub{background:#1F3A5F;color:#fff;border-color:#1F3A5F;font-size:17px}
+.box.root{background:#1F3A5F;color:#fff;border-color:#1F3A5F;font-size:17px}
+.badge{position:absolute;left:-8px;top:-9px;width:20px;height:20px;border-radius:50%;background:#2E6DB4;color:#fff;font-size:12px;line-height:20px;text-align:center;font-weight:700;border:2px solid #fff}
+.s .badge{background:#E0A800}.e .badge{background:#2E9B57}
+.ar{display:flex;align-items:center;justify-content:center;width:24px;color:#1F3A5F;font-size:19px;font-weight:700}
+.vc{height:20px;display:flex;color:#1F3A5F;font-size:17px;font-weight:700;align-items:center}
+.title{font-size:13px;font-weight:700;color:#555;margin:0 0 4px 2px;letter-spacing:.3px;text-transform:uppercase}
+svg.ov{position:absolute;left:0;top:0;pointer-events:none}
+.col{display:flex;flex-direction:column;align-items:center}
+.ch{font-size:14px;font-weight:700}
+</style></head><body><div id="dg"></div><script>
+function chain(host,nodes,opt={}){
+  const mx=Math.max(...nodes.map(n=>n.length));
+  let per=nodes.length<=3?nodes.length:(mx<=16?3:2); if(opt.per) per=opt.per; if(nodes.length<per) per=nodes.length;
+  const W=(opt.width||528);const aw=24;const bw=Math.floor((W-(per-1)*aw)/per);
+  const rows=[];for(let i=0;i<nodes.length;i+=per) rows.push(nodes.slice(i,i+per));
+  const wrap=document.createElement('div');if(per===1){wrap.style.width=(opt.width||W)+'px';}
+  rows.forEach((r,ri)=>{
+    const rev=ri%2===1;const row=document.createElement('div');row.className='row'+(rev?' rev':'');row.style.width=W+'px';
+    if(per===1) row.style.justifyContent='center';
+    r.forEach((t,ci)=>{
+      const idx=ri*per+ci;const b=document.createElement('div');b.className='box'+(idx===0&&!opt.nostart?' s':'')+(idx===nodes.length-1&&!opt.noend?' e':'')+(opt.cls?' '+opt.cls:'');
+      if(opt.cls){b.className='box'+' '+opt.cls}
+      b.style.width=bw+'px';b.innerHTML=(opt.nobadge?'':`<span class="badge">${idx+1}</span>`)+t;row.appendChild(b);
+      if(ci<r.length-1){const a=document.createElement('div');a.className='ar';a.textContent=rev?'◀':'▶';a.style.width=aw+'px';row.appendChild(a)}
+    });
+    // fill empty slots in last row to keep alignment
+    wrap.appendChild(row);
+    if(ri<rows.length-1){const vc=document.createElement('div');vc.className='vc';vc.style.width=W+'px';
+      if(per===1){vc.style.justifyContent='center'}
+      else{vc.style.justifyContent=rev?'flex-start':'flex-end';const pad=Math.floor(bw/2)-8;vc.style[rev?'paddingLeft':'paddingRight']=pad+'px'}
+      vc.textContent='▼';wrap.appendChild(vc)}
+  });
+  host.appendChild(wrap);return wrap;
+}
+function line(svg,a,b,mode,host,color='#1F3A5F'){
+  const hr=host.getBoundingClientRect(),ar=a.getBoundingClientRect(),br=b.getBoundingClientRect();
+  let x1,y1,x2,y2;
+  if(mode==='h'){x1=ar.right-hr.left;y1=ar.top+ar.height/2-hr.top;x2=br.left-hr.left;y2=br.top+br.height/2-hr.top}
+  else{x1=ar.left+ar.width/2-hr.left;y1=ar.bottom-hr.top;x2=br.left+br.width/2-hr.left;y2=br.top-hr.top}
+  const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+  let d;if(mode==='h'){const mx=(x1+x2)/2;d=`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2-3},${y2}`}else{const my=(y1+y2)/2;d=`M${x1},${y1} C${x1},${my} ${x2},${my} ${x2},${y2-3}`}
+  p.setAttribute('d',d);p.setAttribute('fill','none');p.setAttribute('stroke',color);p.setAttribute('stroke-width','2');p.setAttribute('marker-end','url(#ah)');svg.appendChild(p);
+}
+function lineL(svg,hub,b,host){
+  const hr=host.getBoundingClientRect(),ar=hub.getBoundingClientRect(),br=b.getBoundingClientRect();
+  const x1=ar.left-hr.left,y1=ar.top+ar.height/2-hr.top,x2=br.right-hr.left,y2=br.top+br.height/2-hr.top;const mx=(x1+x2)/2;
+  const p=document.createElementNS('http://www.w3.org/2000/svg','path');p.setAttribute('d',`M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2+3},${y2}`);p.setAttribute('fill','none');p.setAttribute('stroke','#1F3A5F');p.setAttribute('stroke-width','2');p.setAttribute('marker-end','url(#ah)');svg.appendChild(p)}
+function mkSvg(host){const s=document.createElementNS('http://www.w3.org/2000/svg','svg');s.setAttribute('class','ov');s.setAttribute('width',host.offsetWidth);s.setAttribute('height',host.offsetHeight);
+ s.innerHTML='<defs><marker id="ah" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1F3A5F"/></marker></defs>';host.appendChild(s);return s}
+function render(sp){
+  const host=document.getElementById('dg');host.innerHTML='';
+  if(sp.title){const t=document.createElement('div');t.className='title';t.textContent=sp.title;host.appendChild(t)}
+  if(sp.type==='chain'){chain(host,sp.nodes,{per:sp.per})}
+  if(sp.type==='hub'){
+    const n=sp.items.length;const two=n>=4;
+    const wrap=document.createElement('div');wrap.style.cssText='display:flex;align-items:center;justify-content:center;gap:'+(two?'26px':'60px')+';width:528px;position:relative';
+    const mkcol=(its)=>{const g=document.createElement('div');g.style.cssText='display:flex;flex-direction:column;gap:10px;width:'+(two?'184px':'250px');const out=[];its.forEach(t=>{const b=document.createElement('div');b.className='box';b.style.minHeight='42px';b.innerHTML=t;g.appendChild(b);out.push(b)});return [g,out]};
+    const half=Math.ceil(n/2);
+    const hub=document.createElement('div');hub.className='box hub';hub.style.cssText='width:124px;min-height:70px;flex:none';hub.textContent=sp.center;
+    let L1=[],R1=[];
+    if(two){const [gl,l]=mkcol(sp.items.slice(0,half));const [gr,r]=mkcol(sp.items.slice(half));wrap.appendChild(gl);wrap.appendChild(hub);wrap.appendChild(gr);L1=l;R1=r}
+    else{wrap.appendChild(hub);const [gr,r]=mkcol(sp.items);wrap.appendChild(gr);R1=r}
+    host.appendChild(wrap);
+    const svg=mkSvg(host);
+    R1.forEach(b=>line(svg,hub,b,'h',host));
+    L1.forEach(b=>lineL(svg,hub,b,host));
+  }
+  if(sp.type==='tree'){
+    const top=document.createElement('div');top.style.cssText='display:flex;justify-content:center;margin-bottom:26px';const r=document.createElement('div');r.className='box root';r.style.width='220px';r.textContent=sp.root;top.appendChild(r);host.appendChild(top);
+    const row=document.createElement('div');row.style.cssText='display:flex;gap:8px;justify-content:center;width:528px';
+    const items=[];sp.items.forEach(t=>{const b=document.createElement('div');b.className='box';b.style.cssText='flex:1;min-height:52px;font-size:14px';b.innerHTML=t;row.appendChild(b);items.push(b)});
+    host.appendChild(row);const svg=mkSvg(host);items.forEach(b=>line(svg,r,b,'v',host));
+  }
+  if(sp.type==='fork'){
+    const top=document.createElement('div');top.style.cssText='display:flex;justify-content:center;margin-bottom:26px';const r=document.createElement('div');r.className='box root';r.style.width='230px';r.textContent=sp.root;top.appendChild(r);host.appendChild(top);
+    const row=document.createElement('div');row.style.cssText='display:flex;gap:14px;width:528px';const heads=[];
+    [sp.left,sp.right].forEach((side,i)=>{const c=document.createElement('div');c.style.cssText='flex:1';
+      const h=document.createElement('div');h.className='box '+(i?'warn':'bad');h.style.marginBottom=0;h.textContent=side.title;c.appendChild(h);heads.push(h);
+      const sp2=document.createElement('div');sp2.className='vc';sp2.style.justifyContent='center';sp2.textContent='▼';c.appendChild(sp2);
+      chain(c,side.items,{per:1,width:250,cls:i?'warn':'bad',nostart:true,noend:true,nobadge:true});
+      row.appendChild(c)});
+    host.appendChild(row);const svg=mkSvg(host);heads.forEach(h=>line(svg,r,h,'v',host));
+  }
+}
+window.render=render;
+</script></body></html>
