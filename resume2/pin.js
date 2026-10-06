@@ -1,0 +1,2 @@
+const {chromium}=require('playwright');(async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:96,height:96},deviceScaleFactor:3});
+await p.setContent(`<body style="margin:0;background:transparent"><div style="width:96px;height:96px;padding:10px 8px 0 8px"><svg width="80" height="80" viewBox="0 0 24 24" fill="#111"><path d="M12 2a7 7 0 00-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg></div></body>`);await p.screenshot({path:'icon_pin.png',omitBackground:true});await b.close()})()
