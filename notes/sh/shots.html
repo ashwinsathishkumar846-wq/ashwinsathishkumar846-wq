@@ -1,0 +1,66 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+*{box-sizing:border-box}body{margin:0;background:#fff;font-family:Arial,Helvetica,sans-serif}
+#shot{display:inline-block;border:1px solid #b8bcc4;border-radius:7px;overflow:hidden;background:#fff}
+.tb{height:26px;background:#e8eaed;border-bottom:1px solid #cfd2d7;display:flex;align-items:center;padding:0 8px;gap:6px}
+.dot{width:9px;height:9px;border-radius:50%}
+.url{margin-left:10px;height:16px;background:#fff;border-radius:8px;flex:1;font-size:10px;line-height:16px;padding:0 10px;color:#555;font-family:Arial}
+.pg{padding:22px 26px}
+.term{background:#0c0c0c;color:#cccccc;font-family:"DejaVu Sans Mono","Liberation Mono",monospace;font-size:12px;line-height:16px;padding:10px 14px;white-space:pre}
+.tt{height:24px;background:#1f1f1f;color:#ddd;font-size:11px;line-height:24px;padding:0 10px;font-family:Arial;border-bottom:1px solid #333}
+.box{width:400px;padding:20px;border:2px solid black}
+input{padding:3px 4px;font-size:13px}button{padding:10px;margin:5px;font-size:13px}
+.error{color:red;margin:2px 5px;font-size:14px}
+.ng input{width:90%;padding:8px;margin:5px}.ng button{padding:10px 20px}
+.card{border:1px solid #ccc;padding:15px;margin-top:15px}
+.cont{width:700px;margin:0 auto;padding:20px;background:#fff}
+</style></head><body><div id="shot"></div><script>
+const H=location.hash.slice(1);
+const B=(url,inner,bg)=>`<div class="tb"><span class="dot" style="background:#ed6a5e"></span><span class="dot" style="background:#f4bf4f"></span><span class="dot" style="background:#61c554"></span><div class="url">${url}</div></div><div class="pg" ${bg?`style="background:${bg}"`:''}>${inner}</div>`;
+const T=(title,txt)=>`<div class="tt">${title}</div><div class="term">${txt}</div>`;
+const S={
+dom:()=>B('localhost/dom.html',`<div class="box"><h2 style="color:blue;margin:0 0 14px">Product Calculator</h2><label>Product Name:</label> <input value="Pen"><br><br><label>Price:</label> <input value="50" style="width:120px"><br><br><label>Quantity:</label> <input value="3" style="width:120px"><br><br><button>Calculate</button><button>Change Style</button><h3 style="font-size:20px">Product: Pen<br>Total Price: ₹150</h3></div>`),
+node:()=>T('Command Prompt – node app.js',`MongoDB Connected
+Book inserted
+Books:
+[
+  {
+    _id: new ObjectId("665f1c2a9b1e8a3d4c7e5a10"),
+    title: 'JavaScript Basics',
+    author: 'John',
+    genre: 'Programming',
+    stock: 10
+  }
+]
+Book updated
+Book deleted
+MongoDB connection closed`),
+ng:()=>`<div class="tb"><span class="dot" style="background:#ed6a5e"></span><span class="dot" style="background:#f4bf4f"></span><span class="dot" style="background:#61c554"></span><div class="url">localhost/form.html</div></div><div class="pg ng" style="display:flex;gap:18px;padding:16px"><div class="box" style="width:330px;padding:14px"><h2 style="margin:0 0 6px">Registration Form</h2><label>Name:</label><input value="Aj" style="width:90%"><p class="error">Name must contain at least 3 characters.</p><label>Email:</label><input value="ajay@" style="width:90%"><p class="error">Enter a valid email address.</p><label>Age:</label><input value="17" style="width:90%"><p class="error">Age must be between 18 and 60.</p><label>Password:</label><input type="password" value="123" style="width:90%"><p class="error">Password must contain at least 6 characters.</p><button disabled style="color:#888">Submit</button></div><div class="box" style="width:330px;padding:14px"><h2 style="margin:0 0 6px">Registration Form</h2><label>Name:</label><input value="Ajay" style="width:90%"><br><label>Email:</label><input value="ajay@gmail.com" style="width:90%"><br><label>Age:</label><input value="21" style="width:90%"><br><label>Password:</label><input type="password" value="secret123" style="width:90%"><br><br><button>Submit</button><h3>Form submitted successfully!</h3></div></div>`,
+react:()=>B('localhost:3000',`<div class="cont" style="width:640px"><h1 style="margin:0 0 10px">Recipe Management</h1><input placeholder="Search recipe" style="padding:10px;margin:5px;width:200px"><form><input placeholder="Recipe title" style="padding:10px;margin:5px;width:150px"><input placeholder="Description" style="padding:10px;margin:5px;width:150px"><input placeholder="Cooking time" style="padding:10px;margin:5px;width:130px"><button type="button" style="padding:10px 15px">Add Recipe</button></form><div class="card"><h3 style="margin:0 0 8px">Pizza</h3><p style="margin:6px 0">Cheese pizza</p><p style="margin:6px 0">Cooking Time: 30 minutes</p><button>Delete</button></div><div class="card"><h3 style="margin:0 0 8px">Pasta</h3><p style="margin:6px 0">Creamy pasta</p><p style="margin:6px 0">Cooking Time: 20 minutes</p><button>Delete</button></div></div>`,'#f2f2f2'),
+npm:()=>T('Command Prompt',`C:\\Users\\student> node -v
+v20.11.0
+
+C:\\Users\\student> npm -v
+10.2.4
+
+C:\\Users\\student> mkdir myapp
+C:\\Users\\student> cd myapp
+
+C:\\Users\\student\\myapp> npm init -y
+Wrote to C:\\Users\\student\\myapp\\package.json:
+{ "name": "myapp", "version": "1.0.0", "main": "index.js" }
+
+C:\\Users\\student\\myapp> npm install mongodb
+added 12 packages, and audited 13 packages in 4s
+found 0 vulnerabilities`),
+hello:()=>B('localhost:3000',`<h1 style="font-family:'Liberation Serif','Times New Roman',serif;font-size:32px;margin:6px 0">Hello World</h1>`),
+bind:()=>B('localhost/binding.html',`<div style="font-size:15px"><input value="Ajay" style="padding:4px 6px;width:180px"><p style="margin:14px 0 4px;font-size:18px">Hello Ajay</p><div style="color:#666;font-size:12px">Typing in the input updates the text instantly (Model ↔ View)</div></div>`),
+filt:()=>B('localhost/filters.html',`<table style="font-size:14px;border-collapse:collapse"><tr><td style="padding:3px 18px 3px 0;color:#555">{{name | uppercase}}</td><td><b>AJAY</b></td></tr><tr><td style="padding:3px 18px 3px 0;color:#555">{{name | lowercase}}</td><td><b>ajay</b></td></tr><tr><td style="padding:3px 18px 3px 0;color:#555">{{price | currency}}</td><td><b>$500.00</b></td></tr><tr><td style="padding:3px 18px 3px 0;color:#555">{{students | orderBy:'name'}}</td><td><b>Anu, Bala, Kumar</b></td></tr></table>`),
+mod:()=>B('localhost/module.html',`<div style="font-size:20px;margin:6px 0">Ajay</div>`),
+fs:()=>T('Command Prompt – node file.js',`File created
+Hello World
+Data added
+Hello WorldWelcome
+File deleted`)
+};
+document.getElementById('shot').innerHTML=S[H]();
+</script></body></html>
