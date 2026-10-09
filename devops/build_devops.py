@@ -200,6 +200,9 @@ fld(fp,' PAGE ')
 
 for nm in ('NAVY','BLUE'): globals()[nm]='000000'
 S0=10.6
+def term(t):
+    m=re.match(r'^([^:*`]{1,45}):\s+(.*)$',t)
+    return ('**'+m.group(1).upper()+':** '+m.group(2)) if m else t
 def codebox(lines):
     t=d.add_table(rows=1,cols=1);t.alignment=WD_TABLE_ALIGNMENT.CENTER;tbl_fixed(t,[W]);c=t.rows[0].cells[0];shade_c(c,'F2F2F2');cell_mar(c,40,40,100,80);cell_borders(c,top=(4,'7F7F7F'),left=(4,'7F7F7F'),bottom=(4,'7F7F7F'),right=(4,'7F7F7F'))
     first=True
@@ -247,15 +250,18 @@ while i<len(L):
             para(tx.upper(),10.6,True,after=3,before=8,keep=True)
         i+=1;continue
     mb=re.match(r'^\s*[-*] (.*)',s_)
-    if mb: bullet(mb.group(1));i+=1;continue
+    if mb: bullet(term(mb.group(1)));i+=1;continue
     mn=re.match(r'^(\d+)(?:\\)?\. (.*)',s_)
     if mn:
         j=i+1
         while j<len(L) and not L[j].strip(): j+=1
         nxt=L[j] if j<len(L) else ''
-        if len(mn.group(2))<45 and not re.match(r'^(\d+\\?\. |[-*] |#|\|)',nxt) and j>i+1:
+        k=i-1
+        while k>=0 and not L[k].strip(): k-=1
+        prev=L[k] if k>=0 else ''
+        if len(mn.group(2))<45 and not re.match(r'^(\d+\\?\. |[-*] |#|\|)',nxt) and j>i+1 and not re.match(r'^(\d+\\?\. |[-*] )',prev):
             para(mn.group(1)+'. '+mn.group(2).upper(),10.6,True,after=3,before=8,keep=True)
-        else: numitem(mn.group(1),mn.group(2))
+        else: numitem(mn.group(1),term(mn.group(2)))
         i+=1;continue
     buf=[s_.strip()];i+=1
     while i<len(L) and L[i].strip() and not re.match(r'^(#|```|\||[-*] |\d+\\?\. )',L[i]):
