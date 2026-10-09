@@ -14,14 +14,14 @@ try:
 except Exception:
     from pygments.lexers.jsx import JsxLexer
 PAGES={}
-BODY='Calibri';MONO='Consolas';W=9.2
+BODY='Calibri';MONO='Consolas';W=8.7
 NAVY='000000';BLUE='000000'
 d=Document()
 st=d.styles['Normal'];st.font.name=BODY;st.font.size=Pt(8.5)
 st.element.rPr.rFonts.set(qn('w:eastAsia'),BODY)
 st.paragraph_format.space_after=Pt(0)
 s=d.sections[0]
-s.page_width=Cm(21);s.page_height=Cm(29.7);s.left_margin=s.right_margin=Cm(1.1);s.top_margin=Cm(1.2);s.bottom_margin=Cm(1.4);s.footer_distance=Cm(0.45)
+s.page_width=Cm(21);s.page_height=Cm(29.7);s.left_margin=s.right_margin=Cm(1.5);s.top_margin=Cm(1.6);s.bottom_margin=Cm(1.7);s.footer_distance=Cm(0.45)
 sp=s._sectPr
 pb=OxmlElement('w:pgBorders');pb.set(qn('w:offsetFrom'),'page')
 for k in ('top','left','bottom','right'):
@@ -64,7 +64,7 @@ EM={'❌':'✗','✅':'✔','↙️':'','↘️':''}
 def clean(t):
     for k,v in EM.items(): t=t.replace(k,v)
     return t
-def runs(p,text,size=9.8,bold=False,italic=False,color=None):
+def runs(p,text,size=10.6,bold=False,italic=False,color=None):
     text=clean(text)
     parts=re.split(r'(\*\*.+?\*\*|`[^`]+`|⭐+)',text)
     for x in parts:
@@ -75,7 +75,7 @@ def runs(p,text,size=9.8,bold=False,italic=False,color=None):
             rp=r._r.get_or_add_rPr();sh=OxmlElement('w:shd');sh.set(qn('w:val'),'clear');sh.set(qn('w:color'),'auto');sh.set(qn('w:fill'),'F1F3F5');rp.append(sh)
         elif x.startswith('⭐'): fnt(p.add_run('★'*len(x)),size,False,False,'E0A800',name='DejaVu Sans')
         else: fnt(p.add_run(x),size,bold,italic,color)
-def para(text='',size=9.8,bold=False,italic=False,align=AL.LEFT,after=2,before=0,keep=False,left=0,color=None,line=1.0):
+def para(text='',size=10.6,bold=False,italic=False,align=AL.LEFT,after=4,before=0,keep=False,left=0,color=None,line=1.12):
     p=d.add_paragraph();p.alignment=align;pf=p.paragraph_format;pf.space_after=Pt(after);pf.space_before=Pt(before);pf.keep_with_next=keep;pf.line_spacing=line
     if left: pf.left_indent=Cm(left)
     if text: runs(p,text,size,bold,italic,color)
@@ -96,11 +96,11 @@ def h1(t):
 def h2(t): return para(t,9.3,True,after=2,before=5,keep=True,color=BLUE)
 def h3(t): return para(t,8.7,True,after=1.5,before=3,keep=True,color='333333')
 def bullet(t,lvl=0):
-    p=para('',9.8,after=1,left=0.5+lvl*0.4,line=1.0);p.paragraph_format.first_line_indent=Cm(-0.32)
-    fnt(p.add_run('•\u00A0'),9.8,True,color=BLUE);runs(p,t,9.8);return p
+    p=para('',10.6,after=2.5,left=0.6+lvl*0.4,line=1.1);p.paragraph_format.first_line_indent=Cm(-0.32)
+    fnt(p.add_run('•\u00A0'),10.6,True,color=BLUE);runs(p,t,10.6);return p
 def numitem(n,t):
-    p=para('',9.8,after=1,left=0.55,line=1.0);p.paragraph_format.first_line_indent=Cm(-0.4)
-    fnt(p.add_run(f'{n}.\u00A0'),9.8,True,color=BLUE);runs(p,t,9.8);return p
+    p=para('',10.6,after=2.5,left=0.65,line=1.1);p.paragraph_format.first_line_indent=Cm(-0.4)
+    fnt(p.add_run(f'{n}.\u00A0'),10.6,True,color=BLUE);runs(p,t,10.6);return p
 def quote(lines,green=False):
     t=d.add_table(rows=1,cols=1);t.alignment=WD_TABLE_ALIGNMENT.CENTER;tbl_fixed(t,[W]);c=t.rows[0].cells[0]
     fill='E8F5EC' if green else 'EAF2FC';edge='2E9B57' if green else BLUE
@@ -110,26 +110,29 @@ def quote(lines,green=False):
         p=c.paragraphs[0] if first else c.add_paragraph();first=False
         p.paragraph_format.space_after=Pt(1);p.paragraph_format.line_spacing=1.0
         if ln=='': continue
-        runs(p,ln,9.8,False,False,'1B1B1B')
+        runs(p,ln,10.6,False,False,'1B1B1B')
     no_split(t.rows[0]);sp=d.add_paragraph();sp.paragraph_format.space_after=Pt(0);sp.paragraph_format.line_spacing=Pt(3)
 def mdtable(rows):
     hdr=rows[0];body=rows[2:]
     n=len(hdr)
     lens=[max(len(clean(r[i])) if i<len(r) else 0 for r in [hdr]+body) for i in range(n)]
-    tot=sum(max(l,6) for l in lens);ws=[max(1.3,W*max(l,6)/tot) for l in lens];k=W/sum(ws);ws=[w*k for w in ws]
+    tot=sum(max(l,6) for l in lens);ws=[max(2.0,W*max(l,6)/tot) for l in lens];k=W/sum(ws);ws=[w*k for w in ws]
     t=d.add_table(rows=1+len(body),cols=n);t.alignment=WD_TABLE_ALIGNMENT.CENTER;tbl_fixed(t,ws)
     pr=t._tbl.tblPr;b=OxmlElement('w:tblBorders')
     for kk in ('top','left','bottom','right','insideH','insideV'):
         e=OxmlElement('w:'+kk);e.set(qn('w:val'),'single');e.set(qn('w:sz'),'6');e.set(qn('w:space'),'0');e.set(qn('w:color'),'000000');b.append(e)
     pr.append(b)
     for i,h in enumerate(hdr):
-        c=t.rows[0].cells[i];shade_c(c,'D9D9D9');cell_mar(c,30,30,70,70);p=c.paragraphs[0];p.alignment=AL.CENTER;runs(p,h,9,True,False,'000000')
+        c=t.rows[0].cells[i];shade_c(c,'D9D9D9');cell_mar(c,30,30,70,70);p=c.paragraphs[0];p.alignment=AL.CENTER;runs(p,h,9.8,True,False,'000000')
     t.rows[0]._tr.get_or_add_trPr().append(OxmlElement('w:tblHeader'))
     for r,row in enumerate(body):
         no_split(t.rows[r+1])
         for i in range(n):
             c=t.rows[r+1].cells[i];cell_mar(c,25,25,70,70)
-            p=c.paragraphs[0];p.paragraph_format.line_spacing=1.0;runs(p,row[i] if i<len(row) else '',9)
+            p=c.paragraphs[0];p.paragraph_format.line_spacing=1.0;runs(p,row[i] if i<len(row) else '',9.8)
+    for rr in t.rows[:-1]:
+        for cc in rr.cells:
+            for pp in cc.paragraphs: pp.paragraph_format.keep_with_next=True
     sp=d.add_paragraph();sp.paragraph_format.space_after=Pt(0);sp.paragraph_format.line_spacing=Pt(3)
 # ---------- code
 BG='F3F3F3';FG='1A1A1A'
@@ -196,7 +199,7 @@ fld(fp,' PAGE ')
 
 
 for nm in ('NAVY','BLUE'): globals()[nm]='000000'
-S0=9.8
+S0=10.6
 def codebox(lines):
     t=d.add_table(rows=1,cols=1);t.alignment=WD_TABLE_ALIGNMENT.CENTER;tbl_fixed(t,[W]);c=t.rows[0].cells[0];shade_c(c,'F2F2F2');cell_mar(c,40,40,100,80);cell_borders(c,top=(4,'7F7F7F'),left=(4,'7F7F7F'),bottom=(4,'7F7F7F'),right=(4,'7F7F7F'))
     first=True
@@ -209,7 +212,7 @@ sec=d.sections[0]
 cols=sec._sectPr.find(qn('w:cols'))
 if cols is None:
     cols=OxmlElement('w:cols');sec._sectPr.append(cols)
-cols.set(qn('w:num'),'2');cols.set(qn('w:space'),'340');cols.set(qn('w:sep'),'1')
+cols.set(qn('w:num'),'2');cols.set(qn('w:space'),'500');cols.set(qn('w:sep'),'1')
 def strip_emoji(t): return re.sub(r'[📘⚡]\s*','',t).replace('\\.','.').strip()
 L=open('notes.txt',encoding='utf-8').read().split('\n')
 i=0
@@ -227,27 +230,40 @@ while i<len(L):
         mdtable(rows);continue
     m=re.match(r'^(#{1,3}) (.*)',s_)
     if m:
-        lv=len(m.group(1));tx=strip_emoji(m.group(2))
-        if lv==1: bar(re.sub(r'\s+',' ',tx),'000000',15)
-        elif lv==2:
-            p=para(tx,10.8,True,after=2,before=5,keep=True)
-            pPr=p._p.get_or_add_pPr();b=OxmlElement('w:pBdr')
+        lv=len(m.group(1));tx=re.sub(r'\s+',' ',strip_emoji(m.group(2)))
+        if lv==1:
+            p=para(tx.upper(),13,True,align=AL.CENTER,after=8,before=6,keep=True)
+            for r in p.runs: r.font.underline=True
+            pPr=p._p.get_or_add_pPr();bd=OxmlElement('w:pBdr')
             for k in ('top','bottom'):
                 e=OxmlElement('w:'+k)
-                for kk,v in (('val','single'),('sz','8'),('space','2'),('color','000000')): e.set(qn('w:'+kk),v)
-                b.append(e)
-            pPr.append(b)
-        else: para(tx,10,True,after=1.5,before=3,keep=True)
+                for kk,v in (('val','single'),('sz','12'),('space','3'),('color','000000')): e.set(qn('w:'+kk),v)
+                bd.append(e)
+            pPr.append(bd)
+        elif lv==2:
+            p=para(tx,11.8,True,after=5,before=14,keep=True)
+            for r in p.runs: r.font.underline=True
+        else:
+            para(tx.upper(),10.6,True,after=3,before=8,keep=True)
         i+=1;continue
     mb=re.match(r'^\s*[-*] (.*)',s_)
     if mb: bullet(mb.group(1));i+=1;continue
     mn=re.match(r'^(\d+)(?:\\)?\. (.*)',s_)
-    if mn: numitem(mn.group(1),mn.group(2));i+=1;continue
+    if mn:
+        j=i+1
+        while j<len(L) and not L[j].strip(): j+=1
+        nxt=L[j] if j<len(L) else ''
+        if len(mn.group(2))<45 and not re.match(r'^(\d+\\?\. |[-*] |#|\|)',nxt) and j>i+1:
+            para(mn.group(1)+'. '+mn.group(2).upper(),10.6,True,after=3,before=8,keep=True)
+        else: numitem(mn.group(1),mn.group(2))
+        i+=1;continue
     buf=[s_.strip()];i+=1
     while i<len(L) and L[i].strip() and not re.match(r'^(#|```|\||[-*] |\d+\\?\. )',L[i]):
         buf.append(L[i].strip());i+=1
     txt=' '.join(buf)
     # bold labels like "Example:", "Conclusion:", "Remember:", "Answer:" and memory tricks
+    txt=re.sub(r'^Full question:$','**FULL QUESTION:**',txt)
+    txt=re.sub(r'^Answer$','**ANSWER**',txt)
     txt=re.sub(r'^(Example|Conclusion|Remember|Memory trick|Answer|Explanation|Benefits|Working|Steps|Full question|Suitable choice|Workflow|Example commands|Example Dockerfile):',r'**\1:**',txt)
     para(txt,S0,after=2)
 d.core_properties.title='DevOps Ten-Mark and Two-Mark Questions with Answers';d.core_properties.author=''
