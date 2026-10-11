@@ -1,0 +1,147 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{margin:0;background:#fff}#o{display:inline-block}</style></head><body><div id="o"></div><script>
+const W=360;
+const DEFS='<defs><marker id="a" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#000"/></marker></defs>';
+const svg=(h,b)=>`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${h}" viewBox="0 0 ${W} ${h}" font-family="Carlito,Calibri,Arial,sans-serif" font-size="11.5">${DEFS}<rect width="${W}" height="${h}" fill="#fff"/>${b}</svg>`;
+const t=(x,y,s,o={})=>`<text x="${x}" y="${y}" text-anchor="${o.a||'middle'}" font-weight="${o.b?700:400}" font-size="${o.s||11.5}" fill="${o.f||'#000'}">${s}</text>`;
+const tl=(x,y,ls,o={})=>ls.map((s,i)=>t(x,y+i*(o.lh||13),s,o)).join('');
+const r=(x,y,w,h,o={})=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${o.r||0}" fill="${o.f||'#fff'}" stroke="${o.k||'#000'}" stroke-width="${o.w||1.5}" ${o.d?'stroke-dasharray="4 3"':''}/>`;
+const ln=(x1,y1,x2,y2,o={})=>`<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${o.k||'#000'}" stroke-width="${o.w||1.5}" ${o.d?'stroke-dasharray="4 3"':''} ${o.a?'marker-end="url(#a)"':''}/>`;
+const c=(x,y,rr,o={})=>`<circle cx="${x}" cy="${y}" r="${rr}" fill="${o.f||'#fff'}" stroke="${o.k||'#000'}" stroke-width="${o.w||1.5}"/>`;
+const p=(d,o={})=>`<path d="${d}" fill="${o.f||'none'}" stroke="${o.k||'#000'}" stroke-width="${o.w||1.5}" ${o.d?'stroke-dasharray="4 3"':''} ${o.a?'marker-end="url(#a)"':''}/>`;
+const pg=(pts,o={})=>`<polygon points="${pts}" fill="${o.f||'#fff'}" stroke="${o.k||'#000'}" stroke-width="${o.w||1.5}"/>`;
+const G1='#e6e6e6',G2='#cfcfcf',G3='#9a9a9a';
+const person=(x,y,s=1,o={})=>`<g transform="translate(${x},${y}) scale(${s})">${c(0,-30,8)}${ln(0,-22,0,6)}${ln(-12,-14,12,-14)}${ln(0,6,-9,24)}${ln(0,6,9,24)}</g>`;
+const D={};
+// 1 HMD
+D.hmd=()=>svg(192,
+ p('M62 70 C20 70 20 118 62 118',{w:5,k:'#777'})+p('M298 70 C340 70 340 118 298 118',{w:5,k:'#777'})+p('M130 40 C180 20 180 20 230 40',{w:4,k:'#777'})+
+ r(60,40,240,84,{r:18,f:G1,w:2})+pg('165,124 195,124 188,104 172,104',{f:'#fff'})+
+ c(125,82,30,{f:'#fff',w:2})+c(235,82,30,{f:'#fff',w:2})+c(125,82,20,{f:G2})+c(235,82,20,{f:G2})+t(125,86,'L',{b:1})+t(235,86,'R',{b:1})+
+ c(78,52,4,{f:'#000'})+c(282,52,4,{f:'#000'})+r(160,44,40,9,{f:'#fff'})+
+ ln(60,20,78,48,{})+t(60,14,'Tracking cameras / sensors',{a:'start',s:10.5,b:1})+
+ ln(180,36,180,48,{})+t(180,30,'IMU',{b:1,s:10.5})+
+ ln(60,146,105,106,{a:1})+t(8,158,'Display + lens (one per eye)',{a:'start',s:10.5,b:1})+
+ t(180,184,'Each eye sees a slightly different image → depth',{s:10.5})+
+ t(318,100,'Strap',{a:'start',s:10.5,b:1}));
+// 2 OST
+D.ost=()=>svg(150,
+ r(8,50,56,50,{f:G1})+pg('18,92 36,62 54,92',{f:'#fff'})+t(36,116,'Real world',{b:1,s:10.5})+
+ ln(64,75,150,75,{a:0})+p('M64 75 L215 75',{})+
+ ln(190,20,190,52,{d:0,a:1})+r(160,6,60,16,{f:G2})+t(190,18,'Projector',{s:10.5,b:1})+
+ pg('176,92 204,58 208,62 180,96',{f:'#d8eaff',w:1.5}).replace('#d8eaff','#e6e6e6')+
+ t(190,112,'Combiner / waveguide',{b:1,s:10.5})+t(190,124,'(transparent optics)',{s:10})+
+ ln(190,75,262,75,{a:1})+ln(190,58,190,58,{})+p('M202 62 L262 75',{d:1,a:0})+
+ c(290,75,16,{f:'#fff',w:1.8})+c(290,75,7,{f:'#000'})+t(290,106,'Eye',{b:1})+
+ t(180,142,'User sees the real world directly + digital overlay',{s:10.5}));
+// 3 VST
+D.vst=()=>svg(118,
+ r(6,34,70,50,{r:6,f:G1})+t(41,56,'Camera',{b:1})+t(41,69,'captures',{s:10})+t(41,80,'real scene',{s:10})+
+ r(100,34,86,50,{r:6})+t(143,52,'Processor',{b:1})+t(143,65,'+ digital content',{s:10})+t(143,77,'combined video',{s:10})+
+ r(210,34,70,50,{r:6,f:G1})+t(245,56,'Display',{b:1})+t(245,69,'shows combined',{s:10})+t(245,80,'image',{s:10})+
+ c(322,59,15,{f:'#fff'})+c(322,59,6,{f:'#000'})+t(322,92,'Eye',{b:1})+
+ ln(76,59,100,59,{a:1})+ln(186,59,210,59,{a:1})+ln(280,59,305,59,{a:1})+
+ t(180,14,'VIDEO SEE-THROUGH',{b:1,s:11})+t(180,112,'The eye never sees the real world directly',{s:10.5}));
+// 4 CAVE
+D.cave=()=>svg(176,
+ pg('90,28 270,28 270,110 90,110',{f:G1})+pg('90,28 52,10 52,128 90,110',{f:'#f2f2f2'})+pg('270,28 308,10 308,128 270,110',{f:'#f2f2f2'})+pg('90,110 270,110 308,128 52,128',{f:G2})+
+ r(150,0,0,0)+person(180,108,1.1)+
+ r(14,2,30,16,{f:'#fff'})+pg('44,10 70,28 70,40',{f:'#fff',w:1}).replace('fill="#fff"','fill="#eee"')+t(29,14,'P',{b:1,s:10})+
+ r(316,2,30,16,{f:'#fff'})+t(331,14,'P',{b:1,s:10})+
+ r(165,0,30,14,{f:'#fff'})+t(180,11,'P',{b:1,s:10})+ln(180,14,180,30,{d:1,a:1})+
+ t(180,150,'Projectors (P) display images on walls and floor',{s:10.5})+t(180,166,'CAVE: shared immersive room — no headset required',{s:10.5,b:1}));
+// 5 IMU
+D.imu=()=>svg(176,
+ r(130,36,64,104,{r:8,f:G1,w:2})+r(138,48,48,72,{f:'#fff',w:1})+c(162,130,3,{f:'#000'})+
+ ln(162,88,162,22,{a:1,w:2})+t(168,22,'y',{a:'start',b:1})+ln(162,88,236,88,{a:1,w:2})+t(240,92,'x',{a:'start',b:1})+ln(162,88,126,120,{a:1,w:2})+t(112,126,'z',{a:'end',b:1})+
+ p('M232 60 A42 42 0 0 1 232 116',{a:1,w:1.5})+t(262,58,'rotation',{a:'start',s:10,b:1})+
+ t(8,22,'ACCELEROMETER',{a:'start',b:1,s:10.5})+t(8,35,'linear acceleration',{a:'start',s:10})+t(8,47,'(x, y, z)',{a:'start',s:10})+
+ t(8,100,'GYROSCOPE',{a:'start',b:1,s:10.5})+t(8,113,'angular velocity',{a:'start',s:10})+
+ t(250,138,'MAGNETOMETER',{a:'start',b:1,s:10.5})+t(250,151,'Earth\'s magnetic field',{a:'start',s:10})+t(250,163,'→ orientation',{a:'start',s:10})+
+ c(310,28,14,{f:'#fff',w:1.2})+pg('310,16 314,28 310,40 306,28',{f:'#000'})+t(310,12,'N',{b:1,s:9.5}));
+// 6 marker
+D.marker=()=>svg(158,
+ r(10,76,90,64,{f:'#f2f2f2'})+r(32,86,44,44,{f:'#fff',w:2})+[0,1,2,3,4].map(i=>[0,1,2,3,4].map(j=>((i*7+j*3+i*j)%3===0||(i===0&&j===0)||(i===4&&j===0)||(i===0&&j===4))?r(36+i*7.4,90+j*7.4,7,7,{f:'#000',w:0}):'').join('')).join('')+t(55,152,'Printed marker',{b:1,s:10.5})+
+ r(130,22,44,30,{r:5,f:G2,w:2})+c(152,37,9,{f:'#fff'})+c(152,37,3.5,{f:'#000'})+t(152,16,'Camera',{b:1,s:10.5})+ln(145,52,78,92,{d:1,a:1})+ln(160,52,100,98,{d:1,a:0})+
+ r(210,50,138,92,{r:8,f:'#f2f2f2',w:2})+r(220,60,118,72,{f:'#fff',w:1})+r(250,102,40,22,{f:G2})+pg('250,102 262,92 302,92 290,102',{f:'#ddd'})+pg('290,102 302,92 302,114 290,124',{f:'#bbb'})+t(279,146,'',{})+
+ ln(176,40,208,70,{a:1})+t(280,30,'Pose estimated → 3D model',{s:10.5,b:1})+t(280,43,'aligned on the marker',{s:10.5,b:1}));
+// 7 stereo + ToF
+D.stereo=()=>svg(172,
+ t(88,14,'STEREO VISION',{b:1,s:11})+r(40,126,22,14,{f:G2})+r(114,126,22,14,{f:G2})+c(88,44,6,{f:'#000'})+ln(51,126,88,50,{d:1})+ln(125,126,88,50,{d:1})+ln(51,140,125,140,{k:'#000'})+
+ t(88,156,'baseline',{s:10})+t(88,90,'triangulation',{s:10,b:1})+t(88,102,'→ depth',{s:10})+t(50,122,'L',{b:1,s:10})+t(126,122,'R',{b:1,s:10})+
+ ln(184,8,184,164,{k:'#bbb',w:1})+
+ t(272,14,'TIME-OF-FLIGHT (ToF)',{b:1,s:11})+r(246,126,52,16,{f:G2})+t(272,138,'Sensor',{s:10,b:1})+r(236,32,72,10,{f:G1})+t(272,28,'Surface',{s:10,b:1})+
+ ln(262,126,262,44,{a:1,w:1.8})+ln(284,44,284,126,{a:1,w:1.8,d:1})+t(236,88,'light out',{a:'end',s:10})+t(318,88,'return',{a:'start',s:10})+t(272,162,'distance = ½ × speed × time',{s:10}));
+// 8 camera model
+D.camera=()=>svg(196,
+ c(100,86,5,{f:'#000'})+t(100,74,'Camera centre C',{s:10,b:1})+ln(190,36,190,136,{w:2.5})+t(190,152,'Image plane',{s:10,b:1})+
+ c(190,80,3.5,{f:'#000'})+t(200,76,'p',{a:'start',b:1})+c(318,50,6,{f:'#fff'})+t(318,38,'World point P',{s:10,b:1})+
+ ln(318,50,100,86,{d:1})+ln(100,86,190,86,{w:1})+p('M104 94 L186 94',{w:1})+t(145,112,'f (focal length)',{s:10})+
+ t(180,14,'Pinhole camera model',{b:1,s:11})+
+ r(8,158,344,34,{f:'#f6f6f6',w:1})+t(14,172,'Intrinsic: f, principal point, lens distortion',{a:'start',s:10})+t(14,185,'Extrinsic: rotation R + translation t (camera pose)',{a:'start',s:10}));
+// 9 sickness
+D.sick=()=>svg(150,
+ r(6,14,106,40,{r:6,f:G1})+t(59,32,'EYES',{b:1})+t(59,46,'see fast movement',{s:10})+
+ r(6,88,106,40,{r:6,f:G1})+t(59,106,'INNER EAR',{b:1})+t(59,120,'feels no acceleration',{s:10})+
+ c(184,74,32,{f:'#fff',w:2})+t(184,72,'BRAIN',{b:1})+t(184,85,'signals differ',{s:10})+
+ ln(112,34,156,62,{a:1,w:1.8})+ln(112,108,156,88,{a:1,w:1.8})+ln(216,74,246,74,{a:1,w:1.8})+
+ r(248,40,106,68,{r:6,f:G2,w:2})+t(301,58,'SENSORY CONFLICT',{b:1,s:10.5})+t(301,73,'Nausea · Dizziness',{s:10})+t(301,86,'Headache · Sweating',{s:10})+t(301,99,'Disorientation',{s:10}));
+// 10 ray + teleport
+D.ray=()=>svg(158,
+ t(88,14,'RAY CASTING (selection)',{b:1,s:11})+r(20,120,26,14,{r:3,f:G2})+ln(46,124,150,50,{a:1,w:1.8})+r(150,30,36,28,{r:4,f:G1})+t(168,48,'Btn',{s:10,b:1})+c(150,52,3,{f:'#000'})+t(88,150,'Ray meets object → selected',{s:10})+
+ ln(184,8,184,150,{k:'#bbb',w:1})+
+ t(272,14,'TELEPORTATION (navigation)',{b:1,s:11})+ln(200,120,350,120,{w:1.2})+person(214,118,.9)+p('M222 80 Q272 20 322 108',{d:1,a:1,w:1.8})+c(322,116,8,{f:G2})+t(322,138,'Destination',{s:10,b:1})+t(272,150,'Select spot → moved there',{s:10}));
+// 11 augmented paper
+D.paper=()=>svg(170,
+ pg('10,148 150,148 168,120 28,120',{f:'#f4f4f4'})+tl(90,134,['',''])+ln(46,134,120,134,{k:'#999',w:1})+r(110,124,18,18,{f:'#000'})+t(90,164,'Printed page + marker',{b:1,s:10.5})+
+ r(190,18,100,112,{r:10,f:G1,w:2})+r(198,30,84,86,{f:'#fff',w:1})+pg('204,104 270,104 278,92 212,92',{f:'#f4f4f4',w:1})+pg('236,90 256,90 256,66 236,66',{f:G2,w:1.2})+pg('256,66 268,58 268,82 256,90',{f:G3,w:1.2})+pg('236,66 248,58 268,58 256,66',{f:'#e8e8e8',w:1.2})+
+ t(240,144,'Phone / tablet / AR headset',{b:1,s:10.5})+ln(150,126,196,90,{d:1,a:1})+t(268,160,'3D model appears on the page',{s:10,b:1}));
+// 12 navigation
+D.nav=()=>svg(172,
+ r(120,8,120,150,{r:14,f:G1,w:2})+r(128,22,104,122,{f:'#fff',w:1})+
+ pg('150,40 210,40 232,144 128,144',{f:'#f4f4f4',w:1})+ln(150,40,128,144,{k:'#888'})+ln(210,40,232,144,{k:'#888'})+
+ pg('180,112 196,112 196,98 212,98 188,74 164,98 180,98',{f:'#000'})+t(180,60,'Dept. B  50 m',{s:10,b:1})+
+ t(8,40,'Camera view of',{a:'start',s:10.5,b:1})+t(8,53,'the real corridor',{a:'start',s:10.5,b:1})+ln(70,58,124,80,{a:1})+
+ t(352,100,'Virtual arrow',{a:'end',s:10.5,b:1})+t(352,113,'overlay',{a:'end',s:10.5,b:1})+ln(300,92,200,90,{a:1}));
+// 13 collaboration
+D.collab=()=>svg(182,
+ t(70,14,'SITE (technician)',{b:1,s:10.5})+r(14,60,70,50,{f:G1})+r(30,78,28,22,{f:G3})+pg('44,40 60,40 60,56 44,56',{f:'#fff',w:0}).replace('<polygon','<polygon opacity="0"')+
+ ln(44,40,44,72,{a:1,w:2.2})+t(44,34,'virtual arrow',{s:9.5,b:1})+person(120,118,.8)+t(50,122,'Faulty part',{s:9.5})+
+ p('M150 70 C150 50 170 46 182 54 C192 40 224 42 226 58 C246 58 250 82 230 86 L156 88 C138 88 134 72 150 70 Z',{f:'#f2f2f2'})+t(190,72,'Network',{b:1,s:10.5})+
+ ln(100,100,150,80,{a:1,d:1})+ln(230,80,270,98,{a:1,d:1})+ln(150,80,100,100,{a:0,d:1})+
+ t(310,14,'REMOTE EXPERT',{b:1,s:10.5})+r(268,52,80,52,{f:'#fff',w:2})+r(276,60,64,36,{f:G1,w:1})+r(300,104,16,10,{f:G2})+r(286,114,44,6,{f:G2})+person(308,146,.7)+
+ t(180,176,'Shared view + annotations in real time',{s:10.5,b:1}));
+// 14 diminished reality
+D.dr=()=>svg(128,
+ t(86,12,'ORIGINAL VIEW',{b:1,s:10.5})+r(8,20,156,84,{f:'#f4f4f4',w:2})+ln(8,70,164,70,{k:'#999'})+p('M20 100 C50 40 70 110 100 50 C120 20 140 80 152 40',{w:3,k:'#000'})+t(86,118,'cable visible',{s:10})+
+ ln(170,62,194,62,{a:1,w:2})+t(182,54,'DR',{b:1,s:10})+
+ t(274,12,'AFTER DIMINISHED REALITY',{b:1,s:10.5})+r(196,20,156,84,{f:'#f4f4f4',w:2})+ln(196,70,352,70,{k:'#999'})+t(274,118,'object removed, background rebuilt',{s:10}));
+// flow charts (title + desc)
+function flow(nodes,o={}){
+  const bw=340,pad=8;let y=6,b='';const hs=[];
+  nodes.forEach((n,i)=>{const dl=n.d?Math.ceil(n.d.length/50):0;const h=(n.d?30+dl*13-0:26)+0;hs.push(h)});
+  nodes.forEach((n,i)=>{
+    const h=hs[i];
+    b+=r(10,y,bw,h,{r:6,f:i===0?G2:'#fff',w:1.6})+c(24,y+h/2,9,{f:'#000'})+t(24,y+h/2+4,String(i+1),{f:'#fff',b:1,s:10.5});
+    b+=t(42,y+15,n.t,{a:'start',b:1,s:11.5});
+    if(n.d){const words=n.d.split(' ');let line='',ls=[];words.forEach(w=>{if((line+' '+w).length>56){ls.push(line);line=w}else line=(line?line+' ':'')+w});ls.push(line);ls.forEach((l,k)=>{b+=t(42,y+28+k*13,l,{a:'start',s:10.3})})}
+    y+=h;if(i<nodes.length-1){b+=ln(180,y,180,y+13,{a:1,w:1.8});y+=13}
+  });
+  return svg(y+8,b);
+}
+function cycle(){return svg(196,
+ r(10,12,150,56,{r:8,f:G2,w:2})+t(85,30,'1. DEFINE',{b:1,s:12})+tl(85,44,['Problem, users,','requirements, success criteria'],{s:9.6,lh:11})+
+ r(200,12,150,56,{r:8,w:2})+t(275,30,'2. MAKE',{b:1,s:12})+tl(275,44,['Environment, interactions,','prototype'],{s:9.6,lh:11})+
+ r(105,124,150,56,{r:8,f:G1,w:2})+t(180,142,'3. LEARN',{b:1,s:12})+tl(180,156,['Test, observe users,','measure, find problems'],{s:9.6,lh:11})+
+ ln(160,40,198,40,{a:1,w:2})+ln(275,70,236,122,{a:1,w:2})+p('M104 152 C40 152 40 100 70 72',{a:1,w:2})+
+ t(180,92,'Repeat until the',{s:10,b:1})+t(180,104,'requirements are met',{s:10,b:1}));}
+const F={
+ factory:()=>flow([{t:'Create the content',d:'Build machines, workers, doors, alarms, smoke effects and emergency signs.'},{t:'Design the environment',d:'Arrange pathways, emergency exits, warning lights and machinery.'},{t:'Influence attention and emotions',d:'Activate an alarm, display smoke and highlight the emergency exit.'},{t:'Influence behaviour',d:'The worker notices the danger, follows the exit signs and practises the correct emergency response.'}]),
+ plan:()=>flow([{t:'Requirement Analysis',d:'Identify the problem and user goals'},{t:'Platform Selection',d:'Choose VR or AR'},{t:'Hardware and Software Evaluation',d:'Select devices, engines, and tools'},{t:'Content Design Strategy',d:'Plan models, interactions, and user journey'},{t:'Performance Metrics',d:'Define measurable success criteria'},{t:'Prototype and Usability Testing',d:'Test, evaluate, and refine the application'}]),
+ create:()=>flow([{t:'Conceptual Design',d:'Define objectives, user journey, and narrative flow'},{t:'3D Modelling',d:'Create objects, environments, and textures'},{t:'Scene Assembly',d:'Combine models, lighting, cameras, and audio'},{t:'Interactivity Programming',d:'Implement actions, controls, and feedback'},{t:'Testing and Optimisation',d:'Check tracking, latency, rendering, and frame stability'}]),
+ hw:()=>flow([{t:'Hardware limitations',d:'Insufficient rendering performance or inaccurate tracking can affect the VR experience.'},{t:'Possible latency or visual instability',d:'The displayed environment may respond slowly or move unevenly.'},{t:'Possible user discomfort',d:'Some users may experience dizziness, nausea or disorientation.'}]),
+ latency:()=>flow([{t:'Motion detection',d:'Sensors detect the head movement.'},{t:'Data processing',d:'The system calculates the new position and orientation.'},{t:'Scene update',d:"The virtual camera's viewpoint is updated."},{t:'Rendering',d:'The graphics system generates the new image.'},{t:'Display',d:'The headset presents the image to the user\'s eyes.'}]),
+ cycle:cycle
+};
+window.draw=(name)=>{const f=D[name]||F[name];document.getElementById('o').innerHTML=f()};
+window.NAMES=[...Object.keys(D),...Object.keys(F)];
+</script></body></html>
