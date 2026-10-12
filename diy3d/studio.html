@@ -1,0 +1,19 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"></head><body style="margin:0;background:#fff">
+<script src="../diy/lib.js"></script><script src="../diy/art.js"></script><script src="../diy/art2.js"></script><script src="../diy/art3.js"></script><script src="../diy/art4.js"></script><script src="../diy/art5.js"></script><script src="../diy/art6.js"></script><script src="../diy/art7.js"></script>
+<script>window.DEFS=DEFS;window.DEFS3=DEFS3;</script>
+<script type="importmap">{"imports":{"three":"./node_modules/three/build/three.module.js","three/addons/":"./node_modules/three/examples/jsm/"}}</script>
+<script type="module">
+import {renderView} from './src/core.js';
+import * as D from './src/devices.js';import * as M2 from './src/models2.js';import * as M3 from './src/models3.js';
+const REG={...D,abacus:M2.abacus,robot:M2.robot,brain:M2.brain,aiscreen:M2.aiscreen,aibase:M2.aibase,
+ book0:M2.book('Binary',0x4a2c18,0xc99a3c),book1:M2.book('Logic',0x15264a,0xc9ced6),book2:M2.book('Algorithms',0x5a1520,0xc99a3c),
+ sb0:M2.sign('Generative AI'),sb1:M2.sign('AI Assistants'),sb2:M2.sign('Smart Content'),sb3:M2.sign('Creative Tools'),sb4:M2.sign('Better Tomorrow'),imagine:M2.sign('Imagine  •  Create  •  Innovate',90,18,true),
+ plant0:M3.plant(1),plant1:M3.plant(2),plant2:M3.plant(3),plant3:M3.plant(4),plant4:M3.plant(5),plant5:M3.plant(6),
+ star:M3.star,fol0:M3.foliage(1),fol1:M3.foliage(2),fol2:M3.foliage(3),quill:M3.quill,
+ note:M3.paper('noteCard',40,26),binary:M3.paper('binaryPaper',35,40),tag:M3.paper('tagAbacus',30,11,.3),
+ pPast:M3.platform('soil',140,15,130),pPres:M3.platform('conc',160,20,150),pFut:M3.platform('neon',130,20,130)};
+[[14,9],[11,8],[9,6],[16,10],[7,5],[12,7],[10,7],[6,4],[13,8],[8,6],[15,9],[5,4]].forEach(([w,h],i)=>REG['rock'+i]=M3.rock(i+2,w,h));
+window.REG=REG;
+window.renderPiece=async(name,ppm)=>{const p=await REG[name]();const out={};for(const v of p.views){out[v]=renderView(p.scene,v,p.box,ppm,p.opts||{})}return out};
+window.READY=true;
+</script></body></html>

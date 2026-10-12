@@ -1,0 +1,15 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@page{margin:0}body{margin:0;background:#fff}#defs{position:absolute;width:0;height:0;overflow:hidden}
+.pg{position:relative;overflow:hidden;background:#fff}.pg.P{width:210mm;height:297mm}.pg.L{width:297mm;height:210mm}
+</style></head><body><div id="defs"></div><div id="root"></div>
+<script src="../diy/lib.js"></script><script src="../diy/art.js"></script><script src="../diy/art2.js"></script><script src="../diy/art3.js"></script><script src="../diy/art4.js"></script><script src="../diy/art5.js"></script><script src="../diy/art6.js"></script><script src="../diy/art7.js"></script><script src="../diy/build.js"></script><script src="kit3.js"></script>
+<script>
+const CUTF=(id,a,b)=>`<filter id="${id}" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB">
+<feComponentTransfer in="SourceAlpha" result="m"><feFuncA type="discrete" tableValues="0 0 1 1 1 1 1 1 1 1"/></feComponentTransfer>
+<feMorphology in="m" operator="dilate" radius="${b}" result="o"/><feMorphology in="m" operator="dilate" radius="${a}" result="i"/>
+<feComposite in="o" in2="i" operator="out" result="r"/><feFlood flood-color="#000"/><feComposite in2="r" operator="in"/></filter>`;
+document.getElementById('defs').innerHTML=DEFS+DEFS3+`<svg width="0" height="0"><defs>${CUTF('cutS',.75,1.05)}${CUTF('cutT',.3,.6)}</defs></svg>`;
+const pages=buildAll();
+document.getElementById('root').innerHTML=pages.map(p=>`<div class="pg ${p.w>p.h?'L':'P'}">${p.html}</div>`).join('');
+window.NPAGES=pages.length;
+</script></body></html>

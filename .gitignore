@@ -1,2 +1,5 @@
 __pycache__/
 *.pyc
+diy3d/node_modules/
+diy3d/pg/
+diy/pg/
