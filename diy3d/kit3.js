@@ -65,40 +65,52 @@ O3.pPast=plat('pPast',140,15,130,.32);O3.pPres=plat('pPres',160,20,150,.3);O3.pF
 const fas=(off,w)=>({w,h:50,clip:true,svg:`<g transform="translate(${-off},0)">${fasciaFull2(460,50)}</g>`+cutRect(0,0,w,50)});
 O3.fas1=(()=>{const o=fas(0,232);o.svg+=R(228,0,4,50,{f:'rgba(255,255,255,.18)'})+L(228,0,228,50,{s:'#fff',w:.25,d:'1 1'});return o})();
 O3.fas2=(()=>{const o=fas(228,232);o.svg+=L(4,0,4,50,{s:'#fff',w:.25,d:'1 1'});return o})();
-// ---------- sheets ----------
-const SHEETS=[];
-const sheet=(title,orient,list,o={})=>SHEETS.push({title,orient,list,...o});
-sheet('Title cloud, section headings & signboards','P',[[O3.cloud,'Title cloud','16 × 7 cm',1],[O3.past,'Heading – Past','9 × 3 cm',1],[O3.present,'Heading – Present','7 × 3 cm',1],[O3.future,'Heading – Future','8 × 3 cm',1],[O3.sb0,'Signboard – Generative AI','4.5 × 1.5 cm',1],[O3.sb1,'Signboard – AI Assistants','4.5 × 1.5 cm',1],[O3.sb2,'Signboard – Smart Content','4.5 × 1.5 cm',1],[O3.sb3,'Signboard – Creative Tools','4.5 × 1.5 cm',1],[O3.sb4,'Signboard – Better Tomorrow','4.5 × 1.5 cm',1],[O3.imagine,'Sign – Imagine • Create • Innovate','9 × 1.8 cm',1]]);
-sheet('PAST – Traditional Computing','P',[[O3.abacus,'Abacus (front | back)','7 × 7 × 2 cm',1],[O3.quill,'Quill & ink pot','2.5 × 4.5 cm',1],[O3.note,'Note card','4 × 2.6 cm',1],[O3.binary,'Binary code paper','3.5 × 4 cm',1],[O3.tag,'Label – Abacus','3 × 1.1 cm',1]]);
-sheet('PAST – Books 1 & 2 (separate box nets)','P',[[O3.book0,'Book 1 – Binary (box net)','4 × 1.2 × 3.1 cm',1],[O3.book1,'Book 2 – Logic (box net)','4 × 1.2 × 3.1 cm',1]]);
-sheet('PAST – Book 3  •  PRESENT – Tablet & Smartphone','P',[[O3.book2,'Book 3 – Algorithms (box net)','4 × 1.2 × 3.1 cm',1],[O3.tablet,'Tablet (box net)','4.5 × 3.2 × 0.4 cm',1],[O3.phone,'Smartphone (box net)','1.8 × 3.8 × 0.5 cm',1]]);
-sheet('PRESENT – Digital Era','P',[[O3.monitor,'Desktop monitor (front | back)','7 × 5 × 2 cm',1],[O3.keyboard,'Keyboard (top)','6 × 2 cm',1],[O3.lid,'Laptop screen (front | back)','6 × 3.5 cm',1],[O3.lbase,'Laptop base (top)','6 × 4 cm',1]]);
-sheet('FUTURE – AI & Beyond','P',[[O3.robot,'Robot (front | back)','3 × 6 × 2.5 cm',1],[O3.brain,'AI brain (neon panel)','6.5 × 6 cm',1],[O3.aiscreen,'AI screen (front | back)','5.5 × 5 cm',1],[O3.aibase,'AI screen base (box net)','5.5 × 3 × 0.6 cm',1]]);
-const decor=[];for(let i=0;i<6;i++)decor.push([O3['plant'+i],`Potted plant ${i+1} (front | back)`,'2.5 × 3.8 cm',1]);
-for(let i=0;i<3;i++)decor.push([O3['fol'+i],`Foliage strip ${i+1}`,'10 × 1.4 cm',1]);
-decor.push([rows([group(Array(12).fill(O3.star),2.2)]),'Stars ×12','1 × 1 cm',1]);
-decor.push([rows([group(RK.slice(0,6).map((_,i)=>O3['rock'+i]),2.5),group(RK.slice(6).map((_,i)=>O3['rock'+(i+6)]),2.5)],2.5),'Rocks ×12 (assorted)','0.6–1.8 cm',1]);
-sheet('Plants, foliage strips, stars & rocks','P',decor);
-sheet('Platform skin – PAST (soil)','P',[[O3.pPast,'Past platform (top + 4 sides)','14 × 1.5 × 13 cm',1]]);
-sheet('Platform skin – FUTURE (neon circuit)','P',[[O3.pFut,'Future platform (top + 4 sides)','13 × 2 × 13 cm',1]]);
-sheet('Platform skin – PRESENT (concrete)','P',[[O3.pPres,'Present platform (top + 4 sides)','16 × 2 × 15 cm',1]],{mx:5});
-sheet('Front fascia – left & right halves (overlap 4 mm)','L',[[O3.fas1,'Fascia LEFT (0–23.2 cm)','23.2 × 5 cm',1],[O3.fas2,'Fascia RIGHT (22.8–46 cm)','23.2 × 5 cm',1]]);
-// ---------- packer (centres each row) ----------
-function pack(sheet){
-  const pw=sheet.orient==='L'?297:210,ph=sheet.orient==='L'?210:297;
-  const mx=sheet.mx||9,top=17,bot=9,gap=7,cap=5;
-  const pages=[];let cur,x,y,rowH,row;
-  const flush=()=>{if(!row.length)return;const used=x-gap-mx,off=(pw-2*mx-used)/2;row.forEach(it=>it.x+=off);row=[]};
-  const newPage=()=>{cur={w:pw,h:ph,title:sheet.title,items:[]};pages.push(cur);x=mx;y=top+3;rowH=0;row=[]};
-  newPage();
-  for(const it of sheet.list){
-    const [o,name,dim,qty]=it;const iw=o.w,ih=o.h+(name?cap:0);
-    if(x+iw>pw-mx&&x>mx){flush();x=mx;y+=rowH+gap;rowH=0}
-    if(y+ih>ph-bot&&cur.items.length){flush();newPage()}
-    const e={o,name,dim,qty,x,y};cur.items.push(e);row.push(e);x+=iw+gap;rowH=Math.max(rowH,ih);
+// ---------- parts (grass/plants/stars/rocks sheet removed on request) ----------
+const PARTS=[ // [obj, name, dim, section]
+[O3.pPres,'Present platform skin','16 × 2 × 15 cm','PRESENT'],[O3.pFut,'Future platform skin','13 × 2 × 13 cm','FUTURE'],[O3.pPast,'Past platform skin','14 × 1.5 × 13 cm','PAST'],
+[O3.fas1,'Fascia LEFT (0–23.2 cm)','23.2 × 5 cm','FASCIA'],[O3.fas2,'Fascia RIGHT (22.8–46 cm)','23.2 × 5 cm','FASCIA'],
+[O3.cloud,'Title cloud','16 × 7 cm','HEADINGS'],[O3.abacus,'Abacus (front | back)','7 × 7 × 2 cm','PAST'],
+[O3.monitor,'Monitor (front | back)','7 × 5 × 2 cm','PRESENT'],[O3.lid,'Laptop screen (front | back)','6 × 3.5 cm','PRESENT'],[O3.aiscreen,'AI screen (front | back)','5.5 × 5 cm','FUTURE'],
+[O3.book0,'Book 1 – Binary','4 × 1.2 × 3.1 cm','PAST'],[O3.book1,'Book 2 – Logic','4 × 1.2 × 3.1 cm','PAST'],[O3.book2,'Book 3 – Algorithms','4 × 1.2 × 3.1 cm','PAST'],
+[O3.tablet,'Tablet (box net)','4.5 × 3.2 × 0.4 cm','PRESENT'],[O3.phone,'Phone (box net)','1.8 × 3.8 × 0.5 cm','PRESENT'],
+[O3.robot,'Robot (front | back)','3 × 6 × 2.5 cm','FUTURE'],[O3.brain,'AI brain','6.5 × 6 cm','FUTURE'],[O3.aibase,'AI screen base','5.5 × 3 × 0.6 cm','FUTURE'],
+[O3.past,'Heading – Past','9 × 3 cm','HEADINGS'],[O3.present,'Heading – Present','7 × 3 cm','HEADINGS'],[O3.future,'Heading – Future','8 × 3 cm','HEADINGS'],
+[O3.lbase,'Laptop base','6 × 4 cm','PRESENT'],[O3.keyboard,'Keyboard','6 × 2 cm','PRESENT'],[O3.imagine,'Sign – Imagine','9 × 1.8 cm','SIGNS'],
+[O3.quill,'Quill & ink','2.5 × 4.5 cm','PAST'],[O3.binary,'Binary paper','3.5 × 4 cm','PAST'],[O3.note,'Note card','4 × 2.6 cm','PAST'],[O3.tag,'Label – Abacus','3 × 1.1 cm','PAST'],
+...['Generative AI','AI Assistants','Smart Content','Creative Tools','Better Tomorrow'].map((t,i)=>[O3['sb'+i],'Sign – '+t,'4.5 × 1.5 cm','SIGNS'])];
+// rotate an object 90° (clockwise) so long pieces can stand upright on a portrait page
+function rot90(o){const inner=o.clip?`<svg width="${o.w}" height="${o.h}" viewBox="0 0 ${o.w} ${o.h}" overflow="hidden">${o.svg}</svg>`:o.svg;
+  return {w:o.h,h:o.w,svg:`<g transform="translate(${f(o.h)},0) rotate(90)">${inner}</g>`}}
+// ---------- skyline bin packer: fills every A4 page as tightly as possible ----------
+const RPEN=60,PW=210,PH=297,MX=8,Y0=19,YMAX=PH-9,GAP=4.5,CAP=4.6;
+function placeOn(page,w,h){ // best bottom-left position on the page skyline
+  let best=null;const sk=page.sky;
+  for(let i=0;i<sk.length;i++){const x=sk[i].x;if(x+w>PW-MX+GAP+1e-6)break;
+    let y=0,j=i,span=0;while(span<w&&j<sk.length){y=Math.max(y,sk[j].y);span=sk[j].x+sk[j].w-x;j++}
+    if(span<w-GAP-1e-6||y+h>YMAX+GAP)continue;
+    if(!best||y+h<best.y+best.h-1e-6||(Math.abs(y+h-best.y-best.h)<1e-6&&x<best.x))best={x,y,h,w}}
+  return best}
+function addSky(page,x,y,w,h){const sk=page.sky,out=[];const nx=x,ny=y+h,ne=x+w;
+  for(const s of sk){const e=s.x+s.w;if(e<=nx||s.x>=ne){out.push(s);continue}
+    if(s.x<nx)out.push({x:s.x,y:s.y,w:nx-s.x});if(e>ne)out.push({x:ne,y:s.y,w:e-ne})}
+  out.push({x:nx,y:ny,w:ne-nx});out.sort((a,b)=>a.x-b.x);
+  const m=[];for(const s of out){const l=m[m.length-1];if(l&&Math.abs(l.y-s.y)<1e-6&&Math.abs(l.x+l.w-s.x)<1e-6)l.w+=s.w;else m.push({...s})}page.sky=m}
+function packAll(){
+  const pages=[];const newPage=()=>{const p={w:PW,h:PH,items:[],secs:new Set(),sky:[{x:MX,y:Y0,w:PW-2*MX+GAP}]};pages.push(p);return p};
+  for(const [o,name,dim,sec] of PARTS){
+    const capW=(name.length+dim.length+3)*1.18;
+    let done=false;
+    for(const p of pages.concat([null])){const pg=p||newPage();let best=null;
+      for(const ob of [o,rot90(o)]){if(ob.w>PW-2*MX)continue;const w=Math.max(ob.w,capW)+GAP,h=ob.h+CAP+GAP;
+        const b=placeOn(pg,w,h);if(b){b.sc=b.y+b.h+(ob===o?0:RPEN);if(!best||b.sc<best.b.sc)best={b,ob}}}
+      if(best){const {b,ob}=best;addSky(pg,b.x,b.y,b.w,b.h);pg.items.push({o:ob,name,dim,qty:1,x:b.x,y:b.y});pg.secs.add(sec);done=true;break}
+      if(!p)throw Error('does not fit: '+name)}
   }
-  flush();return pages;
-}
+  pages.forEach(p=>{ // centre the used block horizontally
+    const r=Math.max(...p.items.map(i=>i.x+Math.max(i.o.w,(i.name.length+i.dim.length+3)*1.18)));const off=(PW-MX-r)/2;
+    p.items.forEach(i=>i.x+=off);p.title=[...p.secs].join('  •  ')});
+  return pages}
+
 // ---------- studio cover ----------
 function cover3(rowsL){
   const W=210,H=297;
@@ -134,9 +146,9 @@ function cover3(rowsL){
   s+='</svg>';return `<div style="position:absolute;left:0;top:0;width:${W}mm;height:${H}mm">${s}</div>`;
 }
 function buildAll(){
-  const all=[];SHEETS.forEach(sh=>pack(sh).forEach(p=>all.push(p)));
+  const all=packAll();
   const total=all.length+1;const rl=[];
-  all.forEach((p,i)=>p.items.forEach(it=>{if(it.name)rl.push([it.name.replace(/ \(.*\)/,''),it.dim,i+2])}));
+  all.forEach((p,i)=>p.items.forEach(it=>rl.push([it.name.replace(/ \(.*\)/,''),it.dim,i+2])));
   rl.push(['Fairy lights (wire)','not printed','–']);
   const out=[{w:210,h:297,html:cover3(rl)}];
   all.forEach((p,i)=>out.push({w:p.w,h:p.h,html:renderPage(p,i+1,total)}));
