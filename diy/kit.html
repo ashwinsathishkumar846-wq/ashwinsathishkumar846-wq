@@ -1,0 +1,12 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+@page{margin:0}@page land{size:297mm 210mm}@page port{size:210mm 297mm}
+body{margin:0;background:#fff}#defs{position:absolute;width:0;height:0;overflow:hidden}.pg{position:relative;page-break-after:always;overflow:hidden;background:#fff}
+.pg.P{page:port;width:210mm;height:297mm}.pg.L{page:land;width:297mm;height:210mm}
+</style></head><body><div id="defs"></div><div id="root"></div>
+<script src="lib.js"></script><script src="art.js"></script><script src="art2.js"></script><script src="kit.js"></script><script src="build.js"></script>
+<script>
+document.getElementById('defs').innerHTML=DEFS+DEFS2;
+const pages=buildAll();
+document.getElementById('root').innerHTML=pages.map(p=>`<div class="pg ${p.w>p.h?'L':'P'}">${p.html}</div>`).join('');
+window.NPAGES=pages.length;
+</script></body></html>
