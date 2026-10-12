@@ -103,6 +103,82 @@ NEW['CBS-1']=moved('1a','CBS-1','VIRTUAL LABS PROGRAMMING FOR DELAY GENERATION A
 NEW['CBS-2']=moved('1b','CBS-2','VIRTUAL LABS PROGRAMMING FOR I/O INTERFACING (LED AND SWITCH INTERFACING)','03.07.26')
 NEW['CBS-3']=moved('1c','CBS-3','VIRTUAL LABS PROGRAMMING WITH ON-CHIP TIMERS/COUNTERS','03.07.26')
 ORDER=['1a','1b','1c','1d','2','3','4','5','6','7','8','9','10','CBS-1','CBS-2','CBS-3']
+
+
+def grid_w(tc):
+    row=tc.getparent();tbl=row.getparent()
+    g=tbl.find(W('w:tblGrid'))
+    if g is None: return None
+    cols=[int(x.get(W('w:w'))) for x in g.findall(W('w:gridCol'))]
+    idx=0
+    for c in row.findall(W('w:tc')):
+        gs=c.find(W('w:tcPr')+'/'+W('w:gridSpan'));sp=int(gs.get(W('w:val'))) if gs is not None else 1
+        if c is tc: return sum(cols[idx:idx+sp])
+        idx+=sp
+    return None
+def sync_tcw(tbl):
+    g=tbl.find(W('w:tblGrid'))
+    if g is None: return
+    for tr in tbl.findall(W('w:tr')):
+        for tc in tr.findall(W('w:tc')):
+            gw=grid_w(tc);tw=tc.find(W('w:tcPr')+'/'+W('w:tcW'))
+            if gw and tw is not None: tw.set(W('w:w'),str(gw));tw.set(W('w:type'),'dxa')
+
+import copy as _cp
+def restructure(tbl):
+    rows=tbl.findall(W('w:tr'))
+    if len(rows)==1:
+        tcs=rows[0].findall(W('w:tc'))
+        if False and len(tcs)==4 and all(tc.find('.//'+W('w:drawing')) is not None for tc in tcs):
+            new=_cp.deepcopy(rows[0])
+            for tc in new.findall(W('w:tc')): new.remove(tc)
+            for tc in tcs[2:]: rows[0].remove(tc);new.append(tc)
+            rows[0].addnext(new)
+            g=tbl.find(W('w:tblGrid'))
+            for gc in list(g): g.remove(gc)
+            for _ in range(2):
+                gc=OxmlElement('w:gridCol');gc.set(W('w:w'),'5046');g.append(gc)
+            return
+    g=tbl.find(W('w:tblGrid'))
+    if g is not None:
+        cols=g.findall(W('w:gridCol'))
+        tcs=list(tbl.iter(W('w:tc')))
+        if len(cols)==2 and tcs:
+            ws=[int(tc.find(W('w:tcPr')+'/'+W('w:tcW')).get(W('w:w'))) for tc in tcs[:2]]
+            if abs(ws[0]-2738)<8 and abs(ws[1]-6480)<8:
+                cols[0].set(W('w:w'),'2738');cols[1].set(W('w:w'),'6480')
+# ---- enlarge screenshots inside table cells
+ENL=float(os.environ.get('ENL_MAXS','2.4'));MAXH=float(os.environ.get('ENL_MAXH','9.2'))
+def enlarge(el):
+    for dr in el.iter(W('w:drawing')):
+        ex=dr.find('.//'+W('wp:extent'))
+        if ex is None: continue
+        w=int(ex.get('cx'))/360000;h=int(ex.get('cy'))/360000
+        tc=dr
+        while tc is not None and tc.tag!=W('w:tc'): tc=tc.getparent()
+        if tc is None:
+            if h<4.2 and w<14:
+                sc=min(17.0/w,2.0)
+                if sc>1.03:
+                    ex.set('cx',str(int(int(ex.get('cx'))*sc)));ex.set('cy',str(int(int(ex.get('cy'))*sc)))
+                    for a in dr.iter(W('a:ext')):
+                        if a.get('cx') and a.get('cy'):
+                            a.set('cx',str(int(int(a.get('cx'))*sc)));a.set('cy',str(int(int(a.get('cy'))*sc)))
+            continue
+        tw=tc.find(W('w:tcPr')+'/'+W('w:tcW'))
+        if tw is None or tw.get(W('w:type'))!='dxa': continue
+        gw=grid_w(tc);maxw=(gw if gw else int(tw.get(W('w:w'))))/567-0.5
+        sc=min(maxw/w,MAXH/h,ENL)
+        if sc<=1.03: continue
+        ex.set('cx',str(int(int(ex.get('cx'))*sc)));ex.set('cy',str(int(int(ex.get('cy'))*sc)))
+        for a in dr.iter(W('a:ext')):
+            if a.get('cx') and a.get('cy'):
+                a.set('cx',str(int(int(a.get('cx'))*sc)));a.set('cy',str(int(int(a.get('cy'))*sc)))
+for k in ORDER:
+    for e_ in NEW[k]:
+        if e_.tag==W('w:tbl') and e_.find('.//'+W('w:drawing')) is not None:
+            restructure(e_);sync_tcw(e_)
+        enlarge(e_)
 # apply spacer overrides
 def last_result(seg):
     c=[e for e in seg if e.tag==W('w:p') and txt(e).upper().startswith('RESULT')]
