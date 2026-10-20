@@ -16,6 +16,7 @@ Double-click the file to open it in any modern browser (Chrome, Edge, Firefox, S
 - Contact details, text and project content are plain HTML in the file.
 - The embedded resume is the base64 string in `RESUME_B64` inside the script.
 - To add a LinkedIn link later, add an `<a>` in the contact card; none is included because no profile URL was provided.
+- The page presents skills, projects, experience and contact details; it does not ask for a specific internship.
 
 ## Content notes
 - Projects 1 and 2 use a fictional brand (BrewBerry Café) and are labelled as practice work; no results are claimed.
