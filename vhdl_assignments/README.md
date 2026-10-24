@@ -27,12 +27,23 @@ ModelSim on your PC. Each folder here is ready for that.
 | VHDL Make a Memory | `AAC2M2P2/AAC2M2P2.vhd` | 128×32 single-port RAM, clocked write, unregistered (asynchronous) read |
 | VHDL ALU | `AAC2M2H1/AAC2M2H1.vhd` | 32-bit ALU, 8 opcodes, combinational |
 | VHDL FIFO | `AAC2M2H2/AAC2M2H2.vhd` | 8×9 FIFO, pointer clear/increment, tri-state output when rden = 0 |
-| VHDL Finite State Machine | *not included yet* | needs the state diagram picture from the assignment page |
+| VHDL Finite State Machine | `AAC2M2P3/AAC2M2P3.vhd` | Moore FSM, states A/B/C: A→B on 1, B→C on 0, C→A on 1, others hold; Out1 = 1 only in C; RST active high → A |
+
+## Most common reason for 0/10
+The grader only accepts **`myvectorh.out`**. Uploading the `.vhd` file, or a `myvectorh.out` made by a run where the
+code did not compile, gives 0/10. Check the file before uploading:
+
+    python3 check_output.py AAC2M2P1/myvectorh.out AAC2M2P1/vectorh.out
+
+It must have 256 lines, and must NOT be identical to `vectorh.out`. Also read the ModelSim Transcript: there must be
+no `Error` lines after `vcom`, and the simulation must run to the end. If ModelSim is not installed, it comes free with
+Quartus Prime Lite (select *ModelSim-Intel FPGA Starter Edition*) - see the Module 1 setup videos.
 
 ## If a problem scores below 7/10
 * RAM: try `AAC2M2P2/fallback_only/AAC2M2P2_alt_registered_address.vhd` — copy it over
   `AAC2M2P2.vhd` (same entity name), re-run the script and re-upload.
-* Counter: if you have to change anything, the first thing to re-read in the 74LS163 data sheet is the
+* Counter: `AAC2M2P1/fallback_only/` treats PE as active HIGH instead of active low - only try it if a valid
+  output of the main file scores 0. Otherwise, the first thing to re-read in the 74LS163 data sheet is the
   polarity of PE (the data sheet says active LOW) and that TC depends on CET.
 * Make sure `vectorh.out` and the `.vhdp` in the folder are the originals, and that you uploaded the
   `myvectorh.out` that was produced *after* the last code change.
