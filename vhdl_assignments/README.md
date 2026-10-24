@@ -4,6 +4,11 @@ Coursera grades the file **`myvectorh.out`**, not the `.vhd`. That file is writt
 course's own (encrypted) testbench, so it can only be created by running that testbench in
 ModelSim on your PC. Each folder here is ready for that.
 
+## Fastest way: all five at once
+In ModelSim: File > Change Directory > this folder, then `do run_all.do`. The five real outputs are copied to
+`upload_ready/AAC2M2P1/myvectorh.out`, `upload_ready/AAC2M2P2/...`, `P3`, `H1`, `H2` - upload each to its own assignment.
+(The scripts could not be tested inside ModelSim from my side; if one errors, send me the Transcript text.)
+
 ## Steps (repeat for each problem folder)
 
 1. Open the folder (e.g. `AAC2M2P1`). It contains
