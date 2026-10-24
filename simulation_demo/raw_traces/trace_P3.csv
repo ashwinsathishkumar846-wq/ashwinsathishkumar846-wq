@@ -1,0 +1,19 @@
+cycle,RST,In1,state,Out1,note
+1,1,0,0,0,reset -> A
+2,1,1,0,0,reset -> A
+3,0,0,0,0,A stays A (In1=0)
+4,0,1,1,0,A -> B
+5,0,1,1,0,B stays B (In1=1)
+6,0,1,1,0,B stays B
+7,0,0,2,1,B -> C
+8,0,0,2,1,C stays C (Out1=1)
+9,0,0,2,1,C stays C
+10,0,1,0,0,C -> A
+11,0,0,0,0,A stays A
+12,0,1,1,0,A -> B
+13,0,0,2,1,B -> C
+14,0,1,0,0,C -> A
+15,0,1,1,0,A -> B
+16,0,0,2,1,B -> C
+17,1,0,0,0,RST while in C -> A
+18,0,0,0,0,A stays A

@@ -1,0 +1,22 @@
+cycle,address,data,wren,q,note
+1,0,A5000000,1,A5000000,write
+2,1,A5001111,1,A5001111,write
+3,2,A5002222,1,A5002222,write
+4,3,A5003333,1,A5003333,write
+5,4,A5004444,1,A5004444,write
+6,5,A5005555,1,A5005555,write
+7,6,A5006666,1,A5006666,write
+8,7,A5007777,1,A5007777,write
+9,0,FFFFFFFF,0,A5000000,read (data ignored; wren=0)
+10,1,FFFFFFFF,0,A5001111,read (data ignored; wren=0)
+11,2,FFFFFFFF,0,A5002222,read (data ignored; wren=0)
+12,3,FFFFFFFF,0,A5003333,read (data ignored; wren=0)
+13,4,FFFFFFFF,0,A5004444,read (data ignored; wren=0)
+14,5,FFFFFFFF,0,A5005555,read (data ignored; wren=0)
+15,6,FFFFFFFF,0,A5006666,read (data ignored; wren=0)
+16,7,FFFFFFFF,0,A5007777,read (data ignored; wren=0)
+17,3,CAFEF00D,1,CAFEF00D,overwrite address 3
+18,3,12345678,0,CAFEF00D,read 3 (wren=0; memory unchanged)
+19,5,00000000,0,A5005555,read 5
+20,120,DEADBEEF,1,DEADBEEF,write high address 120
+21,120,00000000,0,DEADBEEF,read 120
