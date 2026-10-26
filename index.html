@@ -1,16 +1,10 @@
-<!DOCTYPE html><title>India Zones Map</title>
-<div id="m" style="height:95vh"></div>
-<script src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-const Z = [['#e0824f','Jammu and Kashmir,Ladakh,Himachal Pradesh,Punjab,Chandigarh,Haryana,Delhi,Rajasthan'],
-  ['#f0c070','Uttarakhand,Uttar Pradesh,Madhya Pradesh,Chhattisgarh'], ['#f3ec8a','Bihar,Jharkhand,West Bengal,Odisha'],
-  ['#a98bc0','Sikkim,Arunachal Pradesh,Assam,Nagaland,Manipur,Mizoram,Tripura,Meghalaya'],
-  ['#a8c98a','Gujarat,Maharashtra,Goa,Dadra and Nagar Haveli and Daman and Diu'],
-  ['#d4569c','Telangana,Andhra Pradesh,Karnataka,Kerala,Tamil Nadu,Puducherry,Lakshadweep,Andaman and Nicobar Islands']];
+<!DOCTYPE html><title>India Map</title><div id="m" style="height:95vh"></div>
+<script src="https://www.gstatic.com/charts/loader.js"></script><script>
+const Z = ['Jammu and Kashmir,Ladakh,Himachal Pradesh,Punjab,Chandigarh,Haryana,Delhi,Rajasthan', 'Uttarakhand,Uttar Pradesh,Madhya Pradesh,Chhattisgarh', 'Bihar,Jharkhand,West Bengal,Odisha',
+  'Sikkim,Arunachal Pradesh,Assam,Nagaland,Manipur,Mizoram,Tripura,Meghalaya', 'Gujarat,Maharashtra,Goa,Dadra and Nagar Haveli and Daman and Diu', 'Telangana,Andhra Pradesh,Karnataka,Kerala,Tamil Nadu,Puducherry,Lakshadweep,Andaman and Nicobar Islands'];
 google.charts.load('current', {packages: ['geochart']}).then(() => {
-  const d = google.visualization.arrayToDataTable([['State','Zone'], ...Z.flatMap((z, i) => z[1].split(',').map(s => [s, i]))]);
-  const c = new google.visualization.GeoChart(m);
+  const d = google.visualization.arrayToDataTable([['S', 'Z'], ...Z.flatMap((z, i) => z.split(',').map(s => [s, i]))]), c = new google.visualization.GeoChart(m);
   google.visualization.events.addListener(c, 'select', () => open('https://en.wikipedia.org/wiki/' + d.getValue(c.getSelection()[0].row, 0)));
-  c.draw(d, {region: 'IN', resolution: 'provinces', legend: 'none', colorAxis: {values: Z.map((_, i) => i), colors: Z.map(z => z[0])}});
+  c.draw(d, {region: 'IN', resolution: 'provinces', legend: 'none', colorAxis: {values: [0, 1, 2, 3, 4, 5], colors: ['#e0824f', '#f0c070', '#f3ec8a', '#a98bc0', '#a8c98a', '#d4569c']}});
 });
 </script>
