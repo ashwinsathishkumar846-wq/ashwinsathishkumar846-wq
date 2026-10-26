@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<title>India Zones Map</title>
+<h2 style="text-align:center">INDIA – Zones with States (click a state → Wikipedia)</h2>
+<div id="map" style="width:100%;height:90vh"></div>
+<script src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+const zones = [ // [color, states]
+  ['#e0824f', 'Jammu and Kashmir,Ladakh,Himachal Pradesh,Punjab,Chandigarh,Haryana,Delhi,Rajasthan'], // Northern
+  ['#f0c070', 'Uttarakhand,Uttar Pradesh,Madhya Pradesh,Chhattisgarh'],                                // Central
+  ['#f3ec8a', 'Bihar,Jharkhand,West Bengal,Odisha'],                                                    // Eastern
+  ['#a98bc0', 'Sikkim,Arunachal Pradesh,Assam,Nagaland,Manipur,Mizoram,Tripura,Meghalaya'],             // North-Eastern
+  ['#a8c98a', 'Gujarat,Maharashtra,Goa,Dadra and Nagar Haveli and Daman and Diu'],                      // Western
+  ['#d4569c', 'Telangana,Andhra Pradesh,Karnataka,Kerala,Tamil Nadu,Puducherry,Lakshadweep,Andaman and Nicobar Islands'] // Southern
+];
+google.charts.load('current', {packages: ['geochart']});
+google.charts.setOnLoadCallback(() => {
+  const rows = zones.flatMap(([, s], z) => s.split(',').map(n => [n, z]));
+  const data = google.visualization.arrayToDataTable([['State', 'Zone'], ...rows]);
+  const chart = new google.visualization.GeoChart(document.getElementById('map'));
+  google.visualization.events.addListener(chart, 'select', () => {
+    const s = chart.getSelection()[0];
+    if (s) window.open('https://en.wikipedia.org/wiki/' + data.getValue(s.row, 0).replaceAll(' ', '_'), '_blank');
+  });
+  chart.draw(data, {region: 'IN', resolution: 'provinces', legend: 'none', backgroundColor: '#fff',
+    colorAxis: {values: zones.map((_, i) => i), colors: zones.map(z => z[0])}});
+});
+</script>
