@@ -1,0 +1,4 @@
+<!DOCTYPE html><title>India Map</title><div id="m" style="height:95vh"></div>
+<script src="https://cdn.amcharts.com/lib/5/index.js"></script><script src="https://cdn.amcharts.com/lib/5/map.js"></script><script src="https://cdn.amcharts.com/lib/5/geodata/indiaLow.js"></script>
+<script>const r = am5.Root.new("m"), t = r.container.children.push(am5map.MapChart.new(r, {})).series.push(am5map.MapPolygonSeries.new(r, {geoJSON: am5geodata_indiaLow})).mapPolygons.template;
+t.setAll({tooltipText: "{name}", cursorOverStyle: "pointer"}); t.adapters.add("fill", (f, p) => am5.Color.fromHSL([...p.dataItem.dataContext.name].reduce((a, c) => a + c.charCodeAt() * 7, 0) % 360 / 360, .6, .65)); t.events.on("click", e => open("https://en.wikipedia.org/wiki/" + e.target.dataItem.dataContext.name));</script>
