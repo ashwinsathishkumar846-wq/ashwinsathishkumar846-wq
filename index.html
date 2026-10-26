@@ -6,5 +6,4 @@ google.charts.load('current', {packages: ['geochart']}).then(() => {
   const d = google.visualization.arrayToDataTable([['S', 'Z'], ...Z.flatMap((z, i) => z.split(',').map(s => [s, i]))]), c = new google.visualization.GeoChart(m);
   google.visualization.events.addListener(c, 'select', () => open('https://en.wikipedia.org/wiki/' + d.getValue(c.getSelection()[0].row, 0)));
   c.draw(d, {region: 'IN', resolution: 'provinces', legend: 'none', colorAxis: {values: [0, 1, 2, 3, 4, 5], colors: ['#e0824f', '#f0c070', '#f3ec8a', '#a98bc0', '#a8c98a', '#d4569c']}});
-});
-</script>
+});</script>
